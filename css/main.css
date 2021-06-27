@@ -14,7 +14,7 @@ body {
     background: rgba(0, 0, 0, 0.4);
 }
 p {
-    font-size: 22px;
+    font-size: 20px;
     line-height: 1.8em;
 }
 ul {
@@ -54,7 +54,7 @@ nav a {
     width: 20%;
     padding-top: 15px;
     padding-bottom: 15px;
-    background: rgb(100, 40, 0);
+    background: rgb(50, 20, 0);
     border-bottom: 1px solid #963c00;
 }
 nav a:hover {
@@ -73,17 +73,21 @@ nav a, #footer a {
     color: #999999;
 }
 #text a:hover, #footer a:hover{
-    background: #d65900;
-    color: black;
+    background: #963c00;
+    color: #eeeeee;
 }
 
 #text h1, h2, h3, h4, h5 {
     font-family: 'Roboto', sans-serif;
 }
 
+#text img {
+    margin: 10px;
+}
+
 #footer {
     font-size: 16px;
-    border-top: 1px solid #d65900;
+    border-top: 1px solid #963c00;
     background: black;
 }
 #footer ul {
