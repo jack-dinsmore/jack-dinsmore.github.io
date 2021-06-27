@@ -1,4 +1,4 @@
-# JackDinsmore.github.io
+# jack-dinsmore.github.io
 
 Jack Dinsmore's personal website.
 
