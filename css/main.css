@@ -47,6 +47,9 @@ nav ul {
     margin: 0;
 }
 nav ul li {
+    display: inline;
+}
+nav a {
     display: inline-block;
     width: 20%;
     padding-top: 15px;
@@ -54,7 +57,7 @@ nav ul li {
     background: rgb(100, 40, 0);
     border-bottom: 1px solid #963c00;
 }
-nav li:hover {
+nav a:hover {
     background: rgb(0, 0, 0);
 }
 nav a, #footer a {
