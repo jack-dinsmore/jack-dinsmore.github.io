@@ -29,7 +29,7 @@
     padding-right: 0px;
     margin: 0;
 }
-#intronav ul li, footer ul li {
+#intronav ul li a {
     display: block;
     width: 200px;
     padding-top: 15px;
