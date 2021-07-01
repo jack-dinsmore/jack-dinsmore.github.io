@@ -1,10 +1,10 @@
-
 body {
     background: black;
     font-family: 'Lora', serif;
     color: #eeeeee;
     margin: 0px;
     background-attachment: fixed;
+    overflow:hidden
 }
 #text {
     padding-top: 10px;
@@ -53,7 +53,7 @@ nav a {
     width: 20%;
     padding-top: 15px;
     padding-bottom: 15px;
-    background: rgb(50, 20, 0);
+    background: rgb(30, 12, 0);
     border-bottom: 1px solid #963c00;
 }
 nav a:hover {
@@ -88,6 +88,9 @@ nav a, #footer a {
     font-size: 16px;
     border-top: 1px solid #963c00;
     background: black;
+    min-height: 600px;
+    height: auto !important;
+    height: 600px;
 }
 #footer ul {
     width: 70%;
@@ -123,3 +126,12 @@ nav a, #footer a {
     height: 3px;
     z-index:-1;
 }
+
+#footer #copyright {
+    position: absolute;
+    right: 15%;
+    text-align: right;
+    width: 400px;
+    color: #999999;
+}
+

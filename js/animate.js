@@ -2,7 +2,7 @@ const density = 0.0001;
 let container;
 let stars = [];
 let repeat_id;
-let millisecondsBetweenFrames = 120;
+let millisecondsBetweenFrames = 80;
 
 class BadRNG {
     constructor(seed) {
