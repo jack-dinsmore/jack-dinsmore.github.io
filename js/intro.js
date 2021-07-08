@@ -2,7 +2,7 @@ let framesSinceInit;
 let introID;
 let introElem;
 let name = "Jack Dinsmore";
-let millisecondsBetweenFramesIntro = 100;
+let millisecondsBetweenFramesIntro = 80;
 
 function introFrame () {
     if (framesSinceInit < 2 * name.length) {
