@@ -4,13 +4,13 @@ body {
     color: #eeeeee;
     margin: 0px;
     background-attachment: fixed;
-    overflow:hidden
 }
 #text {
     padding-top: 10px;
     width: 70%;
     margin: 60px auto;
     background: rgba(0, 0, 0, 0.4);
+    min-height: 100vh;
 }
 p {
     font-size: 20px;
@@ -88,9 +88,6 @@ nav a, #footer a {
     font-size: 16px;
     border-top: 1px solid #963c00;
     background: black;
-    min-height: 600px;
-    height: auto !important;
-    height: 600px;
 }
 #footer ul {
     width: 70%;
@@ -134,4 +131,3 @@ nav a, #footer a {
     width: 400px;
     color: #999999;
 }
-
