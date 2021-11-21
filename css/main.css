@@ -9,7 +9,6 @@ body {
     padding-top: 10px;
     width: 70%;
     margin: 60px auto;
-    background: rgba(0, 0, 0, 0.4);
     min-height: 100vh;
 }
 p {
@@ -130,4 +129,9 @@ nav a, #footer a {
     text-align: right;
     width: 400px;
     color: #999999;
+}
+
+.unit {
+    padding-bottom:3em;
+    background: rgba(0, 0, 0, 0.4);
 }

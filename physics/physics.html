@@ -24,33 +24,56 @@
     </div>
 
     <div id="text">
-        <div id="asteroids">
+    <p>
+        <a href="https://www.disruptiveplanets.mit.edu/jackdinsmore">My page</a> on the Julien de Wit group website (MIT)
+    </p>
+
+        <div id="asteroids", class='unit'>
             <h1>Inferring Asteroid Shape and Density from Tidal Torque</h1>
             <p>Available on <a href="https://github.com/jack-dinsmore/asteroid-tidal-torque">github</a>. Summer of 2021 to present. Independent project, supervised by Prof. Julien de Wit of MIT.</p>
-            <p></p>
             <p>Asteroids are pristine remnants of the material which comprised the early solar system, and understanding asteroid shape and structure tells us not only about the nature of this diverse and omnipresent population, but about the evolution of Earth and the other planets as well. However, asteroids are often small, dark, and distant, which makes them difficult to detect, let alone describe. In this project, I propose a model to extract asteroid shape and density distribution from observational data of an asteroid flyby. </p>
             <p>The mechanism I study acknowledges the fact that gravity can cause a small torque on irregularly-shaped objects, thereby changing their angular velocity and momentum. The size and direction of the torque is highly dependendent on the small-scale structure of the asteroid, which are difficult to measure. However, changes in angular velocity are relatively easy to measure, so the asteroid's small scale structure may be able to be inferred. I consider both the case when the asteroid is resolved (its shape is already known, but possibly not its density distribution) and when it is unresolved.</p>
-            <p>I am conducting this project independently, with some consultation with my supervisor Prof. de Wit. The mathematical complexity of this project may cause its goals to change, but I anticipate submitting an article for publication on the effect of tidal torque on asteroids before the end of 2021.</p>
+            <p>I am conducting this project independently, advised by Prof. de Wit. I anticipate submitting an article for publication on the effect of tidal torque on asteroids by the summer of 2022.</p>
+
+            <center><figure style="width:70%">
+                <a href="https://jack-dinsmore.github.io/physics/figs/spin-chaos-sym.png"><img src="https://jack-dinsmore.github.io/physics/figs/spin-chaos-sym.png" alt="Spread of initial conditions" width=80%></a>
+                <figcaption>The three components of an asteroid's rotational velocity vector during a close flyby of Earth, influenced by tidal torque. The bands indicate deviations from the true path resulting from small changes to the asteroid's density distribution. The spread of these deviations over time indicates the strong dependence of the asteroid dynamical system on initial conditions, which can be used to precisely determine the asteroid density distribution.</figcaption>
+            </figure></center>
+
+            <center><figure style="width:80%">
+                <a href="https://jack-dinsmore.github.io/physics/figs/corner-l3.png"><img src="https://jack-dinsmore.github.io/physics/figs/corner-l3.png" alt="Asteroid parameter corner plot" width=60%></a>
+                <figcaption>Posterior probability distributions for nine parameters governing the shape and density distribution of an asteroid on close flyby of Earth, resulting from a Markov Chain Monte Carlo fit to synthetic data. One free parameter controlling the initial orientation of the asteroid is also fitted and displayed. The true parameters are shown in blue, as well as the median, 5th, and 95th percentiles in red.</figcaption>
+            </figure></center>
         </div>
 
-
-        <div id="gce">
+        <div id="gce", class='unit'>
             <h1>Modelling the Galactic Center Excess</h1>
             <p>Available on <a href="https://github.com/jack-dinsmore/jtd-gce-urop">github</a>. Fall of 2020 to present. UROP with Prof. Tracy Slatyer of MIT.</p>
-            <p>We assess whether the galactic center excess (GCE) can be explained entirely by a largely undetected millisecond pulsar (MSP) population in the galactic center by proposing several luminosity functions, constraining the space of possible parameters with observational data, and predicting how many MSPs are required to reproduce the GCE for each function.</p>
-            <p>In this ongoing project, I model the GCE with multiple luminosity functions, some taken from the literature, and calculate the number of pulsars they require to yield the excess. The paucity of point sources observed by the Fermi Large Area Telescope in the galactic center and the fraction of flux from the GCE it observes restrict some luminosity functions. In future work, I will improve the sensitivity of my analysis to determine which luminosity functions best fit point source observations.</p>
-            <p>This project is ongoing, but an article is projected to be submitted before the summer of 2021.<p/>
+            <p>We assess whether the Galactic Center Excess (GCE) can be explained entirely by a largely undetected millisecond pulsar (MSP) population in the Galactic Center by constraining the space of possible luminosity function parameters with observational data. We benchmark our analysis with seven previously proposed luminosity functions and predict how many MSPs are required to reproduce the GCE for each function.</p>
+            <p>As the only student working in this project, I conduct all the analysis, including an estimate of the flux of the GCE, an analysis of several different models for the data set's sensitivity to point source detection, comparison between the observed flux distribution of resolved point sources and the predicted flux distribution of MSPs, and predictions for how future improvements to sensitivity will change the strength of observational constraints.</p>
+            <p>This project is ongoing, but an article is projected to be submitted by December 2021.<p/>
+
+            <center><figure style="width:100%">
+                <a href="https://jack-dinsmore.github.io/physics/figs/log-normal.png"><img src="https://jack-dinsmore.github.io/physics/figs/log-normal.png" alt="Log normal luminosity functions" width=30%></a>
+                <a href="https://jack-dinsmore.github.io/physics/figs/power-law.png"><img src="https://jack-dinsmore.github.io/physics/figs/power-law.png" alt="Power law (vary Lmin) luminosity functions" width=30%></a>
+                <a href="https://jack-dinsmore.github.io/physics/figs/power-law-alpha.png"><img src="https://jack-dinsmore.github.io/physics/figs/power-law-alpha.png" alt="Power law (vary alpha) luminosity functions" width=30%></a>
+                <figcaption>Configurations of common luminosity functions representing GCE MSPs. The center and right depict power law luminosity functions with exponentially damped tails, with the center figure varying the minimum MSP luminosity and the right figure varying the power law slope. The left figure depicts a log normal luminosity function. Regions marked with pluses conform to both the observational constraints we analyzed, and the points on each plot refer to benchmark luminosity functions proposed in the literature. See the paper for details.</figcaption>
+            </figure></center>
         </div>
 
-        <div id="photometry">
+        <div id="photometry", class='unit'>
             <h1>Ensemble Photometry</h1>
             <p>Available on <a href="https://github.com/users/jack-dinsmore/projects/2">github</a>. Summer of 2020 to present. REU with Prof. Joshua Pepper of Lehigh University</p>
             <p>We developed and tested an algorithm to extract error-corrected luminosity fluctuations from large images of several unresolved open clusters and globular clusters drawn from the TESS data set as a first step to isolating the clusters’ variable stars and determining the clusters’ ages.
             <p>As an REU student, I worked on this problem from its infancy, developing, testing, and comparing different techniques for measuring background fluctuation. I applied these techniques to subtract the background from time series images of stellar clusters and extract position-distributed light curves for a selection of clusters, pinpointing the most variable stars. Working largely independently, I presented my results to my advisor on a weekly basis and to the larger REU group at the end of the summer.</p>
-            <p>This project is ongoing, but an article is projected to be submitted just after summer of 2021.<p/>
+            <p>This project is ongoing, but an article is projected to be submitted around the summer of 2022.<p/>
+            <center><figure style="width:80%">
+                <a href="https://jack-dinsmore.github.io/physics/figs/lightcurve-breakdown.png"><img src="https://jack-dinsmore.github.io/physics/figs/lightcurve-breakdown.png" alt="Lightcurves of IC 2391" width=80%></a>
+                <figcaption>Lightcurves of IC 2391, subdivided into regions according to a 4x4 square grid over a 92x92 TESS pixel image. Each lightcurve displays unique properties, demonstrating the diverse properties of variable stars in different regions. These stars will later be used to age-date the cluster and others like it.</figcaption>
+            </figure></center>
         </div>
 
-        <div id="facile">
+        <div id="facile", class='unit'>
             <h1>Machine Learning and Data Flow</h1>
             <p>Available on <a href="https://github.com/users/jack-dinsmore/projects/1">github</a> and published in <a href="https://iopscience.iop.org/article/10.1088/2632-2153/abec21">Machine Learning: Science and Technology</a>. Summer of 2019 to winter of 2019. UROP with Prof. Phil Harris of MIT.</p>
             <p>We sought to increase the speed of event reconstruction in the high-level trigger (HLT) of the Large Hadron Collider CMS experiment by replacing a current, CPU-implemented regression algorithm with a GPU-implemented neural network.</p>
@@ -58,7 +81,7 @@
             <p>In 2020, we deployed this network as a service and ran the full CMS HLT regression using FACILE, detecting a 10% decrease in total time when compared to the nominal algorithm for under 500 clients. This speedup could be used to increase the throughput of the HLT, or to devote a fraction of the machines currently running the HLT to other tasks.</p>
         </div>
 
-        <div id="bht">
+        <div id="bht", class='unit'>
             <h1>Black Hole Thermodynamics</h1>
             <p>Published in <a href="https://iopscience.iop.org/article/10.1088/2632-2153/abec21">Classical and Quantum Gravity.</a> Summer of 2017 to summer of 2018. Internship with Prof. Jennie Traschen of UMass Amherst.</p>
             <p>We demonstrated that the heat capacity of a Schwarzschild-de Sitter (SdS) black hole exhibits an extremum at low temperature and that the entropy exhibits an inflection point at a different low temperature analogous to the classical Schottky anomaly, which occurs in low-temperature two-state systems.</p>
