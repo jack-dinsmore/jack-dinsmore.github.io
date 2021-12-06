@@ -2,7 +2,8 @@ const density = 0.0001;
 let container;
 let stars = [];
 let repeat_id;
-let millisecondsBetweenFrames = 80;
+const millisecondsBetweenFrames = 100;
+let star_velocity = 0.1;
 
 class BadRNG {
     constructor(seed) {
@@ -21,8 +22,8 @@ let now = Date.now() / millisecondsBetweenFrames;
 class Star {
     constructor() {
         let theta = rng.gen() * 2 * Math.PI;
-        this.vx = Math.cos(theta);
-        this.vy = Math.sin(theta);
+        this.vx = star_velocity * Math.cos(theta);
+        this.vy = star_velocity * Math.sin(theta);
         this.x = Math.trunc(rng.gen() * screen.width + this.vx * now) % screen.width;
         this.y = Math.trunc(rng.gen() * screen.height + this.vy * now) % screen.height;
 
