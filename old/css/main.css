@@ -1,0 +1,137 @@
+body {
+    background: black;
+    font-family: 'Lora', serif;
+    color: #eeeeee;
+    margin: 0px;
+    background-attachment: fixed;
+}
+#text {
+    padding-top: 10px;
+    width: 70%;
+    margin: 60px auto;
+    min-height: 100vh;
+}
+p {
+    font-size: 20px;
+    line-height: 1.8em;
+}
+ul {
+    line-height: 1.2em;
+    font-size: 18px;
+}
+#header h1 {
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    font-size: 64px;
+    padding-top: 80px;
+    width: 70%;
+    margin: 60px auto;
+}
+nav {
+    font-size: 16px;
+    position: fixed;
+    width: 100%;
+    height: 50px;
+    left: 0;
+    top: 0;
+}
+nav ul {
+    font-family: 'Roboto', sans-serif;
+    list-style: none;
+    font-weight: normal;
+    text-align: center;
+    padding-left: 0px;
+    padding-right: 0px;
+    margin: 0;
+}
+nav ul li {
+    display: inline;
+}
+nav a {
+    display: inline-block;
+    width: 20%;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    background: rgb(30, 12, 0);
+    border-bottom: 1px solid #963c00;
+}
+nav a:hover {
+    background: rgb(0, 0, 0);
+}
+nav a, #footer a {
+    color: #eeeeee;
+    text-decoration: none;
+}
+
+#text a, #footer a {
+    text-decoration: none;
+    color: #d65900;
+}
+#text a:visited, #footer a:visited {
+    color: #999999;
+}
+#text a:hover, #footer a:hover{
+    background: #963c00;
+    color: #eeeeee;
+}
+
+#text h1, h2, h3, h4, h5 {
+    font-family: 'Roboto', sans-serif;
+}
+
+#text img {
+    margin: 10px;
+}
+
+#footer {
+    font-size: 16px;
+    border-top: 1px solid #963c00;
+    background: black;
+}
+#footer ul {
+    width: 70%;
+    margin: 60px auto;
+    margin-top: 0;
+    margin-bottom: 0;
+    font-family: 'Roboto', sans-serif;
+    list-style: none;
+    font-weight: normal;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+#footer ul li {
+    display: inline-block;
+    width: 10%;
+    padding-top:15px;
+    padding-bottom:15px;
+}
+
+#background {
+    background-image: url('https://jack-dinsmore.github.io/background.jpg');
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0%;
+    left: 0%;
+    z-index:-2;
+}
+#animate {
+    position: absolute;
+    border-radius: 50%;
+    width: 3px;
+    height: 3px;
+    z-index:-1;
+}
+
+#footer #copyright {
+    position: absolute;
+    right: 15%;
+    text-align: right;
+    width: 400px;
+    color: #999999;
+}
+
+.unit {
+    padding-bottom:3em;
+    background: rgba(0, 0, 0, 0.6);
+}
