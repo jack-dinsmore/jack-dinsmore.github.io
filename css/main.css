@@ -16,6 +16,7 @@ body {
 }
 
 nav {
+    background: white;
     line-height: 1;
     font-size: 18px;
     position: fixed;
@@ -77,4 +78,10 @@ h1 {
 
 ul {
     list-style-type:circle;
+}
+
+object {
+    height: 75vh;
+    width: 100%;
+    overflow: hidden;
 }
