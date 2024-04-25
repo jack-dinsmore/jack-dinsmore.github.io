@@ -61,13 +61,12 @@ p {
     text-align: justify;
 }
 
-img {
+.left {
     vertical-align: top;
+    float: left;
     padding-right: 40px;
     margin-right: 30px;
     border-right: 2px solid #eca500;
-    max-width: max(25%, 12em);
-    float: left
 }
 
 h1 {
@@ -85,3 +84,18 @@ object {
     width: 100%;
     overflow: hidden;
 }
+
+.unit:after {
+	visibility: hidden;
+	display: block;
+	font-size: 0;
+	content: " ";
+	clear: both;
+	height: 0;
+}
+
+.unit { display: inline-table; }
+/* Hides from IE-mac \*/
+* html .unit { height: 1%; }
+.unit { display: block; }
+/* End hide from IE-mac */
