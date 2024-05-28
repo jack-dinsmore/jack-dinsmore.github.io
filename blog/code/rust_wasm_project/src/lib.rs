@@ -1,11 +1,3 @@
-use wasm_bindgen::prelude::*;
-
-#[wasm_bindgen]
-pub fn greet(name: &str) -> String {
-    format!("Hello, {}!", name)
-}
-
-
 use image::GenericImageView;
 use js_sys::Uint8Array;
 use wasm_bindgen::{prelude::*, JsCast, Clamped};
@@ -24,6 +16,8 @@ pub async fn fetch_url_binary(url: String) -> Result<Uint8Array, JsValue> {
 
 #[wasm_bindgen]
 pub async fn unred(url: String, canvas: String) -> Result<(), JsValue> {
+    println!("A");
+    dbg!();
     let binary = fetch_url_binary(url).await?;
     let altbuf = binary.to_vec();
 
@@ -38,6 +32,9 @@ pub async fn unred(url: String, canvas: String) -> Result<(), JsValue> {
             *pixel = image::Rgba([0, pixel[1], pixel[2], pixel[3]]);
         }
     }
+
+    println!("A");
+    dbg!();
 
     let window = web_sys::window().unwrap();
     let document = window.document().expect("Could not get document");
