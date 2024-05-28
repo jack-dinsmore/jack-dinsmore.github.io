@@ -1,28 +1,21 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rust + WebAssembly</title>
+    <title>Unred image</title>
 </head>
+
 <body>
-    <h1>Rust and WebAssembly</h1>
-    <button id="greet-button">Greet</button>
-    <div id="output"></div>
-    <script type="module">
-        import init, { greet } from 'https://jack-dinsmore.github.io/blog/code/rust_wasm_project/pkg/rust_wasm_project.js';
-
-        async function run() {
-            await init();
-
-            document.getElementById('greet-button').addEventListener('click', () => {
-                console.log("Clicked");
-                const output = greet('World');
-                document.getElementById('output').innerText = output;
-            });
-        }
-
-        run();
-    </script>
+    <canvas id="myCanvas" width="1024" height="1024" style="border:1px solid #d3d3d3;">
+        <script type="module">
+            import init, { unred, fetch_url_binary } from './pkg/rust_wasm_project.js';
+            var result;
+            async function run() {
+                await init(); // Initialize module 
+                unred("myPng.png", "myCanvas");
+            }
+            run(); // Execute async wrapper 
+        </script>
 </body>
+
 </html>
