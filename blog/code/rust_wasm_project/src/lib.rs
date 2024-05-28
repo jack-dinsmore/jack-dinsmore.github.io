@@ -27,11 +27,14 @@ pub async fn fetch_url_binary(url: String) -> Result<Uint8Array, JsValue> {
 pub async fn unred(url: String, canvas: String) -> Result<(), JsValue> {
     log!("A");
     let binary = fetch_url_binary(url).await?;
+    log!("A1");
     let altbuf = binary.to_vec();
+    log!("A2");
 
     // Convert the png encoded bytes to an rgba pixel buffer (given the PNG is actually in 8byte RGBA format).
     let image = image::load_from_memory_with_format(&altbuf, image::ImageFormat::Png).unwrap();
     let mut rgba_image = image.to_rgba8();
+    log!("A3");
 
     // I suppose this is what you tried to do in your original loop
     // judging by the function name:
