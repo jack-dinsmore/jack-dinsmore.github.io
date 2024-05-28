@@ -8,11 +8,11 @@
 <body>
     <canvas id="myCanvas" width="1024" height="1024" style="border:1px solid #d3d3d3;">
         <script type="module">
-            import init, { unred, fetch_url_binary } from 'https://jack-dinsmore.github.io/blog/code/rust_wasm_project/pkg/rust_wasm_project.js';
+            import init, { unred } from './pkg/rust_wasm_project.js';
             var result;
             async function run() {
                 await init(); // Initialize module 
-                unred("myPng.png", "myCanvas");
+                unred("myCanvas");
             }
             run(); // Execute async wrapper 
         </script>
