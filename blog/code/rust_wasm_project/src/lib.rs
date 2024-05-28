@@ -4,6 +4,15 @@ use wasm_bindgen::{prelude::*, JsCast, Clamped};
 use wasm_bindgen_futures::JsFuture;
 use web_sys::ImageData;
 
+extern crate web_sys;
+
+// A macro to provide `println!(..)`-style syntax for `console.log` logging.
+macro_rules! log {
+    ( $( $t:tt )* ) => {
+        web_sys::console::log_1(&format!( $( $t )* ).into());
+    }
+}
+
 #[wasm_bindgen]
 pub async fn fetch_url_binary(url: String) -> Result<Uint8Array, JsValue> {
     let window = web_sys::window().unwrap(); // Browser window
@@ -16,8 +25,7 @@ pub async fn fetch_url_binary(url: String) -> Result<Uint8Array, JsValue> {
 
 #[wasm_bindgen]
 pub async fn unred(url: String, canvas: String) -> Result<(), JsValue> {
-    println!("A");
-    dbg!();
+    log!("A");
     let binary = fetch_url_binary(url).await?;
     let altbuf = binary.to_vec();
 
@@ -33,8 +41,7 @@ pub async fn unred(url: String, canvas: String) -> Result<(), JsValue> {
         }
     }
 
-    println!("A");
-    dbg!();
+    log!("B");
 
     let window = web_sys::window().unwrap();
     let document = window.document().expect("Could not get document");
@@ -50,5 +57,6 @@ pub async fn unred(url: String, canvas: String) -> Result<(), JsValue> {
     let image_data_temp = 
         ImageData::new_with_u8_clamped_array_and_sh(clamped_buf, image.width(), image.height())?;
     context.put_image_data(&image_data_temp, 0.0, 0.0)?;
+    log!("C");
     Ok(())
 }

@@ -13,11 +13,12 @@ image = "0.23.14"
 js-sys = "0.3.55"
 wasm-bindgen = "0.2.78"
 wasm-bindgen-futures = "0.4.28"
-web-sys = {version = "0.3.55", features=[
+web-sys = {version = "0.3.69", features=[
     "CanvasRenderingContext2d",
     "Document",
     "HtmlCanvasElement",
     "ImageData",
     "Response",
-    "Window"
+    "Window",
+    "console"
 ]}
