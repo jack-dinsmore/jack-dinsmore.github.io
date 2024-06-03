@@ -1,0 +1,33 @@
+<html>
+    <body>
+        <canvas id="test-canvas"></canvas>
+        <script type="module">
+            import init, { LinearFitDemo } from "./pkg/linear_fit_demo.js";
+            await init();
+
+            const universe = LinearFitDemo.new("test-canvas");
+            let last = Date.now();
+
+            const renderLoop = () => {
+                let now = Date.now();
+                requestAnimationFrame(renderLoop);
+                if (now - last > 17) {
+                    last = now;
+                    universe.tick();
+                    universe.render();
+                }
+            };
+            document.getElementById("test-canvas").addEventListener("mousedown", function(event) {
+                universe.mouse_button_down(event.offsetX, event.offsetY)
+            });
+            document.getElementById("test-canvas").addEventListener("mouseup", function(event) {
+                universe.mouse_button_up(event.offsetX, event.offsetY)
+            });
+            document.getElementById("test-canvas").addEventListener("mousemove", function(event) {
+                universe.mouse_move(event.offsetX, event.offsetY)
+            });
+            requestAnimationFrame(renderLoop);
+
+        </script>
+    </body>
+</html>
