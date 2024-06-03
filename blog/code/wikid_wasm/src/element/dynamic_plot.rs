@@ -1,7 +1,7 @@
 use image::{ImageBuffer, Rgba};
 
-use crate::wikid_wasm::{blend_color, fnanmax, fnanmin, Dim};
-use crate::wikid_wasm::style::{Style, TextAlign, BLACK, WHITE};
+use crate::{blend_color, fnanmax, fnanmin, Dim};
+use crate::style::{Style, TextAlign, BLACK, WHITE};
 
 const DASH_SIZE: f32 = 3.;
 

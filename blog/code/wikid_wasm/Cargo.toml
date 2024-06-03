@@ -1,0 +1,27 @@
+[package]
+name = "wikid_wasm"
+version = "0.1.0"
+edition = "2021"
+authors = ["Jack Dinsmore <jtd@stanford.edu>"]
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+wasm-bindgen = "0.2.92"
+console_error_panic_hook = "0.1.7"
+image = "0.25.1"
+web-sys = {version = "0.3.69", features=[
+    "CanvasRenderingContext2d",
+    "Document",
+    "HtmlCanvasElement",
+    "ImageData",
+    "Response",
+    "Window",
+    "console"
+]}
+rusttype = "0.9.3"
+
+[profile.release]
+# Tell `rustc` to optimize for small code size.
+opt-level = "s"
+

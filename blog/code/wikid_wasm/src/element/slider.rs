@@ -1,5 +1,5 @@
 use image::Rgba;
-use crate::wikid_wasm::{blend_color, style::{BLACK, WHITE}, Dim, Style};
+use crate::{blend_color, style::{BLACK, WHITE}, Dim, Style};
 use super::{Element, EventResponse, Mouse};
 
 const SLIDER_RADIUS: i32 = 6;
@@ -75,14 +75,14 @@ impl Element for Slider {
         style.render_text(
             pixels, (self.x as i32 - self.width/2 - TEXT_BUFFER) as u32, self.y,
             &self.text, BLACK,
-            crate::wikid_wasm::style::TextAlign::Center,
-            crate::wikid_wasm::style::TextAlign::LowerRight
+            crate::style::TextAlign::Center,
+            crate::style::TextAlign::LowerRight
         );
         style.render_text(
             pixels, (self.x as i32 + self.width/2 + TEXT_BUFFER) as u32, self.y,
             &format!("{}", self.get_value()), BLACK,
-            crate::wikid_wasm::style::TextAlign::Center,
-            crate::wikid_wasm::style::TextAlign::UpperLeft
+            crate::style::TextAlign::Center,
+            crate::style::TextAlign::UpperLeft
         );
     }
 

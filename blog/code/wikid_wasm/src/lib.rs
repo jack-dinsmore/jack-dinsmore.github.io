@@ -36,6 +36,9 @@ mod style;
 pub mod element;
 mod util;
 
+#[cfg(test)]
+mod tests;
+
 pub use applet::{Applet, Callback};
 pub use style::{Style, TextAlign};
 pub use util::*;
@@ -46,4 +49,8 @@ macro_rules! log {
     ( $( $t:tt )* ) => {
         web_sys::console::log_1(&format!( $( $t )* ).into());
     }
+}
+
+pub fn debug_panic() {
+    console_error_panic_hook::set_once();
 }

@@ -3,15 +3,8 @@ use rand_distr::{Distribution, Normal};
 //wasm-pack build --target web
 use wasm_bindgen::prelude::*;
 
-#[cfg(test)]
-mod tests;
-
-mod wikid_wasm;
-use wikid_wasm::{Applet, Callback, Dim, Style};
-use wikid_wasm::element::{Button, DynamicPlot, PlotCommand, Element, Slider, SliderType};
-
-use crate::wikid_wasm::element::LineStyle;
-use crate::wikid_wasm::TextAlign;
+use wikid_wasm::{Applet, Callback, Dim, Style, TextAlign};
+use wikid_wasm::element::{Button, DynamicPlot, PlotCommand, Element, Slider, SliderType, LineStyle};
 
 const WIDTH: u32 = 640;
 const HEIGHT: u32 = 480;
@@ -33,7 +26,7 @@ pub struct LinearFitDemo {
 #[wasm_bindgen]
 impl LinearFitDemo {
     pub fn new(canvas: String) -> Self {
-        console_error_panic_hook::set_once();
+        wikid_wasm::debug_panic();
 
         let mut style = Style::default(include_bytes!("../../../../fonts/cmunrm.ttf"));
         style.set_color("#eca500");

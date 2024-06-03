@@ -1,6 +1,6 @@
 use image::Rgba;
 
-use crate::wikid_wasm::{style::TextAlign, Callback, Dim, Style};
+use crate::{style::TextAlign, Callback, Dim, Style};
 
 use super::{Element, EventResponse, Mouse};
 
