@@ -1,0 +1,134 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type = "text/css" href = "file:///Users/jtd/Documents/personal/code/html/jack-dinsmore.github.io/blog/html/css/text%2ecss">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async
+            src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+    </script>
+    <script>
+window.MathJax = {
+    tex: {
+        macros: {
+            bm: ["\\mathbf {#1}",1],
+            parens: ["\\left( #1 \\right)", 1],
+            braces: ["\\left\{ #1 \\right\}", 1],
+            brackets: ["\\left[ #1 \\right]", 1],
+            eval: ["\\left. #1 \\right|", 1],
+            fraci: ["{#1} / {#2}", 2],
+            expp: ["\\exp\\left( #1 \right)", 1],
+            bra: ["\\left\\langle #1 \\right|", 1],
+            ket: ["\\left| #1 \\right\\rangle", 1],
+            braket: ["\\langle {#1} | {#2} \\rangle", 2],
+        }
+    }
+}
+    </script>
+    <title>statistics</title>
+</head><body><div id="content"><h2><a href="file:///Users/jtd/Documents/personal/code/html/jack-dinsmore.github.io/blog/html/index%2ehtml">Home</a></h2><h1>Introduction to Probability</h1>
+
+<p>Manipulating probabilistic formulas is very important in statistics, and it's useful to outline a couple definitions and theorems that will be of future use. We will use the notion of "sets" to define everything below. It may seem unnecessarily tedious, but I find that this concrete way of thinking about probability leads to less confusion than more intuitive methods.
+</p>
+<h3>Definitions</h3>
+
+<button class="collapsible"><h2>Random variables</h2></button><div class="section">
+<p>Probability deals with the mathematics of <i>random variables</i> &mdash; variables whose value could be one of multiple options. A classic example of a random variable is whether a flipped coin will come up heads (\(H\)) or tails (\(T\)). Another example is the number of clicks a Geiger counter makes in a given second.
+</p>
+<p>Random variables are associated with domains, which are the set of possible outcomes. The domains of the above examples are \(\{H, T\}\) and the non-negative integers \(\mathbb{N}\) respectively.
+</p>
+<p>These examples are both <i>discrete random variables</i>, because their domains are discrete sets &mdash; i.e. their elements are separated from each other. The domain of a <i>continuous random variable</i> on the other hand belongs to a continuous set. Examples include the mass of a galaxy or the velocity of a particle, whose domains are the positive real numbers and the space of three-dimensional vectors.
+</p>
+<p>A random variable is often written with a capital letter such as \(R\), whose domain is \(\mathrm{Dom}\ R\)
+</p>
+</div> <button class="collapsible"><h2>Events</h2></button><div class="section">
+
+<p>An <i>event</i> refers to the set of values a random variable can take that satisfy some condition. For a simple example, consider a random variable \(C\) that represents a random primary color (red, yellow, blue). The event \(C=\mathrm{red}\) is the set containing only \(\{\mathrm{red}\}\). This example may sound trivial, but it is probably the most common one.
+</p>
+<p>Getting more complicated, the event \(Y\neq \mathrm{blue}\) is a set with two entries: \(\{\mathrm{red}, \mathrm{yellow}\}\). In general, an event involving \(C\) is always the subset of \(\mathrm{Dom}\ C\).
+</p>
+<p>One can make an event out of two random variables with a little more work. If we make a new random variable \(D\) which is also a color, the domain of \(C\) and \(D\) together could consist of ordered pairs \((c,d)\) where \(c\) and \(d\) can be any of red, yellow, or blue. This domain contains nine items.
+</p>
+<p>Applying this definition, the event \(C=D\) is \(\{(\mathrm{red},\mathrm{red}), (\mathrm{yellow},\mathrm{yellow}), (\mathrm{blue},\mathrm{blue})\}\).
+</p>
+</div> <button class="collapsible"><h2>Probability functions</h2></button><div class="section">
+
+<p>A <i>probability mass function</i> (PMF) is defined only for discrete random variables. The PMF for a random variable \(X\) is a set of values \(p(x)\) assigned to each element \(x\) in \(\mathrm{Dom}\ X\). It's required that \(\sum_x p(x) = 1\).
+</p>
+<p>With that done, the PMF of an event is the sum of \(p(x)\) for all items of the event. In other words,
+\[p(E) = \sum_{e\in E} p(e).\]
+A simple consequence is that \(p(X=x) = p(x)\).
+</p>
+<p>A <i>probability distribution function</i> (PDF) is the related concept for the case of continuous random variables. For a random variable \(X\), we define the PDF \(P(x)\) to be a function of \(x\) instead of a number with the requirement that \(\int dx\, P(x)=1\). This function has the interpretation that a little segment \(dx\) of \(\mathrm{Dom}\ X\) has probability 
+
+\[dP = P(x)dx.\]
+</p>
+<p>The probability of an event \(E\) is defined very similarly to that of PMFs:
+\[p(E) = \int_E dx\, P(x).\]
+</p>
+</div> <button class="collapsible"><h2>Multivariate probability functions</h2></button><div class="section">
+
+<p>In the above section on events we introduced a situation where one has two random variables \(C\) and \(D\). It is also possible to write PDFs and PMFs for such a case; these are functions of two dimensions \(p(c,d)\) and are called <i>multivariate probability functions</i>.
+</p>
+<p>If \(C\) and \(D\) are <i>independent</i>, meaning their values are unrelated to each other, then \(p(c,d) = p(c)p(d)\). If two variables are not independent, they are <i>dependent</i>.
+</p>
+<p>This can be shown by the following argument: if \(D\) is independent of \(C\), then one gains no information about \(P(d)\) by measuring \(C\). So \(p(c,d) \propto p(c)\), where the proportionality constant exists only to normalize the probability distribution. The same argument asserts that \(p(c,d) \propto p(d)\) as well, and therefore \(p(c,d) = p(c)p(d)\).
+</p>
+<p>In some cases, one wishes to determine the PMF of \(C\) given only \(p(c,d)\). This is can be done by summing, or <i>marginalizing</i> over all possible values of \(D\). The <i>marginal PMF</i> for \(C\) is therefore
+\[p(c) = \sum_{d} p(c,d).\]
+If \(C\) and \(D\) were continuous random variables, one should replace the sum with an integral.
+</p>
+<p>This formula is true even in the case of dependent random variables.
+</p>
+</div> <button class="collapsible"><h2>Conditionals</h2></button><div class="section">
+
+<p>A <i>conditional</i> \(X|E\) restricts a random variable \(X\) to the subset of its domain that intersects with \(E\). For example, consider \((C, D)\) which is pair of random variable representing color as described above. \(\mathrm{Dom}(C,D)\) has nine elements, but a conditional \((C,D)|D=\mathrm{red}\) is a new random variable whose domain is shrunk to \(\{(\mathrm{red},\mathrm{red}), (\mathrm{yellow},\mathrm{red}), (\mathrm{blue},\mathrm{red})\}\).
+</p>
+<p>Notation details: when reading conditionals, the vertical bar is pronounced "given." Events for conditionals have special notation for the sake of brevity too. Take the random variable \(X \equiv (C,D)|D=\mathrm{red}\) used above. The event that \(X=(\mathrm{blue}, \mathrm{red})\) is written \(C=\mathrm{blue}|D=\mathrm{red}\) rather than \((\mathrm{blue}, \mathrm{red}) = (C,D)|D=\mathrm{red}\).
+</p>
+<p>The PMF/PDF of the conditional \(X|E\) is proportional to the PMF/PDF of the original random, variable \(X\), but it is rescaled to continue to satisfy the normalization condition with its smaller domain.
+</p>
+<h3>Consequences</h3>
+
+<p>Armed with a clear understanding of probability functions, we can now understand some important facts about probability that would otherwise not be obvious
+</p>
+</div> <button class="collapsible"><h2>PDFs for Functions of Random Variables</h2></button><div class="section">
+
+<p>Suppose we have a continuous random variable \(X\) with PDF \(P(x)\), but we'd like to convert to a new random variable \(Y = f(X)\) for some function \(X\). What is the PDF of \(Y\)? It's tempting to guess that \(P(y)=P(x)\), where \(y=f(x)\), but this is incorrect for the following reason. Remember <a href=file:///Users/jtd/Documents/personal/code/html/jack-dinsmore.github.io/blog/html/probability%2ehtml%23eq3>Eq. 3</a>? Rearranged, it states
+\[P(x) = \frac{dP}{dx}.\]
+The chain rule tells immediately that
+\[P(y) = \frac{dP}{dy} = \frac{dP}{dx}\frac{dy}{dx} = P(x)f'(x).\]
+</p>
+<p>It is often helpful to use this derivative notation for the PDF to avoid confusion.
+</p>
+</div> <button class="collapsible"><h2>Bayes' theorem</h2></button><div class="section">
+
+<p>Let's consider two random variables \(X\) and \(Y\), which represent flips of two different unfair coins. A flip can be either \(H\) or \(T\). One can write two different conditionals \(C_1 = (X,Y)|X=T\) and \(C_2 = (X,Y)|Y=T\). Now consider the probability of specific events for these conditionals: \(p(Y=T|X=T)\) and \(p(X=T|Y=T)\). One might naively guess that these probabilities are equal, and the events \(Y=T|X=T\) and \(X=T|Y=T\) do refer to the same set. But the probabilities are not equal because the first probability refers to the PMF of \(C_1\) and the second refers to the PMF of \(C_2\), which are different. 
+</p>
+<p>How the two probabilities are related? Remember that the PMF of \(C_1\) is reweighted so that its probability remains normalized. Specifically, \(p_{C_1}(x,y) = p_{(X,Y)}(x,y) / p(X=T)\) normalizes that probability. The first probability, \(p(Y=T|X=T) = p_{C_1}(T,T)\), is therefore equal to \(p_X(T,T) / p(X=T)\). Likewise, \(p(X=T|Y=T) = p_{(X,Y)}(T,T) / p(Y=T)\).
+</p>
+<p>Note that \(p_{(X,Y)}(T,T)\) is present in both formulas. Solving one for \(p_{(X,Y)}(T,T)\) and plugging it into the other, we find
+\[p(Y=T|X=T) = p(X=T|Y=T)\frac{p(Y=T)}{p(X=T)}.\]
+</p>
+<p>In more general language, for any two events \(E_1\) and \(E_2\), 
+\[p(E_1|E_2) = p(E_2|E_1)\frac{p(E_1)}{p(E_2)}.\]
+This fact is called <i>Bayes' theorem</i> and the fraction in the previous equation is sometimes called Bayes' factor.
+</p>
+<p>Now that we've defined the basics of random variables, we discuss their properties such as expected value, variance, and covariance in the <a href=file:///Users/jtd/Documents/personal/code/html/jack-dinsmore.github.io/blog/html/variance%2ehtml>next section</a>.
+</div></div><div id="footer">
+Copyright &copy; 2024 Jack Dinsmore. &emsp;Updated June 4. &emsp;Version 0.1</div></body>
+<script>
+var coll = document.getElementsByClassName("collapsible");
+var i;
+
+for (i = 0; i < coll.length; i++) {{
+    coll[i].addEventListener("click", function() {{
+        this.classList.toggle("active");
+        var content = this.nextElementSibling;
+        if (content.style.maxHeight === "0px"){{
+            content.style.maxHeight = content.scrollHeight+"px";
+        }} else {{
+            content.style.maxHeight = "0px";
+        }}
+    }});
+}}
+</script></html>

@@ -1,0 +1,106 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type = "text/css" href = "file:///Users/jtd/Documents/personal/code/html/jack-dinsmore.github.io/blog/html/css/text%2ecss">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async
+            src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+    </script>
+    <script>
+window.MathJax = {
+    tex: {
+        macros: {
+            bm: ["\\mathbf {#1}",1],
+            parens: ["\\left( #1 \\right)", 1],
+            braces: ["\\left\{ #1 \\right\}", 1],
+            brackets: ["\\left[ #1 \\right]", 1],
+            eval: ["\\left. #1 \\right|", 1],
+            fraci: ["{#1} / {#2}", 2],
+            expp: ["\\exp\\left( #1 \right)", 1],
+            bra: ["\\left\\langle #1 \\right|", 1],
+            ket: ["\\left| #1 \\right\\rangle", 1],
+            braket: ["\\langle {#1} | {#2} \\rangle", 2],
+        }
+    }
+}
+    </script>
+    <title>statistics</title>
+</head><body><div id="content"><h2><a href="file:///Users/jtd/Documents/personal/code/html/jack-dinsmore.github.io/blog/html/index%2ehtml">Home</a></h2><h1>Parameter Fitting and Uncertainties</h1>
+
+<p>In the last section, we reviewed a method for computing the posterior distribution \(p(\bm \theta | D)\) for the parameters \(\bm \theta\) of a model. Calculating this posterior fully solves the statistical problem, but the posterior is a clunky object &mdash; a function defined for all values of \(\bm \theta\). It is helpful to simplify it into a few numbers: the best fit parameters and the uncertainties.
+</p>
+<button class="collapsible"><h2>Definitions of best fit parameters and uncertainties</h2></button><div class="section">
+
+<p>One common definition of the best fit parameters and parameter uncertainties associated with a posterior distribution is that the best fit parameters are the <i>mean</i> of \(\bm \theta\), and the uncertainties are the <i>variances</i> of \(\bm \theta\). See <a href=file:///Users/jtd/Documents/personal/code/html/jack-dinsmore.github.io/blog/html/probability%2ehtml>the review of probability</a> for a refresher on these quantities. When someone reports a statistical result for parameter \(\theta_i\) as \(\theta_i = 1 \pm 0.5\), they mean that the posterior mean has an \(i^\mathrm{th}\) coordinate of 1 and a standard deviation of 0.5.
+</p>
+<p>In cases with multiple parameters, the <i>covariance matrix</i> is the most general measure of uncertainties. We will discuss the meaning of covariances in the next section.
+</p>
+<p>This definition works well for symmetric posteriors, but asymmetry can make it less useful. Consider a posterior for the neutrino mass, for example. The posterior should be very close to zero because the neutrino is light, but never negative because the neutrino must have positive mass. It may therefore by asymmetric, with a large tail towards higher masses. The previous definition would have assigned symmetric uncertainties on the neutrino mass equal to the variance of the posterior.
+</p>
+<p>But another potential definition is that best fit parameters are the <i>mode</i> of \(\bm \theta\) and uncertainty on some parameter \(\theta_i\) is the range of the most probable values of \(\theta_i\) that encloses 68% of the posterior. In the neutrino mass case, this 68% region would be asymmetric with a higher upper uncertainty. For example, if the mode had an \(i^\mathrm{th}\) component of \(0.1\) and the range of values from 0.05 to 0.3 contained 68% of the posterior, then the uncertainties would be reported as \(\theta_i = 0.1^{+0.2}_{-0.05}\).
+</p>
+<p>You might wonder why it's OK to have two definitions of uncertainties. An important point, however, is that these definitions coincide when the posterior is Gaussian. So the usual approach is to use the first definition, which is numerically simpler, when the posterior is roughly Gaussian. In contexts where the posterior is highly non-Gaussian, the second definition is used.
+</p>
+</div> <button class="collapsible"><h2>Corner plots</h2></button><div class="section">
+
+<p>A fit result for multiple parameters gives a covariance matrix \(\Sigma\), but what does covariance really mean? These can be understood in terms of corner plots
+</p>
+<p>Consider a fit for two parameters. The (symmetric) covariance matrix has three unique entries
+\[\Sigma = \begin{pmatrix}a&b\\ b&c\end{pmatrix}\]
+where the uncertainty on the parameters are \(\sigma_1 = \sqrt{a}\) and \(\sigma_2 = \sqrt{c}\), and the covariance between them is \(b\).
+</p>
+<p>We can plot the posterior distribution two dimensionally as a function of \(\theta_1\) and \(\theta_2\). For a Gaussian posterior, contours of this distribution will be ellipses. There's a correspondence between the plot and the entries of \(\Sigma\): the width of the ellipse in the \(\theta_1\) direction is \(\sigma_1\) and likewise for the \(\theta_2\) direction, while \(b\) controls the orientation of the ellipse.
+</p>
+<p>Note that the covariance \(b\) is not exactly equal to the orientation of the ellipse; you can fix \(b\) and change \(a\) and \(c\) and the angle will change. There is a property that more closely matches the angle of the ellipse called <i>correlation</i>. The correlation of two random variables \(A\) and \(B\) is defined as 
+\[\mathrm{Corr}(A,B)=\frac{\mathrm{Cov}(A,B)}{\sigma_A \sigma_B}.\]
+This correlation now is directly related to the ellipse orientation; the angle with respect to the \(\theta_1\) axis is \(\phi = \tan^{-1}\mathrm{Corr}(\theta_1,\theta_2)\).
+</p>
+<p>Intuitively, a non-zero correlation or covariance tells us that two parameters are dependent in ways that their uncertainties \(\sigma\) do not show. If one parameter statistically fluctuates in one direction, the other is likely to do so as well.
+</p>
+</div> <button class="collapsible"><h2>The existence of uncorrelated parameters</h2></button><div class="section">
+
+<p>The graphical depiction of the previous section raises an important question. When two parameters are uncorrelated, their posterior looks like an ellipse aligned with the parameter axes. When they are correlated, the posterior rotates, but is still an ellipse. That seems to imply that there are different parameters for which the posterior is still uncorrelated, and these parameters should be the axes of the ellipse.
+</p>
+<p>This is a correct and generalizable statement. Mathematically, one could explain it in the following way. The covariance matrix \(\Sigma\) is symmetric, so it can be diagonalized \(\Sigma = U^T \Lambda U\) where \(\Lambda\) is a diagonal matrix and \(U^T\) is an orthonormal matrix. If one defines new parameters \(\bm \eta = U \bm \theta\), one can show that the covariance matrix for the \(\bm \eta\) parameters is just \(\Lambda\). Since \(\Lambda\) is diagonal, the different entries of \(\eta\) are uncorrelated.
+</p>
+<p>This is a very interesting result; it shows that covariance and correlation are telling us just about the parameters that we chose to use. They can be removed if we choose different parameters, which is sometimes a very useful exercise. A further note is that if the posterior is Gaussian, the \(\bm \eta\) parameters are actually completely <i>independent</i>, meaning all moments that mix different entries of \(\bm \eta\) vanish. For non-Gaussian posteriors, the above argument only implies that all the <i>second-order</i> moments (the covariances) will vanish, and the higher order moments may not.
+</p>
+</div> <button class="collapsible"><h2>Variances automatically marginalize other parameters</h2></button><div class="section">
+
+<p>We've discussed the importance of covariance in highlighting the dependence of the parameters on each other. But often only the variances (or standard deviations \(\sigma\)) are reported on parameters, which do not take dependence into account. You might wonder whether reporting just variances is enough. There is one important situation where it is.
+</p>
+<p>Let's say we are fitting for the flux of a star observed with a telescope. The photons coming from the star will represent both those created by the star itself, plus those created by a diffuse background pervading the image. The usual process is to fit two parameters: the true flux and the background flux. If we do the fit, we'll get uncertainties \(\sigma_F\) and \(\sigma_B\). We'll also get a large covariance \(b\) because if the true flux fluctuates up, the background must also fluctuate to explain the observed number of photons coming from the star.
+</p>
+<p>We want to publish uncertainties on \(F\) (we don't care about the value of \(B\)), but one might worry that reporting \(\sigma_F\) as the uncertainty is unfair because of the high covariance \(b\). One needn't worry for the following reason.
+</p>
+<p>What we really want is the uncertainty on the <i>marginal posterior</i> \(P(F|D)\). We have the full posterior \(P((F,B)|D)\). The marginal posterior is defined as 
+\[P(F|D) = \int dB\, P((F,B)|D)\]
+so that the uncertainty we want is
+\[(\sigma_F^*)^2 = \int dF\, F^2 P(F|D).\]
+(I have assumed that the mean of \(P(F|D)\) is zero for the sake of simplicity.) Meanwhile, the definition of the \(\sigma_F\) that we have is
+\[\sigma_F^2 = \int dBdF\, F^2 P((F,B)|D).\]
+Simply plugging the first equation to the second implies that \(\sigma_F^* = \sigma_F\).
+</p>
+<p>Intuitively, the uncertainty \(\sigma_A\) on a parameter \(A\) represents the amount of fluctuations that parameter has if <i>all</i> of the other parameters are unknown. One can therefore throw out the fit results for parameters such as background flux because the uncertainties on the other parameters already encompass those fluctuations.
+</p>
+<p>Covariance becomes important only when comparing two parameters. For example, if we fit for two star fluxes \(F_1\) and \(F_2\) in the same image, the same background would cause some covariance between the fluxes. Comparing \(F_1\) to \(F_2\) should take this covariance into account.
+</p>
+<p>In the <a href=file:///Users/jtd/Documents/personal/code/html/jack-dinsmore.github.io/blog/html/line%2ehtml>next section</a>, we'll apply what we've learned to fit a line to a set of data points with equal uncertainty.
+</div></div><div id="footer">
+Copyright &copy; 2024 Jack Dinsmore. &emsp;Updated June 4. &emsp;Version 0.1</div></body>
+<script>
+var coll = document.getElementsByClassName("collapsible");
+var i;
+
+for (i = 0; i < coll.length; i++) {{
+    coll[i].addEventListener("click", function() {{
+        this.classList.toggle("active");
+        var content = this.nextElementSibling;
+        if (content.style.maxHeight === "0px"){{
+            content.style.maxHeight = content.scrollHeight+"px";
+        }} else {{
+            content.style.maxHeight = "0px";
+        }}
+    }});
+}}
+</script></html>

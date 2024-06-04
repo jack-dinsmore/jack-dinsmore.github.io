@@ -1,0 +1,89 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type = "text/css" href = "file:///Users/jtd/Documents/personal/code/html/jack-dinsmore.github.io/blog/html/css/text%2ecss">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async
+            src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+    </script>
+    <script>
+window.MathJax = {
+    tex: {
+        macros: {
+            bm: ["\\mathbf {#1}",1],
+            parens: ["\\left( #1 \\right)", 1],
+            braces: ["\\left\{ #1 \\right\}", 1],
+            brackets: ["\\left[ #1 \\right]", 1],
+            eval: ["\\left. #1 \\right|", 1],
+            fraci: ["{#1} / {#2}", 2],
+            expp: ["\\exp\\left( #1 \right)", 1],
+            bra: ["\\left\\langle #1 \\right|", 1],
+            ket: ["\\left| #1 \\right\\rangle", 1],
+            braket: ["\\langle {#1} | {#2} \\rangle", 2],
+        }
+    }
+}
+    </script>
+    <title>statistics</title>
+</head><body><div id="content"><h2><a href="file:///Users/jtd/Documents/personal/code/html/jack-dinsmore.github.io/blog/html/index%2ehtml">Home</a></h2><h1>Statistics</h1>
+
+<button class="collapsible"><h2>Introduction</h2></button><div class="section">
+
+<p>When I was a student, I hated statistics. I thought it was tedious &mdash; a myopic mess of dark magic that blights "Methods" sections across the arXiv, distracting from the core science.
+</p>
+<p>After just a few years of doing X-ray astronomy, I'm completely converted.
+</p>
+<p>In my experience, statistics is one the most useful tools a scientist has at their disposal. A good statistical treatment can expose a hidden signal, dismiss false positives, and most importantly form a foundation that's reliable enough to support years of future research.
+</p>
+<p>I've also learned that statistics is a much more motivated field than I had thought. Especially Bayesian statistics is founded on a few simple principles, and if you simply follow them you will find yourself re-deriving the multitude of \(\chi^2\), \(z\), and \(F\) tests that I thought had to be individually memorized.
+</p>
+<p>I'm writing this blog to lay out these founding principles of statistics, in the hope that other people will find them as useful as I have. I'll discuss both Bayesian and frequentist statistics, though as an astronomer I'll mostly stick to Bayesian. Several example applications with example Python code will be given, though for educational purposes I'll do my best not to use external packages that do the statistics for you.
+</p>
+</div> <button class="collapsible"><h2>Contents</h2></button><div class="section">
+
+<h3>Bayesian Statistics</h3>
+
+<ol><li> <a href=file:///Users/jtd/Documents/personal/code/html/jack-dinsmore.github.io/blog/html/probability%2ehtml>Introduction to probability</a></li>
+<li> <a href=file:///Users/jtd/Documents/personal/code/html/jack-dinsmore.github.io/blog/html/variance%2ehtml>Expected values, Variance, and the Central Limit Theorem</a></li>
+<li> <a href=file:///Users/jtd/Documents/personal/code/html/jack-dinsmore.github.io/blog/html/bayesian%2ehtml>What is Bayesian statistics?</a></li>
+<li> <a href=file:///Users/jtd/Documents/personal/code/html/jack-dinsmore.github.io/blog/html/parameter%2dfitting%2ehtml>Parameter fitting and uncertainties</a></li>
+<li> <a href=file:///Users/jtd/Documents/personal/code/html/jack-dinsmore.github.io/blog/html/line%2ehtml>Easy example: fitting a line</a></li>
+<li> <a href=file:///Users/jtd/Documents/personal/code/html/jack-dinsmore.github.io/blog/html/gaussian%2ehtml>Medium example: Gaussian posteriors</a></li>
+<li> <a href=file:///Users/jtd/Documents/personal/code/html/jack-dinsmore.github.io/blog/html/general%2dcase%2ehtml>Hard example: the general case</a></li>
+<li> <a href=file:///Users/jtd/Documents/personal/code/html/jack-dinsmore.github.io/blog/html/model%2dcomparison%2ehtml>Model comparison</a></li>
+<li> <a href=file:///Users/jtd/Documents/personal/code/html/jack-dinsmore.github.io/blog/html/likelihoods%2ehtml>A gallery of likelihoods</a></li>
+<li> <a href=file:///Users/jtd/Documents/personal/code/html/jack-dinsmore.github.io/blog/html/priors%2ehtml>Priors: dos and don'ts</a></li>
+</ol>
+<h3>Frequentist Statistics</h3>
+
+<ol><li> <a href=file:///Users/jtd/Documents/personal/code/html/jack-dinsmore.github.io/blog/html/frequentist%2ehtml>What is frequentist statistics?</a></li>
+<li> <a href=file:///Users/jtd/Documents/personal/code/html/jack-dinsmore.github.io/blog/html/freq%2dbayesian%2ehtml>When do frequentist and Bayesian statistics agree?</a></li>
+<li> <a href=file:///Users/jtd/Documents/personal/code/html/jack-dinsmore.github.io/blog/html/frequentist%2duse%2ehtml>When is frequentist statistics useful?</a></li>
+</ol>
+<h3>Common problems and their solutions</h3>
+<ol><li> <a href=file:///Users/jtd/Documents/personal/code/html/jack-dinsmore.github.io/blog/html/high%2ddimension%2ehtml>I have too many parameters to fit for</a> (Gibbs sampling)</li>
+<li> <a href=file:///Users/jtd/Documents/personal/code/html/jack-dinsmore.github.io/blog/html/jackknife%2ehtml>I don't know my likelihood distribution, but I have lots of data</a> (Jackknifing and bootstrapping)</li>
+<li> <a href=file:///Users/jtd/Documents/personal/code/html/jack-dinsmore.github.io/blog/html/simulation%2ehtml>I don't know my likelihood distribution, but I have a simulator</a> (Extracting covariances from simulations)</li>
+<li> <a href=file:///Users/jtd/Documents/personal/code/html/jack-dinsmore.github.io/blog/html/neural%2dnets%2ehtml>I don't have a good model, but I have a simulator</a> (Machine learning)</li>
+</ol>
+<h3>Mathematical review</h3>
+<ol><li> <a href=file:///Users/jtd/Documents/personal/code/html/jack-dinsmore.github.io/blog/html/linear%2dalgebra%2ehtml>Linear algebra</a></li>
+<li> <a href=file:///Users/jtd/Documents/personal/code/html/jack-dinsmore.github.io/blog/html/distributions%2ehtml>Mathematical properties of some probability distributions</a></li>
+</ol></div></div><div id="footer">
+Copyright &copy; 2024 Jack Dinsmore. &emsp;Updated June 4. &emsp;Version 0.1</div></body>
+<script>
+var coll = document.getElementsByClassName("collapsible");
+var i;
+
+for (i = 0; i < coll.length; i++) {{
+    coll[i].addEventListener("click", function() {{
+        this.classList.toggle("active");
+        var content = this.nextElementSibling;
+        if (content.style.maxHeight === "0px"){{
+            content.style.maxHeight = content.scrollHeight+"px";
+        }} else {{
+            content.style.maxHeight = "0px";
+        }}
+    }});
+}}
+</script></html>

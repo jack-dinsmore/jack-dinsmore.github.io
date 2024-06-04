@@ -1,0 +1,98 @@
+
+
+@font-face {
+    font-family: "font1";
+    src: url("/Users/jtd/Documents/personal/code/html/jack-dinsmore.github.io/fonts/cmunrm.ttf");
+}
+body {
+    font-size: 18px;
+    font-family:  'font1',  'sans-serif';
+    color: #000000;
+    background: #ffffff;
+}
+
+h1, h2, h3, h4, h5 {
+    color: #000000;
+}
+
+a {
+    color: #eca500;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+a:visited {
+    color: #eca500;
+    font-weight: normal;
+}
+
+a:hover {
+    background: #eca500;
+    color: #000000;
+}
+
+#content {
+    padding-top: 100px;
+    width: 50em;
+    margin: auto;
+    line-height: 150%;
+    padding-bottom: 3em;
+}
+
+#footer {
+    border-top: solid #000000 2px;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    padding-left: 15em;
+    padding-right: 15em;
+    margin: auto;
+    width: 50em;
+}
+
+.footnote {
+    font-size: 14px;
+}
+
+.collapsible {
+    background-color: #ffffff;
+    color: white;
+    cursor: pointer;
+    width: 100%;
+    padding-left: 5px;
+    line-height: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-family:  'font1',  'sans-serif';
+}
+  
+.collapsible:hover {
+    background-color: #fbedcc;
+}
+
+.section {
+    padding-left: 18px;
+    padding-top: 0px;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+}
+
+.caption {
+    font-size: 14px;
+    padding-top: 1em;
+    padding:bottom: 1em;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: left;
+    border-radius: 6px;
+    padding: 15px;
+
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+}

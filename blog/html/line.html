@@ -1,0 +1,120 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type = "text/css" href = "file:///Users/jtd/Documents/personal/code/html/jack-dinsmore.github.io/blog/html/css/text%2ecss">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async
+            src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+    </script>
+    <script>
+window.MathJax = {
+    tex: {
+        macros: {
+            bm: ["\\mathbf {#1}",1],
+            parens: ["\\left( #1 \\right)", 1],
+            braces: ["\\left\{ #1 \\right\}", 1],
+            brackets: ["\\left[ #1 \\right]", 1],
+            eval: ["\\left. #1 \\right|", 1],
+            fraci: ["{#1} / {#2}", 2],
+            expp: ["\\exp\\left( #1 \right)", 1],
+            bra: ["\\left\\langle #1 \\right|", 1],
+            ket: ["\\left| #1 \\right\\rangle", 1],
+            braket: ["\\langle {#1} | {#2} \\rangle", 2],
+        }
+    }
+}
+    </script>
+    <title>statistics</title>
+</head><body><div id="content"><h2><a href="file:///Users/jtd/Documents/personal/code/html/jack-dinsmore.github.io/blog/html/index%2ehtml">Home</a></h2><h1>Fitting a line</h1>
+
+<p>We defined a new formalism in <a href=file:///Users/jtd/Documents/personal/code/html/jack-dinsmore.github.io/blog/html/bayesian%2ehtml>the introduction to Bayesian statistics</a> and derived formulas for best fit parameters and uncertainty in <a href=file:///Users/jtd/Documents/personal/code/html/jack-dinsmore.github.io/blog/html/parameter%2dfitting%2ehtml>the previous post</a>. In this section, we'll apply this formalisms for the first time.
+</p>
+<p>We'll consider the simple case of a <i>Gaussian likelihood</i> with a <i>linear model</i>. The linear model is a rather unusual case, but a Gaussian likelihood is very commonly used.
+</p>
+<button class="collapsible"><h2>Gaussian likelihood and the \(\chi^2\) statistic</h2></button><div class="section">
+
+<p>Let's name the data \(\{y_i\}\), where \(i\) indexes over the data points. A model will produce predictions \(y^*_i\) for the data&mdash;we won't assume a linear model yet. Explicitly, a Gaussian likelihood is 
+
+\[\mathcal{L} = P(y_i | y^*_i) = \brackets{\prod_i\frac{1}{\sqrt{2\pi \sigma_i^2}}} \exp\parens{-\sum_i \frac{(y_i-y_i^*)^2}{2 \sigma_i^2}}.\]
+This is a multinomial Gaussian, where each data point \(y_i\) is assumed to be independent with some standard deviation \(\sigma_i\). Sometimes, the assumption of independent data points is removed, so that the likelihood is
+\[\mathcal{L} = \brackets{\prod_i\frac{1}{\sqrt{2\pi \sigma_i^2}}} \exp\parens{-\frac{1}{2}\sum_i \sum_j(y_i-y_i^*)\Sigma_{ij}(y_j-y_j^*)}\]
+where \(\Sigma_{ij}\) is a covariance matrix. But for this post we will stick to the first form.
+</p>
+<p>The \(\sigma_i\) standard deviations depend on the context of the fit. In the case of fitting data to histograms, the central limit theorem suggests \(\sigma_i = \sqrt{y_i}\). This is because each data point in a histogram represents the sum of all events which fall in the given bin. The central limit theorem states that the sum of \(n\) data points drawn from an arbitrary distribution is Gaussian-distributed with standard deviation \(\sigma = \sqrt{n}\) (in the limit of large \(n\)). Therefore, for enough data points, the likelihood of a histogram is an uncorrelated Gaussian <a href=file:///Users/jtd/Documents/personal/code/html/jack-dinsmore.github.io/blog/html/line%2ehtml%23eq2>Eq. 2</a> with \(\sigma_i = \sqrt{y_i}.
+</p>
+<p>In practice, the log likelihood is more useful. In particular we can define the quantity
+\[\chi^2 = - 2 \ln \frac{\mathcal{L}}{\mathcal{L}_0} = \sum_i \frac{(y_i - y^*_i)^2}{\sigma_i^2}\]
+where \(\mathcal{L}_0\) is the largest possible value of \(\mathcal{L}\). In the case where \(\sigma_i = \sqrt{y_i}\),
+\[\chi^2 = \sum_i \frac{(y_i - y^*_i)^2}{y_i}.\]
+Some people refer to only the latter as \(\chi^2\), though many physicists use \(\chi^2\) to refer to both.
+</p>
+<p>This quantity is so important that it <a href=file:///Users/jtd/Documents/personal/code/html/jack-dinsmore.github.io/blog/html/chisq%2ehtml>gets a whole blog post devoted to its properties</a>. For now, all we need is its connection to the log-likelihood. Specifically, it is \(-2\) times the log-likelihood \(\ln \mathcal{L}\) minus some additional value \(\ln \mathcal{L}_0\) which is a normalization constant and roughly independent of the model. Best fit parameters and uncertainties do not require likelihood to be normalized, so the \(\ln \mathcal{L}_0\) factor will not matter. It only serves to simplify the formula for \(\chi^2\). 
+</p>
+</div> <button class="collapsible"><h2>Best fit values and uncertainties for uniform priors</h2></button><div class="section">
+
+<p>Now that we have defined our Gaussian likelihood, all we need is a prior to generate posteriors from the data. Let's assume uniform priors \(\pi(\bm \theta) = \mathrm{const}\). As for \(\mathcal{L}_0\), we can discard with normalizing \(\pi\), so that \(\ln \pi(\bm \theta) =0\) is a perfectly reasonable definition of the prior. In this special case, the posterior is simply equal to the likelihood.
+</p>
+<p>We can now inherit our definitions of best fit parameters and uncertainties from the <a href=file:///Users/jtd/Documents/personal/code/html/jack-dinsmore.github.io/blog/html/parameter%2dfitting%2ehtml>previous post</a>. Specifically, the best fit parameters are the mode of the posterior \(p\) (likelihood \(\mathcal{L}\)) and can be found by setting
+\[\frac{dp}{d\theta} = \frac{d\mathcal{L}}{d\theta} = \frac{d\ln\mathcal{L}}{d\theta} = \frac{d\chi^2}{d\theta} = 0\]
+where all of the equalities are true for the best fit values.
+</p>
+<p>The uncertainties can also be simplified because we know that the posterior, like the likelihood, must be Gaussian. The covariance matrix of the parameters is therefore connected to its second derivative evaluated at the best fit parameters by
+\[\frac{d^2\ln \mathcal{L}}{d\theta_i d\theta_j} = -(\Sigma^{-1})_{ij}.\]
+You can work this out by simply differentiating a Gaussian posterior with covariance matrix \(\Sigma\) and mode equal to the best fit value. Using the \(\chi^2\) value instead,
+\[\frac{d^2(\chi^2)}{d\theta_i d\theta_j} = (2\Sigma^{-1})_{ij}.\]
+</p>
+<p>This trick of relating parameter uncertainties to the behavior of the likelihood at the mode is called "Laplace's approximation." It's an approximation because it uses the assumption of Gaussian posteriors to relate the behavior at the mode to the broader standard deviation of the whole distribution.
+</p>
+</div> <button class="collapsible"><h2>Best fit parameters for a linear model</h2></button><div class="section">
+
+<p>The simple case we'll consider is fitting a line \(y^*_i=ax_i + b\) to a set of data with known \(\sigma_i = \sigma\) which is constant across all data points. We will be able to solve for the best fit value of \(a\) and \(b\) exactly and their covariance matrix. Let's start by writing the \(\chi^2\)
+\[\chi^2 = \sum_i \frac{(y_i - a x_i - b)^2}{\sigma^2}.\]
+This \(\chi^2\) value can be expanded to separate the parameters
+\[\chi^2 = \frac{N}{\sigma^2} \brackets{\langle y^2 \rangle + a^2 \langle x^2 \rangle - 2a \langle xy \rangle + b^2 - 2b \langle y \rangle + 2ab \langle x \rangle}.\]
+The angle brackets represent averages over the collected data.
+</p>
+<p>The best fit parameters are given by the minimum of this \(\chi^2\) as we determined in the previous section, which we obtain by setting the derivative of \(\chi^2\) with respect to the parameters equal to zero. This gives the system of equations
+\[\begin{pmatrix} \langle xy \rangle \\ \langle y \rangle \end{pmatrix} = \begin{pmatrix} \langle x^2 \rangle & \langle x \rangle \\ \langle x \rangle & 1 \end{pmatrix} \begin{pmatrix} a \\ b \end{pmatrix}.\]
+Fortunately, this matrix equation can be analytically solved for \(a\) and \(b\):
+\[\begin{pmatrix} a \\ b \end{pmatrix} = \frac{1}{\langle x^2 \rangle - \langle x \rangle^2}\begin{pmatrix} 1 & -\langle x \rangle \\ -\langle x \rangle & \langle x^2 \rangle \end{pmatrix} \begin{pmatrix} \langle xy \rangle \\ \langle y \rangle \end{pmatrix}\]
+or
+\[a = \frac{\mathrm{Cov}(x,y)}{\mathrm{Var}\ x}, \qquad b = \frac{\langle x^2 \rangle\langle y \rangle - \langle x \rangle \langle xy \rangle}{\mathrm{Var}\ x},\]
+where we have used the definitions of <a href=file:///Users/jtd/Documents/personal/code/html/jack-dinsmore.github.io/blog/html/variance%2ehtml>variance and covariance</a>.
+</p>
+<p>The form of \(a\) is sometimes defined to be the <i>correlation</i> between \(x\) and \(y\), which is an intuitive result. In other words, the slope of a line passing through a data set is the correlation between the two axes. The intercept is a more complicated formula, but analogous.
+</p>
+</div> <button class="collapsible"><h2>Uncertainties for a linear model</h2></button><div class="section">
+
+<p>To compute uncertainties on the best fit values of \(a\) and \(b\), we need only differentiate \(\chi^2\) as we learned earlier in this post. The second derivative matrix, or Hessian matrix, is
+\[\frac{\partial}{\partial \theta_i} \frac{\partial}{\partial \theta_j}\chi^2 = \frac{2N}{\sigma^2}\begin{pmatrix}\langle x^2 \rangle & \langle x \rangle \\ \langle x \rangle & 1\end{pmatrix}.\]
+Inverting this matrix gives the covariance between the best fit parameters
+\[\Sigma = \frac{\sigma^2}{N}\begin{pmatrix}1 & -\langle x \rangle \\ -\langle x \rangle & \langle x^2 \rangle\end{pmatrix}.\]
+If we were reporting standard errors on \(a\) and \(b\), we would say \(\sigma_a = \sigma / \sqrt{N}\) and \(\sigma_b = \sigma \sqrt{\langle x^2 \rangle} / \sqrt{N}\). The trend that uncertainties decrease with \(\sqrt{N}\) occurs for both parameters, and we have also seen it in a <a href=file:///Users/jtd/Documents/personal/code/html/jack-dinsmore.github.io/blog/html/variance%2ehtml>simple example on population means</a> and in <a href=file:///Users/jtd/Documents/personal/code/html/jack-dinsmore.github.io/blog/html/variance%2ehtml>the central limit theorem</a>. It is a very common trend.
+</p>
+<p>Another note is that, while the best fit parameters were independent of \(\sigma\), the parameter uncertainties \(\sigma_a\) and \(\sigma_b\) were not. This is an important point; it is often the case that the models that predict \(\sigma\) are not very reliable. This calculation suggests that incorrect error models affect the parameter uncertainties more than the best fit values, which is generally the case.
+</p>
+<p>Finally, we should note the covariance between \(a\) and \(b\). In other words, simply reporting \(\sigma_a\) and \(\sigma_b\) does not fully express all the uncertainty in our fit. If \(\langle x \rangle \neq 0\), then \(a\) and \(b\) are also covariant. This is a sensible result. If the data is far from the \(y\)-axis (i.e. \(\langle x \rangle \gg 0\)), then the \(y\)-intercept \(b\) must be estimated by extrapolating the best fit line down to the \(y\)-axis. A different value of \(a\) will induce a different value of \(b\). Thus we should expect covariance.
+</p>
+</div> <button class="collapsible"><h2>Next steps</h2></button><div class="section">
+
+<p>We could finish the discussion here, since we have determined the best fit parameters and uncertainties which are generally the goal when doing a fit. However, we have not actually determined whether our fit is a good one. The most general way to do this is to plot the data and the best fit line and see if they match. It is helpful when doing this to express the fit uncertainties \(\sigma_a\) and \(\sigma_b\) as uncertainties on the best fit line, so that we can visually determine whether the points lie within the uncertainties or not. This is described in <a href=file:///Users/jtd/Documents/personal/code/html/jack-dinsmore.github.io/blog/html/line2%2ehtml>the next post</a>.
+</p>
+<p>It is sometimes possible to determine whether the model is a good fit from the \(\chi^2\) alone, without a figure. This is much less general technique, because it relies on properties which are true only for the \(\chi^2\) and only in certain limits, such as a large number of data points. These are discussed in the c<a href=file:///Users/jtd/Documents/personal/code/html/jack-dinsmore.github.io/blog/html/chisq%2ehtml>post on $hi^2$ values</a>, and more extensively in the posts on model comparison.
+</div></div><div id="footer">
+Copyright &copy; 2024 Jack Dinsmore. &emsp;Updated June 4. &emsp;Version 0.1</div></body>
+<script>
+var coll = document.getElementsByClassName("collapsible");
+var i;
+
+for (i = 0; i < coll.length; i++) {{
+    coll[i].addEventListener("click", function() {{
+        this.classList.toggle("active");
+        var content = this.nextElementSibling;
+        if (content.style.maxHeight === "0px"){{
+            content.style.maxHeight = content.scrollHeight+"px";
+        }} else {{
+            content.style.maxHeight = "0px";
+        }}
+    }});
+}}
+</script></html>
