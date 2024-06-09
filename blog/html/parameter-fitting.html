@@ -1,7 +1,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" type = "text/css" href = "https://jack-dinsmore.github.io/blog//html/css/text%2ecss">
+    <link rel="stylesheet" type = "text/css" href = "https://jack-dinsmore.github.io/blog/html/css/text.css">
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async
             src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
@@ -25,13 +25,13 @@ window.MathJax = {
 }
     </script>
     <title>statistics</title>
-</head><body><div id="content"><h2><a href="https://jack-dinsmore.github.io/blog//html/index%2ehtml">Home</a></h2><h1>Parameter Fitting and Uncertainties</h1>
+</head><body><div id="content"><h2><a href="https://jack-dinsmore.github.io/blog/html/index.html">Home</a></h2><h1>Parameter Fitting and Uncertainties</h1>
 
 <p>In the last section, we reviewed a method for computing the posterior distribution \(p(\bm \theta | D)\) for the parameters \(\bm \theta\) of a model. Calculating this posterior fully solves the statistical problem, but the posterior is a clunky object &mdash; a function defined for all values of \(\bm \theta\). It is helpful to simplify it into a few numbers: the best fit parameters and the uncertainties.
 </p>
 <button class="collapsible"><h2>Definitions of best fit parameters and uncertainties</h2></button><div class="section">
 
-<p>One common definition of the best fit parameters and parameter uncertainties associated with a posterior distribution is that the best fit parameters are the <i>mean</i> of \(\bm \theta\), and the uncertainties are the <i>variances</i> of \(\bm \theta\). See <a href=https://jack-dinsmore.github.io/blog//html/probability%2ehtml>the review of probability</a> for a refresher on these quantities. When someone reports a statistical result for parameter \(\theta_i\) as \(\theta_i = 1 \pm 0.5\), they mean that the posterior mean has an \(i^\mathrm{th}\) coordinate of 1 and a standard deviation of 0.5.
+<p>One common definition of the best fit parameters and parameter uncertainties associated with a posterior distribution is that the best fit parameters are the <i>mean</i> of \(\bm \theta\), and the uncertainties are the <i>variances</i> of \(\bm \theta\). See <a href=https://jack-dinsmore.github.io/blog/html/probability.html>the review of probability</a> for a refresher on these quantities. When someone reports a statistical result for parameter \(\theta_i\) as \(\theta_i = 1 \pm 0.5\), they mean that the posterior mean has an \(i^\mathrm{th}\) coordinate of 1 and a standard deviation of 0.5.
 </p>
 <p>In cases with multiple parameters, the <i>covariance matrix</i> is the most general measure of uncertainties. We will discuss the meaning of covariances in the next section.
 </p>
@@ -85,7 +85,7 @@ Simply plugging the first equation to the second implies that \(\sigma_F^* = \si
 </p>
 <p>Covariance becomes important only when comparing two parameters. For example, if we fit for two star fluxes \(F_1\) and \(F_2\) in the same image, the same background would cause some covariance between the fluxes. Comparing \(F_1\) to \(F_2\) should take this covariance into account.
 </p>
-<p>In the <a href=https://jack-dinsmore.github.io/blog//html/line%2ehtml>next section</a>, we'll apply what we've learned to fit a line to a set of data points with equal uncertainty.
+<p>In the <a href=https://jack-dinsmore.github.io/blog/html/line.html>next section</a>, we'll apply what we've learned to fit a line to a set of data points with equal uncertainty.
 </div></div><div id="footer">
 Copyright &copy; 2024 Jack Dinsmore. &emsp;Updated June 9. &emsp;Version 0.1</div></body>
 <script>

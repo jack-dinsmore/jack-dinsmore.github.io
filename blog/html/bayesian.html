@@ -1,7 +1,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" type = "text/css" href = "https://jack-dinsmore.github.io/blog//html/css/text%2ecss">
+    <link rel="stylesheet" type = "text/css" href = "https://jack-dinsmore.github.io/blog/html/css/text.css">
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async
             src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
@@ -25,9 +25,9 @@ window.MathJax = {
 }
     </script>
     <title>statistics</title>
-</head><body><div id="content"><h2><a href="https://jack-dinsmore.github.io/blog//html/index%2ehtml">Home</a></h2><h1>Bayesian Statistics</h1>
+</head><body><div id="content"><h2><a href="https://jack-dinsmore.github.io/blog/html/index.html">Home</a></h2><h1>Bayesian Statistics</h1>
 
-<p>This post makes heavy use of <i>Bayes' theorem</i>, which was proved in <a href=https://jack-dinsmore.github.io/blog//html/probability%2ehtml>the first post</a>.
+<p>This post makes heavy use of <i>Bayes' theorem</i>, which was proved in <a href=https://jack-dinsmore.github.io/blog/html/probability.html>the first post</a>.
 </p>
 <p>When I say <i>statistics</i>, I mean the science of quantitatively turning data into constraints on the physical parameters. For the sake of generality, we'll denote data with \(D\) and the parameters with a vector \(\bm \theta\). The exact format of the data \(D\) will not matter for now &mdash; whether it is list of data points, an image, or something more important &mdash; because no matter what data is, we should always be able to define the probability of observing this data given a certain set of parameters
 <div class="eq"><div class="eqtext">\[\mathcal{L} = P(D | \bm \theta).\]</div><div class="eqnum" id="eq1">(1)</div></div>
@@ -66,7 +66,7 @@ This probability distribution is called the <i>likelihood</i>, and it is one of 
 </p>
 </div> <button class="collapsible"><h2>Conclusion</h2></button><div class="section">
 
-<p><a href=https://jack-dinsmore.github.io/blog//html/bayesian%2ehtml#eq1>Eq. 1</a> is probably the most important equation in Bayesian statistics so I will repeat it again, this time in log space.
+<p><a href=https://jack-dinsmore.github.io/blog/html/bayesian.html#eq1>Eq. 1</a> is probably the most important equation in Bayesian statistics so I will repeat it again, this time in log space.
 <div class="eq"><div class="eqtext">\[\ln p(\bm \theta | D) = \ln \mathcal{L} + \ln p(\bm \theta) + C\]</div><div class="eqnum" id="eq4">(4)</div></div>
 where \(C\) is a constant that can be worked out by normalizing \(p(\bm \theta | D)\).
 Intuitively, the posterior (the function we want) is proportional to the likelihood (the function we have) times the prior (a wide distribution used to put in parameter constraints). The multiplication is usually very easy; the hard part is measuring the relevant properties of the prior accurately. Specifically, we want the mode of the posterior (the best fit values) and its width (the uncertainties). The definitions for the mode and width and some advice on how to calculate them is given in {the next post}

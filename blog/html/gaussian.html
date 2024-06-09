@@ -1,7 +1,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" type = "text/css" href = "https://jack-dinsmore.github.io/blog//html/css/text%2ecss">
+    <link rel="stylesheet" type = "text/css" href = "https://jack-dinsmore.github.io/blog/html/css/text.css">
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async
             src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
@@ -25,7 +25,7 @@ window.MathJax = {
 }
     </script>
     <title>statistics</title>
-</head><body><div id="content"><h2><a href="https://jack-dinsmore.github.io/blog//html/index%2ehtml">Home</a></h2><h1>Gaussian Likelihoods</h1>
+</head><body><div id="content"><h2><a href="https://jack-dinsmore.github.io/blog/html/index.html">Home</a></h2><h1>Gaussian Likelihoods</h1>
 
 <p>This post deals parameter fitting under a powerful yet often accurate approximation: a Gaussian likelihood. To be specific, for a data set \(\{x_i\}\) containing \(N\) elements, we assume the likelihood to be 
 <div class="eq"><div class="eqtext">\[\mathcal{L} \propto \exp \parens{-\frac{1}{2}\sum_{i=1}^N\sum_{j=1}^N(x_i - \mu_i) (\Sigma^{-1})_{ij}(x_j - \mu_j)}\]</div><div class="eqnum" id="eq1">(1)</div></div>
@@ -96,7 +96,7 @@ where \(H(\bm x_i)\) is the Hessian matrix of \(f(\bm x_i)\).
 </p>
 </div> <button class="collapsible"><h2>Dealing with Non-Gaussian Posteriors</h2></button><div class="section">
 
-<p>Gaussian likelihoods (and therefore Gaussian posteriors) are so common yet so powerful that I recommend doing a fit using the methods outline here in most circumstances. However, it's common in literature to do away with the assumption of Gaussianity and solve for the entire posterior distribution directly. The technique for doing this fully general Bayesian fitting is a Markov-Chain Monte Carlo method, <a href=https://jack-dinsmore.github.io/blog//html/mcmc%2ehtml>discussed in this post</a>. It allows one to calculate the covariance matrix \(\Sigma\) directly from the posterior rather than the Hessian evaluated at the maximum. It also can be used to compute the higher-order moments of the posterior, which reveal potential correlations that are not present in the covariance matrix. Its disadvantage is that it is orders-of-magnitude slower than the minimization method presented here.
+<p>Gaussian likelihoods (and therefore Gaussian posteriors) are so common yet so powerful that I recommend doing a fit using the methods outline here in most circumstances. However, it's common in literature to do away with the assumption of Gaussianity and solve for the entire posterior distribution directly. The technique for doing this fully general Bayesian fitting is a Markov-Chain Monte Carlo method, <a href=https://jack-dinsmore.github.io/blog/html/mcmc.html>discussed in this post</a>. It allows one to calculate the covariance matrix \(\Sigma\) directly from the posterior rather than the Hessian evaluated at the maximum. It also can be used to compute the higher-order moments of the posterior, which reveal potential correlations that are not present in the covariance matrix. Its disadvantage is that it is orders-of-magnitude slower than the minimization method presented here.
 </div></div><div id="footer">
 Copyright &copy; 2024 Jack Dinsmore. &emsp;Updated June 9. &emsp;Version 0.1</div></body>
 <script>

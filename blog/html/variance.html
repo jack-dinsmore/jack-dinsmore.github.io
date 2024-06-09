@@ -1,7 +1,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" type = "text/css" href = "https://jack-dinsmore.github.io/blog//html/css/text%2ecss">
+    <link rel="stylesheet" type = "text/css" href = "https://jack-dinsmore.github.io/blog/html/css/text.css">
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async
             src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
@@ -25,9 +25,9 @@ window.MathJax = {
 }
     </script>
     <title>statistics</title>
-</head><body><div id="content"><h2><a href="https://jack-dinsmore.github.io/blog//html/index%2ehtml">Home</a></h2><h1>Expected Value, Variance, and Covariance</h1>
+</head><body><div id="content"><h2><a href="https://jack-dinsmore.github.io/blog/html/index.html">Home</a></h2><h1>Expected Value, Variance, and Covariance</h1>
 
-<p>In the <a href=https://jack-dinsmore.github.io/blog//html/probability%2ehtml>previous section</a>, we defined random variables and their basic properties such as their Probability Density Functions (PDFs) and Probability Mass Functions(PMFs). Knowing these functions completely describes the random variable in question. For the rest of this post, we consider continuous random variables which have PDFs, though many of the results also apply to discrete random variables.
+<p>In the <a href=https://jack-dinsmore.github.io/blog/html/probability.html>previous section</a>, we defined random variables and their basic properties such as their Probability Density Functions (PDFs) and Probability Mass Functions(PMFs). Knowing these functions completely describes the random variable in question. For the rest of this post, we consider continuous random variables which have PDFs, though many of the results also apply to discrete random variables.
 </p>
 <p>In statistics, one often wants to measure the PDF of a random variable \(X\). This is quite difficult to do accurately because the PDF is a function with a separate value for each point in the domain of \(X\), all of which have to be measured. In such cases, it is often more useful to measure simplifying properties of the PDF instead. These are called the "moments" of the distribution. The \(n^\mathrm{th}\) moment of the PDF \(P(x)\) is defined as
 <div class="eq"><div class="eqtext">\[\int dx\, x^n P(x).\]</div><div class="eqnum" id="eq1">(1)</div></div>
@@ -132,7 +132,7 @@ where \(a_1\) and \(a_2>0\) are Taylor series coefficients. It follows that \(P_
 <div class="eq"><div class="eqtext">\[\widetilde P_S(k) \propto \exp \parens{-a_2\frac{n(k-k_0)^2}{2}}\]</div><div class="eqnum" id="eq26">(26)</div></div>
 and the Fourier transform of a Gaussian is also a Gaussian
 <div class="eq"><div class="eqtext">\[P_S(x) \propto \exp \parens{-\frac{(x-\mu)^2}{2\sigma^2}}\]</div><div class="eqnum" id="eq27">(27)</div></div>
-for some parameters \(\sigma\) and \(\mu\). We showed in the sections on expected value and variance that \(P_S(x)\) has expected value \(\mu = \langle X \rangle\) and standard deviation \(\sigma = \sigma_X\sqrt{n}\). Asserting these findings reproduces the central limit theorem <a href=https://jack-dinsmore.github.io/blog//html/variance%2ehtml#eq2>Eq. 2</a>.
+for some parameters \(\sigma\) and \(\mu\). We showed in the sections on expected value and variance that \(P_S(x)\) has expected value \(\mu = \langle X \rangle\) and standard deviation \(\sigma = \sigma_X\sqrt{n}\). Asserting these findings reproduces the central limit theorem <a href=https://jack-dinsmore.github.io/blog/html/variance.html#eq2>Eq. 2</a>.
 </p>
 
 </div> <button class="collapsible"><h2>Propagation of uncertainty</h2></button><div class="section">
@@ -146,7 +146,7 @@ The definition of variance now simply states
 </p>
 <p>The assumption that \(\langle X \rangle\) is near the mode of \(P_X(x)\) is often reasonable, in part because the central limit theorem makes Gaussian and Gaussian-like distributions very common (and for these the mode and the mean are the same). However whether \(f(x)\) is slowly varying compared to \(\sigma_X\) is context-dependent.
 </p>
-<p>The <a href=https://jack-dinsmore.github.io/blog//html/bayesian%2ehtml>next section</a> represents our first application of probability theory to statistics; we will use the tools we've learned to create a theory fitting models to data.
+<p>The <a href=https://jack-dinsmore.github.io/blog/html/bayesian.html>next section</a> represents our first application of probability theory to statistics; we will use the tools we've learned to create a theory fitting models to data.
 </div></div><div id="footer">
 Copyright &copy; 2024 Jack Dinsmore. &emsp;Updated June 9. &emsp;Version 0.1</div></body>
 <script>
