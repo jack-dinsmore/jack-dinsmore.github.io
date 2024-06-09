@@ -206,25 +206,19 @@ function getClampedArrayU8FromWasm0(ptr, len) {
 */
 export const Tune = Object.freeze({ Psnr:0,"0":"Psnr",Psychovisual:1,"1":"Psychovisual", });
 /**
-* Chroma subsampling format
+* Allowed pixel value range
+*
+* C.f. `VideoFullRangeFlag` variable specified in ISO/IEC 23091-4/ITU-T H.273
 */
-export const ChromaSampling = Object.freeze({
+export const PixelRange = Object.freeze({
 /**
-* Both vertically and horizontally subsampled.
+* Studio swing representation
 */
-Cs420:0,"0":"Cs420",
+Limited:0,"0":"Limited",
 /**
-* Horizontally subsampled.
+* Full swing representation
 */
-Cs422:1,"1":"Cs422",
-/**
-* Not subsampled.
-*/
-Cs444:2,"2":"Cs444",
-/**
-* Monochrome.
-*/
-Cs400:3,"3":"Cs400", });
+Full:1,"1":"Full", });
 /**
 * Sample position for subsampled chroma
 */
@@ -244,19 +238,25 @@ Vertical:1,"1":"Vertical",
 */
 Colocated:2,"2":"Colocated", });
 /**
-* Allowed pixel value range
-*
-* C.f. `VideoFullRangeFlag` variable specified in ISO/IEC 23091-4/ITU-T H.273
+* Chroma subsampling format
 */
-export const PixelRange = Object.freeze({
+export const ChromaSampling = Object.freeze({
 /**
-* Studio swing representation
+* Both vertically and horizontally subsampled.
 */
-Limited:0,"0":"Limited",
+Cs420:0,"0":"Cs420",
 /**
-* Full swing representation
+* Horizontally subsampled.
 */
-Full:1,"1":"Full", });
+Cs422:1,"1":"Cs422",
+/**
+* Not subsampled.
+*/
+Cs444:2,"2":"Cs444",
+/**
+* Monochrome.
+*/
+Cs400:3,"3":"Cs400", });
 
 const LinearFitDemoFinalization = (typeof FinalizationRegistry === 'undefined')
     ? { register: () => {}, unregister: () => {} }
