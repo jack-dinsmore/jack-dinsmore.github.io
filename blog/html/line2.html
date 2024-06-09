@@ -65,7 +65,7 @@ where \(\hat y = \hat a x + \hat b\).
 <center><canvas id="linear_fit_demo"></canvas>
         <div class="caption"><b>Applet:</b> A linear fit \(y=ax+b\) to simulated data with constant uncertainty sigma. Use the sliders to adjust the true values of \(a\), \(b\), \(\sigma\), and the number of data points \(N\). The dashed line represents the true model, while the solid line is the best-fit model extracted using the methods of the previous post. The yellow band shows the uncertainty on the fit derived in this section.</div></center>
 <script type="module">
-    import init, {LinearFitDemo} from "/Users/jtd/Documents/personal/code/html/jack-dinsmore.github.io/blog/bin/linear_fit_demo.js";
+    import init, {LinearFitDemo} from "https://jack-dinsmore.github.io/blog/bin/linear_fit_demo.js";
     await init();
 
     const linear_fit_demo = LinearFitDemo.new("linear_fit_demo");
