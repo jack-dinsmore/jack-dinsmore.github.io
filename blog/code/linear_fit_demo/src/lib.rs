@@ -43,9 +43,9 @@ impl LinearFitDemo {
         let randomize_button = Button::new((Dim::Percent(0.85), Dim::Percent(0.1)), "Randomize".to_owned(), WIDTH, HEIGHT);
 
         let plot = DynamicPlot::new((
-            Dim::Percent(0.05),
+            Dim::Percent(0.025),
             Dim::Percent(0.2),
-            Dim::Percent(0.9),
+            Dim::Percent(0.95),
             Dim::Percent(0.8)),
             WIDTH, HEIGHT
         );
@@ -122,7 +122,6 @@ impl LinearFitDemo {
             y_err_high.push(bf_y + y_err);
         }
 
-        let elements = self.get_mut_elements();
         self.plot.plot(vec![
             PlotCommand::Line{xs: &xs, ys: &true_ys, ls: LineStyle::Dashed },
             PlotCommand::FillBetween { xs: &xs, y1s: &y_err_low, y2s: &y_err_high },
@@ -134,6 +133,7 @@ impl LinearFitDemo {
             PlotCommand::Text { x: 0.03, y: 1., text: format!("a = {:.2} ± {:.2}", a_bf, a_unc), va: TextAlign::UpperLeft, ha: TextAlign::UpperLeft },
             PlotCommand::Text { x: 0.03, y: 0.93, text: format!("b = {:.2} ± {:.2}", b_bf, b_unc), va: TextAlign::UpperLeft, ha: TextAlign::UpperLeft },
         ], &self.applet.style);
+        let elements = self.get_mut_elements();
         for callback in self.applet.tick(elements) {
             match callback {
                 Callback::ButtonClicked(b) => {

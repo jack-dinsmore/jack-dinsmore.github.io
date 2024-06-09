@@ -8,7 +8,7 @@ edition = "2018"
 crate-type = ["cdylib", "rlib"]
 
 [dependencies]
-wikid_wasm = { path = "../wikid_wasm" }
+wikid_wasm = { git = "https://github.com/jack-dinsmore/wikid_wasm.git" }
 wasm-bindgen = "0.2.92"
 rand_distr = "0.4.3"
 getrandom = { version = "0.2.8", features = ["js"] }

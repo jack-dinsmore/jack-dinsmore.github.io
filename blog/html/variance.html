@@ -1,7 +1,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" type = "text/css" href = "file:///Users/jtd/Documents/personal/code/html/jack-dinsmore.github.io/blog/html/css/text%2ecss">
+    <link rel="stylesheet" type = "text/css" href = "https://jack-dinsmore.github.io/blog//html/css/text%2ecss">
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async
             src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
@@ -25,72 +25,72 @@ window.MathJax = {
 }
     </script>
     <title>statistics</title>
-</head><body><div id="content"><h2><a href="file:///Users/jtd/Documents/personal/code/html/jack-dinsmore.github.io/blog/html/index%2ehtml">Home</a></h2><h1>Expected Value, Variance, and Covariance</h1>
+</head><body><div id="content"><h2><a href="https://jack-dinsmore.github.io/blog//html/index%2ehtml">Home</a></h2><h1>Expected Value, Variance, and Covariance</h1>
 
-<p>In the <a href=file:///Users/jtd/Documents/personal/code/html/jack-dinsmore.github.io/blog/html/probability%2ehtml>previous section</a>, we defined random variables and their basic properties such as their Probability Density Functions (PDFs) and Probability Mass Functions(PMFs). Knowing these functions completely describes the random variable in question. For the rest of this post, we consider continuous random variables which have PDFs, though many of the results also apply to discrete random variables.
+<p>In the <a href=https://jack-dinsmore.github.io/blog//html/probability%2ehtml>previous section</a>, we defined random variables and their basic properties such as their Probability Density Functions (PDFs) and Probability Mass Functions(PMFs). Knowing these functions completely describes the random variable in question. For the rest of this post, we consider continuous random variables which have PDFs, though many of the results also apply to discrete random variables.
 </p>
 <p>In statistics, one often wants to measure the PDF of a random variable \(X\). This is quite difficult to do accurately because the PDF is a function with a separate value for each point in the domain of \(X\), all of which have to be measured. In such cases, it is often more useful to measure simplifying properties of the PDF instead. These are called the "moments" of the distribution. The \(n^\mathrm{th}\) moment of the PDF \(P(x)\) is defined as
-\[\int dx\, x^n P(x).\]
+<div class="eq"><div class="eqtext">\[\int dx\, x^n P(x).\]</div><div class="eqnum" id="eq1">(1)</div></div>
 </p>
 <p>Below, we will focus on a few important moments and explain why they are useful.
 </p>
 <button class="collapsible"><h2>First moment: Expected value</h2></button><div class="section">
 
 <p>The <i>expected value</i> of a random variable \(X\) is defined as its first order moment:
-\[\langle X\rangle = \int dx\, x P(x).\]
+<div class="eq"><div class="eqtext">\[\langle X\rangle = \int dx\, x P(x).\]</div><div class="eqnum" id="eq2">(2)</div></div>
 It is effectively the average of all values \(X\) could have, weighted by their probability.
 </p>
 <p>The introduction of this post implied that moments are easier to measure than the PDF directly. To see this, let's design an experiment that attempts to measure \(\langle X \rangle\). We'll make \(n\) independent measurements of \(X\), which we call \(X_1, X_2,\dots X_n\). A good <i>estimator</i> for \(\langle X\rangle\) could be to take the average of these measurements:
-\[M = \frac{1}{n}\sum_{i=1}^n X_i.\]
+<div class="eq"><div class="eqtext">\[M = \frac{1}{n}\sum_{i=1}^n X_i.\]</div><div class="eqnum" id="eq3">(3)</div></div>
 </p>
 <p>The PDF of \(M\) is a multivariate PDF, but because \(X_i\) are all independent, it simplifies to \(P(x_1,\dots,x_n) = P(x_1)\cdots P(x_n)\). Thus, the expected value of \(M\) is
-\[\langle M \rangle = \int dx_1\cdots dx_n\, \brackets{\frac{1}{n} \sum_{i=1}^n x_i} P(x_1,\dots,x_n)\]
-\[ = \frac{1}{n} \sum_{i=1}^n \int dx_i\, x_i P(x_i)\]
-\[ = \frac{1}{n} \sum_{i=1}^n \langle X \rangle\]
-\[ = \langle X \rangle.\]
+<div class="eq"><div class="eqtext">\[\langle M \rangle = \int dx_1\cdots dx_n\, \brackets{\frac{1}{n} \sum_{i=1}^n x_i} P(x_1,\dots,x_n)\]</div><div class="eqnum" id="eq4">(4)</div></div>
+<div class="eq"><div class="eqtext">\[ = \frac{1}{n} \sum_{i=1}^n \int dx_i\, x_i P(x_i)\]</div><div class="eqnum" id="eq5">(5)</div></div>
+<div class="eq"><div class="eqtext">\[ = \frac{1}{n} \sum_{i=1}^n \langle X \rangle\]</div><div class="eqnum" id="eq6">(6)</div></div>
+<div class="eq"><div class="eqtext">\[ = \langle X \rangle.\]</div><div class="eqnum" id="eq7">(7)</div></div>
 </p>
 <p>We have shown that the expected value of this average is the expected value of the random variable itself, so that our estimator \(M\) is an accurate measurement of \(\langle X \rangle\). But to show that it's precise, we must introduce the concept of variance.
 </p>
 </div> <button class="collapsible"><h2>Second moment: Variance</h2></button><div class="section">
 
 <p>The <i>variance</i> of \(X\) is defined as
-\[\mathrm{Var}\ X = \int dx\, (x - \langle X \rangle)^2 P(x).\]
+<div class="eq"><div class="eqtext">\[\mathrm{Var}\ X = \int dx\, (x - \langle X \rangle)^2 P(x).\]</div><div class="eqnum" id="eq8">(8)</div></div>
 This is a second moment of \(X\). Its value is positive, so we can also define the <i>standard deviation</i> \(\sigma_X\) to be such that \(\sigma_X^2 = \mathrm{Var}\ X\). Manipulating the above integral shows that an alternative form of variance is
 </p>
 
-\[\mathrm{Var}\ X = \langle X^2 \rangle - \langle X \rangle^2\]
+<div class="eq"><div class="eqtext">\[\mathrm{Var}\ X = \langle X^2 \rangle - \langle X \rangle^2\]</div><div class="eqnum" id="eq9">(9)</div></div>
 
 <p>which is often useful. 
 </p>
 <p>Variance is an extremely important concept because it characterizes the width of a probability distribution. A PDF with variance of zero must be a delta function &mdash; zero probability everywhere except at one value which is the mean. On the other hand, a PDF with high variance could take on a great many widely separated values.
 </p>
 <p>Returning to the experiment we introduced in the previous section, \(M\) is only a precise estimator for \(\langle X \rangle\) if it has low variance. Let's check this by computing \(\langle M^2 \rangle\) and applying the second form of variance above.
-\[\langle M^2 \rangle = \int dx_1\cdots dx_n\, \brackets{\frac{1}{n} \sum_{i=1}^n x_i}^2 P(x_1)\cdots P(x_n)\]
-\[= \frac{1}{n^2} \sum_{i=1}^n \sum_{j=1}^n \int dx_i dx_j\, x_i x_j P(x_i)P(x_j)\]
-\[= \frac{1}{n^2} \sum_{i=1}^n \sum_{j\neq i} \langle X \rangle^2 + \frac{1}{n^2} \sum_{i=1}^n \langle X^2 \rangle\]
-\[= \frac{n-1}{n}\langle X \rangle^2 + \frac{1}{n} \langle X^2 \rangle\]
-\[= \langle X \rangle^2 + \frac{1}{n} \mathrm{Var}\ X\]
+<div class="eq"><div class="eqtext">\[\langle M^2 \rangle = \int dx_1\cdots dx_n\, \brackets{\frac{1}{n} \sum_{i=1}^n x_i}^2 P(x_1)\cdots P(x_n)\]</div><div class="eqnum" id="eq10">(10)</div></div>
+<div class="eq"><div class="eqtext">\[= \frac{1}{n^2} \sum_{i=1}^n \sum_{j=1}^n \int dx_i dx_j\, x_i x_j P(x_i)P(x_j)\]</div><div class="eqnum" id="eq11">(11)</div></div>
+<div class="eq"><div class="eqtext">\[= \frac{1}{n^2} \sum_{i=1}^n \sum_{j\neq i} \langle X \rangle^2 + \frac{1}{n^2} \sum_{i=1}^n \langle X^2 \rangle\]</div><div class="eqnum" id="eq12">(12)</div></div>
+<div class="eq"><div class="eqtext">\[= \frac{n-1}{n}\langle X \rangle^2 + \frac{1}{n} \langle X^2 \rangle\]</div><div class="eqnum" id="eq13">(13)</div></div>
+<div class="eq"><div class="eqtext">\[= \langle X \rangle^2 + \frac{1}{n} \mathrm{Var}\ X\]</div><div class="eqnum" id="eq14">(14)</div></div>
 where the second line expanded the square, the third line separated the components where \(i\neq j\)\( and \)i= j\(, the fourth counted the number of terms in the sum, and the fifth substituted in []{variance-squares}.
 </p>
 <p>Finally, the variance of \(M\) must be
-\[\mathrm{Var}\ M = \frac{1}{n} \mathrm{Var}\ X\]
+<div class="eq"><div class="eqtext">\[\mathrm{Var}\ M = \frac{1}{n} \mathrm{Var}\ X\]</div><div class="eqnum" id="eq15">(15)</div></div>
 or equivalently
-\[\sigma_M = \frac{\sigma_X}{\sqrt{n}}.\]
+<div class="eq"><div class="eqtext">\[\sigma_M = \frac{\sigma_X}{\sqrt{n}}.\]</div><div class="eqnum" id="eq16">(16)</div></div>
 This shows that \(M\) is a good estimator for the expected value of \(X\), because as \(n\) increases \(M\) has low variance, becoming more and more precise. For this reason, people sometimes refer to the expected value of \(X\) as the mean of \(X\).
 </p>
 <p>This experiment illustrated a common process in statistics. Whenever one wants to measure a property of a random variable, one creates an estimator, shows that it is <i>unbiased</i> (i.e. its mean is the thing attempted to be measured) and that it is <i>minimum-variance</i> (i.e. its variance is as low as possible in the limit of large data).
 </p>
 <p>An exercise for the reader is to show that the minimum variance estimator of the variance of a distribution is 
-\[V = \frac{1}{n - 1} \sum_{i=1}^n (X_i - M)^2.\]
+<div class="eq"><div class="eqtext">\[V = \frac{1}{n - 1} \sum_{i=1}^n (X_i - M)^2.\]</div><div class="eqnum" id="eq17">(17)</div></div>
 and, like \(M\), exhibits \(1/\sqrt{n}\) standard deviation
 </p>
 
 </div> <button class="collapsible"><h2>Covariance</h2></button><div class="section">
 
 <p>For multivariate probability distributions, it's possible to define a different type of second moment, called <i>covariance</i>
-\[\mathrm{Cov} [X, Y] = \big\langle (X - \langle X \rangle)(Y- \langle Y\rangle)\big\rangle.\]
+<div class="eq"><div class="eqtext">\[\mathrm{Cov} [X, Y] = \big\langle (X - \langle X \rangle)(Y- \langle Y\rangle)\big\rangle.\]</div><div class="eqnum" id="eq18">(18)</div></div>
 For a set of \(n\) random variables \(X_1,\dots,X_n\) one can define a <i>covariance matrix</i> \(\Sigma\) whose entries are
-\[\Sigma_{ij} = \mathrm{Cov} [X_i, X_j].\]
+<div class="eq"><div class="eqtext">\[\Sigma_{ij} = \mathrm{Cov} [X_i, X_j].\]</div><div class="eqnum" id="eq19">(19)</div></div>
 Notice that  \(\mathrm{Cov} [X, Y] = \mathrm{Cov} [Y, X]\) and \(\mathrm{Cov} [X, X] = \mathrm{Var}\ X\) according to the definition of covariance. Equivalently, we could say that the covariance matrix \(\Sigma\) is symmetric, and its diagonal contains the variances of \(X_i\).
 </p>
 <p>An interesting fact about covariance is that if \(X\) and \(Y\) are independent, then \(\mathrm{Cov} [X, Y] = 0\). You can prove this from the first equation of this section. Just as variance encapsulated the width of a probability distribution, covariance therefore encapsulates how dependent two variables are on each other. If the covariance matrix contains off-diagonal elements, its random variables are dependent.
@@ -102,10 +102,10 @@ Notice that  \(\mathrm{Cov} [X, Y] = \mathrm{Cov} [Y, X]\) and \(\mathrm{Cov} [X
 </p>
 <p>Kurtosis and skewness are often less useful than mean and variance, though they do have several specific applications. We will not discuss them much.
 </p>
-<h3>Consequences </h3>
+</div> <h1>Consequences </h1>
 
 
-</div> <button class="collapsible"><h2>Central limit theorem</h2></button><div class="section">
+<button class="collapsible"><h2>Central limit theorem</h2></button><div class="section">
 
 <p>In the above sections, we showed that the average \(M\) of many independent random variables \(X_1,\dots,X_n\) drawn from the same distribution has mean \(\langle X \rangle\) and standard deviation \(\sigma_X / \sqrt{n}\). But we stopped short of computing the full PDF \(P_M(x)\).
 </p>
@@ -113,26 +113,26 @@ Notice that  \(\mathrm{Cov} [X, Y] = \mathrm{Cov} [Y, X]\) and \(\mathrm{Cov} [X
 </p>
 <p>The central limit theorem (CLT) states that, under some light constraints, \(M\) is Gaussian-distributed in the limit of large \(n\). That is,
 
-\[P_M(m) \rightarrow \sqrt{\frac{n}{2\pi \sigma_X^2}}\exp\parens{-\frac{(m-\langle X \rangle)^2}{2 \sigma_X^2/n}}\]
+<div class="eq"><div class="eqtext">\[P_M(m) \rightarrow \sqrt{\frac{n}{2\pi \sigma_X^2}}\exp\parens{-\frac{(m-\langle X \rangle)^2}{2 \sigma_X^2/n}}\]</div><div class="eqnum" id="eq20">(20)</div></div>
 The applications of the CLT are practically boundless. If you don't know the PDF of \(X\), which is a common problem, an average over enough data points drawn from \(X\) will be Gaussian-distributed. A histogram, for example, will have Gaussian-distributed error bars on each bin. Likewise a function of the average will have easily predictable error bars, insensitive to irritating tails in the distribution of \(P(x)\).
 </p>
 <p>What follows is one of many possible proofs, based on Fourier series. To start, we define a new random variable \(S = nM\) which is the sum of \(X_i\). Its PDF is
-\[P_S(s) = \int dx_1\cdots dx_n\, P_X(x_1)\cdots P_X(x_n) \delta\parens{s - \sum_{i=1}^n x_1}.\]
+<div class="eq"><div class="eqtext">\[P_S(s) = \int dx_1\cdots dx_n\, P_X(x_1)\cdots P_X(x_n) \delta\parens{s - \sum_{i=1}^n x_1}.\]</div><div class="eqnum" id="eq21">(21)</div></div>
 </p>
 <p>This is the convolution of \(P_X\) with itself \(n\) times. The "convolution theorem" dictates that the Fourier transform of \(P_S(s)\), defined as 
-\[\widetilde P_S(k) = \int dx\, e^{-iks}P_S(s)\]
+<div class="eq"><div class="eqtext">\[\widetilde P_S(k) = \int dx\, e^{-iks}P_S(s)\]</div><div class="eqnum" id="eq22">(22)</div></div>
 therefore satisfies
 
-\[\widetilde P_S(k) = \widetilde P_X(k)^n\]
+<div class="eq"><div class="eqtext">\[\widetilde P_S(k) = \widetilde P_X(k)^n\]</div><div class="eqnum" id="eq23">(23)</div></div>
 or
-\[\ln \widetilde P_S(k) = n \ln \widetilde P_X(k).\]
+<div class="eq"><div class="eqtext">\[\ln \widetilde P_S(k) = n \ln \widetilde P_X(k).\]</div><div class="eqnum" id="eq24">(24)</div></div>
 Consider some point \(k\) such that \(\widetilde P_X(k)\) close to the maximum \(\widetilde P_X(k_0)\). Even if \(\widetilde P_X(k)\) is not much lower than \(\widetilde P_X(k_0)\), the multiplication by \(n\) amplifies the difference so that \(\widetilde P_S(k)\) is exponentially suppressed. We may therefore approximate \(\ln \widetilde P_X(k)\) by its lowest order Taylor series near its maximum
-\[\ln \widetilde P_S(k) = na_1 - \frac{n}{2}(k-k_0)^2 a_2\]
+<div class="eq"><div class="eqtext">\[\ln \widetilde P_S(k) = na_1 - \frac{n}{2}(k-k_0)^2 a_2\]</div><div class="eqnum" id="eq25">(25)</div></div>
 where \(a_1\) and \(a_2>0\) are Taylor series coefficients. It follows that \(P_S(k)\) is a Gaussian
-\[\widetilde P_S(k) \propto \exp \parens{-a_2\frac{n(k-k_0)^2}{2}}\]
+<div class="eq"><div class="eqtext">\[\widetilde P_S(k) \propto \exp \parens{-a_2\frac{n(k-k_0)^2}{2}}\]</div><div class="eqnum" id="eq26">(26)</div></div>
 and the Fourier transform of a Gaussian is also a Gaussian
-\[P_S(x) \propto \exp \parens{-\frac{(x-\mu)^2}{2\sigma^2}}\]
-for some parameters \(\sigma\) and \(\mu\). We showed in the sections on expected value and variance that \(P_S(x)\) has expected value \(\mu = \langle X \rangle\) and standard deviation \(\sigma = \sigma_X\sqrt{n}\). Asserting these findings reproduces the central limit theorem <a href=file:///Users/jtd/Documents/personal/code/html/jack-dinsmore.github.io/blog/html/variance%2ehtml%23eq22>Eq. 22</a>.
+<div class="eq"><div class="eqtext">\[P_S(x) \propto \exp \parens{-\frac{(x-\mu)^2}{2\sigma^2}}\]</div><div class="eqnum" id="eq27">(27)</div></div>
+for some parameters \(\sigma\) and \(\mu\). We showed in the sections on expected value and variance that \(P_S(x)\) has expected value \(\mu = \langle X \rangle\) and standard deviation \(\sigma = \sigma_X\sqrt{n}\). Asserting these findings reproduces the central limit theorem <a href=https://jack-dinsmore.github.io/blog//html/variance%2ehtml#eq2>Eq. 2</a>.
 </p>
 
 </div> <button class="collapsible"><h2>Propagation of uncertainty</h2></button><div class="section">
@@ -140,15 +140,15 @@ for some parameters \(\sigma\) and \(\mu\). We showed in the sections on expecte
 <p>The last property we wish to note about variances is how to "propagate" variances through functions. Specifically, if we know \(\sigma_X\) and if \(Y = f(X)\), then what is \(\sigma_Y\)?
 </p>
 <p>This problem cannot be solved exactly in general, but a common approximation is made. Suppose that \(f(x)\) is slowly varying over the region where \(P_X(x)\) is large, and let's further suppose that this region contains \(\langle X \rangle\). Then we may approximate \(f(x)\) as linear in that region:
-\[Y = f'(\langle X \rangle)(X - \langle X \rangle) + f(\langle X \rangle).\]
+<div class="eq"><div class="eqtext">\[Y = f'(\langle X \rangle)(X - \langle X \rangle) + f(\langle X \rangle).\]</div><div class="eqnum" id="eq28">(28)</div></div>
 The definition of variance now simply states
-\[\sigma_Y = |f'(\langle X \rangle)|\sigma_X.\]
+<div class="eq"><div class="eqtext">\[\sigma_Y = |f'(\langle X \rangle)|\sigma_X.\]</div><div class="eqnum" id="eq29">(29)</div></div>
 </p>
 <p>The assumption that \(\langle X \rangle\) is near the mode of \(P_X(x)\) is often reasonable, in part because the central limit theorem makes Gaussian and Gaussian-like distributions very common (and for these the mode and the mean are the same). However whether \(f(x)\) is slowly varying compared to \(\sigma_X\) is context-dependent.
 </p>
-<p>The <a href=file:///Users/jtd/Documents/personal/code/html/jack-dinsmore.github.io/blog/html/bayesian%2ehtml>next section</a> represents our first application of probability theory to statistics; we will use the tools we've learned to create a theory fitting models to data.
+<p>The <a href=https://jack-dinsmore.github.io/blog//html/bayesian%2ehtml>next section</a> represents our first application of probability theory to statistics; we will use the tools we've learned to create a theory fitting models to data.
 </div></div><div id="footer">
-Copyright &copy; 2024 Jack Dinsmore. &emsp;Updated June 4. &emsp;Version 0.1</div></body>
+Copyright &copy; 2024 Jack Dinsmore. &emsp;Updated June 9. &emsp;Version 0.1</div></body>
 <script>
 var coll = document.getElementsByClassName("collapsible");
 var i;

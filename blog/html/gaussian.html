@@ -1,7 +1,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" type = "text/css" href = "file:///Users/jtd/Documents/personal/code/html/jack-dinsmore.github.io/blog/html/css/text%2ecss">
+    <link rel="stylesheet" type = "text/css" href = "https://jack-dinsmore.github.io/blog//html/css/text%2ecss">
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async
             src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
@@ -25,8 +25,80 @@ window.MathJax = {
 }
     </script>
     <title>statistics</title>
-</head><body><div id="content"><h2><a href="file:///Users/jtd/Documents/personal/code/html/jack-dinsmore.github.io/blog/html/index%2ehtml">Home</a></h2></div><div id="footer">
-Copyright &copy; 2024 Jack Dinsmore. &emsp;Updated June 4. &emsp;Version 0.1</div></body>
+</head><body><div id="content"><h2><a href="https://jack-dinsmore.github.io/blog//html/index%2ehtml">Home</a></h2><h1>Gaussian Likelihoods</h1>
+
+<p>This post deals parameter fitting under a powerful yet often accurate approximation: a Gaussian likelihood. To be specific, for a data set \(\{x_i\}\) containing \(N\) elements, we assume the likelihood to be 
+<div class="eq"><div class="eqtext">\[\mathcal{L} \propto \exp \parens{-\frac{1}{2}\sum_{i=1}^N\sum_{j=1}^N(x_i - \mu_i) (\Sigma^{-1})_{ij}(x_j - \mu_j)}\]</div><div class="eqnum" id="eq1">(1)</div></div>
+where \(\mu_i\) represents the model prediction for data point \(i\) and \(\Sigma\) is the covariance matrix of the data, which is also predicted by the model.
+</p>
+<p>In practice, we don't even need the likelihood to be Gaussian everywhere. If it is roughly Gaussian near its maximum, the below methods will apply even if it is non-Gaussian in the tails.
+</p>
+<button class="collapsible"><h2>Parameter estimation</h2></button><div class="section">
+
+<p>It is convenient to take the logarithm of the likelihood, which is
+<div class="eq"><div class="eqtext">\[\ln \mathcal{L} = -\frac{1}{2}(\bm x - \bm \mu) (\Sigma^{-1})(\bm x - \mu)\]</div><div class="eqnum" id="eq2">(2)</div></div>
+where we have switched to matrix notation. The normalization of the likelihood contributes an additional constant which we have not written, but it will not be relevant for the fit.
+</p>
+<p>The posterior is simply this likelihood times the prior. Therefore, a uniform prior will give a Gaussian posterior. Even non-uniform, sufficiently wide priors will still give approximately Gaussian posteriors. Gaussianity is only violated if the priors are so narrow that their complex curvature disturbs the Gaussian likelihood. In such a case (which we will not further consider), the fit results will be dominated by the prior rather than the data.
+</p>
+<p>Since we've proved that the posterior is approximately Gaussian, we may use the same estimates for the parameter uncertainties that we used in the case of a linear fit. Specifically, the covariance matrix of the posterior has components
+<div class="eq"><div class="eqtext">\[(\Sigma^{-1})_{ij} = \left.\frac{\partial}{\partial \theta_i}\frac{\partial}{\partial \theta_j}\ln P(\bm \theta|D)\right |_{\bm \theta^*}\]</div><div class="eqnum" id="eq3">(3)</div></div>
+where \(P(\bm \theta|D)\) is the posterior and \(\bm \theta^*\) is the best fit value of \(\bm \theta^*\) (the maximum of the posterior). You can verify this by plugging a multidimensional Gaussian into the posterior and evaluating the second derivative.
+</p>
+<p>The problem of fitting is now reduced to computing this posterior maximum and the Hessian. But as mentioned in the introduction, the model \(\bm \mu\) is potentially very complicated, and these might not be computable analytically. We will use numerical techniques to compute them instead.
+</p>
+</div> <button class="collapsible"><h2>Uncertainty estimation</h2></button><div class="section">
+
+<p>Let's assume we've already found \(\bm \theta^*\) and now wish to evaluate \(\Sigma\)&mdash;the parameter uncertainties. The second derivative matrix (or Hessian) it is equal to can be computed numerically via the finite difference method
+<div class="eq"><div class="eqtext">\[{\Sigma^{-1}}_{ij} = \frac{P(\bm \theta^* + \epsilon\bm{\hat i} + \epsilon\bm{\hat j}|D) + P(\bm \theta^* - \epsilon\bm{\hat i} - \epsilon\bm{\hat j}|D) - P(\bm \theta^* + \epsilon\bm{\hat i} - \epsilon\bm{\hat j}|D) - P(\bm \theta^* - \epsilon\bm{\hat i} + \epsilon\bm{\hat j}|D)}{4\epsilon^2}\]</div><div class="eqnum" id="eq4">(4)</div></div>
+where \(\epsilon\) is a small number.
+</p>
+<p>The idea behind this formula is that the posterior \(P(\bm \theta^* + \epsilon\cdots|D)\) can be Taylor-expanded near \(\bm \theta^*\) giving several terms:
+<ul><li> a constant term</li>
+<li> a term proportional to \(\epsilon\) times a first derivative of the posterior</li>
+<li> a term proportional to \(\epsilon^2\) times a second derivative</li>
+<li> higher order terms.</li>
+</ul>By design, the constant and linear terms cancel in this formula. If \(\epsilon\) is sufficiently small, then the higher order terms are small and the result simply gives second derivative, as desired.
+</p>
+<p>However, if \(\epsilon\) is too small, one runs into problems numerically evaluating the formulas involved. The delicate balance between small and large is difficult to strike; no value of \(\epsilon\) works in all circumstances. One can do it by hand, or use one of many software packages designed to try a few values of \(\epsilon\) and choose the best. The second derivative is then evaluated for every combination of \(i\) and \(j\), and the resulting Hessian matrix is inverted to get \(\Sigma\).
+</p>
+<p>Altogether, computing \(\Sigma\) is not very difficult, since the window of acceptable values of \(\epsilon\) is generally large. The greater difficulty is finding the best fit values \(\bm \theta^*\) at which to evaluate it.
+</p>
+</div> <button class="collapsible"><h2>Posterior maximization</h2></button><div class="section">
+
+<p>Numerically maximizing a function (or minimizing \(-1\) times the function) is a common task and many algorithms exist to do it. In my experience, it is not necessary to understand the algorithms in detail because they have been implemented in a myriad programming languages already. However, it is important to understand the strengths and weaknesses of each, so that you can choose which one is likely to work.
+</p>
+<p>I'll present three algorithms, useful in different circumstances. Briefly, they are
+<ul><li> <b>Broyden–Fletcher–Goldfarb–Shanno (BFGS)</b>: Useful when you have a well-behaved posterior (e.g. roughly Gaussian everywhere). This is the fastest method; if in doubt, you may want to try it first. It also provides a good estimate of the Hessian matrix automatically.</li>
+<li> <b>Nelder–Mead</b>: Useful when your posterior is poorly behaved, e.g. containing strong correlations between the parameters or lumps that confuse the minimizer. This method is not as fast as BFGS.</li>
+<li> <b>Gradient Descent</b>: Useful when you have many parameters (think hundreds) and most other minimization methods are impossible. Gradient descent is most useful if you analytically know the gradient of your posterior.</li>
+</p>
+</ul><p>Now for a brief summary of each, in order of complexity. To minimize a function \(f(\bm x)\), all of these methods work by guessing some point \(\bm x_0\) believed to be close to the minimum of a function. They then update the point to \(\bm x_1\), \(\bm x_2\) etc. until the minimum is reached.
+</p>
+<h4>Gradient descent</h4>
+<p><a href=https://en.wikipedia.org/wiki/Gradient_descent>Gradient descent</a> updates according to 
+<div class="eq"><div class="eqtext">\[\bm x_{i+1} = -\gamma \nabla f(\bm x_i)\]</div><div class="eqnum" id="eq5">(5)</div></div>
+where \(\gamma\) is a number chosen by hand. This update step moves downwards in \(f\) simply by following the gradient, which can be computed numerically or analytically. If the gradient is known analytically, the simplicity of this update formula makes it usable when \(\bm x\) is very high-dimensional, unlike the other methods. Gradient descent is inefficient if \(\gamma\) is too small, because the function will not move fast enough. It is also inefficient if \(\gamma\) is too big because the algorithm might hop over the minimum, missing it. \(\gamma\) must therefore be tuned, or an efficient value estimated using one of many methods. A final problem however is that the gradient may lead the algorithm on a curvy, inefficient path.
+</p>
+<h4>BFGS</h4>
+<p><a href=https://en.wikipedia.org/wiki/Broyden%E2%80%93Fletcher%E2%80%93Goldfarb%E2%80%93Shanno_algorithm>BFGS</a> uses additional information about the function (specifically the Hessian) to go more directly towards the minimum. It can be understood as an application of <a href=https://en.wikipedia.org/wiki/Newton%27s_method>Newton's method</a> for finding the root of a function. Newton's method finds the root of a scalar function \(g(x)\) by drawing a line tangent to \(g(x)\) at \(x=x_i\), and setting \(x_{i+1}\) equal to the x-intercept of that line.
+<div class="eq"><div class="eqtext">\[x_{i+1} = x_i - \frac{g(x_i)}{g'(x_i)}.\]</div><div class="eqnum" id="eq6">(6)</div></div>
+This is related to minimization because the minimum of \(f(\bm x)\) occurs at \(\nabla f(\bm x) = 0\). For minimizing a one-dimensional function, the last term of the update step should therefore be replaced with \(\frac{f'(x_i)}{f''(x_i)}\). For a multidimensional function, the correct approach is 
+<div class="eq"><div class="eqtext">\[x_{i+1} = x_i - H(\bm x_i)^{-1} \nabla f(x_i).\]</div><div class="eqnum" id="eq7">(7)</div></div>
+where \(H(\bm x_i)\) is the Hessian matrix of \(f(\bm x_i)\).
+</p>
+<p>What I have described so far is Newton's method for minimization. The BFGS method uses an additional trick to estimate the inverse of the Hessian so that you don't have to numerically evaluate it. The process is a little involved, but in essence it works by keeping track of changes in the numerically-computed gradients \(\nabla f(x_0), \nabla f(x_1), \dots\) as the algorithm progresses. These changes describe the Hessian. If \(f(\bm x)\) is expensive to compute, this automatic calculation of the Hessian can save a lot of time.
+</p>
+<h4>Nelder–Mead</h4>
+<p>A potential problem with BFGS is that, even though the Hessian estimate allows it to traverse to the minimum of \(f\) more directly than gradient descent, functions where the Hessian itself varies greatly makes the method inefficient because the algorithm is unable to keep track of these variations. <a href=https://en.wikipedia.org/wiki/Nelder%E2%80%93Mead_method>Nelder-Mead</a> is a more stable, albeit slower method, which doesn't rely on computing derivatives at all. It starts by evaluating \(f(\bm x)\) at an ensemble of \(n\) points around \(x_0\) and evolves the ensemble based on the values of \(f\). If \(\bm x\) is two-dimensional, \(n\) is chosen to be three so that the ensemble represents a triangle. For three-dimensional \(\bm x\), \(n=4\) represents a tetrahedron. In general, \(n=d+1\) where \(d\) is the dimension of \(\bm x\) so that the ensemble represents the simplest polytope one can create in that space.
+</p>
+<p>Every step, the worst point in the ensemble is replaced with a new point, chosen based on the other points in the ensemble. The new point can have the effect of reflecting, expanding, or contracting the ensemble. The algorithm terminates when all the points in the ensemble are at approximately the same value. The path taken by this method is often not terribly efficient, but it stands out in its ability to navigate over rough terrain compared to the other methods.
+</p>
+</div> <button class="collapsible"><h2>Dealing with Non-Gaussian Posteriors</h2></button><div class="section">
+
+<p>Gaussian likelihoods (and therefore Gaussian posteriors) are so common yet so powerful that I recommend doing a fit using the methods outline here in most circumstances. However, it's common in literature to do away with the assumption of Gaussianity and solve for the entire posterior distribution directly. The technique for doing this fully general Bayesian fitting is a Markov-Chain Monte Carlo method, <a href=https://jack-dinsmore.github.io/blog//html/mcmc%2ehtml>discussed in this post</a>. It allows one to calculate the covariance matrix \(\Sigma\) directly from the posterior rather than the Hessian evaluated at the maximum. It also can be used to compute the higher-order moments of the posterior, which reveal potential correlations that are not present in the covariance matrix. Its disadvantage is that it is orders-of-magnitude slower than the minimization method presented here.
+</div></div><div id="footer">
+Copyright &copy; 2024 Jack Dinsmore. &emsp;Updated June 9. &emsp;Version 0.1</div></body>
 <script>
 var coll = document.getElementsByClassName("collapsible");
 var i;

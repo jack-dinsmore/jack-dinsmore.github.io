@@ -1,7 +1,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" type = "text/css" href = "file:///Users/jtd/Documents/personal/code/html/jack-dinsmore.github.io/blog/html/css/text%2ecss">
+    <link rel="stylesheet" type = "text/css" href = "https://jack-dinsmore.github.io/blog//html/css/text%2ecss">
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async
             src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
@@ -25,12 +25,12 @@ window.MathJax = {
 }
     </script>
     <title>statistics</title>
-</head><body><div id="content"><h2><a href="file:///Users/jtd/Documents/personal/code/html/jack-dinsmore.github.io/blog/html/index%2ehtml">Home</a></h2><h1>Bayesian Statistics</h1>
+</head><body><div id="content"><h2><a href="https://jack-dinsmore.github.io/blog//html/index%2ehtml">Home</a></h2><h1>Bayesian Statistics</h1>
 
-<p>This post makes heavy use of <i>Bayes' theorem</i>, which was proved in <a href=file:///Users/jtd/Documents/personal/code/html/jack-dinsmore.github.io/blog/html/probability%2ehtml>the first post</a>.
+<p>This post makes heavy use of <i>Bayes' theorem</i>, which was proved in <a href=https://jack-dinsmore.github.io/blog//html/probability%2ehtml>the first post</a>.
 </p>
 <p>When I say <i>statistics</i>, I mean the science of quantitatively turning data into constraints on the physical parameters. For the sake of generality, we'll denote data with \(D\) and the parameters with a vector \(\bm \theta\). The exact format of the data \(D\) will not matter for now &mdash; whether it is list of data points, an image, or something more important &mdash; because no matter what data is, we should always be able to define the probability of observing this data given a certain set of parameters
-\[\mathcal{L} = P(D | \bm \theta).\]
+<div class="eq"><div class="eqtext">\[\mathcal{L} = P(D | \bm \theta).\]</div><div class="eqnum" id="eq1">(1)</div></div>
 This probability distribution is called the <i>likelihood</i>, and it is one of the most important quantities in statistics.
 </p>
 <p>The form of the likelihood is model dependent, because different models give different probabilities for data sets to be observed. But as for ways to generate statistics from a given likelihood, there are only two. One is the "frequentist" approach in common use in particle physics and other sciences, and one is the "bayesian" approach in common use in astrophysics. Here we discuss the Bayesian approach.
@@ -40,13 +40,13 @@ This probability distribution is called the <i>likelihood</i>, and it is one of 
 <p>Everyone will agree that, when one extracts parameters from a data set, the parameters have some uncertainty. A Bayesian analysis models this uncertainty with a probability distribution \(p(\bm \theta | D)\), where we condition on \(D\) because we are interested in the probability of the parameters only after one has observed the given data set. This distribution is called the <i>posterior.</i> A Bayesian analysis then reports the mode of the posterior as the best fitting \(\bm \theta\), and the errors on \(\bm \theta\) are related to the tails of \(p(\bm \theta)\).
 </p>
 <p>The posterior \(p(\bm \theta|D)\) at first blush looks similar to the likelihood \(p(D|\bm \theta)\), and indeed they are related by Bayes' rule:
-\[p(\bm \theta | D) = \mathcal{L} \frac{p(\bm \theta)}{p(D)}.\]
+<div class="eq"><div class="eqtext">\[p(\bm \theta | D) = \mathcal{L} \frac{p(\bm \theta)}{p(D)}.\]</div><div class="eqnum" id="eq2">(2)</div></div>
 </p>
 <p>We have introduced two new probability distributions \(p(\bm \theta)\) and \(p(D)\). Our <a href=probability>rigorous definition of probabilities</a> tells us that these distributions must precisely be the probability of the parameters and data (respectively) to be observed, without any information about the data that was observed. In particular \(p(\bm \theta)\), sometimes written \(\pi(\bm \theta)\) is called the <i>prior</i>, and \(p(D)\) is called the <i>evidence</i>.
 </p>
 <p>In this and the next few posts, we will consider the typical situation of where you have observed a single data set and would like to know the full posterior distribution \(P(\bm \theta | D)\) as a function of \(\bm \theta\). In this case of constant \(D\), the evidence \(p(D)\) will also be a constant. We therefore don't have to compute it because it only scales the normalization of the posterior, which we must fix to one anyway. We therefore simplify to
 
-\[p(\bm \theta | D) \propto \mathcal{L} p(\bm \theta).\]
+<div class="eq"><div class="eqtext">\[p(\bm \theta | D) \propto \mathcal{L} p(\bm \theta).\]</div><div class="eqnum" id="eq3">(3)</div></div>
 </p>
 </div> <button class="collapsible"><h2>A word about priors</h2></button><div class="section">
 
@@ -66,12 +66,12 @@ This probability distribution is called the <i>likelihood</i>, and it is one of 
 </p>
 </div> <button class="collapsible"><h2>Conclusion</h2></button><div class="section">
 
-<p><a href=file:///Users/jtd/Documents/personal/code/html/jack-dinsmore.github.io/blog/html/bayesian%2ehtml%23eq4>Eq. 4</a> is probably the most important equation in Bayesian statistics so I will repeat it again, this time in log space.
-\[\ln p(\bm \theta | D) = \ln \mathcal{L} + \ln p(\bm \theta) + C\]
+<p><a href=https://jack-dinsmore.github.io/blog//html/bayesian%2ehtml#eq1>Eq. 1</a> is probably the most important equation in Bayesian statistics so I will repeat it again, this time in log space.
+<div class="eq"><div class="eqtext">\[\ln p(\bm \theta | D) = \ln \mathcal{L} + \ln p(\bm \theta) + C\]</div><div class="eqnum" id="eq4">(4)</div></div>
 where \(C\) is a constant that can be worked out by normalizing \(p(\bm \theta | D)\).
 Intuitively, the posterior (the function we want) is proportional to the likelihood (the function we have) times the prior (a wide distribution used to put in parameter constraints). The multiplication is usually very easy; the hard part is measuring the relevant properties of the prior accurately. Specifically, we want the mode of the posterior (the best fit values) and its width (the uncertainties). The definitions for the mode and width and some advice on how to calculate them is given in {the next post}
 </div></div><div id="footer">
-Copyright &copy; 2024 Jack Dinsmore. &emsp;Updated June 4. &emsp;Version 0.1</div></body>
+Copyright &copy; 2024 Jack Dinsmore. &emsp;Updated June 9. &emsp;Version 0.1</div></body>
 <script>
 var coll = document.getElementsByClassName("collapsible");
 var i;

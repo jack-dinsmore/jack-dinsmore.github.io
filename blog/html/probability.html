@@ -1,7 +1,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" type = "text/css" href = "file:///Users/jtd/Documents/personal/code/html/jack-dinsmore.github.io/blog/html/css/text%2ecss">
+    <link rel="stylesheet" type = "text/css" href = "https://jack-dinsmore.github.io/blog//html/css/text%2ecss">
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async
             src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
@@ -25,11 +25,11 @@ window.MathJax = {
 }
     </script>
     <title>statistics</title>
-</head><body><div id="content"><h2><a href="file:///Users/jtd/Documents/personal/code/html/jack-dinsmore.github.io/blog/html/index%2ehtml">Home</a></h2><h1>Introduction to Probability</h1>
+</head><body><div id="content"><h2><a href="https://jack-dinsmore.github.io/blog//html/index%2ehtml">Home</a></h2><h1>Introduction to Probability</h1>
 
 <p>Manipulating probabilistic formulas is very important in statistics, and it's useful to outline a couple definitions and theorems that will be of future use. We will use the notion of "sets" to define everything below. It may seem unnecessarily tedious, but I find that this concrete way of thinking about probability leads to less confusion than more intuitive methods.
 </p>
-<h3>Definitions</h3>
+<h1>Definitions</h1>
 
 <button class="collapsible"><h2>Random variables</h2></button><div class="section">
 <p>Probability deals with the mathematics of <i>random variables</i> &mdash; variables whose value could be one of multiple options. A classic example of a random variable is whether a flipped coin will come up heads (\(H\)) or tails (\(T\)). Another example is the number of clicks a Geiger counter makes in a given second.
@@ -55,15 +55,15 @@ window.MathJax = {
 <p>A <i>probability mass function</i> (PMF) is defined only for discrete random variables. The PMF for a random variable \(X\) is a set of values \(p(x)\) assigned to each element \(x\) in \(\mathrm{Dom}\ X\). It's required that \(\sum_x p(x) = 1\).
 </p>
 <p>With that done, the PMF of an event is the sum of \(p(x)\) for all items of the event. In other words,
-\[p(E) = \sum_{e\in E} p(e).\]
+<div class="eq"><div class="eqtext">\[p(E) = \sum_{e\in E} p(e).\]</div><div class="eqnum" id="eq1">(1)</div></div>
 A simple consequence is that \(p(X=x) = p(x)\).
 </p>
 <p>A <i>probability distribution function</i> (PDF) is the related concept for the case of continuous random variables. For a random variable \(X\), we define the PDF \(P(x)\) to be a function of \(x\) instead of a number with the requirement that \(\int dx\, P(x)=1\). This function has the interpretation that a little segment \(dx\) of \(\mathrm{Dom}\ X\) has probability 
 
-\[dP = P(x)dx.\]
+<div class="eq"><div class="eqtext">\[dP = P(x)dx.\]</div><div class="eqnum" id="eq2">(2)</div></div>
 </p>
 <p>The probability of an event \(E\) is defined very similarly to that of PMFs:
-\[p(E) = \int_E dx\, P(x).\]
+<div class="eq"><div class="eqtext">\[p(E) = \int_E dx\, P(x).\]</div><div class="eqnum" id="eq3">(3)</div></div>
 </p>
 </div> <button class="collapsible"><h2>Multivariate probability functions</h2></button><div class="section">
 
@@ -74,7 +74,7 @@ A simple consequence is that \(p(X=x) = p(x)\).
 <p>This can be shown by the following argument: if \(D\) is independent of \(C\), then one gains no information about \(P(d)\) by measuring \(C\). So \(p(c,d) \propto p(c)\), where the proportionality constant exists only to normalize the probability distribution. The same argument asserts that \(p(c,d) \propto p(d)\) as well, and therefore \(p(c,d) = p(c)p(d)\).
 </p>
 <p>In some cases, one wishes to determine the PMF of \(C\) given only \(p(c,d)\). This is can be done by summing, or <i>marginalizing</i> over all possible values of \(D\). The <i>marginal PMF</i> for \(C\) is therefore
-\[p(c) = \sum_{d} p(c,d).\]
+<div class="eq"><div class="eqtext">\[p(c) = \sum_{d} p(c,d).\]</div><div class="eqnum" id="eq4">(4)</div></div>
 If \(C\) and \(D\) were continuous random variables, one should replace the sum with an integral.
 </p>
 <p>This formula is true even in the case of dependent random variables.
@@ -87,16 +87,16 @@ If \(C\) and \(D\) were continuous random variables, one should replace the sum 
 </p>
 <p>The PMF/PDF of the conditional \(X|E\) is proportional to the PMF/PDF of the original random, variable \(X\), but it is rescaled to continue to satisfy the normalization condition with its smaller domain.
 </p>
-<h3>Consequences</h3>
+</div> <h1>Consequences</h1>
 
 <p>Armed with a clear understanding of probability functions, we can now understand some important facts about probability that would otherwise not be obvious
 </p>
-</div> <button class="collapsible"><h2>PDFs for Functions of Random Variables</h2></button><div class="section">
+<button class="collapsible"><h2>PDFs for Functions of Random Variables</h2></button><div class="section">
 
-<p>Suppose we have a continuous random variable \(X\) with PDF \(P(x)\), but we'd like to convert to a new random variable \(Y = f(X)\) for some function \(X\). What is the PDF of \(Y\)? It's tempting to guess that \(P(y)=P(x)\), where \(y=f(x)\), but this is incorrect for the following reason. Remember <a href=file:///Users/jtd/Documents/personal/code/html/jack-dinsmore.github.io/blog/html/probability%2ehtml%23eq3>Eq. 3</a>? Rearranged, it states
-\[P(x) = \frac{dP}{dx}.\]
+<p>Suppose we have a continuous random variable \(X\) with PDF \(P(x)\), but we'd like to convert to a new random variable \(Y = f(X)\) for some function \(X\). What is the PDF of \(Y\)? It's tempting to guess that \(P(y)=P(x)\), where \(y=f(x)\), but this is incorrect for the following reason. Remember <a href=https://jack-dinsmore.github.io/blog//html/probability%2ehtml#eq1>Eq. 1</a>? Rearranged, it states
+<div class="eq"><div class="eqtext">\[P(x) = \frac{dP}{dx}.\]</div><div class="eqnum" id="eq5">(5)</div></div>
 The chain rule tells immediately that
-\[P(y) = \frac{dP}{dy} = \frac{dP}{dx}\frac{dy}{dx} = P(x)f'(x).\]
+<div class="eq"><div class="eqtext">\[P(y) = \frac{dP}{dy} = \frac{dP}{dx}\frac{dy}{dx} = P(x)f'(x).\]</div><div class="eqnum" id="eq6">(6)</div></div>
 </p>
 <p>It is often helpful to use this derivative notation for the PDF to avoid confusion.
 </p>
@@ -107,15 +107,15 @@ The chain rule tells immediately that
 <p>How the two probabilities are related? Remember that the PMF of \(C_1\) is reweighted so that its probability remains normalized. Specifically, \(p_{C_1}(x,y) = p_{(X,Y)}(x,y) / p(X=T)\) normalizes that probability. The first probability, \(p(Y=T|X=T) = p_{C_1}(T,T)\), is therefore equal to \(p_X(T,T) / p(X=T)\). Likewise, \(p(X=T|Y=T) = p_{(X,Y)}(T,T) / p(Y=T)\).
 </p>
 <p>Note that \(p_{(X,Y)}(T,T)\) is present in both formulas. Solving one for \(p_{(X,Y)}(T,T)\) and plugging it into the other, we find
-\[p(Y=T|X=T) = p(X=T|Y=T)\frac{p(Y=T)}{p(X=T)}.\]
+<div class="eq"><div class="eqtext">\[p(Y=T|X=T) = p(X=T|Y=T)\frac{p(Y=T)}{p(X=T)}.\]</div><div class="eqnum" id="eq7">(7)</div></div>
 </p>
 <p>In more general language, for any two events \(E_1\) and \(E_2\), 
-\[p(E_1|E_2) = p(E_2|E_1)\frac{p(E_1)}{p(E_2)}.\]
+<div class="eq"><div class="eqtext">\[p(E_1|E_2) = p(E_2|E_1)\frac{p(E_1)}{p(E_2)}.\]</div><div class="eqnum" id="eq8">(8)</div></div>
 This fact is called <i>Bayes' theorem</i> and the fraction in the previous equation is sometimes called Bayes' factor.
 </p>
-<p>Now that we've defined the basics of random variables, we discuss their properties such as expected value, variance, and covariance in the <a href=file:///Users/jtd/Documents/personal/code/html/jack-dinsmore.github.io/blog/html/variance%2ehtml>next section</a>.
+<p>Now that we've defined the basics of random variables, we discuss their properties such as expected value, variance, and covariance in the <a href=https://jack-dinsmore.github.io/blog//html/variance%2ehtml>next section</a>.
 </div></div><div id="footer">
-Copyright &copy; 2024 Jack Dinsmore. &emsp;Updated June 4. &emsp;Version 0.1</div></body>
+Copyright &copy; 2024 Jack Dinsmore. &emsp;Updated June 9. &emsp;Version 0.1</div></body>
 <script>
 var coll = document.getElementsByClassName("collapsible");
 var i;

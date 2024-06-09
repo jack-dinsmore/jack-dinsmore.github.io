@@ -1,7 +1,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" type = "text/css" href = "file:///Users/jtd/Documents/personal/code/html/jack-dinsmore.github.io/blog/html/css/text%2ecss">
+    <link rel="stylesheet" type = "text/css" href = "https://jack-dinsmore.github.io/blog//html/css/text%2ecss">
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async
             src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
@@ -25,47 +25,45 @@ window.MathJax = {
 }
     </script>
     <title>statistics</title>
-</head><body><div id="content"><h2><a href="file:///Users/jtd/Documents/personal/code/html/jack-dinsmore.github.io/blog/html/index%2ehtml">Home</a></h2><h1>Fitting a line: follow ups</h1>
+</head><body><div id="content"><h2><a href="https://jack-dinsmore.github.io/blog//html/index%2ehtml">Home</a></h2><h1>Fitting a line: follow ups</h1>
 
 <button class="collapsible"><h2>Expressing model uncertainties</h2></button><div class="section">
 
-<p>We concluded the <a href=file:///Users/jtd/Documents/personal/code/html/jack-dinsmore.github.io/blog/html/line%2ehtml>previous post</a> by stating that \(\sigma_a\) and \(\sigma_b\) don't fully express the uncertainty of the fit, because of the nonzero covariance. But this merely raises the new question of how does one fully express uncertainty? Listing an entire covariance matrix is certainly an option, but it's not a very intuitive one if the number of parameters is large.
+<p>We concluded the <a href=https://jack-dinsmore.github.io/blog//html/line%2ehtml>previous post</a> by stating that \(\sigma_a\) and \(\sigma_b\) don't fully express the uncertainty of the fit, because of the nonzero covariance. But this merely raises the new question of how does one fully express uncertainty? Listing an entire covariance matrix is certainly an option, but it's not a very intuitive one if the number of parameters is large.
 </p>
 <p>A graphical option is to translate the uncertainty on fit parameters into uncertainty on the best fit line. These can be represented as "error bands" on a plot, which enclose all the lines which could have been drawn consistent with the posterior distribution.
 </p>
 <p>How do we compute which lines are consistent with the posterior? In the previous post, we found that the posterior is a bivariate-Gaussian with mean given by the best fit parameters \(\hat a\) and \(\hat b\) and covariance matrix
-\[\Sigma = \frac{\sigma^2}{N}\begin{pmatrix}1 & -\langle x \rangle \\ -\langle x \rangle & \langle x^2 \rangle\end{pmatrix}.\]
+<div class="eq"><div class="eqtext">\[\Sigma = \frac{\sigma^2}{N}\begin{pmatrix}1 & -\langle x \rangle \\ -\langle x \rangle & \langle x^2 \rangle\end{pmatrix}.\]</div><div class="eqnum" id="eq1">(1)</div></div>
 We could define "consistent with the posterior" to mean within one sigma deviation of the best fit parameters. That is,
 
-\[\begin{pmatrix} a - \hat a & b - \hat b \end{pmatrix} \Sigma^{-1} \begin{pmatrix} a - \hat a \\ b - \hat b \end{pmatrix} \leq 1.\]
+<div class="eq"><div class="eqtext">\[\begin{pmatrix} a - \hat a & b - \hat b \end{pmatrix} \Sigma^{-1} \begin{pmatrix} a - \hat a \\ b - \hat b \end{pmatrix} \leq 1.\]</div><div class="eqnum" id="eq2">(2)</div></div>
 This equation seems unintiuitive, so we will discuss it a little further. Let \(\bm \theta\) be a two dimensional vector containing \(a\) and \(b\). Then we can rewrite the left hand side more simply
-\[(\bm \theta - \hat {\bm \theta})^T \Sigma^{-1} (\bm \theta - \hat {\bm \theta}) \leq 1.\]
+<div class="eq"><div class="eqtext">\[(\bm \theta - \hat {\bm \theta})^T \Sigma^{-1} (\bm \theta - \hat {\bm \theta}) \leq 1.\]</div><div class="eqnum" id="eq3">(3)</div></div>
 Note that this is actually in the exponent of the Gaussian expression for the posterior distribution:
-\[P(\bm \theta) \propto \exp\parens{-\frac{1}{2}(\bm \theta - \hat {\bm \theta})^T \Sigma^{-1} (\bm \theta - \hat {\bm \theta})}.\]
-Thus, the set of parameters where equality is satisfied in <a href=file:///Users/jtd/Documents/personal/code/html/jack-dinsmore.github.io/blog/html/line2%2ehtml%23eq3>Eq. 3</a> is a "level curve" of the posterior&mdash;it gives constant \(P(\bm \theta)\). That constant value is \(e^{-1/2}\) of the maximum. So the area enclosed by <a href=file:///Users/jtd/Documents/personal/code/html/jack-dinsmore.github.io/blog/html/line2%2ehtml%23eq3>Eq. 3</a> is where the posterior is \(e^{-1/2}\) of the maximum or higher. Further calculation shows that this is 68% of the posterior.
+<div class="eq"><div class="eqtext">\[P(\bm \theta) \propto \exp\parens{-\frac{1}{2}(\bm \theta - \hat {\bm \theta})^T \Sigma^{-1} (\bm \theta - \hat {\bm \theta})}.\]</div><div class="eqnum" id="eq4">(4)</div></div>
+Thus, the set of parameters where equality is satisfied in <a href=https://jack-dinsmore.github.io/blog//html/line2%2ehtml#eq1>Eq. 1</a> is a "level curve" of the posterior&mdash;it gives constant \(P(\bm \theta)\). That constant value is \(e^{-1/2}\) of the maximum. So the area enclosed by <a href=https://jack-dinsmore.github.io/blog//html/line2%2ehtml#eq1>Eq. 1</a> is where the posterior is \(e^{-1/2}\) of the maximum or higher. Further calculation shows that this is 68% of the posterior.
 </p>
 <p>The next task is to convert this region of consistent best fit parameters to a band of consistent lines by finding what are the maximum and minimum values of \(y\) that can be achieved by these parameters. This can be done with the method of Lagrange multipliers. That is, we set 
-\[\lambda = (\bm \theta - \hat {\bm \theta})^T \Sigma^{-1} (\bm \theta - \hat {\bm \theta}),\]
+<div class="eq"><div class="eqtext">\[\lambda = (\bm \theta - \hat {\bm \theta})^T \Sigma^{-1} (\bm \theta - \hat {\bm \theta}),\]</div><div class="eqnum" id="eq5">(5)</div></div>
 and we want to extremize \(y = ax + b\) with respect to \(a\) and \(b\) while satisfying \(\lambda = 1\). We do this by taking the gradient of \(y\) and setting it proportional to the gradient of \(\lambda\):
-\[\begin{pmatrix} x \\ 1\end{pmatrix} = C \Sigma^{-1} (\bm \theta - \hat {\bm \theta})\]
+<div class="eq"><div class="eqtext">\[\begin{pmatrix} x \\ 1\end{pmatrix} = C \Sigma^{-1} (\bm \theta - \hat {\bm \theta})\]</div><div class="eqnum" id="eq6">(6)</div></div>
 where \(C\) is a constant. This and \(\lambda = 1\) constitute a system of equations for \(a\), \(b\), and \(C\). Solving it,
-\[y = \hat y \pm \sqrt{\begin{pmatrix}x & 1 \end{pmatrix} \Sigma\begin{pmatrix} x \\ 1\end{pmatrix}}\]
+<div class="eq"><div class="eqtext">\[y = \hat y \pm \sqrt{\begin{pmatrix}x & 1 \end{pmatrix} \Sigma\begin{pmatrix} x \\ 1\end{pmatrix}}\]</div><div class="eqnum" id="eq7">(7)</div></div>
 where \(\hat y = \hat a x + \hat b\).
 </p>
 <p>This equation is saying that \(y\)-values consistent with the posterior are the best fit line \(\hat y\) plus the square root of a hyperbola which grows for large \(|x|\). Far from the data, the uncertainty on the best fit line increases. To confirm this notion, one could calculate for what value of \(x\) the second term is smallest. The answer is \(x = \langle x \rangle\). Uncertainty on the best fit line is smallest at the center of the data.
 </p>
 <p>Far from the data, the \(x^2\) term dominates so that \(y\) looks line a line. The slope of this line is \(\hat a \pm \sqrt{\Sigma_{11}} = \hat a \pm \sigma / \sqrt{N}.\) This agrees with our conclusion in the previous section that the uncertainty on the slope is \(\sigma_a = \sigma/ \sqrt{N}\). Likewise, the value of the line at the \(y\)-intercept is given by \(b = \hat b \pm \sqrt{\Sigma_{22}} = \hat b \pm \sigma \sqrt{\langle x^2 \rangle} / \sqrt{N}\). This agrees with our uncertainty for \(b\).
 </p>
-<p>MAKE PLOT
-</p>
-<p>This exercise of finding uncertainties on the best fit line therefore reproduces the information we found in the previous post, about uncertainties on the best fit parameters. But it does so in a more intuitive and graphical way which also takes into account the covariance between the best fit parameters. The analyticity of our results is a special case, but in general this exercise can still be done numerically. The techniques for doing so are discussed in the <a href=file:///Users/jtd/Documents/personal/code/html/jack-dinsmore.github.io/blog/html/gaussian2%2ehtml>next post</a>.
+<p>This exercise of finding uncertainties on the best fit line therefore reproduces the information we found in the previous post, about uncertainties on the best fit parameters. But it does so in a more intuitive and graphical way which also takes into account the covariance between the best fit parameters. The analyticity of our results is a special case, but in general this exercise can still be done numerically. The techniques for doing so are discussed in the <a href=https://jack-dinsmore.github.io/blog//html/gaussian2%2ehtml>next post</a>.
 </p>
 </div> <button class="collapsible"><h2>Numerical confirmation</h2></button><div class="section">
 
 <p>In this section we'll confirm the analytical results we got for \(\hat a\), \(\hat b\), \(\sigma_a\), \(\sigma_b\), and uncertainty on the best fit line \(\sigma_y\) by means of a simulation. This is not usually a necessary step, but doing so might help to reinforce the physical meaning of our results. Below is an applet displaying the numerical values of these results as a function of the true \(a\) and \(b\) values. You can change these values and the quality and quantity of the data to see how our analytical estimates compare.
 </p>
-<canvas id="linear_fit_demo"></canvas>
-        <div class="caption"><b>Applet:</b> Caption</div></center>
+<center><canvas id="linear_fit_demo"></canvas>
+        <div class="caption"><b>Applet:</b> A linear fit \(y=ax+b\) to simulated data with constant uncertainty sigma. Use the sliders to adjust the true values of \(a\), \(b\), \(\sigma\), and the number of data points \(N\). The dashed line represents the true model, while the solid line is the best-fit model extracted using the methods of the previous post. The yellow band shows the uncertainty on the fit derived in this section.</div></center>
 <script type="module">
     import init, {LinearFitDemo} from "/Users/jtd/Documents/personal/code/html/jack-dinsmore.github.io/blog/bin/linear_fit_demo.js";
     await init();
@@ -99,9 +97,9 @@ where \(\hat y = \hat a x + \hat b\).
 
 <p>In these posts on linear fitting, we assumed a Gaussian likelihood with a linear model and equal uncertainty \(\sigma\) across the data. If any of these assumptions are violated, our results do not hold and an analytical solution may not even be possible. In particular, most scientific models are nonlinear, and even those that are likely have uneven error bars.
 </p>
-<p>However in cases where these assumptions are violated, the fundamental Bayesian principles hold. In <a href=file:///Users/jtd/Documents/personal/code/html/jack-dinsmore.github.io/blog/html/gaussian%2ehtml>another post</a>, we discuss the general case of a Gaussian likelihood and make no assumptions on the model or the uncertainties.
+<p>However in cases where these assumptions are violated, the fundamental Bayesian principles hold. In <a href=https://jack-dinsmore.github.io/blog//html/gaussian%2ehtml>another post</a>, we discuss the general case of a Gaussian likelihood and make no assumptions on the model or the uncertainties.
 </div></div><div id="footer">
-Copyright &copy; 2024 Jack Dinsmore. &emsp;Updated June 4. &emsp;Version 0.1</div></body>
+Copyright &copy; 2024 Jack Dinsmore. &emsp;Updated June 9. &emsp;Version 0.1</div></body>
 <script>
 var coll = document.getElementsByClassName("collapsible");
 var i;
