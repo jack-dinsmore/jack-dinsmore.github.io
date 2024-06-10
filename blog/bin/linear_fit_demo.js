@@ -203,6 +203,41 @@ function getClampedArrayU8FromWasm0(ptr, len) {
     return getUint8ClampedMemory0().subarray(ptr / 1, ptr / 1 + len);
 }
 /**
+* Sample position for subsampled chroma
+*/
+export const ChromaSamplePosition = Object.freeze({
+/**
+* The source video transfer function must be signaled
+* outside the AV1 bitstream.
+*/
+Unknown:0,"0":"Unknown",
+/**
+* Horizontally co-located with (0, 0) luma sample, vertically positioned
+* in the middle between two luma samples.
+*/
+Vertical:1,"1":"Vertical",
+/**
+* Co-located with (0, 0) luma sample.
+*/
+Colocated:2,"2":"Colocated", });
+/**
+*/
+export const Tune = Object.freeze({ Psnr:0,"0":"Psnr",Psychovisual:1,"1":"Psychovisual", });
+/**
+* Allowed pixel value range
+*
+* C.f. `VideoFullRangeFlag` variable specified in ISO/IEC 23091-4/ITU-T H.273
+*/
+export const PixelRange = Object.freeze({
+/**
+* Studio swing representation
+*/
+Limited:0,"0":"Limited",
+/**
+* Full swing representation
+*/
+Full:1,"1":"Full", });
+/**
 * Chroma subsampling format
 */
 export const ChromaSampling = Object.freeze({
@@ -222,41 +257,6 @@ Cs444:2,"2":"Cs444",
 * Monochrome.
 */
 Cs400:3,"3":"Cs400", });
-/**
-*/
-export const Tune = Object.freeze({ Psnr:0,"0":"Psnr",Psychovisual:1,"1":"Psychovisual", });
-/**
-* Allowed pixel value range
-*
-* C.f. `VideoFullRangeFlag` variable specified in ISO/IEC 23091-4/ITU-T H.273
-*/
-export const PixelRange = Object.freeze({
-/**
-* Studio swing representation
-*/
-Limited:0,"0":"Limited",
-/**
-* Full swing representation
-*/
-Full:1,"1":"Full", });
-/**
-* Sample position for subsampled chroma
-*/
-export const ChromaSamplePosition = Object.freeze({
-/**
-* The source video transfer function must be signaled
-* outside the AV1 bitstream.
-*/
-Unknown:0,"0":"Unknown",
-/**
-* Horizontally co-located with (0, 0) luma sample, vertically positioned
-* in the middle between two luma samples.
-*/
-Vertical:1,"1":"Vertical",
-/**
-* Co-located with (0, 0) luma sample.
-*/
-Colocated:2,"2":"Colocated", });
 
 const LinearFitDemoFinalization = (typeof FinalizationRegistry === 'undefined')
     ? { register: () => {}, unregister: () => {} }
