@@ -27,19 +27,19 @@ window.MathJax = {
     <title>statistics</title>
 </head><body><div id="content"><h2><a href="https://jack-dinsmore.github.io/blog/html/index.html">Home</a></h2><h1>Statistics</h1>
 
-<p>DISCLAIMER: This blog is unfinished and may contain typos or mistakes.
+<p>DISCLAIMER: This blog is unfinished and may contain typos or mistakes. If you notice any, I’d welcome any feedback or suggestions.
 </p>
 <button class="collapsible"><h2>Introduction</h2></button><div class="section">
 
-<p>When I was a student, I hated statistics. I thought it was tedious &mdash; a myopic mess of dark magic that blights "Methods" sections across the arXiv, distracting from the core science.
+<p>When I was a student, I hated statistics. I thought it was tedious&mdash;a myopic mess of obscure procedures that blighted “Methods” sections across the arXiv, distracting from the core science.
 </p>
-<p>After just a few years of doing X-ray astronomy, I'm completely converted.
+<p>After just a few years of doing X-ray astronomy, I’m completely converted.
 </p>
-<p>In my experience, statistics is one the most useful tools a scientist has at their disposal. A good statistical treatment can expose a hidden signal, dismiss false positives, and most importantly form a foundation that's reliable enough to support years of future research.
+<p>Firstly, statistics doesn’t distract from the science. It <i>enables</i> the science. A good statistical treatment can expose a hidden signal, dismiss false positives, and most importantly form a foundation that’s reliable enough to support years of future research.
 </p>
-<p>I've also learned that statistics is a much more motivated field than I had thought. Especially Bayesian statistics is founded on a few simple principles, and if you simply follow them you will find yourself re-deriving the multitude of \(\chi^2\), \(z\), and \(F\) tests that I thought had to be individually memorized.
+<p>I’ve also learned that statistics is a much more motivated field than I had thought. Especially Bayesian statistics is founded on a few simple axioms, and if you simply follow them you will find yourself re-deriving the common techniques from first principles. It’s rather like physics itself in this way.
 </p>
-<p>I'm writing this blog to lay out these founding principles of statistics, in the hope that other people will find them as useful as I have. I'll discuss both Bayesian and frequentist statistics, though as an astronomer I'll mostly stick to Bayesian. Several example applications with example Python code will be given, though for educational purposes I'll do my best not to use external packages that do the statistics for you.
+<p>I’m writing this blog to lay out these founding principles of statistics, in the hope that other people will find them as useful as I have. My view is heavily influenced by practices in astronomy; for example, I’ll discuss Bayesian statistics more than frequentist, though I will cover both. I will do my best to provide interactive visualizations to explain key concepts. However, I’ll stop short of providing example code for solving statistical problems, focusing on the core principles instead.
 </p>
 </div> <button class="collapsible"><h2>Contents</h2></button><div class="section">
 
@@ -49,12 +49,13 @@ window.MathJax = {
 <li> <a href=https://jack-dinsmore.github.io/blog/html/variance.html>Expected values, Variance, and the Central Limit Theorem</a></li>
 <li> <a href=https://jack-dinsmore.github.io/blog/html/bayesian.html>What is Bayesian statistics?</a></li>
 <li> <a href=https://jack-dinsmore.github.io/blog/html/parameter%2dfitting.html>Parameter fitting and uncertainties</a></li>
-<li> <a href=https://jack-dinsmore.github.io/blog/html/line.html>Easy example: fitting a line</a></li>
-<li> <a href=https://jack-dinsmore.github.io/blog/html/gaussian.html>Medium example: Gaussian posteriors (Laplace's approximation)</a></li>
-<li> <a href=https://jack-dinsmore.github.io/blog/html/mcmc.html>Hard example: the general case (MCMCs)</a></li>
+<li> <a href=https://jack-dinsmore.github.io/blog/html/line.html>Example: Fitting a line</a></li>
+<li> <a href=https://jack-dinsmore.github.io/blog/html/line2.html>Calculating uncertainty on the prediction</a></li>
+<li> <a href=https://jack-dinsmore.github.io/blog/html/gaussian.html>More general example: Gaussian posteriors</a></li>
+<li> <a href=https://jack-dinsmore.github.io/blog/html/mcmc.html>Most general example: MCMCs</a></li>
 <li> <a href=https://jack-dinsmore.github.io/blog/html/model%2dcomparison.html>Model comparison</a></li>
 <li> <a href=https://jack-dinsmore.github.io/blog/html/likelihoods.html>A gallery of likelihoods</a></li>
-<li> <a href=https://jack-dinsmore.github.io/blog/html/priors.html>Priors: dos and don'ts</a></li>
+<li> <a href=https://jack-dinsmore.github.io/blog/html/priors.html>Priors: dos and don’ts</a></li>
 </ol>
 <h3>Frequentist Statistics</h3>
 
@@ -64,9 +65,9 @@ window.MathJax = {
 </ol>
 <h3>Common problems and their solutions</h3>
 <ol><li> <a href=https://jack-dinsmore.github.io/blog/html/high%2ddimension.html>I have too many parameters to fit for</a> (Gibbs sampling)</li>
-<li> <a href=https://jack-dinsmore.github.io/blog/html/jackknife.html>I don't know my likelihood distribution, but I have lots of data</a> (Jackknifing and bootstrapping)</li>
-<li> <a href=https://jack-dinsmore.github.io/blog/html/simulation.html>I don't know my likelihood distribution, but I have a simulator</a> (Extracting covariances from simulations)</li>
-<li> <a href=https://jack-dinsmore.github.io/blog/html/neural%2dnets.html>I don't have a good model, but I have a simulator</a> (Machine learning)</li>
+<li> <a href=https://jack-dinsmore.github.io/blog/html/jackknife.html>I don’t know my likelihood distribution, but I have lots of data</a> (Jackknifing and bootstrapping)</li>
+<li> <a href=https://jack-dinsmore.github.io/blog/html/simulation.html>I don’t know my likelihood distribution, but I have a simulator</a> (Extracting covariances from simulations)</li>
+<li> <a href=https://jack-dinsmore.github.io/blog/html/neural%2dnets.html>I don’t have a good model, but I have a simulator</a> (Machine learning)</li>
 </ol>
 <h3>Mathematical review</h3>
 <ol><li> <a href=https://jack-dinsmore.github.io/blog/html/linear%2dalgebra.html>Linear algebra</a></li>
@@ -78,7 +79,7 @@ window.MathJax = {
 </p>
 <p>This blog was built using <a href=https://github.com/jack-dinsmore/wikid>wikid</a>, a markdown-to-html converter that I built to be easily applicable to science blogs.
 </div></div><div id="footer">
-Copyright &copy; 2024 Jack Dinsmore. &emsp;Updated June 9. &emsp;Version 0.1</div></body>
+Copyright &copy; 2024 Jack Dinsmore. &emsp;Updated June 10. &emsp;Version 0.1</div></body>
 <script>
 var coll = document.getElementsByClassName("collapsible");
 var i;

@@ -27,51 +27,49 @@ window.MathJax = {
     <title>statistics</title>
 </head><body><div id="content"><h2><a href="https://jack-dinsmore.github.io/blog/html/index.html">Home</a></h2><h1>Bayesian Statistics</h1>
 
-<p>This post makes heavy use of <i>Bayes' theorem</i>, which was proved in <a href=https://jack-dinsmore.github.io/blog/html/probability.html>the first post</a>.
+<p>This post makes heavy use of <i>Bayes’ theorem</i>, which was proved in <a href=https://jack-dinsmore.github.io/blog/html/probability.html>the first post</a>.
 </p>
-<p>When I say <i>statistics</i>, I mean the science of quantitatively turning data into constraints on the physical parameters. For the sake of generality, we'll denote data with \(D\) and the parameters with a vector \(\bm \theta\). The exact format of the data \(D\) will not matter for now &mdash; whether it is list of data points, an image, or something more important &mdash; because no matter what data is, we should always be able to define the probability of observing this data given a certain set of parameters
+<p>When I say <i>statistics</i>, I mean the task of quantitatively turning data into constraints on the physical parameters. To do this, one needs a model with <i>parameters</i> denoted by the vector \(\bm \theta\). The idea is that the model should predict the data \(D\) given \(\bm \theta\)&mdash;or more specifically, it should predict the probability of observing \(D\)
 <div class="eq"><div class="eqtext">\[\mathcal{L} = P(D | \bm \theta).\]</div><div class="eqnum" id="eq1">(1)</div></div>
 This probability distribution is called the <i>likelihood</i>, and it is one of the most important quantities in statistics.
 </p>
-<p>The form of the likelihood is model dependent, because different models give different probabilities for data sets to be observed. But as for ways to generate statistics from a given likelihood, there are only two. One is the "frequentist" approach in common use in particle physics and other sciences, and one is the "bayesian" approach in common use in astrophysics. Here we discuss the Bayesian approach.
+<p>The likelihood could take many forms because it is model dependent. But as for ways to generate constraints from a given likelihood, there are two main ones. One is the “frequentist” approach in common use in particle physics, and one is the “bayesian” approach in common use in astrophysics. Here we discuss the Bayesian approach.
 </p>
 <button class="collapsible"><h2>Formulation of Bayesian Statistics</h2></button><div class="section">
 
-<p>Everyone will agree that, when one extracts parameters from a data set, the parameters have some uncertainty. A Bayesian analysis models this uncertainty with a probability distribution \(p(\bm \theta | D)\), where we condition on \(D\) because we are interested in the probability of the parameters only after one has observed the given data set. This distribution is called the <i>posterior.</i> A Bayesian analysis then reports the mode of the posterior as the best fitting \(\bm \theta\), and the errors on \(\bm \theta\) are related to the tails of \(p(\bm \theta)\).
+<p>Everyone will agree that one can extract <i>best-fit</i> parameters from a data set with some <i>uncertainty</i>. A Bayesian analysis models these by proposing that \(\bm \theta\) really is described by a probability distribution \(P(\bm \theta | D)\), where we condition on \(D\) because we are interested in the probability of the parameters after one has observed the given data set. This distribution is called the <i>posterior.</i> A Bayesian analysis then usually reports the best-fit and uncertainties of \(\bm \theta\) as the mean of \(P(\bm \theta | D)\), while the tails describe the uncertainty.
 </p>
-<p>The posterior \(p(\bm \theta|D)\) at first blush looks similar to the likelihood \(p(D|\bm \theta)\), and indeed they are related by Bayes' rule:
-<div class="eq"><div class="eqtext">\[p(\bm \theta | D) = \mathcal{L} \frac{p(\bm \theta)}{p(D)}.\]</div><div class="eqnum" id="eq2">(2)</div></div>
+<p>The posterior \(P(\bm \theta|D)\) is related to the likelihood \(P(D|\bm \theta)\) by Bayes’ rule:
+<div class="eq"><div class="eqtext">\[P(\bm \theta | D) = \mathcal{L} \frac{P(\bm \theta)}{P(D)}.\]</div><div class="eqnum" id="eq2">(2)</div></div>
 </p>
-<p>We have introduced two new probability distributions \(p(\bm \theta)\) and \(p(D)\). Our <a href=probability>rigorous definition of probabilities</a> tells us that these distributions must precisely be the probability of the parameters and data (respectively) to be observed, without any information about the data that was observed. In particular \(p(\bm \theta)\), sometimes written \(\pi(\bm \theta)\) is called the <i>prior</i>, and \(p(D)\) is called the <i>evidence</i>.
+<p>We have introduced two new PDFs \(P(\bm \theta)\) and \(P(D)\). Respectively, these are the original PDF of the parameters before the data were observed, and the PDF of the data itself. In particular \(P(\bm \theta)\), sometimes written \(\pi(\bm \theta)\) is called the <i>prior</i>, and \(P(D)\) is called the <i>evidence</i>.
 </p>
-<p>In this and the next few posts, we will consider the typical situation of where you have observed a single data set and would like to know the full posterior distribution \(P(\bm \theta | D)\) as a function of \(\bm \theta\). In this case of constant \(D\), the evidence \(p(D)\) will also be a constant. We therefore don't have to compute it because it only scales the normalization of the posterior, which we must fix to one anyway. We therefore simplify to
+<p>In this and the next few posts, we will consider the typical situation where you have observed a data set and would like to know the full posterior distribution \(P(\bm \theta | D)\) as a function of \(\bm \theta\). In this case, we therefore don’t have to the evidence \(P(D)\) because it only scales the normalization of the posterior, which we can manually normalize instead. We therefore simplify to
 
-<div class="eq"><div class="eqtext">\[p(\bm \theta | D) \propto \mathcal{L} p(\bm \theta).\]</div><div class="eqnum" id="eq3">(3)</div></div>
+<div class="eq"><div class="eqtext">\[P(\bm \theta | D) \propto \mathcal{L} P(\bm \theta).\]</div><div class="eqnum" id="eq3">(3)</div></div>
 </p>
 </div> <button class="collapsible"><h2>A word about priors</h2></button><div class="section">
 
-<p>Probably the most difficult thing to understand about Bayesian statistics is what a prior \(p(\theta)\) actually is. Mathematically of course, it's the probability the parameters had before the data is observed. But scientifically, how is one supposed to know what the parameters are at all before seeing any data? The answer is, unforunately, that one must choose the priors by hand.
+<p>Probably the most difficult thing to understand about Bayesian statistics is what a prior \(P(\theta)\) actually is. Mathematically, it’s the probability the parameters had before the data is observed as I said. But scientifically, how is one supposed to know what the parameters are at all before seeing any data? The answer is, unforunately, that one must choose the priors by hand.
 </p>
-<p>There are a few cases where the choice is simple. If you're trying to measure the electron neutrino mass \(m_\nu\), you know that the mass is certainly positive. The prior could therefore be \(p(m_\nu) = 0\) for all \(m_\nu < 0\). In some cases you might have further information, such as when the neutrino mass has already been weakly constrained by other experiments. Then you might want to set \(p(m_\nu)\) equal to that previously found constraint.
+<p>There are a few cases where the choice is simple. If you’re trying to measure the electron neutrino mass \(m_\nu\), you know that the mass is certainly positive. The prior could therefore be \(P(m_\nu) = 0\) for all \(m_\nu < 0\). In some cases you might have further information, such as when the neutrino mass has already been weakly constrained by other experiments. Then you might want to set \(P(m_\nu)\) equal to that previously found constraint.
 </p>
-<p>But the most standard practice is the intuitive one; to set \(p(\theta)\) to be as wide as possible, indicating our lack of knowledge about the system before it is observed. This is very often the best practice.
-</p>
-<p>Many would go farther and state that best practice is to use not just <i>wide</i> priors, but <i>wide uniform</i> priors. In my opinion, this is an overstatement because uniformity is parameterization-dependent notion. In <a href=priors>another blog post</a> I give some pointers about how to choose priors.
+<p>In unclear situations, the most standard practice is the intuitive one: to set \(P(\theta)\) to be as wide as possible. This indicates our lack of knowledge about the system before it is observed. Many would go farther and state that best practice is to use not just <i>wide</i> priors, but <i>wide uniform</i> priors. In my opinion, this is an overstatement because uniformity is parameterization-dependent notion. In <a href=priors>another blog post</a>, I give some pointers about how to choose priors.
 </p>
 </div> <button class="collapsible"><h2>Comparison to Frequentist statistics</h2></button><div class="section">
 
-<p>Many scientists dislike the notion of priors because they can be chosen arbitrarily and can affect your results for the posterior. Frequentist statistics is an appealing alternative. In frequentist statistics, one deals directly with the likelihood \(\mathcal{L} = p(D|\bm \theta)\) and often chooses parameters \(\bm \theta\) which maximizes \(\mathcal{L}\). Intuitively this makes sense; the correct parameters are probably the ones that are most consistent with the observed data.
+<p>Many scientists dislike the notion of priors because they can be chosen arbitrarily and can affect your results for the posterior. Frequentist statistics is an appealing alternative. In frequentist statistics, one deals directly with the likelihood \(\mathcal{L} = P(D|\bm \theta)\) and doesn’t use Bayes’ theorem. The reported best-fit parameters are usually the parameters \(\bm \theta\) which maximize \(\mathcal{L}\). Intuitively, these represent the parameters that make the observed data most probable. One should be careful not to describe them as the most probable parameters, though, because that would be the maximum of the posterior \(P(\bm \theta|D)\), which we need a prior to compute.
 </p>
-<p>However, Frequentist statistics have issues just as Bayesian priors do, most notably because the likelihood is usually not the quantity one really wants. We really want some statement about the parameters \(\bm \theta\). In Bayesian statistics it was natural to bring in \(p(\bm \theta | D)\) but we cannot compute this function without using priors. Frequentist statistics have therefore invented many tools that dress the likelihood into a function more suitable to making statistical claims. But because of the lack of a general theory based on Bayes' rule, the methods are a lot less clear and harder to learn in my opinion. I will mostly stick to Bayesian statistics for that reason.
+<p>This illustrates the problem with frequentist statistics. Often, the likelihood is just not the quantity one really wants. Frequentists have therefore invented many tools that dress the likelihood into a function more suitable to making statistical claims. Butthe lack of a general theory based on Bayes’ rule makes these methods hard to learn in my opinion.  I will mostly stick to Bayesian statistics for that reason.
 </p>
 </div> <button class="collapsible"><h2>Conclusion</h2></button><div class="section">
 
-<p><a href=https://jack-dinsmore.github.io/blog/html/bayesian.html#eq1>Eq. 1</a> is probably the most important equation in Bayesian statistics so I will repeat it again, this time in log space.
-<div class="eq"><div class="eqtext">\[\ln p(\bm \theta | D) = \ln \mathcal{L} + \ln p(\bm \theta) + C\]</div><div class="eqnum" id="eq4">(4)</div></div>
-where \(C\) is a constant that can be worked out by normalizing \(p(\bm \theta | D)\).
-Intuitively, the posterior (the function we want) is proportional to the likelihood (the function we have) times the prior (a wide distribution used to put in parameter constraints). The multiplication is usually very easy; the hard part is measuring the relevant properties of the prior accurately. Specifically, we want the mode of the posterior (the best fit values) and its width (the uncertainties). The definitions for the mode and width and some advice on how to calculate them is given in {the next post}
+<p><a href=https://jack-dinsmore.github.io/blog/html/bayesian.html#eq3>Eq. 3</a> is probably the most important equation in Bayesian statistics so I will repeat it again, this time in log space.
+<div class="eq"><div class="eqtext">\[\ln P(\bm \theta | D) = \ln \mathcal{L} + \ln P(\bm \theta) + C\]</div><div class="eqnum" id="eq4">(4)</div></div>
+where \(C\) is a constant that can be worked out by normalizing \(P(\bm \theta | D)\).
+Intuitively, the posterior (the function we want) is proportional to the likelihood (the function we have) times the prior (a wide distribution used to put in parameter constraints). The multiplication is usually very easy; the hard part due to the fact that \(\mathcal{L}\) is often expensive to compute. Calculating what \(\ln P(\bm \theta | D)\) is for every value of \(\bm \theta\) can be slow, especially if \(\bm \theta\) is high-dimensional. Some advice on how to proceed is given in <a href=https://jack-dinsmore.github.io/blog/html/parameter%2dfitting.html>the next post</a>.
 </div></div><div id="footer">
-Copyright &copy; 2024 Jack Dinsmore. &emsp;Updated June 9. &emsp;Version 0.1</div></body>
+Copyright &copy; 2024 Jack Dinsmore. &emsp;Updated June 10. &emsp;Version 0.1</div></body>
 <script>
 var coll = document.getElementsByClassName("collapsible");
 var i;

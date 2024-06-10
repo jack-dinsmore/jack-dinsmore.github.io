@@ -3,7 +3,7 @@ use rand_distr::{Distribution, Normal};
 //wasm-pack build --target web
 use wasm_bindgen::prelude::*;
 
-use wikid_wasm::{Applet, Callback, Dim, Style, TextAlign};
+use wikid_wasm::{log, Applet, Callback, Dim, Style, TextAlign};
 use wikid_wasm::element::{Button, DynamicPlot, PlotCommand, Element, Slider, SliderType, LineStyle};
 
 const WIDTH: u32 = 640;
@@ -20,6 +20,10 @@ pub struct LinearFitDemo {
     plot: DynamicPlot,
 
     seed: u64,
+    n_successes: u32,
+    n_trials: u32,
+    just_refreshed_seed: bool,
+    success_symbol: char,
 }
 
 /// Public methods, exported to JavaScript.
@@ -58,7 +62,11 @@ impl LinearFitDemo {
             n_slider,
             randomize_button,
             plot,
-            seed: 4238941879419,
+            seed: 423894187419,
+            n_successes: 0,
+            n_trials: 0,
+            just_refreshed_seed: true,
+            success_symbol: '0',
         }
     }
 
@@ -96,7 +104,7 @@ impl LinearFitDemo {
             _x_ += *x;
             _y_ += *y;
             _xx_ += *x**x;
-            _xy_ += *x**y
+            _xy_ += *x**y;
         }
         _x_ /= n as f32;
         _y_ /= n as f32;
@@ -105,22 +113,40 @@ impl LinearFitDemo {
         let var = _xx_ - _x_*_x_;
         let cov = _xy_ - _x_*_y_;
         let b_num = _xx_*_y_ - _x_*_xy_;
-
+        
         let a_bf = cov / var;
-        let a_unc = sigma / (n as f32).sqrt();
+        let a_unc = sigma / (n as f32 * var).sqrt();
         let b_bf = b_num / var;
-        let b_unc = sigma * _xx_.sqrt() / (n as f32).sqrt();
-        let cov = -sigma*sigma * _x_ / n as f32;
+        let b_unc = sigma * _xx_.sqrt() / (n as f32 * var).sqrt();
+        let cov = -sigma*sigma * _x_ / n as f32 / var;
         let mut bf_ys = Vec::with_capacity(n);
         let mut y_err_low = Vec::with_capacity(n);
         let mut y_err_high = Vec::with_capacity(n);
         for x in &xs {
             let bf_y = a_bf * x + b_bf;
             bf_ys.push(bf_y);
-            let y_err = (x*x*a_unc*a_unc + b_unc*b_unc + 2.*x*cov).sqrt();
+            let y_err = (2.3 * (x*x*a_unc*a_unc + b_unc*b_unc + 2.*x*cov)).sqrt();
             y_err_low.push(bf_y - y_err);
             y_err_high.push(bf_y + y_err);
         }
+
+        if self.just_refreshed_seed {
+            let sigmai_11 = n as f32 / (sigma*sigma) * _xx_;
+            let sigmai_22 = n as f32 / (sigma*sigma);
+            let sigmai_12 = n as f32 / (sigma*sigma) * _x_;
+            let sigma_dot = (a_bf - a).powi(2) * sigmai_11 + (b_bf - b).powi(2) * sigmai_22 + 2. * (a_bf - a) * (b_bf - b) * sigmai_12;
+            if sigma_dot < 2.3 {
+                self.n_successes += 1;
+                self.success_symbol = 'Y';
+            } else {
+                self.success_symbol = 'N';
+            }
+            self.n_trials += 1;
+            self.just_refreshed_seed = false;
+        }
+
+        let f_bf = self.n_successes as f32 / self.n_trials as f32;
+        let f_unc = (0.68 * (1.-0.68) / (self.n_trials as f32)).sqrt();
 
         self.plot.plot(vec![
             PlotCommand::Line{xs: &xs, ys: &true_ys, ls: LineStyle::Dashed },
@@ -132,6 +158,7 @@ impl LinearFitDemo {
             PlotCommand::SetYLabel { label: "y".to_owned() },
             PlotCommand::Text { x: 0.03, y: 1., text: format!("a = {:.2} ± {:.2}", a_bf, a_unc), va: TextAlign::UpperLeft, ha: TextAlign::UpperLeft },
             PlotCommand::Text { x: 0.03, y: 0.93, text: format!("b = {:.2} ± {:.2}", b_bf, b_unc), va: TextAlign::UpperLeft, ha: TextAlign::UpperLeft },
+            PlotCommand::Text { x: 0.03, y: 0.07, text: format!("% correct = {:.0} ± {:.0} ({})", f_bf*100., f_unc*100., self.success_symbol), va: TextAlign::UpperLeft, ha: TextAlign::UpperLeft },
         ], &self.applet.style);
         let elements = self.get_mut_elements();
         for callback in self.applet.tick(elements) {
@@ -139,6 +166,7 @@ impl LinearFitDemo {
                 Callback::ButtonClicked(b) => {
                     if b as *const Button == &self.randomize_button as *const Button {
                         self.seed = rand::thread_rng().gen();
+                        self.just_refreshed_seed = true;
                     }
                 }
             }

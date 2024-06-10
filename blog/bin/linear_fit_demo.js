@@ -220,24 +220,6 @@ Limited:0,"0":"Limited",
 */
 Full:1,"1":"Full", });
 /**
-* Sample position for subsampled chroma
-*/
-export const ChromaSamplePosition = Object.freeze({
-/**
-* The source video transfer function must be signaled
-* outside the AV1 bitstream.
-*/
-Unknown:0,"0":"Unknown",
-/**
-* Horizontally co-located with (0, 0) luma sample, vertically positioned
-* in the middle between two luma samples.
-*/
-Vertical:1,"1":"Vertical",
-/**
-* Co-located with (0, 0) luma sample.
-*/
-Colocated:2,"2":"Colocated", });
-/**
 * Chroma subsampling format
 */
 export const ChromaSampling = Object.freeze({
@@ -257,6 +239,24 @@ Cs444:2,"2":"Cs444",
 * Monochrome.
 */
 Cs400:3,"3":"Cs400", });
+/**
+* Sample position for subsampled chroma
+*/
+export const ChromaSamplePosition = Object.freeze({
+/**
+* The source video transfer function must be signaled
+* outside the AV1 bitstream.
+*/
+Unknown:0,"0":"Unknown",
+/**
+* Horizontally co-located with (0, 0) luma sample, vertically positioned
+* in the middle between two luma samples.
+*/
+Vertical:1,"1":"Vertical",
+/**
+* Co-located with (0, 0) luma sample.
+*/
+Colocated:2,"2":"Colocated", });
 
 const LinearFitDemoFinalization = (typeof FinalizationRegistry === 'undefined')
     ? { register: () => {}, unregister: () => {} }
