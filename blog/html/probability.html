@@ -91,9 +91,9 @@ If \(C\) and \(D\) were continuous random variables, one should replace the sum 
 <button class="collapsible"><h2>Changing Variables</h2></button><div class="section">
 
 <p>Suppose we have a continuous random variable \(X\) with PDF \(P(x)\), but we’d like to convert to a new random variable \(Y = f(X)\) for some function \(X\). What is the PDF of \(Y\)? It’s tempting to guess that \(P(y)=P(x)\), where \(y=f(x)\), but this is incorrect. You can understand the correct rule by using the alternate notation for PDFs: \(P(y) = dp/dy\). The chain rule tells immediately that
-<div class="eq"><div class="eqtext">\[P(y) = \frac{dp}{dy} = \frac{dp}{dx}\frac{dy}{dx} = P(x)f’(x).\]</div><div class="eqnum" id="eq5">(5)</div></div>
+<div class="eq"><div class="eqtext">\[P(y) = \frac{dp}{dy} = \frac{dp}{dx}\frac{dx}{dy} = \frac{P(x)}{f’(x)}.\]</div><div class="eqnum" id="eq5">(5)</div></div>
 It is often helpful to use this derivative notation for the PDF to avoid confusion. However, we have glossed over the slight complication that \(P(y)\) cannot be negative. To enforce this, the true rule is 
-<div class="eq"><div class="eqtext">\[P(y) = P(x)|f’(x)|.\]</div><div class="eqnum" id="eq6">(6)</div></div>
+<div class="eq"><div class="eqtext">\[P(y) = \frac{P(x)}{|f’(x)|}.\]</div><div class="eqnum" id="eq6">(6)</div></div>
 If you don’t like this hand-wavy explanation, you can prove this fact from <a href=https://jack-dinsmore.github.io/blog/html/probability.html#eq2>Eq. 2</a>, without relying on writing \(P(y)\) as a derivative. But in my opinion, that version is not very illuminating.
 </p>
 </div> <button class="collapsible"><h2>Bayes’ Theorem</h2></button><div class="section">
@@ -122,7 +122,7 @@ In other words, it’s very likely that you do not have the disease! Why is this
 
 <p>Now that we’ve defined the basics of random variables, we discuss their properties such as expected value, variance, and covariance in the <a href=https://jack-dinsmore.github.io/blog/html/variance.html>next section</a>.
 </div></div><div id="footer">
-Copyright &copy; 2024 Jack Dinsmore. &emsp;Updated June 10. &emsp;Version 0.1</div></body>
+Copyright &copy; 2024 Jack Dinsmore. &emsp;Updated June 11. &emsp;Version 0.1</div></body>
 <script>
 var coll = document.getElementsByClassName("collapsible");
 var i;
