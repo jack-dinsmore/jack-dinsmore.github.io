@@ -27,8 +27,25 @@ window.MathJax = {
     <title>statistics</title>
 </head><body><div id="content"><h2><a href="https://jack-dinsmore.github.io/blog/html/index.html">Home</a></h2><h1>General Bayesian Fitting: Markov Chain Monte Carlo methods</h1>
 
-</div><div id="footer">
-Copyright &copy; 2024 Jack Dinsmore. &emsp;Updated June 11. &emsp;Version 0.1</div></body>
+<p>We have gone through several blog posts about fitting now, from <a href=https://jack-dinsmore.github.io/blog/html/parameter%2dfitting.html>general theory</a> to <a href=https://jack-dinsmore.github.io/blog/html/line.html>an example for linear functions</a> to <a href=https://jack-dinsmore.github.io/blog/html/line2.html>establishing uncertainties on the best fit</a> and <a href=https://jack-dinsmore.github.io/blog/html/gaussian.html>a generalization to Gaussian likelihoods</a>. All of these posts invoked assumptions to keep the calculations tractable, but these assumptions can be (and often are) removed with the help of new algorithms, such as the <i>Markov Chain Monte Carlo</i> (MCMC) methods we’ll introduce here.
+</p>
+<button class="collapsible"><h2>Motivations</h2></button><div class="section">
+
+<p>To understand MCMCs, we’ll have to approach parameter fitting in a completely new way, which deserves some introduction. Let’s start by stating the easy part. There’s nothing fundamentally hard about computing the posterior \(P(\bm \theta | D) = \mathcal{L}(\bm \theta) \pi(\bm \theta)\). We are simply multiplying the known functions: the likelihood and the prior. But practical issues arrive in two forms. Likelihoods can be slow to compute, and one often wishes to know \(P(\bm \theta | D)\) at many values of \(\bm \theta\), so that one can be sure one has found the minimum and has fully understood the shape of the distribution. The trick is to use an algorithm which spends its time calculating \(P(\bm \theta|D)\) only at the interesting points, i.e. near the maximum.
+</p>
+<p>This efficient computation of \(P(\bm \theta |D )\) is one goal of an MCMC, which we will introduce in this post. But there is another goal too, which is to generate <i>samples</i> from \(P(\bm \theta|D)\). We haven’t thought much about sampling distributions yet, since we’ve so far only fitted for the functional forms of our posteriors. But if the posterior is some awful many-parameter function, a functional form might not be useful or even desireable. Ultimately, we want to know things such as the mean, median, modes, and credible intervals of a distribution. To compute these from functional forms, you need to do integrals or invert functions in general, both of which are hard problems. But the tasks are easy if you have samples. The distribution mean is just the mean of all the samples; the median is the sample median, and the credible intervals have to do with the samples’ percentiles. If we really need the form of the posterior, you can always histogram the samples and the curve represents \(P(\bm \theta | D)\). This act of understanding something by probabilistically generating samples from it is called a <i>Monte Carlo</i> method (the second MCMC). 
+</p>
+<p>Since we need both to navigate our way to the maximum of a posterior and to generate samples from it, it makes sense to solve both these problems with one algorithm. Our algorithm can generate samples at the same time as it traverses the posterior. This is rather like the minimization algorithms we introduced in the previous post, except now we’re proposing to record the points visited by the algorithm as samples. The first few samples will be dependent on where the algorithm starts, but after the algorithm approaches the minimum they will start to reflect the true distribution of the posterior near the maximum. This trick of recording the <code></code>path<code></code> of an algorithm through parameter space is the other MC: the list of samples generated is called a <i>Markov Chain</i>. 
+</p>
+<p>The challenge is to make sure that the algorithm really does visit points in proportion to the probability there, without favoring some over others. This is not true of any of the minimization algorithms we’ve discussed so far, but now we’ll discuss a simple new one which guarantees unbiased samples.
+</p>
+</div> <button class="collapsible"><h2>Metropolis-Hastings algorithm</h2></button><div class="section">
+
+</div> <button class="collapsible"><h2>Conclusion</h2></button><div class="section">
+
+<p>Mention that MCMCs are inefficient minimizers.
+</div></div><div id="footer">
+Copyright &copy; 2024 Jack Dinsmore. &emsp;Updated June 15. &emsp;Version 0.1</div></body>
 <script>
 var coll = document.getElementsByClassName("collapsible");
 var i;
