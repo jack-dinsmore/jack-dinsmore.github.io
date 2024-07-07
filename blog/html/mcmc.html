@@ -41,11 +41,26 @@ window.MathJax = {
 </p>
 </div> <button class="collapsible"><h2>Metropolis-Hastings algorithm</h2></button><div class="section">
 
+<p>The Metropolis-Hastings algorithm is one of the simplest ways to generate correct MCMC samples from a distribution. It works like this.
+</p>
+<p>Consider a single Markov chain, whose most recent point is \(x_n\). You wish to generate the next point \(\bm \theta_{n+1}\) which is distributed according to the posterior \(P(\bm \theta)\). The algorithm proceeds by first choosing a random trial point \(\bm \phi\) and then generating a uniformly random number \(r\) from 0 to 1. If \(r < P(\bm \phi)/P(\bm \theta_n)\), then the trial point is accepted and \(\bm \theta_{n+1}\) is set to \(\bm \phi\). Otherwise, reject the point and set \(\bm \theta_{n+1}=\bm \theta_n\).
+</p>
+<p>If \(\bm \phi\) is more probable than \(P_n\) (\(P(\bm \phi) > P(\bm \theta_n)\)), this algorithm guarantees that \(\bm \phi\) is always accepted. But the power of the Metropolis-Hastings algorithm lies in the fact that it also has a chance to accept <i>less</i> probable values. This is fundamentally different behavior from a minimizer, which has no reason to ever progress backwards in this way. The Metropolis-Hastings algorithm is trying to do something more: identify the shape of all of \(P(\bm \theta)\), and accepting a few low probability values of \(\bm \phi\) ensures that the tails of the \(P(\bm \phi)\) distribution are accurately modeled.
+</p>
+<p>To prove that the Metropolis-Hastings algorithm is correct, imagine that we’re running lots of Markov chains at the same time, which have reached steady state. The algorithm has converged (reached steady state) when the number of points entering some region \(d\bm \theta\) is equal to the number of points exiting \(d\bm \theta\). The number of points exiting a region is the number of points in that region \(N(\bm \theta)\) times the probability to exit, and the Metropolis-Hastings algorithm dictates that the probability to exit to point \(\bm \phi\) is \(\min(P(\bm \phi)/P(\bm \theta),1)\) (the minimum appears because the probability to exit cannot be more than 1, even if \(P(\bm \phi) > P(\bm \theta)\)). Suppose \(P(\bm \phi) > P(\bm \theta)\). The steady-state condition is
+<div class="eq"><div class="eqtext">\[N(\bm \theta) = N(\bm \phi)\frac{P(\bm \theta)}{P(\bm \phi)}.\]</div><div class="eqnum" id="eq1">(1)</div></div>
+What value of \(N\) satisfies this condition? Simply \(N(\bm \theta) \propto P(\bm \theta)\). The chains will be distributed according to the target probability distribution! In fact, \(N(\bm \theta) \propto P(\bm \theta)\) is the only end-state that satisfies this condition for all pairs of points \(\bm \phi\) and \(\bm \theta\).
+</p>
+<p>This conclusion proves that, when the Metropolis-Hastings algorithm has converged, its Markov chain contains correct samples. However, we haven’t proved that the algorithm converges at a reasonable rate. Much of the technology of complicated fitters goes into hastening the process of convergence, mostly by choosing clever trial values \(\bm \phi\). We’ll discuss some of these in the next section.
+</p>
+</div> <button class="collapsible"><h2>Choosing the trial point \(\bm \phi\)</h2></button><div class="section">
+
+
 </div> <button class="collapsible"><h2>Conclusion</h2></button><div class="section">
 
 <p>Mention that MCMCs are inefficient minimizers.
 </div></div><div id="footer">
-Copyright &copy; 2024 Jack Dinsmore. &emsp;Updated June 15. &emsp;Version 0.1</div></body>
+Copyright &copy; 2024 Jack Dinsmore. &emsp;Updated July 7. &emsp;Version 0.1</div></body>
 <script>
 var coll = document.getElementsByClassName("collapsible");
 var i;
