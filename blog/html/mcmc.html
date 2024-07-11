@@ -47,20 +47,29 @@ window.MathJax = {
 </p>
 <p>If \(\bm \phi\) is more probable than \(P_n\) (\(P(\bm \phi) > P(\bm \theta_n)\)), this algorithm guarantees that \(\bm \phi\) is always accepted. But the power of the Metropolis-Hastings algorithm lies in the fact that it also has a chance to accept <i>less</i> probable values. This is fundamentally different behavior from a minimizer, which has no reason to ever progress backwards in this way. The Metropolis-Hastings algorithm is trying to do something more: identify the shape of all of \(P(\bm \theta)\), and accepting a few low probability values of \(\bm \phi\) ensures that the tails of the \(P(\bm \phi)\) distribution are accurately modeled.
 </p>
-<p>To prove that the Metropolis-Hastings algorithm is correct, imagine that we’re running lots of Markov chains at the same time, which have reached steady state. The algorithm has converged (reached steady state) when the number of points entering some region \(d\bm \theta\) is equal to the number of points exiting \(d\bm \theta\). The number of points exiting a region is the number of points in that region \(N(\bm \theta)\) times the probability to exit, and the Metropolis-Hastings algorithm dictates that the probability to exit to point \(\bm \phi\) is \(\min(P(\bm \phi)/P(\bm \theta),1)\) (the minimum appears because the probability to exit cannot be more than 1, even if \(P(\bm \phi) > P(\bm \theta)\)). Suppose \(P(\bm \phi) > P(\bm \theta)\). The steady-state condition is
-<div class="eq"><div class="eqtext">\[N(\bm \theta) = N(\bm \phi)\frac{P(\bm \theta)}{P(\bm \phi)}.\]</div><div class="eqnum" id="eq1">(1)</div></div>
-What value of \(N\) satisfies this condition? Simply \(N(\bm \theta) \propto P(\bm \theta)\). The chains will be distributed according to the target probability distribution! In fact, \(N(\bm \theta) \propto P(\bm \theta)\) is the only end-state that satisfies this condition for all pairs of points \(\bm \phi\) and \(\bm \theta\).
+<p>To prove that the Metropolis-Hastings algorithm is correct, imagine that we’re running lots of Markov chains at the same time, which have reached steady state. The algorithm has converged (reached steady state) when the number of points entering some region \(d\bm \theta\) is equal to the number of points exiting \(d\bm \theta\). The number of points exiting a region is the number of points in that region \(N(\bm \theta)\) times the probability to exit, and the Metropolis-Hastings algorithm dictates that the probability to exit to point \(\bm \phi\) is \(\min(P(\bm \phi)/P(\bm \theta),1)\) (the minimum appears because the probability to exit cannot be more than 1, even if \(P(\bm \phi) > P(\bm \theta)\)). Suppose \(P(\bm \phi) < P(\bm \theta)\). The steady-state condition is
+
+<div class="eq"><div class="eqtext">\[N(\bm \phi) = N(\bm \theta)\frac{P(\bm \phi)}{P(\bm \theta)}.\]</div><div class="eqnum" id="eq1">(1)</div></div>
+Incidentally, this equation is sometimes called <i>detailed balance</i>.
+</p>
+<p>What value of \(N\) satisfies this condition? Simply \(N(\bm \theta) \propto P(\bm \theta)\). The chains will be distributed according to the target probability distribution! In fact, \(N(\bm \theta) \propto P(\bm \theta)\) is the only end-state that satisfies this condition for all pairs of points \(\bm \phi\) and \(\bm \theta\).
 </p>
 <p>This conclusion proves that, when the Metropolis-Hastings algorithm has converged, its Markov chain contains correct samples. However, we haven’t proved that the algorithm converges at a reasonable rate. Much of the technology of complicated fitters goes into hastening the process of convergence, mostly by choosing clever trial values \(\bm \phi\). We’ll discuss some of these in the next section.
 </p>
 </div> <button class="collapsible"><h2>Choosing the trial point \(\bm \phi\)</h2></button><div class="section">
-
-
+<p>We are about to look at two different methods for choosing a trial point \(\bm \phi\) that is likely to be accepted. But first, it’s important to point out that we are allowed to do this. Messing with the trial point selection method is OK because it does not affect the steady state condition <a href=https://jack-dinsmore.github.io/blog/html/mcmc.html#eq1>Eq. 1</a>, which is what gives the Metropolis-Hastings algorithm its validity. The only problem would occur if we make it impossible to pick \(\bm \phi\) from certain points. Then we’re guaranteeing that \(N(\bm \phi) = 0\) there, which is a serious error if \(P(\bm \phi)\) is big. The trick in general is to try to choose most \(\bm \phi\) from points where \(P(\bm \phi)\) is big, with only a few trial points taken from low values of \(P(\bm \phi)\).
+</p>
+<h3>Method 1: Ensemble Samplers</h3>
+<p>The first method we’ll discuss is called an <a href=https://msp.org/camcos/2010/5-1/p04.xhtml>Affine Invariant Ensemble Sampler</a>. It uses the current positions of the “ensemble” of all the Markov chains you’re running to inform the choice of \(\bm \phi\) by picking points near to or inside the ensemble. The “affine invariance” refers to the particular method of choosing \(\bm \phi\) from the locations of all the chains \(\bm \theta_i\), which works even in cases where \(P(\bm \theta)\) is highly correlated or much thinner in one axis than another. For most Gaussian-like posteriors, this MCMC method converges quickly. However, for multi-modal or otherwise non-Gaussian posteriors the “affine-invariant” selection method is not flexible enough to be efficient, and convergence is slower.
+</p>
+<h3>Method 2: Nested Sampling</h3>
+<p>The <a href=https://ui.adsabs.harvard.edu/abs/2004AIPC..735..395S/abstract>nested sampling</a>
+</p>
 </div> <button class="collapsible"><h2>Conclusion</h2></button><div class="section">
 
 <p>Mention that MCMCs are inefficient minimizers.
 </div></div><div id="footer">
-Copyright &copy; 2024 Jack Dinsmore. &emsp;Updated July 7. &emsp;Version 0.1</div></body>
+Copyright &copy; 2024 Jack Dinsmore. &emsp;Updated July 11. &emsp;Version 0.1</div></body>
 <script>
 var coll = document.getElementsByClassName("collapsible");
 var i;
