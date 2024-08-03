@@ -3,8 +3,21 @@
         <style>
             body {
                 display: flex;
+                flex-direction: column;
+                justify-content: center;  /* Centering y-axis */
+            }
+            font-face {
+                font-family: hershey;
+                src:local("AVHersheyComplexMedium.ttf");
+            }
+            .main {
+                display: flex;
                 justify-content: center;
-                align-items: center;
+                align-items :center;
+            }
+            p {
+                text-align: center;
+                font-family: hershey;
             }
         </style>
     </head>
@@ -13,6 +26,13 @@
         <script type="module">
             const POSITIONS = {
                 "Lighthouse:(43$^\circ$)":	[0.8788,	0.95,	2.1e+01],
+"J1136-5525":	[0.0005541,	0.1131,	9.5],
+"J1539-5626":	[0.07865,	0.05873,	9.5],
+"J1705-1906":	[0.02346,	0.25,	9.5],
+"J1709-1640":	[0.06664,	0.3252,	9.5],
+"J0454+5543":	[0.04468,	0.1388,	9.5],
+"J1835-1020":	[0.07114,	0.1311,	9.5],
+"J1833-0338":	[0.05839,	0.2485,	9.5],
 "Lighthouse:(316$^\circ$)":	[0.8357,	0.5304,	2.1e+01],
 "J1509-5850:(203$^\circ$)":	[0.6315,	0.4573,	2.1e+01],
 "J1509-5850:(347$^\circ$)":	[0.3282,	0.1015,	2.1e+01],
@@ -75,7 +95,6 @@
 "B1055-52":	[0.08011,	0.4227,	1.5e+01],
 "B1717-29":	[0.07953,	0.03207,	2.9],
 "J1816+4510":	[0.07917,	0.3678,	1.1e+01],
-"J1539-5626":	[0.07865,	0.05873,	9.5],
 "J1302-3258":	[0.07751,	0.01834,	5.8],
 "J1911+1758":	[0.07696,	0.1676,	2.9],
 "J0101-6422":	[0.0748,	0.2175,	5.7],
@@ -84,11 +103,9 @@
 "J2256-1024":	[0.07265,	0.2402,	8.5],
 "B0656+14":	[0.0723,	0.2458,	1.6e+01],
 "J1514-4946":	[0.07117,	0.2191,	5.8],
-"J1835-1020":	[0.07114,	0.1311,	9.5],
 "J1753-1914":	[0.06983,	0.1457,	2.9],
 "J0538+2817":	[0.06863,	0.4333,	1.6e+01],
 "J0806-4123":	[0.06699,	0.2889,	1.7e+01],
-"J1709-1640":	[0.06664,	0.3252,	9.5],
 "J1210-6550":	[0.06569,	0.1889,	2.9],
 "J1905+0902":	[0.06484,	0.03277,	6.9],
 "J1744-1134":	[0.06261,	0.3822,	1.3e+01],
@@ -96,7 +113,6 @@
 "J1429-5911":	[0.06244,	0.2639,	1.1e+01],
 "J2235+1506":	[0.06057,	0.08661,	2.9],
 "J1103-5403":	[0.0597,	0.2749,	5.8],
-"J1833-0338":	[0.05839,	0.2485,	9.5],
 "J1819-1318":	[0.0572,	0.2483,	2.9],
 "B0906-49":	[0.05574,	0.3481,	1.1e+01],
 "J1810-1820":	[0.05554,	0.1821,	4.9],
@@ -111,7 +127,6 @@
 "J2307+2225":	[0.04804,	0.2942,	2.8],
 "B0138+59":	[0.04757,	0.2727,	2.9],
 "J1739-3951":	[0.0464,	0.03277,	3.5],
-"J0454+5543":	[0.04468,	0.1388,	9.5],
 "J1410-7404":	[0.04454,	0.3641,	2.9],
 "J0609+2130":	[0.04426,	0.2733,	3.5],
 "J1909-3744":	[0.04407,	0.1782,	1.1e+01],
@@ -139,7 +154,6 @@
 "J2048+2255":	[0.02467,	0.03277,	2.8],
 "J0734-1559":	[0.02362,	0.2953,	7.4],
 "J1640-4648":	[0.02359,	0.2503,	1.1e+01],
-"J1705-1906":	[0.02346,	0.25,	9.5],
 "B2016+28":	[0.02269,	0.187,	2.9],
 "J0420-5022":	[0.02212,	0.3172,	1.3e+01],
 "J1928+1746":	[0.02146,	0.2948,	5.8],
@@ -168,7 +182,6 @@
 "J1838+1650":	[0.0005541,	0.1615,	2.9],
 "J1739-3023":	[0.0005541,	0.04764,	7.0],
 "J0847-4316":	[0.0005541,	0.1002,	6.1],
-"J1136-5525":	[0.0005541,	0.1131,	9.5],
 "J0108-1431":	[0.0005541,	0.3296,	1e+01],
 "J1333-4449":	[0.0005541,	0.09661,	2.9],
 "B1133-55":	[0.0005541,	0.1007,	9.4],
@@ -210,7 +223,16 @@
             });
         </script>
 
-        <img src="ensemble-age.png" width="60%" id="plot">
-        <img width="30%" id="zoom">
+        <figure>
+            <div class="main">
+                <img src="ensemble-age.png" width="60%" id="plot">
+                <img width="30%" id="zoom">
+            </div>
+            <figcaption>
+                <p><b>Figure:</b> <i>Left</i>: Figure 3 from <a href="">Dinsmore & Romani (2024)</a>. Hover over points to see the individual <i>Chandra</i> X-ray Observatory observations. Blue ribbons show sigma as a function of angle, and orange show delta. Point sources have been heavily cleaned; this carves chunks out of the bright filaments but leaves the fainter filaments untouched (suitable behavior for a search). Black arrows with gray error bars show proper motion uncertainties, if known.</p>
+
+                <p>The five known filaments are detected (blue), together with many pulsar wind nebula (PWN) trails (dark brown) and a handful of non-trail nebulae (light brown). The three orange points indicate pulsars with evidence of filaments. Purple represent newly searched observations. See the paper for more information.</p>
+            </figcaption>
+        </figure>
     </body>
 </html>
