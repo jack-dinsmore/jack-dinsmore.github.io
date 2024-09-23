@@ -203,23 +203,6 @@ function getClampedArrayU8FromWasm0(ptr, len) {
     return getUint8ClampedMemory0().subarray(ptr / 1, ptr / 1 + len);
 }
 /**
-*/
-export const Tune = Object.freeze({ Psnr:0,"0":"Psnr",Psychovisual:1,"1":"Psychovisual", });
-/**
-* Allowed pixel value range
-*
-* C.f. `VideoFullRangeFlag` variable specified in ISO/IEC 23091-4/ITU-T H.273
-*/
-export const PixelRange = Object.freeze({
-/**
-* Studio swing representation
-*/
-Limited:0,"0":"Limited",
-/**
-* Full swing representation
-*/
-Full:1,"1":"Full", });
-/**
 * Sample position for subsampled chroma
 */
 export const ChromaSamplePosition = Object.freeze({
@@ -257,73 +240,90 @@ Cs444:2,"2":"Cs444",
 * Monochrome.
 */
 Cs400:3,"3":"Cs400", });
-
-const LinearFitDemoFinalization = (typeof FinalizationRegistry === 'undefined')
-    ? { register: () => {}, unregister: () => {} }
-    : new FinalizationRegistry(ptr => wasm.__wbg_linearfitdemo_free(ptr >>> 0));
+/**
+* Allowed pixel value range
+*
+* C.f. `VideoFullRangeFlag` variable specified in ISO/IEC 23091-4/ITU-T H.273
+*/
+export const PixelRange = Object.freeze({
+/**
+* Studio swing representation
+*/
+Limited:0,"0":"Limited",
+/**
+* Full swing representation
+*/
+Full:1,"1":"Full", });
 /**
 */
-export class LinearFitDemo {
+export const Tune = Object.freeze({ Psnr:0,"0":"Psnr",Psychovisual:1,"1":"Psychovisual", });
+
+const MhDemoFinalization = (typeof FinalizationRegistry === 'undefined')
+    ? { register: () => {}, unregister: () => {} }
+    : new FinalizationRegistry(ptr => wasm.__wbg_mhdemo_free(ptr >>> 0));
+/**
+*/
+export class MhDemo {
 
     static __wrap(ptr) {
         ptr = ptr >>> 0;
-        const obj = Object.create(LinearFitDemo.prototype);
+        const obj = Object.create(MhDemo.prototype);
         obj.__wbg_ptr = ptr;
-        LinearFitDemoFinalization.register(obj, obj.__wbg_ptr, obj);
+        MhDemoFinalization.register(obj, obj.__wbg_ptr, obj);
         return obj;
     }
 
     __destroy_into_raw() {
         const ptr = this.__wbg_ptr;
         this.__wbg_ptr = 0;
-        LinearFitDemoFinalization.unregister(this);
+        MhDemoFinalization.unregister(this);
         return ptr;
     }
 
     free() {
         const ptr = this.__destroy_into_raw();
-        wasm.__wbg_linearfitdemo_free(ptr);
+        wasm.__wbg_mhdemo_free(ptr);
     }
     /**
     * @param {string} canvas
-    * @returns {LinearFitDemo}
+    * @returns {MhDemo}
     */
     static new(canvas) {
         const ptr0 = passStringToWasm0(canvas, wasm.__wbindgen_malloc, wasm.__wbindgen_realloc);
         const len0 = WASM_VECTOR_LEN;
-        const ret = wasm.linearfitdemo_new(ptr0, len0);
-        return LinearFitDemo.__wrap(ret);
+        const ret = wasm.mhdemo_new(ptr0, len0);
+        return MhDemo.__wrap(ret);
     }
     /**
     */
     render() {
-        wasm.linearfitdemo_render(this.__wbg_ptr);
+        wasm.mhdemo_render(this.__wbg_ptr);
     }
     /**
     */
     tick() {
-        wasm.linearfitdemo_tick(this.__wbg_ptr);
+        wasm.mhdemo_tick(this.__wbg_ptr);
     }
     /**
     * @param {number} x
     * @param {number} y
     */
     mouse_button_down(x, y) {
-        wasm.linearfitdemo_mouse_button_down(this.__wbg_ptr, x, y);
+        wasm.mhdemo_mouse_button_down(this.__wbg_ptr, x, y);
     }
     /**
     * @param {number} x
     * @param {number} y
     */
     mouse_button_up(x, y) {
-        wasm.linearfitdemo_mouse_button_up(this.__wbg_ptr, x, y);
+        wasm.mhdemo_mouse_button_up(this.__wbg_ptr, x, y);
     }
     /**
     * @param {number} x
     * @param {number} y
     */
     mouse_move(x, y) {
-        wasm.linearfitdemo_mouse_move(this.__wbg_ptr, x, y);
+        wasm.mhdemo_mouse_move(this.__wbg_ptr, x, y);
     }
 }
 
@@ -597,7 +597,7 @@ async function __wbg_init(input) {
     if (wasm !== undefined) return wasm;
 
     if (typeof input === 'undefined') {
-        input = new URL('linear_fit_demo_bg.wasm', import.meta.url);
+        input = new URL('mh_demo_bg.wasm', import.meta.url);
     }
     const imports = __wbg_get_imports();
 

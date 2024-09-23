@@ -29,6 +29,37 @@ window.MathJax = {
 
 <p>We have gone through several blog posts about fitting now, from <a href=https://jack-dinsmore.github.io/blog/html/parameter%2dfitting.html>general theory</a> to <a href=https://jack-dinsmore.github.io/blog/html/line.html>an example for linear functions</a> to <a href=https://jack-dinsmore.github.io/blog/html/line2.html>establishing uncertainties on the best fit</a> and <a href=https://jack-dinsmore.github.io/blog/html/gaussian.html>a generalization to Gaussian likelihoods</a>. All of these posts invoked assumptions to keep the calculations tractable, but these assumptions can be (and often are) removed with the help of new algorithms, such as the <i>Markov Chain Monte Carlo</i> (MCMC) methods we’ll introduce here.
 </p>
+<center><canvas id="mh_demo"></canvas>
+        <div class="caption"><b>Applet:</b> A Metropolis-Hastings algorithm performs a fit to data with a bi-modal likelihood. See the last section for a description of the scenario. The fit is accurate where the previous, simpler method assuming a Gaussian posterior would have failed.</div></center>
+<script type="module">
+    import init, {MhDemo} from "https://jack-dinsmore.github.io/blog/bin/mh_demo.js";
+    await init();
+
+    const mh_demo = MhDemo.new("mh_demo");
+    let last = Date.now();
+
+    const renderLoop = () => {
+        let now = Date.now();
+        requestAnimationFrame(renderLoop);
+        if (now - last > 17) {
+            last = now;
+            mh_demo.tick();
+            mh_demo.render();
+        }
+    };
+    document.getElementById("mh_demo").addEventListener("mousedown", function(event) {
+        mh_demo.mouse_button_down(event.offsetX, event.offsetY)
+    });
+    document.getElementById("mh_demo").addEventListener("mouseup", function(event) {
+        mh_demo.mouse_button_up(event.offsetX, event.offsetY)
+    });
+    document.getElementById("mh_demo").addEventListener("mousemove", function(event) {
+        mh_demo.mouse_move(event.offsetX, event.offsetY)
+    });
+    requestAnimationFrame(renderLoop);
+
+</script>
+
 <button class="collapsible"><h2>Motivations</h2></button><div class="section">
 
 <p>To understand MCMCs, we’ll have to approach parameter fitting in a completely new way, which deserves some introduction. Let’s start by stating the easy part. There’s nothing fundamentally hard about computing the posterior \(P(\bm \theta | D) = \mathcal{L}(\bm \theta) \pi(\bm \theta)\). We are simply multiplying the known functions: the likelihood and the prior. But practical issues arrive in two forms. Likelihoods can be slow to compute, and one often wishes to know \(P(\bm \theta | D)\) at many values of \(\bm \theta\), so that one can be sure one has found the minimum and has fully understood the shape of the distribution. The trick is to use an algorithm which spends its time calculating \(P(\bm \theta|D)\) only at the interesting points, i.e. near the maximum.
@@ -63,13 +94,15 @@ Incidentally, this equation is sometimes called <i>detailed balance</i>.
 <p>The first method we’ll discuss is called an <a href=https://msp.org/camcos/2010/5-1/p04.xhtml>Affine Invariant Ensemble Sampler</a>. It uses the current positions of the “ensemble” of all the Markov chains you’re running to inform the choice of \(\bm \phi\) by picking points near to or inside the ensemble. The “affine invariance” refers to the particular method of choosing \(\bm \phi\) from the locations of all the chains \(\bm \theta_i\), which works even in cases where \(P(\bm \theta)\) is highly correlated or much thinner in one axis than another. For most Gaussian-like posteriors, this MCMC method converges quickly. However, for multi-modal or otherwise non-Gaussian posteriors the “affine-invariant” selection method is not flexible enough to be efficient, and convergence is slower.
 </p>
 <h3>Method 2: Nested Sampling</h3>
-<p>The <a href=https://ui.adsabs.harvard.edu/abs/2004AIPC..735..395S/abstract>nested sampling</a>
+<p>A common alternative to ensemble samplers is <a href=https://ui.adsabs.harvard.edu/abs/2004AIPC..735..395S/abstract>nested sampling</a>. Nested samplers are really a set of many algorithms which are all based on one core principle: updating the chains using the Metropolis-Hastings algorithm in order of least to greatest likelihood. This simple procedure guarantees that as the algorithm proceeds and the chains proceed to higher likelihood values, the whole ensemble encloses on the maximum. Furthermore, since the chains are guaranteed to occupy high likelihood regions, trial points \(\phi\) drawn from regions near other chains are more likely to be accepted. This principle makes nested samplers more reliable than ensemble samplers in some situations with non-Gaussian posteriors. A final benefit of nested sampling is that it provides a simple way of estimating the <i>statistical evidence</i>, which we will come to in a later post.
 </p>
+</div> <button class="collapsible"><h2>Demonstration</h2></button><div class="section">
+
 </div> <button class="collapsible"><h2>Conclusion</h2></button><div class="section">
 
-<p>Mention that MCMCs are inefficient minimizers.
+<p>MCMC methods provide a robust way of fitting models to data with as few assumptions on the posterior as possible. But it is important to note that they are also the least efficient. <a href=https://jack-dinsmore.github.io/blog/html/line.html>Analytically solving</a> for the posterior is much faster if possible. When not, assuming <a href=https://jack-dinsmore.github.io/blog/html/gaussian.html>the posterior is Gaussian</a> reduces the problem simply to finding the maximum of the posterior, which can be done quickly by one of several numerical methods. Generating samples to solve for the whole posterior, as an MCMC does, is still useful in many cases. But if you have to perform many fits, or a fit over many parameters, you should seriously consider other methods before committing to a days-long computation that will take several attempts to get right.
 </div></div><div id="footer">
-Copyright &copy; 2024 Jack Dinsmore. &emsp;Updated July 11. &emsp;Version 0.1</div></body>
+Copyright &copy; 2024 Jack Dinsmore. &emsp;Updated September 23. &emsp;Version 0.1</div></body>
 <script>
 var coll = document.getElementsByClassName("collapsible");
 var i;
