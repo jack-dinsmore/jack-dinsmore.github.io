@@ -360,7 +360,7 @@ document.write(`
 </div>
 <p>Leakage depends on energy and therefore the observed spectrum. Let’s assume an unabsorbed spectrum with photon index 2, just for demonstration purposes.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">SOURCE_SIZE</span> <span class="o">=</span> <span class="mi">53</span> <span class="c1"># pixels</span>
@@ -374,14 +374,14 @@ document.write(`
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-&gt;&gt;&gt; Using cached xEffectiveArea object at /opt/homebrew/anaconda3/lib/python3.12/site-packages/ixpeobssim/caldb/ixpe/gpd/cpf/arf/ixpe_d1_obssim20240101_v013.arf...
+&gt;&gt;&gt; Reading (in memory) /opt/homebrew/anaconda3/lib/python3.12/site-packages/ixpeobssim/caldb/ixpe/gpd/cpf/arf/ixpe_d1_obssim20240101_v013.arf...
 </pre></div></div>
 </div>
 <section id="Point-source-prediction">
 <h2>Point source prediction<a class="headerlink" href="#Point-source-prediction" title="Link to this heading">#</a></h2>
 <p>We first need to make an object describing where the source is. Let’s do a point source first.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">source</span> <span class="o">=</span> <span class="n">leakagelib</span><span class="o">.</span><span class="n">Source</span><span class="o">.</span><span class="n">delta</span><span class="p">(</span>
@@ -394,7 +394,7 @@ document.write(`
 </div>
 <p>We’ll load a sample observation: GX 9+9, which has low polarization. You will have to download this data set from the IXPE archive. Put it in your standard data folder. If you have added that folder path to the <code class="docutils literal notranslate"><span class="pre">DATA_DIRECTORIES</span></code> variable in the <code class="docutils literal notranslate"><span class="pre">settings.py</span></code> file of the leakagelib source code, the following line of code should find the file.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ixpe_datas</span> <span class="o">=</span> <span class="n">leakagelib</span><span class="o">.</span><span class="n">IXPEData</span><span class="o">.</span><span class="n">load_all_detectors</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="s2">&quot;01002401&quot;</span><span class="p">,</span> <span class="nb">bin</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -425,7 +425,7 @@ Successfully loaded files
 </div>
 <p>Let’s take detector 1, center it so the point source is in the middle, and generate a PSF object</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ixpe_data</span> <span class="o">=</span> <span class="n">ixpe_datas</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
@@ -441,7 +441,7 @@ Successfully loaded files
 </div>
 <p>Now we’ll compute some leakage patterns. The flux won’t be right because we didn’t tell the source how bright it is. We’ll renormalize the I flux to be the same as the source’s.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pred_i</span><span class="p">,</span> <span class="n">pred_q</span><span class="p">,</span> <span class="n">pred_u</span> <span class="o">=</span> <span class="n">source</span><span class="o">.</span><span class="n">compute_leakage</span><span class="p">(</span>
@@ -457,7 +457,7 @@ Successfully loaded files
 </div>
 <p>Now we display the patterns and residuals</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">ncols</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="n">nrows</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">12</span><span class="p">),</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">gridspec_kw</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">width_ratios</span><span class="o">=</span><span class="p">(</span><span class="mf">1.25</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mf">1.25</span><span class="p">)))</span>
@@ -509,7 +509,7 @@ Successfully loaded files
 <h2>Extended source prediction<a class="headerlink" href="#Extended-source-prediction" title="Link to this heading">#</a></h2>
 <p>Let’s suppose we know what the extended source’s flux image looks like, with very good resolution (e.g. a Chandra observation). Assuming that flux is stored in <code class="docutils literal notranslate"><span class="pre">data/prediction/pwn-i.fits</span></code>,</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">source</span> <span class="o">=</span> <span class="n">leakagelib</span><span class="o">.</span><span class="n">Source</span><span class="o">.</span><span class="n">load_file</span><span class="p">(</span><span class="s2">&quot;data/prediction/pwn-i.fits&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="n">SOURCE_SIZE</span><span class="p">,</span> <span class="n">PIXEL_SIZE</span><span class="p">)</span>
@@ -518,7 +518,7 @@ Successfully loaded files
 </div>
 <p>Now we’ll give it a model polarization map, and ask what the resulting leakage pattern is.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">source</span><span class="o">.</span><span class="n">polarize_file</span><span class="p">(</span><span class="s2">&quot;data/prediction/pwn-qu.fits&quot;</span><span class="p">)</span>
@@ -527,7 +527,7 @@ Successfully loaded files
 </div>
 <p>The following code plots the polarization patterns.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">VMAX</span><span class="o">=</span><span class="mf">0.5</span>
@@ -576,6 +576,14 @@ Successfully loaded files
 </div>
 <div class="output_area docutils container">
 <img alt="../_images/examples_leakage-predict_19_0.png" src="../_images/examples_leakage-predict_19_0.png" />
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
 </div>
 </div>
 </section>

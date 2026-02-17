@@ -329,8 +329,8 @@ document.write(`
 <h1>Fitting for an extended source polarization with <code class="docutils literal notranslate"><span class="pre">LeakageLib</span></code><a class="headerlink" href="#Fitting-for-an-extended-source-polarization-with-LeakageLib" title="Link to this heading">#</a></h1>
 <p>This jupyter notebook fits for the polarization of an extended source, with a photon and particle background. Here, the source is a 60 arcsecond-radius uniform disk, though because of the IXPE PSF, it appears wider in the IXPE data.</p>
 <p>The source is assumed to have constant polarization, though we provide guidance on variable polarization sources at the end. Spatial, particle, and spectral weights are used.</p>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
@@ -339,17 +339,9 @@ document.write(`
 </pre></div>
 </div>
 </div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area stderr docutils container">
-<div class="highlight"><pre>
-<span class="ansi-yellow-intense-fg">&gt;&gt;&gt; PyXSPEC is not installed, you will no be able to use it.</span>
-</pre></div></div>
-</div>
 <p>The first step is to load the mock Moments data. We’ll center it on pixel (300, 300), and cut to 280 arcseconds around that point. See the point source fit example for a description of these functions.</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">source</span> <span class="o">=</span> <span class="n">leakagelib</span><span class="o">.</span><span class="n">Source</span><span class="o">.</span><span class="n">no_image</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
@@ -368,7 +360,7 @@ document.write(`
 </div>
 <p>Now we have to create a custom <code class="docutils literal notranslate"><span class="pre">Source</span></code> object for our extended source: a 60”-radius disk. The source object should not be blurred by the PSF; i.e. it should depict the source as seen by Chandra, not IXPE</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pixel_size</span> <span class="o">=</span> <span class="mf">2.9729</span> <span class="c1"># This is the size of the sky PSF pixels; use it for best results</span>
@@ -384,11 +376,11 @@ document.write(`
 </div>
 <p>Now we give the source object to the fitter</p>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">source</span> <span class="o">=</span> <span class="n">leakagelib</span><span class="o">.</span><span class="n">Source</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">image</span><span class="p">),</span> <span class="n">pixel_size</span><span class="p">)</span>
-<span class="n">settings</span> <span class="o">=</span> <span class="n">leakagelib</span><span class="o">.</span><span class="n">ps_fit</span><span class="o">.</span><span class="n">FitSettings</span><span class="p">(</span><span class="n">datas</span><span class="p">)</span>
+<span class="n">settings</span> <span class="o">=</span> <span class="n">leakagelib</span><span class="o">.</span><span class="n">FitSettings</span><span class="p">(</span><span class="n">datas</span><span class="p">)</span>
 <span class="n">settings</span><span class="o">.</span><span class="n">add_source</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="s2">&quot;src-ext&quot;</span><span class="p">)</span>
 <span class="n">settings</span><span class="o">.</span><span class="n">fix_flux</span><span class="p">(</span><span class="s2">&quot;src-ext&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 </pre></div>
@@ -397,7 +389,7 @@ document.write(`
 <p>The background and spectral weights are added in the same way as the previous fit, but this time we won’t assume zero background polarization.</p>
 <p>We are assuming no particles for convenience. This is what you should do if you did not generate particle weights with <code class="docutils literal notranslate"><span class="pre">leakagelib_bkg</span></code>.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">settings</span><span class="o">.</span><span class="n">add_background</span><span class="p">(</span><span class="s2">&quot;bkg&quot;</span><span class="p">)</span>
@@ -418,12 +410,12 @@ document.write(`
 </div>
 <div class="output_area stderr docutils container">
 <div class="highlight"><pre>
-&gt;&gt;&gt; Reading (in memory) /opt/homebrew/anaconda3/lib/python3.12/site-packages/ixpeobssim/caldb/ixpe/gpd/cpf/arf/ixpe_d1_obssim20240101_v013.arf...
+&gt;&gt;&gt; Using cached xEffectiveArea object at /opt/homebrew/anaconda3/lib/python3.12/site-packages/ixpeobssim/caldb/ixpe/gpd/cpf/arf/ixpe_d1_obssim20240101_v013.arf...
 </pre></div></div>
 </div>
 <p>Let’s view what the sources look like:</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fitter</span><span class="o">.</span><span class="n">display_sources</span><span class="p">(</span><span class="n">data_pixel_size</span><span class="o">=</span><span class="mi">8</span><span class="p">);</span>
@@ -439,7 +431,7 @@ document.write(`
 </div>
 <p>It appears that the blurred source does indeed match the data well. Finally, we perform the fit</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">fitter</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
@@ -448,27 +440,28 @@ document.write(`
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 FitResult:
-        q (src-ext) = -0.4023 +/- 0.0000
-        u (src-ext) = -0.9155 +/- 0.0000
-        q (bkg) = 0.0097 +/- 0.0493
-        u (bkg) = -0.0262 +/- 0.0491
-        f (bkg) = 0.8858 +/- 0.0125
+        q (src-ext) = 0.4289 +/- 0.0751
+        u (src-ext) = 0.0077 +/- 0.0751
+        q (bkg) = -0.0202 +/- 0.0462
+        u (bkg) = -0.0532 +/- 0.0467
+        f (bkg) = 2.1462 +/- 0.0448
 
 Polarization:
-        PD (src-ext): 1.0000 +/- 0.0000 (50083226.1 sig)
-        PA (src-ext): -56.8599 deg +/- 0.0000
-        PD (bkg): 0.0280 +/- 0.0492 (0.6 sig)
-        PA (bkg): -34.9010 deg +/- 50.4860
-Likelihood 10894.327754372436, dof 15609
+        PD (src-ext): 0.4289 +/- 0.0751 (5.7 sig)
+        PA (src-ext): 0.5144 deg +/- 5.0130
+        PD (bkg): 0.0569 +/- 0.0466 (1.2 sig)
+        PA (bkg): -55.3973 deg +/- 23.2842
+Likelihood 11694.843175584967, dof 15655
 Optimization terminated successfully.
 </pre></div></div>
 </div>
+<p>The true source polarization was q=0.5, u=0, which the fit agrees with.</p>
 </section>
 
 

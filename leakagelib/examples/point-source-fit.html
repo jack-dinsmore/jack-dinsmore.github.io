@@ -397,11 +397,11 @@ document.write(`
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">settings</span> <span class="o">=</span> <span class="n">leakagelib</span><span class="o">.</span><span class="n">ps_fit</span><span class="o">.</span><span class="n">FitSettings</span><span class="p">(</span><span class="n">datas</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">settings</span> <span class="o">=</span> <span class="n">leakagelib</span><span class="o">.</span><span class="n">FitSettings</span><span class="p">(</span><span class="n">datas</span><span class="p">)</span>
 
 <span class="n">settings</span><span class="o">.</span><span class="n">add_point_source</span><span class="p">()</span> <span class="c1"># Named &quot;src&quot; by default</span>
 <span class="n">settings</span><span class="o">.</span><span class="n">fix_flux</span><span class="p">(</span><span class="s2">&quot;src&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-<span class="n">settings</span><span class="o">.</span><span class="n">set_initial_qu</span><span class="p">(</span><span class="s2">&quot;src&quot;</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span>
+<span class="n">settings</span><span class="o">.</span><span class="n">set_initial_qu</span><span class="p">(</span><span class="s2">&quot;src&quot;</span><span class="p">,</span> <span class="p">(</span><span class="mf">0.5</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -481,7 +481,7 @@ document.write(`
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
 </pre></div>
 </div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fitter</span> <span class="o">=</span> <span class="n">leakagelib</span><span class="o">.</span><span class="n">ps_fit</span><span class="o">.</span><span class="n">Fitter</span><span class="p">(</span><span class="n">datas</span><span class="p">,</span> <span class="n">settings</span><span class="p">)</span>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fitter</span> <span class="o">=</span> <span class="n">leakagelib</span><span class="o">.</span><span class="n">Fitter</span><span class="p">(</span><span class="n">datas</span><span class="p">,</span> <span class="n">settings</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">fitter</span><span class="p">)</span>
 <span class="n">result</span> <span class="o">=</span> <span class="n">fitter</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
 
@@ -518,18 +518,19 @@ pbkg:   u       0
 <div class="output_area docutils container">
 <div class="highlight"><pre>
 FitResult:
-        q (src) = 0.3363 +/- 0.0719
-        u (src) = -0.0214 +/- 0.0726
-        f (bkg) = 1.4488 +/- 0.0312
-        f (pbkg) = 0.7045 +/- 0.0180
+        q (src) = 0.5092 +/- 0.0721
+        u (src) = -0.0001 +/- 0.0723
+        f (bkg) = 1.4602 +/- 0.0315
+        f (pbkg) = 0.6852 +/- 0.0177
 
 Polarization:
-        PD (src): 0.3370 +/- 0.0719 (4.7 sig)
-        PA (src): -1.8244 deg +/- 6.1682
-Likelihood 23168.382129529396, dof 15735
+        PD (src): 0.5092 +/- 0.0721 (7.1 sig)
+        PA (src): -0.0082 deg +/- 4.0700
+Likelihood 23123.702880749537, dof 15691
 Optimization terminated successfully.
 </pre></div></div>
 </div>
+<p>Indeed, the true polarization of this mock source was q = 0.5, u = 0.0. The fit result agrees.</p>
 <div class="admonition note">
 <p class="admonition-title"><strong>Alternatives to</strong> <code class="docutils literal notranslate"><span class="pre">leakagelib.Fitter.fit</span></code></p>
 <ul class="simple">
@@ -553,13 +554,21 @@ Optimization terminated successfully.
 </div>
 <div class="output_area docutils container">
 <div class="highlight"><pre>
-Parameters {(&#39;q&#39;, &#39;src&#39;): 0.33629609651171555, (&#39;u&#39;, &#39;src&#39;): -0.021445733605313176, (&#39;f&#39;, &#39;bkg&#39;): 1.4487766852664463, (&#39;f&#39;, &#39;pbkg&#39;): 0.7045449117000632}
-Uncertainties {(&#39;q&#39;, &#39;src&#39;): 0.07188141512403051, (&#39;u&#39;, &#39;src&#39;): 0.07255788283252212, (&#39;f&#39;, &#39;bkg&#39;): 0.031228943997413966, (&#39;f&#39;, &#39;pbkg&#39;): 0.017994536976980127}
-Covariance [[ 5.16693784e-03 -2.06304524e-05  0.00000000e+00  0.00000000e+00]
- [-2.06304524e-05  5.26464636e-03  0.00000000e+00  0.00000000e+00]
- [ 0.00000000e+00  0.00000000e+00  9.75246943e-04  2.00522611e-04]
- [ 0.00000000e+00  0.00000000e+00  2.00522611e-04  3.23803361e-04]]
+Parameters {(&#39;q&#39;, &#39;src&#39;): 0.5091997559169119, (&#39;u&#39;, &#39;src&#39;): -0.0001465637380886765, (&#39;f&#39;, &#39;bkg&#39;): 1.4602052476296876, (&#39;f&#39;, &#39;pbkg&#39;): 0.6851993225880586}
+Uncertainties {(&#39;q&#39;, &#39;src&#39;): 0.0720889216211086, (&#39;u&#39;, &#39;src&#39;): 0.072342012166437, (&#39;f&#39;, &#39;bkg&#39;): 0.03145924839584101, (&#39;f&#39;, &#39;pbkg&#39;): 0.017668913696187224}
+Covariance [[ 5.19681262e-03 -8.08105348e-05  0.00000000e+00  0.00000000e+00]
+ [-8.08105348e-05  5.23336672e-03  0.00000000e+00  0.00000000e+00]
+ [ 0.00000000e+00  0.00000000e+00  9.89684310e-04  1.96057259e-04]
+ [ 0.00000000e+00  0.00000000e+00  1.96057259e-04  3.12190511e-04]]
 </pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
 </div>
 </section>
 
