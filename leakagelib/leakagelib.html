@@ -1,0 +1,1919 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>leakagelib API documentation &#8212; LeakageLib 2.0.1 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=75c5c689"></script>
+    <script src="_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'leakagelib';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="leakagelib.ps_fit package" href="leakagelib.ps_fit.html" />
+    <link rel="prev" title="FAQ" href="faq.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">LeakageLib 2.0.1 documentation</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installing LeakageLib</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="fitting.html">Polarization fitting</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="examples/point-source-fit.html">Fitting for a point source polarization with <code class="docutils literal notranslate"><span class="pre">LeakageLib</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/extended-source-fit.html">Fitting for an extended source polarization with <code class="docutils literal notranslate"><span class="pre">LeakageLib</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/time-varying-fit.html">Variable sources</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="background_estimation.html">Background particle weighting</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="leakage_prediction.html">Leakage Prediction</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="examples/leakage-predict.html">Leakage pattern prediction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/leakage-severity.html">Estimate leakage severity as a function of radius</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples/leakage-extract.html">Leakage pattern deconvolution</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">FAQ</a></li>
+<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#"><cite>leakagelib</cite> API documentation</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="leakagelib.ps_fit.html">leakagelib.ps_fit package</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="leakagelib_bkg.html"><cite>leakagelib_bkg</cite> API documentation</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/leakagelib.rst" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.rst</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>leakagelib API documentation</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.EnergyDependence"><code class="docutils literal notranslate"><span class="pre">EnergyDependence</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.EnergyDependence.constant"><code class="docutils literal notranslate"><span class="pre">EnergyDependence.constant()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.EnergyDependence.default"><code class="docutils literal notranslate"><span class="pre">EnergyDependence.default()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.EnergyDependence.evaluate"><code class="docutils literal notranslate"><span class="pre">EnergyDependence.evaluate()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.EnergyDependence.get_params"><code class="docutils literal notranslate"><span class="pre">EnergyDependence.get_params()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.EnergyDependence.lawrence_mom"><code class="docutils literal notranslate"><span class="pre">EnergyDependence.lawrence_mom()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.EnergyDependence.lawrence_nn"><code class="docutils literal notranslate"><span class="pre">EnergyDependence.lawrence_nn()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.FitSettings"><code class="docutils literal notranslate"><span class="pre">FitSettings</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.FitSettings.add_background"><code class="docutils literal notranslate"><span class="pre">FitSettings.add_background()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.FitSettings.add_param"><code class="docutils literal notranslate"><span class="pre">FitSettings.add_param()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.FitSettings.add_particle_background"><code class="docutils literal notranslate"><span class="pre">FitSettings.add_particle_background()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.FitSettings.add_particle_source"><code class="docutils literal notranslate"><span class="pre">FitSettings.add_particle_source()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.FitSettings.add_point_source"><code class="docutils literal notranslate"><span class="pre">FitSettings.add_point_source()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.FitSettings.add_source"><code class="docutils literal notranslate"><span class="pre">FitSettings.add_source()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.FitSettings.apply_circular_roi"><code class="docutils literal notranslate"><span class="pre">FitSettings.apply_circular_roi()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.FitSettings.apply_roi"><code class="docutils literal notranslate"><span class="pre">FitSettings.apply_roi()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.FitSettings.fit_psf_sigma"><code class="docutils literal notranslate"><span class="pre">FitSettings.fit_psf_sigma()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.FitSettings.fix_flux"><code class="docutils literal notranslate"><span class="pre">FitSettings.fix_flux()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.FitSettings.fix_psf_sigma"><code class="docutils literal notranslate"><span class="pre">FitSettings.fix_psf_sigma()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.FitSettings.fix_qu"><code class="docutils literal notranslate"><span class="pre">FitSettings.fix_qu()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.FitSettings.get_n_sources"><code class="docutils literal notranslate"><span class="pre">FitSettings.get_n_sources()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.FitSettings.set_initial_flux"><code class="docutils literal notranslate"><span class="pre">FitSettings.set_initial_flux()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.FitSettings.set_initial_qu"><code class="docutils literal notranslate"><span class="pre">FitSettings.set_initial_qu()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.FitSettings.set_lightcurve"><code class="docutils literal notranslate"><span class="pre">FitSettings.set_lightcurve()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.FitSettings.set_model_fn"><code class="docutils literal notranslate"><span class="pre">FitSettings.set_model_fn()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.FitSettings.set_spectrum"><code class="docutils literal notranslate"><span class="pre">FitSettings.set_spectrum()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.FitSettings.set_sweep"><code class="docutils literal notranslate"><span class="pre">FitSettings.set_sweep()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.Fitter"><code class="docutils literal notranslate"><span class="pre">Fitter</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.Fitter.display_sources"><code class="docutils literal notranslate"><span class="pre">Fitter.display_sources()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.Fitter.fit"><code class="docutils literal notranslate"><span class="pre">Fitter.fit()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.Fitter.fit_mcmc"><code class="docutils literal notranslate"><span class="pre">Fitter.fit_mcmc()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.Fitter.log_prob"><code class="docutils literal notranslate"><span class="pre">Fitter.log_prob()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.IXPEData"><code class="docutils literal notranslate"><span class="pre">IXPEData</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.IXPEData.det"><code class="docutils literal notranslate"><span class="pre">IXPEData.det</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.IXPEData.filename"><code class="docutils literal notranslate"><span class="pre">IXPEData.filename</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.IXPEData.obs_id"><code class="docutils literal notranslate"><span class="pre">IXPEData.obs_id</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.IXPEData.antirotate_events"><code class="docutils literal notranslate"><span class="pre">IXPEData.antirotate_events()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.IXPEData.centroid_center"><code class="docutils literal notranslate"><span class="pre">IXPEData.centroid_center()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.IXPEData.explicit_center"><code class="docutils literal notranslate"><span class="pre">IXPEData.explicit_center()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.IXPEData.get_antirotation_matrix"><code class="docutils literal notranslate"><span class="pre">IXPEData.get_antirotation_matrix()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.IXPEData.get_detector_polarization"><code class="docutils literal notranslate"><span class="pre">IXPEData.get_detector_polarization()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.IXPEData.get_net_polarization"><code class="docutils literal notranslate"><span class="pre">IXPEData.get_net_polarization()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.IXPEData.get_stokes_antirotation_matrix"><code class="docutils literal notranslate"><span class="pre">IXPEData.get_stokes_antirotation_matrix()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.IXPEData.iterative_centroid_center"><code class="docutils literal notranslate"><span class="pre">IXPEData.iterative_centroid_center()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.IXPEData.load_all_detectors"><code class="docutils literal notranslate"><span class="pre">IXPEData.load_all_detectors()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.IXPEData.load_all_detectors_with_path"><code class="docutils literal notranslate"><span class="pre">IXPEData.load_all_detectors_with_path()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.IXPEData.load_expmap"><code class="docutils literal notranslate"><span class="pre">IXPEData.load_expmap()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.IXPEData.retain"><code class="docutils literal notranslate"><span class="pre">IXPEData.retain()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.IXPEData.retain_region"><code class="docutils literal notranslate"><span class="pre">IXPEData.retain_region()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.IXPEData.weight_nn"><code class="docutils literal notranslate"><span class="pre">IXPEData.weight_nn()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.PSF"><code class="docutils literal notranslate"><span class="pre">PSF</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.PSF.blur"><code class="docutils literal notranslate"><span class="pre">PSF.blur()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.PSF.blur_custom_kernel"><code class="docutils literal notranslate"><span class="pre">PSF.blur_custom_kernel()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.PSF.clip"><code class="docutils literal notranslate"><span class="pre">PSF.clip()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.PSF.ground_cal"><code class="docutils literal notranslate"><span class="pre">PSF.ground_cal()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.PSF.obssim"><code class="docutils literal notranslate"><span class="pre">PSF.obssim()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.PSF.save"><code class="docutils literal notranslate"><span class="pre">PSF.save()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.PSF.sky_cal"><code class="docutils literal notranslate"><span class="pre">PSF.sky_cal()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.Region"><code class="docutils literal notranslate"><span class="pre">Region</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.Region.check_inside_absolute"><code class="docutils literal notranslate"><span class="pre">Region.check_inside_absolute()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.Region.load"><code class="docutils literal notranslate"><span class="pre">Region.load()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.Source"><code class="docutils literal notranslate"><span class="pre">Source</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.Source.compute_leakage"><code class="docutils literal notranslate"><span class="pre">Source.compute_leakage()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.Source.convolve_psf"><code class="docutils literal notranslate"><span class="pre">Source.convolve_psf()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.Source.delta"><code class="docutils literal notranslate"><span class="pre">Source.delta()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.Source.divide_by_mu"><code class="docutils literal notranslate"><span class="pre">Source.divide_by_mu()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.Source.gaussian"><code class="docutils literal notranslate"><span class="pre">Source.gaussian()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.Source.get_event_p_r_given_phi"><code class="docutils literal notranslate"><span class="pre">Source.get_event_p_r_given_phi()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.Source.invalidate_event_data"><code class="docutils literal notranslate"><span class="pre">Source.invalidate_event_data()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.Source.invalidate_psf"><code class="docutils literal notranslate"><span class="pre">Source.invalidate_psf()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.Source.invalidate_source_polarization"><code class="docutils literal notranslate"><span class="pre">Source.invalidate_source_polarization()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.Source.load_file"><code class="docutils literal notranslate"><span class="pre">Source.load_file()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.Source.no_image"><code class="docutils literal notranslate"><span class="pre">Source.no_image()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.Source.polarize_array"><code class="docutils literal notranslate"><span class="pre">Source.polarize_array()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.Source.polarize_file"><code class="docutils literal notranslate"><span class="pre">Source.polarize_file()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.Source.polarize_net"><code class="docutils literal notranslate"><span class="pre">Source.polarize_net()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.Source.uniform"><code class="docutils literal notranslate"><span class="pre">Source.uniform()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.Spectrum"><code class="docutils literal notranslate"><span class="pre">Spectrum</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.Spectrum.from_power_law_index"><code class="docutils literal notranslate"><span class="pre">Spectrum.from_power_law_index()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.Spectrum.get_avg_mu"><code class="docutils literal notranslate"><span class="pre">Spectrum.get_avg_mu()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.Spectrum.get_avg_one_over_mu"><code class="docutils literal notranslate"><span class="pre">Spectrum.get_avg_one_over_mu()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.Spectrum.load"><code class="docutils literal notranslate"><span class="pre">Spectrum.load()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.Spectrum.save"><code class="docutils literal notranslate"><span class="pre">Spectrum.save()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.Spectrum.weighted_average"><code class="docutils literal notranslate"><span class="pre">Spectrum.weighted_average()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.get_mom_modf"><code class="docutils literal notranslate"><span class="pre">get_mom_modf()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.get_nn_modf"><code class="docutils literal notranslate"><span class="pre">get_nn_modf()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ps-fit-subpackage">ps_fit subpackage</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-leakagelib.extended">leakagelib.extended module</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.extended.fit_extended"><code class="docutils literal notranslate"><span class="pre">fit_extended()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-leakagelib.funcs">leakagelib.funcs module</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.funcs.integrate_zoom"><code class="docutils literal notranslate"><span class="pre">integrate_zoom()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.funcs.integrate_zoom_unvectorized"><code class="docutils literal notranslate"><span class="pre">integrate_zoom_unvectorized()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.funcs.interpolate_zoom"><code class="docutils literal notranslate"><span class="pre">interpolate_zoom()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.funcs.override_matplotlib_defaults"><code class="docutils literal notranslate"><span class="pre">override_matplotlib_defaults()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.funcs.super_zoom"><code class="docutils literal notranslate"><span class="pre">super_zoom()</span></code></a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="module-leakagelib">
+<span id="leakagelib-api-documentation"></span><h1><cite>leakagelib</cite> API documentation<a class="headerlink" href="#module-leakagelib" title="Link to this heading">#</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="leakagelib.EnergyDependence">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">leakagelib.</span></span><span class="sig-name descname"><span class="pre">EnergyDependence</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">energies</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma_parallel2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma_perp2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kurtosis4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mu</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#leakagelib.EnergyDependence" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A class that holds interpolators for the leakage parameters sigma_parallel, sigma_perp, and mu as a function of energy. Differences between detectors is not accounted for.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="leakagelib.EnergyDependence.constant">
+<span class="sig-name descname"><span class="pre">constant</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">use_nn</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#leakagelib.EnergyDependence.constant" title="Link to this definition">#</a></dt>
+<dd><p>Assume no sigma_perp, no kurtosis, and constant energy dependence.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>use_mu</strong> (<em>bool</em><em>, </em><em>optional</em>) – Set to False to ignore the modulation factor. Only use this if you plan to handle the modulation factor event-by-event.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="leakagelib.EnergyDependence.default">
+<span class="sig-name descname"><span class="pre">default</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">use_mu</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#leakagelib.EnergyDependence.default" title="Link to this definition">#</a></dt>
+<dd><p>Use the default energy dependence, depending on whether the analysis method is NN or Mom.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>use_nn</strong> (<em>bool</em>) – Set to True to use the neural net Leakage parameters and modulation factor, False for Moments.</p></li>
+<li><p><strong>use_mu</strong> (<em>bool</em><em>, </em><em>optional</em>) – Set to False to ignore the modulation factor. Only use this if you plan to handle the modulation factor event-by-event.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="leakagelib.EnergyDependence.evaluate">
+<span class="sig-name descname"><span class="pre">evaluate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">energies</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#leakagelib.EnergyDependence.evaluate" title="Link to this definition">#</a></dt>
+<dd><p>Get the leakage parameters for an array of event energies.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>energies</strong> (<em>array-like</em>) – Array of event energies in keV.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A tuple containing <cite>(sigma_parallels, sigma_perps, kurts)</cite>.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tuple of (ndarray, ndarray, ndarray)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="leakagelib.EnergyDependence.get_params">
+<span class="sig-name descname"><span class="pre">get_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">spectrum</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#leakagelib.EnergyDependence.get_params" title="Link to this definition">#</a></dt>
+<dd><p>In some cases, one really wants spectrum-weighted quantities, such as a spectrum-weighted mu, sigma_parallel, mu*sigma_parallel, etc. This function returns these quantities.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>spectrum</strong> (<a class="reference internal" href="#leakagelib.Spectrum" title="leakagelib.Spectrum"><em>Spectrum</em></a>) – Spectrum object for the data in question. Either create one directly or use
+the <cite>spectrum</cite> attribute of an IXPEData object.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dictionary of all leakage parameters: <cite>sigma_plus</cite>, <cite>sigma_minus</cite>, <cite>k_plus</cite>,
+<cite>k_minus</cite>, <cite>k_cross</cite>, and <cite>mu_*</cite>.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="leakagelib.EnergyDependence.lawrence_mom">
+<span class="sig-name descname"><span class="pre">lawrence_mom</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#leakagelib.EnergyDependence.lawrence_mom" title="Link to this definition">#</a></dt>
+<dd><p>Get the energy-dependent functions for Moments data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>use_mu</strong> (<em>bool</em><em>, </em><em>optional</em>) – Set to False to ignore the modulation factor. Only use this if you plan to handle the modulation factor event-by-event.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="leakagelib.EnergyDependence.lawrence_nn">
+<span class="sig-name descname"><span class="pre">lawrence_nn</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#leakagelib.EnergyDependence.lawrence_nn" title="Link to this definition">#</a></dt>
+<dd><p>Get the energy-dependent functions for Neural Net data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>use_mu</strong> (<em>bool</em><em>, </em><em>optional</em>) – Set to False to ignore the modulation factor. Only use this if you plan to handle the modulation factor event-by-event.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="leakagelib.FitSettings">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">leakagelib.</span></span><span class="sig-name descname"><span class="pre">FitSettings</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">datas</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#leakagelib.FitSettings" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>An object that keeps track of the meta-parameters of a fit.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="leakagelib.FitSettings.add_background">
+<span class="sig-name descname"><span class="pre">add_background</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'bkg'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">det</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(1,</span> <span class="pre">2,</span> <span class="pre">3)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">obs_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#leakagelib.FitSettings.add_background" title="Link to this definition">#</a></dt>
+<dd><p>Add a uniform, polarized background to the fit.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<em>str</em><em>, </em><em>optional</em>) – Name of the source. Default is “bkg”.</p></li>
+<li><p><strong>det</strong> (<em>tuple</em><em> of </em><em>int</em><em>, </em><em>optional</em>) – Detectors the source should apply to. Default is (1, 2, 3).</p></li>
+<li><p><strong>obs_ids</strong> (<em>tuple</em><em> of </em><em>int</em><em>, </em><em>optional</em>) – Observation IDs the source should apply to. Default is None (all observations).</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<ul class="simple">
+<li><p>To add an independent background to each detector, add three background sources and pass det=1, det=2, det=3 for each, with different names.</p></li>
+<li><p>The shape of the background image is set to the same shape as the first source object added to the fit settings. If no source exists, pixel width is set to the PSF native size of 2.9729 arcsec and number of pixels is the largest radius of events in the data set.</p></li>
+</ul>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="leakagelib.FitSettings.add_param">
+<span class="sig-name descname"><span class="pre">add_param</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">initial_value</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bounds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(None,</span> <span class="pre">None)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_diff_step</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.001</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#leakagelib.FitSettings.add_param" title="Link to this definition">#</a></dt>
+<dd><p>Add a parameter for the fitter. Only use after set_model_fn has been called.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<em>str</em>) – Parameter name.</p></li>
+<li><p><strong>initial_value</strong> (<em>float</em><em>, </em><em>optional</em>) – Initial value for the fitter. Default is 0.</p></li>
+<li><p><strong>bounds</strong> (<em>tuple</em><em> of </em><em>(</em><em>float</em><em>, </em><em>float</em><em>) or </em><em>None</em><em>, </em><em>optional</em>) – Bounds for the parameter. Default is no bounds.</p></li>
+<li><p><strong>num_diff_step</strong> (<em>float</em><em>, </em><em>optional</em>) – Step size used for numerical computation of uncertainties.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="leakagelib.FitSettings.add_particle_background">
+<span class="sig-name descname"><span class="pre">add_particle_background</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'pbkg'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">det</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(1,</span> <span class="pre">2,</span> <span class="pre">3)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">obs_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#leakagelib.FitSettings.add_particle_background" title="Link to this definition">#</a></dt>
+<dd><p>Add a uniform particle background component to the fit.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<em>str</em><em>, </em><em>optional</em>) – Name of the source. Default is “pbkg”.</p></li>
+<li><p><strong>det</strong> (<em>tuple</em><em> of </em><em>int</em><em>, </em><em>optional</em>) – Detectors the source should apply to. Default is (1, 2, 3).</p></li>
+<li><p><strong>obs_ids</strong> (<em>tuple</em><em> of </em><em>int</em><em>, </em><em>optional</em>) – Observation IDs the source should apply to. Default is None (all observations).</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="leakagelib.FitSettings.add_particle_source">
+<span class="sig-name descname"><span class="pre">add_particle_source</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">det</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(1,</span> <span class="pre">2,</span> <span class="pre">3)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">obs_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#leakagelib.FitSettings.add_particle_source" title="Link to this definition">#</a></dt>
+<dd><p>Add a particle source component to the fit.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>source</strong> (<a class="reference internal" href="#leakagelib.Source" title="leakagelib.Source"><em>Source</em></a>) – Source object containing the flux map.</p></li>
+<li><p><strong>name</strong> (<em>str</em>) – Name of the source.</p></li>
+<li><p><strong>det</strong> (<em>tuple</em><em> of </em><em>int</em><em>, </em><em>optional</em>) – Detectors the source should apply to.</p></li>
+<li><p><strong>obs_ids</strong> (<em>tuple</em><em> of </em><em>int</em><em>, </em><em>optional</em>) – Observation IDs the source should apply to. Default is None (all observations).</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="leakagelib.FitSettings.add_point_source">
+<span class="sig-name descname"><span class="pre">add_point_source</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'src'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">det</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(1,</span> <span class="pre">2,</span> <span class="pre">3)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">obs_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#leakagelib.FitSettings.add_point_source" title="Link to this definition">#</a></dt>
+<dd><p>Add a point source to the fit.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<em>str</em><em>, </em><em>optional</em>) – Name of the source. Default is “src”.</p></li>
+<li><p><strong>det</strong> (<em>tuple</em><em> of </em><em>int</em><em>, </em><em>optional</em>) – Detectors the source should apply to.</p></li>
+<li><p><strong>obs_ids</strong> (<em>tuple</em><em> of </em><em>int</em><em>, </em><em>optional</em>) – Observation IDs the source should apply to. Default is (1, 2, 3).</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="leakagelib.FitSettings.add_source">
+<span class="sig-name descname"><span class="pre">add_source</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">det</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(1,</span> <span class="pre">2,</span> <span class="pre">3)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">obs_ids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#leakagelib.FitSettings.add_source" title="Link to this definition">#</a></dt>
+<dd><p>Add an extended source to the fit.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>source</strong> (<a class="reference internal" href="#leakagelib.Source" title="leakagelib.Source"><em>Source</em></a>) – Source object containing the flux map.</p></li>
+<li><p><strong>name</strong> (<em>str</em>) – Name of the source.</p></li>
+<li><p><strong>det</strong> (<em>tuple</em><em> of </em><em>int</em><em>, </em><em>optional</em>) – Detectors the source should apply to.</p></li>
+<li><p><strong>obs_ids</strong> (<em>tuple</em><em> of </em><em>int</em><em>, </em><em>optional</em>) – Observation IDs the source should apply to. Default is (1, 2, 3).</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="leakagelib.FitSettings.apply_circular_roi">
+<span class="sig-name descname"><span class="pre">apply_circular_roi</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">radius</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#leakagelib.FitSettings.apply_circular_roi" title="Link to this definition">#</a></dt>
+<dd><p>Provide a circular ROI centered on the origin (radius in arcseconds).</p>
+<p>This function does NOT cut events; it only tells the fitter to expect events cut to this radius. You should cut the events yourself.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="leakagelib.FitSettings.apply_roi">
+<span class="sig-name descname"><span class="pre">apply_roi</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">roi_image</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#leakagelib.FitSettings.apply_roi" title="Link to this definition">#</a></dt>
+<dd><p>Provide the region of interest (ROI) to the fitter after data has been cut.</p>
+<p>This function does NOT cut events; it only tells the fitter to expect events cut to this ROI. You should cut the events yourself.</p>
+<p class="rubric">Notes</p>
+<p>The roi_image must have the same dimensions as source objects.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="leakagelib.FitSettings.fit_psf_sigma">
+<span class="sig-name descname"><span class="pre">fit_psf_sigma</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#leakagelib.FitSettings.fit_psf_sigma" title="Link to this definition">#</a></dt>
+<dd><p>Fit a blur parameter, which is a Gaussian with sigma equal to blur convolved with the PSF to better match the image.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="leakagelib.FitSettings.fix_flux">
+<span class="sig-name descname"><span class="pre">fix_flux</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flux</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#leakagelib.FitSettings.fix_flux" title="Link to this definition">#</a></dt>
+<dd><p>Fix the flux of a source. Flux units are arbitrary.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>source_name</strong> (<em>str</em>) – Name of the source.</p></li>
+<li><p><strong>flux</strong> (<em>float</em>) – Flux of the source.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>Fixing a single source is necessary to set the flux scale. Fixing multiple sources fixes relative luminosities. The fitter assumes the true flux is between 0 and 100, so you should set your fluxes accordingly.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="leakagelib.FitSettings.fix_psf_sigma">
+<span class="sig-name descname"><span class="pre">fix_psf_sigma</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">psf_sigma</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#leakagelib.FitSettings.fix_psf_sigma" title="Link to this definition">#</a></dt>
+<dd><p>Fix the psf blur sigma</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="leakagelib.FitSettings.fix_qu">
+<span class="sig-name descname"><span class="pre">fix_qu</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qu</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#leakagelib.FitSettings.fix_qu" title="Link to this definition">#</a></dt>
+<dd><p>Fix the Q and U values of a source.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>source_name</strong> (<em>str</em>) – Name of the source.</p></li>
+<li><p><strong>qu</strong> (<em>tuple</em><em> of </em><em>float</em><em> or </em><em>None</em>) – Tuple of Stokes coefficients to fix. Pass None to free the polarization.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="leakagelib.FitSettings.get_n_sources">
+<span class="sig-name descname"><span class="pre">get_n_sources</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#leakagelib.FitSettings.get_n_sources" title="Link to this definition">#</a></dt>
+<dd><p>Returns the number of sources that have been added to the fitter.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="leakagelib.FitSettings.set_initial_flux">
+<span class="sig-name descname"><span class="pre">set_initial_flux</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flux</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#leakagelib.FitSettings.set_initial_flux" title="Link to this definition">#</a></dt>
+<dd><p>Set the initial guess for the flux of a source.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>source_name</strong> (<em>str</em>) – Name of the source.</p></li>
+<li><p><strong>flux</strong> (<em>float</em>) – Initial flux value.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="leakagelib.FitSettings.set_initial_qu">
+<span class="sig-name descname"><span class="pre">set_initial_qu</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qu</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#leakagelib.FitSettings.set_initial_qu" title="Link to this definition">#</a></dt>
+<dd><p>Set the initial guess for Q and U of a source.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>source_name</strong> (<em>str</em>) – Name of the source.</p></li>
+<li><p><strong>qu</strong> (<em>tuple</em><em> of </em><em>float</em><em> or </em><em>None</em>) – Initial guess of Stokes coefficients. Pass None to leave free.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="leakagelib.FitSettings.set_lightcurve">
+<span class="sig-name descname"><span class="pre">set_lightcurve</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lightcurve</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">duty_cycle</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#leakagelib.FitSettings.set_lightcurve" title="Link to this definition">#</a></dt>
+<dd><p>Set a light curve for a source. Weights are assigned by running the light curve
+function on all event times.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>source_name</strong> (<em>str</em>) – Name of the source to assign time weights.</p></li>
+<li><p><strong>lightcurve</strong> (<em>callable</em>) – Function taking a time scalar or array and returning a weight scalar or array.</p></li>
+<li><p><strong>duty_cycle</strong> (<em>callable</em><em>, </em><em>optional</em>) – Fraction of data to distribute over time. Default is uniform over the data range.
+If a contiguous or no time cut was applied, the default may be used.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="leakagelib.FitSettings.set_model_fn">
+<span class="sig-name descname"><span class="pre">set_model_fn</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_fn</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#leakagelib.FitSettings.set_model_fn" title="Link to this definition">#</a></dt>
+<dd><p>Set a polarization model for a source with fittable parameters.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>source_name</strong> (<em>str</em>) – Name of the source to apply the polarization model.</p></li>
+<li><p><strong>model_fn</strong> (<em>callable</em>) – Function returning (q, u) from a polarization model. It takes three arguments:
+event time, FitData object, and parameter array. Use FitData.param_to_value
+to access parameter values. Additional parameters can be added with
+FitSettings.add_param.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="leakagelib.FitSettings.set_spectrum">
+<span class="sig-name descname"><span class="pre">set_spectrum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spectrum</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_rmf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">duty_cycle</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#leakagelib.FitSettings.set_spectrum" title="Link to this definition">#</a></dt>
+<dd><p>Set a spectrum for a source. Weights are assigned by running the spectrum
+function on all event energies.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>source_name</strong> (<em>str</em>) – Name of the source to assign spectral weights.</p></li>
+<li><p><strong>spectrum</strong> (<em>callable</em>) – Function taking an energy scalar or array and returning a weight scalar or array.</p></li>
+<li><p><strong>duty_cycle</strong> (<em>callable</em><em>, </em><em>optional</em>) – Fraction of data to distribute over energy. Default is uniform over the data range.
+If a contiguous energy cut was applied, the default may be used.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="leakagelib.FitSettings.set_sweep">
+<span class="sig-name descname"><span class="pre">set_sweep</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sweep</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#leakagelib.FitSettings.set_sweep" title="Link to this definition">#</a></dt>
+<dd><p>Set a polarization sweep model for a source.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>source_name</strong> (<em>str</em>) – Name of the source to apply the sweep model.</p></li>
+<li><p><strong>sweep</strong> (<em>callable</em>) – Function taking event time(s) and returning (q, u) for a normalized polarization model.
+A fit will determine a global PA offset and PD.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="leakagelib.Fitter">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">leakagelib.</span></span><span class="sig-name descname"><span class="pre">Fitter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">datas</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fit_settings</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">psfs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#leakagelib.Fitter" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Prepare the fitter.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>datas</strong> (<em>list</em><em> of </em><a class="reference internal" href="#leakagelib.IXPEData" title="leakagelib.IXPEData"><em>IXPEData</em></a>) – List of <a class="reference internal" href="#leakagelib.IXPEData" title="leakagelib.IXPEData"><code class="xref py py-class docutils literal notranslate"><span class="pre">IXPEData</span></code></a> objects. Does not need to be binned; only the events will be used.</p></li>
+<li><p><strong>fit_settings</strong> (<a class="reference internal" href="#leakagelib.FitSettings" title="leakagelib.FitSettings"><em>FitSettings</em></a>) – FitSettings object containing the sources to be fitted.</p></li>
+<li><p><strong>psfs</strong> (<em>list</em><em> of </em><a class="reference internal" href="#leakagelib.PSF" title="leakagelib.PSF"><em>PSF</em></a><em>, </em><em>optional</em>) – List of three PSF objects (ordered DU 1, 2, 3) if you wish to alter the PSFs.
+Default is None, which uses the Dinsmore &amp; Romani 2023 PSFs.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A Fitter object.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#leakagelib.Fitter" title="leakagelib.Fitter">Fitter</a></p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<ul class="simple">
+<li><p>It is advisable to first center your data and retain it to a large circular aperture.</p></li>
+</ul>
+<dl class="py method">
+<dt class="sig sig-object py" id="leakagelib.Fitter.display_sources">
+<span class="sig-name descname"><span class="pre">display_sources</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fig_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_pixel_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#leakagelib.Fitter.display_sources" title="Link to this definition">#</a></dt>
+<dd><p>Display the sources for debugging purposes</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fig_name</strong> (<em>str</em><em>, </em><em>optional</em>) – Filename of the figure to be saved. Leave blank to return the figure object instead.</p></li>
+<li><p><strong>data_pixel_size</strong> (<em>float</em><em>, </em><em>optional</em>) – Size of the spatial bins in arcseconds to use when displaying the data. Leave blank to use the native PSF pixel size.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>Returns the figure object if fig_name was None, otherwise returns None.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="leakagelib.Fitter.fit">
+<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'nelder-mead'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#leakagelib.Fitter.fit" title="Link to this definition">#</a></dt>
+<dd><p>Fit analytically</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>method</strong> (<em>str</em><em>, </em><em>optional</em>) – <cite>scipy.optimize.minimize</cite> method fit method. Default is Nelder-Mead.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="leakagelib.Fitter.fit_mcmc">
+<span class="sig-name descname"><span class="pre">fit_mcmc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_walkers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">16</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_iter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">burnin</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_corner</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'corner.png'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_samples</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">progress</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#leakagelib.Fitter.fit_mcmc" title="Link to this definition">#</a></dt>
+<dd><p>Fit using an MCMC (via the <cite>emcee</cite> package).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>n_walkers</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of walkers to use for the MCMC. Default is 16.</p></li>
+<li><p><strong>n_iter</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of iterations to run the MCMC for. Default is 5000.</p></li>
+<li><p><strong>burnin</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of points to discard. Default is 1000.</p></li>
+<li><p><strong>save_corner</strong> (<em>str</em><em> or </em><em>None</em><em>, </em><em>optional</em>) – File path to save the corner plot. Default is “corner.png”. Set to None to skip saving.
+Requires the <cite>corner</cite> package.</p></li>
+<li><p><strong>save_samples</strong> (<em>str</em><em> or </em><em>None</em><em>, </em><em>optional</em>) – File path to save the MCMC samples in h5 format. Recommended for advanced analysis.
+Default is None. WARNING: emcee appends to the file if it exists; delete first if you wish to redo a run.</p></li>
+<li><p><strong>progress</strong> (<em>bool</em><em>, </em><em>optional</em>) – Whether to show the MCMC progress bar. Default is True.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Object containing the results of the fit. The covariance matrix in FitData is set to the covariance of the parameters.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>FitData</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<ul class="simple">
+<li><p>For detailed manipulation or custom corner plots, use <cite>save_samples</cite>. You can then discard the FitData object and operate on the saved samples.</p></li>
+</ul>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="leakagelib.Fitter.log_prob">
+<span class="sig-name descname"><span class="pre">log_prob</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">params</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prior</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_array</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#leakagelib.Fitter.log_prob" title="Link to this definition">#</a></dt>
+<dd><p>Get the log posterior of the Fitter (log_like + log_prior).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>params</strong> (<em>array_like</em>) – List of parameters. If you are calling this function manually, you should order the parameters in the same order as the <code class="xref py py-attr docutils literal notranslate"><span class="pre">FitResults.parameter_names</span></code> attribute of the fit result.</p></li>
+<li><p><strong>prior</strong> (<em>bool</em>) – set to True to include the priors, which are all finite uniform.</p></li>
+<li><p><strong>return_array</strong> (<em>bool</em>) – set to True to return the log posteriors of each event as an array, instead of the summed log posterior.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="leakagelib.IXPEData">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">leakagelib.</span></span><span class="sig-name descname"><span class="pre">IXPEData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_names</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">energy_cut</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(2,</span> <span class="pre">8)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weight_image</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bin</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#leakagelib.IXPEData" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A class containing the data of a single pointing and a single detector.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="leakagelib.IXPEData.det">
+<span class="sig-name descname"><span class="pre">det</span></span><a class="headerlink" href="#leakagelib.IXPEData.det" title="Link to this definition">#</a></dt>
+<dd><p>The detector number (1, 2, or 3).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="leakagelib.IXPEData.filename">
+<span class="sig-name descname"><span class="pre">filename</span></span><a class="headerlink" href="#leakagelib.IXPEData.filename" title="Link to this definition">#</a></dt>
+<dd><p>The FITS file representing this data set.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="leakagelib.IXPEData.obs_id">
+<span class="sig-name descname"><span class="pre">obs_id</span></span><a class="headerlink" href="#leakagelib.IXPEData.obs_id" title="Link to this definition">#</a></dt>
+<dd><p>The observation ID.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p class="rubric">Notes</p>
+<p>To construct an <a class="reference internal" href="#leakagelib.IXPEData" title="leakagelib.IXPEData"><code class="xref py py-class docutils literal notranslate"><span class="pre">IXPEData</span></code></a>, you should use the <a class="reference internal" href="#leakagelib.IXPEData.load_all_detectors" title="leakagelib.IXPEData.load_all_detectors"><code class="xref py py-meth docutils literal notranslate"><span class="pre">IXPEData.load_all_detectors()</span></code></a> or <a class="reference internal" href="#leakagelib.IXPEData.load_all_detectors_with_path" title="leakagelib.IXPEData.load_all_detectors_with_path"><code class="xref py py-meth docutils literal notranslate"><span class="pre">IXPEData.load_all_detectors_with_path()</span></code></a> functions, or this constructor.</p>
+<section id="event-fields">
+<h2>Event fields<a class="headerlink" href="#event-fields" title="Link to this heading">#</a></h2>
+<dl class="simple">
+<dt>evt_xs, evt_ys, evt_qs, evt_us, evt_energies, evt_pis, evt_times, evt_ws, evt_mus, evt_bg_chars, evt_exposures<span class="classifier">array-like</span></dt><dd><p>Properties of the individual events. Positions are measured in arcseconds; q and u are the IXPE-standard 2cos(psi) and 2sin(psi).
+To retain events, use the <a class="reference internal" href="#leakagelib.IXPEData.retain" title="leakagelib.IXPEData.retain"><code class="xref py py-meth docutils literal notranslate"><span class="pre">IXPEData.retain()</span></code></a> or <a class="reference internal" href="#leakagelib.IXPEData.retain_region" title="leakagelib.IXPEData.retain_region"><code class="xref py py-meth docutils literal notranslate"><span class="pre">IXPEData.retain_region()</span></code></a> methods.
+<strong>Do not manually edit these fields</strong>; <cite>IXPEData</cite> stores them to increase computational speed and editing them may cause the <cite>IXPEData</cite> object to go out of sync. Exceptions are evt_times, evt_ws, evt_mus, evt_bg_chars, and evt_exposures.</p>
+</dd>
+<dt>offsets<span class="classifier">tuple of float</span></dt><dd><p>Location of the current origin in physical coordinates. Defaults to (0, 0).</p>
+</dd>
+</dl>
+</section>
+<section id="image-fields">
+<h2>Image fields<a class="headerlink" href="#image-fields" title="Link to this heading">#</a></h2>
+<dl class="simple">
+<dt>i, q, u, n, w2, cov_inv<span class="classifier">array-like</span></dt><dd><p>Images of the observation, constructed with the same pixels as the source provided upon initialization.
+These fields exist only if <cite>IXPEData</cite> was constructed with <cite>bin=True</cite>.
+To recreate these images, call the <code class="xref py py-meth docutils literal notranslate"><span class="pre">IXPEData._bin_data()</span></code> method.</p>
+</dd>
+<dt>pixel_centers, pixel_edges<span class="classifier">array-like</span></dt><dd><p>Centers and edges of pixels in the image.</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="leakagelib.IXPEData.antirotate_events">
+<span class="sig-name descname"><span class="pre">antirotate_events</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#leakagelib.IXPEData.antirotate_events" title="Link to this definition">#</a></dt>
+<dd><p>Aligns the events so that up is in detector coords rather than north and saves them as <cite>evt_xs_antirot</cite>, <cite>evt_ys_antirot</cite>, <cite>evt_qs_antirot</cite>, <cite>evt_us_antirot</cite>. The original <cite>evt_xs</cite> and <cite>evt_ys</cite> and the image are unaffected.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="leakagelib.IXPEData.centroid_center">
+<span class="sig-name descname"><span class="pre">centroid_center</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#leakagelib.IXPEData.centroid_center" title="Link to this definition">#</a></dt>
+<dd><p>Recenter the dataset such that the event centroid is at (0, 0)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="leakagelib.IXPEData.explicit_center">
+<span class="sig-name descname"><span class="pre">explicit_center</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#leakagelib.IXPEData.explicit_center" title="Link to this definition">#</a></dt>
+<dd><p>Recenter the dataset by offsets x, y in pixels</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="leakagelib.IXPEData.get_antirotation_matrix">
+<span class="sig-name descname"><span class="pre">get_antirotation_matrix</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#leakagelib.IXPEData.get_antirotation_matrix" title="Link to this definition">#</a></dt>
+<dd><p>Get a 2D rotation matrix which reverses the detector’s rotation</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="leakagelib.IXPEData.get_detector_polarization">
+<span class="sig-name descname"><span class="pre">get_detector_polarization</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#leakagelib.IXPEData.get_detector_polarization" title="Link to this definition">#</a></dt>
+<dd><p>Get the polarization of a single IXPEdata by averaging over the entire image</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="leakagelib.IXPEData.get_net_polarization">
+<span class="sig-name descname"><span class="pre">get_net_polarization</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#leakagelib.IXPEData.get_net_polarization" title="Link to this definition">#</a></dt>
+<dd><p>Get the net polarization of all the Q and U in all three detectors image.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="leakagelib.IXPEData.get_stokes_antirotation_matrix">
+<span class="sig-name descname"><span class="pre">get_stokes_antirotation_matrix</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#leakagelib.IXPEData.get_stokes_antirotation_matrix" title="Link to this definition">#</a></dt>
+<dd><p>Get a 2D rotation matrix which reverses the stokes’s rotation</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="leakagelib.IXPEData.iterative_centroid_center">
+<span class="sig-name descname"><span class="pre">iterative_centroid_center</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#leakagelib.IXPEData.iterative_centroid_center" title="Link to this definition">#</a></dt>
+<dd><p>Recenter the dataset such that the centroid of the core events is in the center. Do this by iteratively zooming in, so that the final center is set by the core of the PSF, not events in the wings. Yields more accurate results.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="leakagelib.IXPEData.load_all_detectors">
+<span class="sig-name descname"><span class="pre">load_all_detectors</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obs_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">event_dir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">energy_cut</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(2,</span> <span class="pre">8)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weight_image</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bin</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#leakagelib.IXPEData.load_all_detectors" title="Link to this definition">#</a></dt>
+<dd><p>Load all detectors corresponding to a specific observation ID.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>source</strong> (<a class="reference internal" href="#leakagelib.Source" title="leakagelib.Source"><em>Source</em></a>) – A <cite>Source</cite> object used to set the size of the <cite>IXPEData</cite> images. The actual
+source flux is not read, only whether the source is NN or Mom and the shape
+of the image. If you do not wish to bin the data, you can pass <cite>Source.no_image</cite>.</p></li>
+<li><p><strong>obs_id</strong> (<em>str</em><em> or </em><em>None</em><em>, </em><em>optional</em>) – The observation ID to load. If <cite>None</cite>, loads whatever data is pointed to by <cite>prepath</cite>.</p></li>
+<li><p><strong>event_dir</strong> (<em>str</em><em> or </em><em>None</em><em>, </em><em>optional</em>) – Name of the directory containing the event files. Default (<cite>None</cite>) is interpreted
+as <cite>event_l2</cite> if <cite>source</cite> indicates Moments data, and <cite>event_nn</cite> if it indicates NN results.</p></li>
+<li><p><strong>energy_cut</strong> (<em>tuple</em><em> of </em><em>float</em><em>, </em><em>optional</em>) – Event energy range in keV. Default is (2, 8).</p></li>
+<li><p><strong>weight_image</strong> (<em>bool</em><em>, </em><em>optional</em>) – If <cite>True</cite>, weight the Q and U images by event weights.</p></li>
+<li><p><strong>bin</strong> (<em>bool</em><em>, </em><em>optional</em>) – If <cite>False</cite>, do not bin the data. Ignored if <cite>source</cite> was created with <cite>Source.no_image</cite>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A list of <cite>IXPEData</cite> objects for all three detectors.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List[<a class="reference internal" href="#leakagelib.IXPEData" title="leakagelib.IXPEData">IXPEData</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="leakagelib.IXPEData.load_all_detectors_with_path">
+<span class="sig-name descname"><span class="pre">load_all_detectors_with_path</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">prepath</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">obs_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">event_dir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">energy_cut</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(2,</span> <span class="pre">8)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weight_image</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bin</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#leakagelib.IXPEData.load_all_detectors_with_path" title="Link to this definition">#</a></dt>
+<dd><p>Load all detectors from a specific directory, without using the default directories
+stored in the LeakageLib settings file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>source</strong> (<a class="reference internal" href="#leakagelib.Source" title="leakagelib.Source"><em>Source</em></a>) – A <cite>Source</cite> object used to set the size of the <cite>IXPEData</cite> images. The actual
+source flux is not read; only whether the source is NN or Mom and the shape
+of the image. To skip binning, pass <cite>Source.no_image</cite>.</p></li>
+<li><p><strong>prepath</strong> (<em>str</em><em>, </em><em>optional</em>) – If <cite>obs_id</cite> is not specified, <cite>prepath</cite> points to the folder containing the data
+for this observation. If <cite>obs_id</cite> is specified, <cite>prepath</cite> should point to the
+superfolder containing the observation folder, which is assumed to be named <cite>obs_id</cite>.</p></li>
+<li><p><strong>obs_id</strong> (<em>str</em><em> or </em><em>None</em><em>, </em><em>optional</em>) – Observation ID to load. If <cite>None</cite>, loads data pointed to by <cite>prepath</cite>.</p></li>
+<li><p><strong>event_dir</strong> (<em>str</em><em> or </em><em>None</em><em>, </em><em>optional</em>) – Directory containing event files. Default (<cite>None</cite>) is interpreted as <cite>event_l2</cite>
+for Moments data, or <cite>event_nn</cite> for NN results, based on <cite>source</cite>.</p></li>
+<li><p><strong>energy_cut</strong> (<em>tuple</em><em> of </em><em>float</em><em>, </em><em>optional</em>) – Event energy range in keV. Default is (2, 8).</p></li>
+<li><p><strong>weight_image</strong> (<em>bool</em><em>, </em><em>optional</em>) – If <cite>True</cite>, weight the Q and U images by event weights.</p></li>
+<li><p><strong>bin</strong> (<em>bool</em><em>, </em><em>optional</em>) – If <cite>False</cite>, do not bin the data. Ignored if <cite>source</cite> was created with <cite>Source.no_image</cite>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A list of <cite>IXPEData</cite> objects for all three detectors.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List[<a class="reference internal" href="#leakagelib.IXPEData" title="leakagelib.IXPEData">IXPEData</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="leakagelib.IXPEData.load_expmap">
+<span class="sig-name descname"><span class="pre">load_expmap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">offset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0,</span> <span class="pre">0)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#leakagelib.IXPEData.load_expmap" title="Link to this definition">#</a></dt>
+<dd><p>Load the exposure map and evaluate it for every pixel in the image.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filename</strong> (<em>str</em><em>, </em><em>optional</em>) – Path to the exposure map. If <cite>None</cite>, the map is assumed to lie in the <cite>auxil</cite>
+folder, which is expected to be in the same directory as the hk and <cite>event_l2</cite> folders.</p></li>
+<li><p><strong>offset</strong> (<em>tuple</em><em> of </em><em>float</em><em>, </em><em>optional</em>) – Exposure map offset in arcseconds.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>This function should not be run after the image has been centered.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="leakagelib.IXPEData.retain">
+<span class="sig-name descname"><span class="pre">retain</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mask</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#leakagelib.IXPEData.retain" title="Link to this definition">#</a></dt>
+<dd><p>Retain all events according to a boolean mask, removing the rest.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>mask</strong> (<em>array-like</em><em> of </em><em>bool</em>) – Mask where <cite>True</cite> indicates the event should be kept.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="leakagelib.IXPEData.retain_region">
+<span class="sig-name descname"><span class="pre">retain_region</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">regfile</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exclude</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#leakagelib.IXPEData.retain_region" title="Link to this definition">#</a></dt>
+<dd><p>Cut all events according to a region file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>regfile</strong> (<em>str</em>) – Region file containing a single region, CIAO formatted, in physical coordinates.</p></li>
+<li><p><strong>exclude</strong> (<em>bool</em><em>, </em><em>optional</em>) – If <cite>True</cite>, all events in the region will be removed. Otherwise, they will be kept.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The resulting region object.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#leakagelib.Region" title="leakagelib.Region">Region</a></p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>Uses an approximate conversion between xy and RA/Dec, which may be slightly
+inaccurate off-axis.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="leakagelib.IXPEData.weight_nn">
+<span class="sig-name descname"><span class="pre">weight_nn</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#leakagelib.IXPEData.weight_nn" title="Link to this definition">#</a></dt>
+<dd><p>If this is an NN data set, scrap the energy-dependent modulation factor and instead treat
+the event-by-event weights as the modulation factor. This function will then set all the
+weights to one to avoid double counting them. If this is a Mom data set, this function
+will do nothing.</p>
+</dd></dl>
+
+</section>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="leakagelib.PSF">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">leakagelib.</span></span><span class="sig-name descname"><span class="pre">PSF</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">current_pixel_width</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">blur_width</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">source</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rotation</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">detector</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clip</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#leakagelib.PSF" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Stores the PSF of the telescope for a given detector. Don’t use this constructor; use the <a class="reference internal" href="#leakagelib.PSF.sky_cal" title="leakagelib.PSF.sky_cal"><code class="xref py py-meth docutils literal notranslate"><span class="pre">PSF.sky_cal()</span></code></a>, <a class="reference internal" href="#leakagelib.PSF.ground_cal" title="leakagelib.PSF.ground_cal"><code class="xref py py-meth docutils literal notranslate"><span class="pre">PSF.ground_cal()</span></code></a>, and <a class="reference internal" href="#leakagelib.PSF.obssim" title="leakagelib.PSF.obssim"><code class="xref py py-meth docutils literal notranslate"><span class="pre">PSF.obssim()</span></code></a> functions to load specific PSFs.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="leakagelib.PSF.blur">
+<span class="sig-name descname"><span class="pre">blur</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sigma</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#leakagelib.PSF.blur" title="Link to this definition">#</a></dt>
+<dd><p>Blur the PSF by a Gaussian</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>sigma</strong> (<em>float</em>) – Standard deviation (arcsec).</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="leakagelib.PSF.blur_custom_kernel">
+<span class="sig-name descname"><span class="pre">blur_custom_kernel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">kernel</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#leakagelib.PSF.blur_custom_kernel" title="Link to this definition">#</a></dt>
+<dd><p>Blur the PSF by custom kernel</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>kernel</strong> (<em>array-like</em>) – The kernel should be a 2d array with pixels assumed to be the same size as this PSF’s pixels. The width of the sky calibrated pixels is 2.9729</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="leakagelib.PSF.clip">
+<span class="sig-name descname"><span class="pre">clip</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">new_width</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#leakagelib.PSF.clip" title="Link to this definition">#</a></dt>
+<dd><p>Clip the PSF to a new width</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>new_width</strong> (<em>int</em>) – Width of new image in pixels</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="leakagelib.PSF.ground_cal">
+<span class="sig-name descname"><span class="pre">ground_cal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rotation</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ground_blur</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clip</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#leakagelib.PSF.ground_cal" title="Link to this definition">#</a></dt>
+<dd><p>Load the ground-calibrated PSFs.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>detector_index</strong> (<em>{1</em><em>, </em><em>2</em><em>, </em><em>3}</em>) – Detector number: 1 for DU1, 2 for DU2, 3 for DU3.</p></li>
+<li><p><strong>source</strong> (<a class="reference internal" href="#leakagelib.Source" title="leakagelib.Source"><em>Source</em></a>) – Source object used to set the width of the PSF.</p></li>
+<li><p><strong>rotation</strong> (<em>float</em>) – Angle in radians to rotate the PSF into the detector’s frame.</p></li>
+<li><p><strong>ground_blur</strong> (<em>float</em><em>, </em><em>optional</em>) – Amount to blur the ground PSFs. Default is a manually tuned value to match leakage patterns.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>PSF</strong> – The PSF of the specified detector.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><cite>leakagelib.PSF</cite></p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<ul class="simple">
+<li><p>The ground calibrated PSFs do not perform as well as the sky-calibrated one.</p></li>
+</ul>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="leakagelib.PSF.obssim">
+<span class="sig-name descname"><span class="pre">obssim</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rotation</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">obssim_blur</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clip</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#leakagelib.PSF.obssim" title="Link to this definition">#</a></dt>
+<dd><p>Load the IXPEobssim PSFs, which are symmetric. Requires IXPEobssim to be installed.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>detector_index</strong> (<em>{1</em><em>, </em><em>2</em><em>, </em><em>3}</em>) – Detector number: 1 for DU1, 2 for DU2, 3 for DU3.</p></li>
+<li><p><strong>source</strong> (<a class="reference internal" href="#leakagelib.Source" title="leakagelib.Source"><em>Source</em></a>) – Source object used to set the width of the PSF.</p></li>
+<li><p><strong>rotation</strong> (<em>float</em>) – Angle in radians to rotate the PSF into the detector’s frame.</p></li>
+<li><p><strong>ground_blur</strong> (<em>float</em><em>, </em><em>optional</em>) – Amount to blur the ground PSFs. Default is a manually tuned value to match leakage patterns.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>PSF</strong> – The PSF of the specified detector.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><cite>leakagelib.PSF</cite></p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<ul class="simple">
+<li><p>These circular PSFs do not perform as well as the sky-calibrated one.</p></li>
+</ul>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="leakagelib.PSF.save">
+<span class="sig-name descname"><span class="pre">save</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">directory</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">header</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#leakagelib.PSF.save" title="Link to this definition">#</a></dt>
+<dd><p>Save this PSF to a new file. The filename will be PSF_MMA{det}</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="leakagelib.PSF.sky_cal">
+<span class="sig-name descname"><span class="pre">sky_cal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rotation</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">psf_origin</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'merge-nn'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clip</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#leakagelib.PSF.sky_cal" title="Link to this definition">#</a></dt>
+<dd><p>Load the sky-calibrated PSFs.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>detector</strong> (<em>{1</em><em>, </em><em>2</em><em>, </em><em>3}</em>) – Detector number: 1 for DU1, 2 for DU2, 3 for DU3.</p></li>
+<li><p><strong>source</strong> (<a class="reference internal" href="#leakagelib.Source" title="leakagelib.Source"><em>Source</em></a>) – Source object used to set the width of the PSF.</p></li>
+<li><p><strong>rotation</strong> (<em>float</em>) – Angle in radians to rotate the PSF into the detector’s frame.</p></li>
+<li><p><strong>psf_origin</strong> (<em>str</em>) – Name of the sky-calibrated PSF to use.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The PSF of the specified detector.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#leakagelib.PSF" title="leakagelib.PSF">PSF</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="leakagelib.Region">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">leakagelib.</span></span><span class="sig-name descname"><span class="pre">Region</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#leakagelib.Region" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Class to store DS9 regions.</p>
+<p class="rubric">Notes</p>
+<ul class="simple">
+<li><p>All regions are assumed to be stored in <cite>ciao</cite> format.</p></li>
+<li><p>All coordinates must be physical</p></li>
+</ul>
+<dl class="py method">
+<dt class="sig sig-object py" id="leakagelib.Region.check_inside_absolute">
+<span class="sig-name descname"><span class="pre">check_inside_absolute</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#leakagelib.Region.check_inside_absolute" title="Link to this definition">#</a></dt>
+<dd><p>Return True if (x, y) is inside the region</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="leakagelib.Region.load">
+<span class="sig-name descname"><span class="pre">load</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#leakagelib.Region.load" title="Link to this definition">#</a></dt>
+<dd><p>Load a region from a region file</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>filename</strong> (<em>str</em>) – File name of the region</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Region object</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#leakagelib.Region" title="leakagelib.Region">Region</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="leakagelib.Source">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">leakagelib.</span></span><span class="sig-name descname"><span class="pre">Source</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_nn</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">source_size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pixel_size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">store_info</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_point_source</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_uniform</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#leakagelib.Source" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Load a Source object from a 2D array. If you want to load a point source, use <a class="reference internal" href="#leakagelib.Source.delta" title="leakagelib.Source.delta"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Source.delta()</span></code></a>. To load a Gaussian-shaped source, use <a class="reference internal" href="#leakagelib.Source.gaussian" title="leakagelib.Source.gaussian"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Source.gaussian()</span></code></a>. To load a uniform source, use <a class="reference internal" href="#leakagelib.Source.uniform" title="leakagelib.Source.uniform"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Source.uniform()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>image</strong> (<em>ndarray</em>) – Input flux image.</p></li>
+<li><p><strong>source_size</strong> (<em>int</em>) – Number of pixels in the output Source object.</p></li>
+<li><p><strong>pixel_size</strong> (<em>float</em>) – Width of each pixel in arcseconds.</p></li>
+<li><p><strong>store_info</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, stores source and PSF info to speed up computations. Requires manual calls
+to <cite>invalidate_psf</cite> and <cite>invalidate_source_polarization</cite>. Default is False.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="leakagelib.Source.compute_leakage">
+<span class="sig-name descname"><span class="pre">compute_leakage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">psf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spectrum</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">energy_dependence</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">normalize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#leakagelib.Source.compute_leakage" title="Link to this definition">#</a></dt>
+<dd><p>Get the Q and U maps for this source (unnormalized by default), given the PSF and spectrum.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>psf</strong> (<a class="reference internal" href="#leakagelib.PSF" title="leakagelib.PSF"><em>PSF</em></a>) – PSF for the detector. Sky-calibrated PSFs are recommended.</p></li>
+<li><p><strong>spectrum</strong> (<a class="reference internal" href="#leakagelib.Spectrum" title="leakagelib.Spectrum"><em>Spectrum</em></a>) – Spectrum of the data, obtainable from an IXPEData object.</p></li>
+<li><p><strong>energy_dependence</strong> (<em>callable</em><em>, </em><em>optional</em>) – Function specifying the energy dependence of sigma_perp and sigma_parallel.
+Defaults to simulation-measured dependences for NN or Mom depending on this Source.</p></li>
+<li><p><strong>normalize</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, return normalized Stokes q and u maps. Default is False.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Three images, i, q, u, of leakage patterns.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tuple (array-like, array-like, array-like)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="leakagelib.Source.convolve_psf">
+<span class="sig-name descname"><span class="pre">convolve_psf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">psf</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#leakagelib.Source.convolve_psf" title="Link to this definition">#</a></dt>
+<dd><p>convolve this source image with the PSF and return the image. The provided PSF must be constructed with this source object.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="leakagelib.Source.delta">
+<span class="sig-name descname"><span class="pre">delta</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_pixels</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pixel_size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">store_info</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#leakagelib.Source.delta" title="Link to this definition">#</a></dt>
+<dd><p>Create a Source object representing a point source.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>use_nn</strong> (<em>bool</em>) – True to use NN-reconstructed data, False for moments-reconstructed data.</p></li>
+<li><p><strong>num_pixels</strong> (<em>int</em>) – Number of pixels in the output image. Odd integer recommended.</p></li>
+<li><p><strong>pixel_size</strong> (<em>float</em>) – Width of each pixel in arcseconds.</p></li>
+<li><p><strong>store_info</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, stores source and PSF info to speed up computations. Requires manual calls
+to <cite>invalidate_psf</cite> and <cite>invalidate_source_polarization</cite>. Default is False.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="leakagelib.Source.divide_by_mu">
+<span class="sig-name descname"><span class="pre">divide_by_mu</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">q</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">u</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spectrum</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#leakagelib.Source.divide_by_mu" title="Link to this definition">#</a></dt>
+<dd><p>Divide by the detector modulation factor to get the “true” Q and U images. You can pass in either normalized or unnormalized q and u. The spectrum is used to compute the average polarization weight.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="leakagelib.Source.gaussian">
+<span class="sig-name descname"><span class="pre">gaussian</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_pixels</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pixel_size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">store_info</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#leakagelib.Source.gaussian" title="Link to this definition">#</a></dt>
+<dd><p>Create a Gaussian-shaped Source object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>use_nn</strong> (<em>bool</em>) – True to use NN-reconstructed data, False for moments-reconstructed data.</p></li>
+<li><p><strong>num_pixels</strong> (<em>int</em>) – Number of pixels in the output image. Odd integer recommended.</p></li>
+<li><p><strong>pixel_size</strong> (<em>float</em>) – Width of each pixel in arcseconds.</p></li>
+<li><p><strong>sigma</strong> (<em>float</em>) – Standard deviation of the Gaussian in arcseconds.</p></li>
+<li><p><strong>store_info</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, stores source and PSF info to speed up computations. Requires manual calls
+to <cite>invalidate_psf</cite> and <cite>invalidate_source_polarization</cite>. Default is False.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="leakagelib.Source.get_event_p_r_given_phi">
+<span class="sig-name descname"><span class="pre">get_event_p_r_given_phi</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">psf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">overwrite_mus</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">energy_dependence</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#leakagelib.Source.get_event_p_r_given_phi" title="Link to this definition">#</a></dt>
+<dd><p>Get the probability for an array of events to have their positions given their polarization.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>psf</strong> (<a class="reference internal" href="#leakagelib.PSF" title="leakagelib.PSF"><em>PSF</em></a>) – PSF for the detector. Sky-calibrated PSFs recommended.</p></li>
+<li><p><strong>data</strong> (<a class="reference internal" href="#leakagelib.IXPEData" title="leakagelib.IXPEData"><em>IXPEData</em></a>) – IXPEData object containing events. Reads evt_xs, evt_ys, evt_qs, evt_us, evt_energies.
+If the PSF rotation angle is &lt; 1e-5, the antirotated versions will be read.</p></li>
+<li><p><strong>energy_dependence</strong> (<em>callable</em><em>, </em><em>optional</em>) – Function specifying the energy dependence of sigma_perp and sigma_parallel.
+Defaults to simulation-measured dependences for NN or Mom depending on this Source.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Probabilities for each event.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>array-like</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="leakagelib.Source.invalidate_event_data">
+<span class="sig-name descname"><span class="pre">invalidate_event_data</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#leakagelib.Source.invalidate_event_data" title="Link to this definition">#</a></dt>
+<dd><p>Invalidate the stored data concerning the events. This should be done whenever you change
+the event positions or the number of events</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="leakagelib.Source.invalidate_psf">
+<span class="sig-name descname"><span class="pre">invalidate_psf</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#leakagelib.Source.invalidate_psf" title="Link to this definition">#</a></dt>
+<dd><p>Invalidate the stored data concerning the source flux. This should be done whenever
+you change the PSF, e.g. by blurring it</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="leakagelib.Source.invalidate_source_polarization">
+<span class="sig-name descname"><span class="pre">invalidate_source_polarization</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#leakagelib.Source.invalidate_source_polarization" title="Link to this definition">#</a></dt>
+<dd><p>Invalidate the stored data concerning the source polarization. This should be done
+whenever you change the source polarization map</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="leakagelib.Source.load_file">
+<span class="sig-name descname"><span class="pre">load_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">use_nn</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_pixels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_pixel_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">source_pixel_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hduis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[1]</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#leakagelib.Source.load_file" title="Link to this definition">#</a></dt>
+<dd><p>Load a file (FITS or NPY), zoom to the correct scale, and return the resulting image
+with the number of pixels and pixel size in arcseconds.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>file_name</strong> (<em>str</em>) – Name of the file to load.</p></li>
+<li><p><strong>num_pixels</strong> (<em>int</em>) – Number of pixels to use in the output image.</p></li>
+<li><p><strong>target_pixel_size</strong> (<em>float</em><em> or </em><em>None</em>) – Width of each pixel in arcseconds for the returned image. None implies use the source pixel size.</p></li>
+<li><p><strong>source_pixel_size</strong> (<em>float</em><em> or </em><em>None</em>) – Width of each pixel in arcseconds in the current image. None implies read from the file.</p></li>
+<li><p><strong>hduis</strong> (<em>list</em><em> of </em><em>int</em>) – HDU indices of the images to load.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p>images: list of loaded and scaled images</p></li>
+<li><p>num_pixels: width of the image(s)</p></li>
+<li><p>target_pixel_size: width of each pixel in arcseconds</p></li>
+</ul>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tuple of (list of ndarray, int, float)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="leakagelib.Source.no_image">
+<span class="sig-name descname"><span class="pre">no_image</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#leakagelib.Source.no_image" title="Link to this definition">#</a></dt>
+<dd><p>Create an empty source for use in initializing a dataset which will not be binned</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="leakagelib.Source.polarize_array">
+<span class="sig-name descname"><span class="pre">polarize_array</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">qu_map</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#leakagelib.Source.polarize_array" title="Link to this definition">#</a></dt>
+<dd><p>Add a source polarization to the incoming photons. The provided array must have shape (2 ,i, j), where the last axis contains the q and u coordinates of the polarization. This automatically calls invalidate_source_polarization</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="leakagelib.Source.polarize_file">
+<span class="sig-name descname"><span class="pre">polarize_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#leakagelib.Source.polarize_file" title="Link to this definition">#</a></dt>
+<dd><p>Add a source polarization to the incoming photons. The provided file must either be a fits file with Q in hdul[1] and U in hdul[2], or a numpy array of shape (i, j, 2), where the last axis contains the q and u coordinates of the polarization. This automatically calls invalidate_source_polarization</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="leakagelib.Source.polarize_net">
+<span class="sig-name descname"><span class="pre">polarize_net</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stokes</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#leakagelib.Source.polarize_net" title="Link to this definition">#</a></dt>
+<dd><p>Add uniform polarization to the entire image. This automatically calls invalidate_source_polarization</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="leakagelib.Source.uniform">
+<span class="sig-name descname"><span class="pre">uniform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_pixels</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pixel_size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">store_info</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#leakagelib.Source.uniform" title="Link to this definition">#</a></dt>
+<dd><p>Create a Source object representing a uniform background.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>use_nn</strong> (<em>bool</em>) – True to use NN-reconstructed data, False for moments-reconstructed data.</p></li>
+<li><p><strong>num_pixels</strong> (<em>int</em>) – Number of pixels in the output image. Odd integer recommended.</p></li>
+<li><p><strong>pixel_size</strong> (<em>float</em>) – Width of each pixel in arcseconds.</p></li>
+<li><p><strong>store_info</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, stores source and PSF info to speed up computations. Requires manual calls
+to <cite>invalidate_psf</cite> and <cite>invalidate_source_polarization</cite>. Default is False.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="leakagelib.Spectrum">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">leakagelib.</span></span><span class="sig-name descname"><span class="pre">Spectrum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bin_centers</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">counts</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weights</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#leakagelib.Spectrum" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="leakagelib.Spectrum.from_power_law_index">
+<span class="sig-name descname"><span class="pre">from_power_law_index</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#leakagelib.Spectrum.from_power_law_index" title="Link to this definition">#</a></dt>
+<dd><p>Load the spectrum assuming power law-distributed 2-8 keV counts. Unweighted. Useful for demonstration purposes only. In practice, use a more accurate simulation for an IXPE observation.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="leakagelib.Spectrum.get_avg_mu">
+<span class="sig-name descname"><span class="pre">get_avg_mu</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">use_nn</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#leakagelib.Spectrum.get_avg_mu" title="Link to this definition">#</a></dt>
+<dd><p>Get the average of 1 over the modulation factor.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="leakagelib.Spectrum.get_avg_one_over_mu">
+<span class="sig-name descname"><span class="pre">get_avg_one_over_mu</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">use_nn</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#leakagelib.Spectrum.get_avg_one_over_mu" title="Link to this definition">#</a></dt>
+<dd><p>Get the average of 1 over the modulation factor.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="leakagelib.Spectrum.load">
+<span class="sig-name descname"><span class="pre">load</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#leakagelib.Spectrum.load" title="Link to this definition">#</a></dt>
+<dd><p>Load from a file</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="leakagelib.Spectrum.save">
+<span class="sig-name descname"><span class="pre">save</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">f</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#leakagelib.Spectrum.save" title="Link to this definition">#</a></dt>
+<dd><p>Save to a file</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="leakagelib.Spectrum.weighted_average">
+<span class="sig-name descname"><span class="pre">weighted_average</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">array</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#leakagelib.Spectrum.weighted_average" title="Link to this definition">#</a></dt>
+<dd><p>Get the event fractions in each energy bin</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="leakagelib.get_mom_modf">
+<span class="sig-prename descclassname"><span class="pre">leakagelib.</span></span><span class="sig-name descname"><span class="pre">get_mom_modf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">energies</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#leakagelib.get_mom_modf" title="Link to this definition">#</a></dt>
+<dd><p>Get the modulation factor at certain energies for Moments data</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>energies</strong> (<em>array-like</em>) – Array of energies in keV</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Modulation factors from the IXPEobssim load_modf function with ixpe:obssim:v12 calibration, averaged over all three detectors.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>array-like</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="leakagelib.get_nn_modf">
+<span class="sig-prename descclassname"><span class="pre">leakagelib.</span></span><span class="sig-name descname"><span class="pre">get_nn_modf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">energies</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#leakagelib.get_nn_modf" title="Link to this definition">#</a></dt>
+<dd><p>Get the modulation factor at certain energies for NN data</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>energies</strong> (<em>array-like</em>) – Array of energies in keV</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Modulation factors measured by Jack Dinsmore from simulations generated by A. Lawrence Peirson in 2022 and analyzed with his neural net</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>array-like</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<ul class="simple">
+<li><p>Energy dependent modulation factors do not take full advantage of the NN analysis. It is better to use the per-event modulation factors, W_NN, if at all possible. Use the <cite>leakagelib.IXPEData.weight_nn</cite> function to use these weights.</p></li>
+</ul>
+</dd></dl>
+
+<section id="ps-fit-subpackage">
+<h2>ps_fit subpackage<a class="headerlink" href="#ps-fit-subpackage" title="Link to this heading">#</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="leakagelib.ps_fit.html">leakagelib.ps_fit package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="leakagelib.ps_fit.html#module-leakagelib.ps_fit.pcube">leakagelib.ps_fit.pcube module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="leakagelib.ps_fit.html#leakagelib.ps_fit.pcube.get_pcube"><code class="docutils literal notranslate"><span class="pre">get_pcube()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="leakagelib.ps_fit.html#module-leakagelib.ps_fit.spectral_weights">leakagelib.ps_fit.spectral_weights module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="leakagelib.ps_fit.html#leakagelib.ps_fit.spectral_weights.RMF"><code class="docutils literal notranslate"><span class="pre">RMF</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="leakagelib.ps_fit.html#leakagelib.ps_fit.spectral_weights.RMF.convolve_spectrum"><code class="docutils literal notranslate"><span class="pre">RMF.convolve_spectrum()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="leakagelib.ps_fit.html#leakagelib.ps_fit.spectral_weights.RMF.convolve_spectrum_mu"><code class="docutils literal notranslate"><span class="pre">RMF.convolve_spectrum_mu()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="leakagelib.ps_fit.html#leakagelib.ps_fit.spectral_weights.RMF.delta"><code class="docutils literal notranslate"><span class="pre">RMF.delta()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="leakagelib.ps_fit.html#module-leakagelib.ps_fit">Module contents</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="leakagelib.ps_fit.html#leakagelib.ps_fit.estimate_particle_flux"><code class="docutils literal notranslate"><span class="pre">estimate_particle_flux()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+<section id="module-leakagelib.extended">
+<span id="leakagelib-extended-module"></span><h2>leakagelib.extended module<a class="headerlink" href="#module-leakagelib.extended" title="Link to this heading">#</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="leakagelib.extended.fit_extended">
+<span class="sig-prename descclassname"><span class="pre">leakagelib.extended.</span></span><span class="sig-name descname"><span class="pre">fit_extended</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">psfs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spectrum</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_obs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qs_obs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">us_obs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">initial_source_pol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inertia</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_iter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_rate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.01</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">report_frequency</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">50</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">regularize_coeff</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">energy_dependence</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#leakagelib.extended.fit_extended" title="Link to this definition">#</a></dt>
+<dd><p>Fit for the source Q and U given an observed Q and U. The resulting source Q and U
+are stored in <cite>self.q_map</cite> and <cite>self.u_map</cite>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>source</strong> (<a class="reference internal" href="#leakagelib.Source" title="leakagelib.Source"><em>Source</em></a>) – The Source object containing the resolved I flux. Any source polarization
+stored in the object is ignored.</p></li>
+<li><p><strong>psf</strong> (<em>list</em><em> of </em><a class="reference internal" href="#leakagelib.PSF" title="leakagelib.PSF"><em>PSF</em></a>) – List of PSFs for each detector.</p></li>
+<li><p><strong>spectrum</strong> (<a class="reference internal" href="#leakagelib.Spectrum" title="leakagelib.Spectrum"><em>Spectrum</em></a>) – The Spectrum object of the source.</p></li>
+<li><p><strong>is_obs</strong> (<em>list</em><em> of </em><em>ndarray</em>) – Observed I maps for each detector.</p></li>
+<li><p><strong>qs_obs</strong> (<em>list</em><em> of </em><em>ndarray</em>) – Observed q (normalized) maps for each detector.</p></li>
+<li><p><strong>us_obs</strong> (<em>list</em><em> of </em><em>ndarray</em>) – Observed u (normalized) maps for each detector.</p></li>
+<li><p><strong>initial_source_pol</strong> (<em>ndarray</em><em>, </em><em>optional</em>) – Array to initialize the gradient descent method. If None, the observed
+polarization in DU1 is used.</p></li>
+<li><p><strong>inertia</strong> (<em>ndarray</em><em>, </em><em>optional</em>) – Inertia map for gradient descent. High inertia reduces the step size in a pixel.
+If None, inertia is set to the square root of the number of counts.</p></li>
+<li><p><strong>num_iter</strong> (<em>int</em>) – Number of iterations to perform.</p></li>
+<li><p><strong>max_rate</strong> (<em>float</em>) – Maximum gradient descent rate at the beginning.</p></li>
+<li><p><strong>report_frequency</strong> (<em>int</em><em> or </em><em>None</em><em>, </em><em>optional</em>) – Frequency at which to save a snapshot of the algorithm’s state. None for no snapshots.</p></li>
+<li><p><strong>regularize_coeff</strong> (<em>float</em><em>, </em><em>optional</em>) – Strength of the regularization term. Zero disables regularization.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Tuple containing <cite>(q_map, u_map, animation)</cite>. If <cite>report_frequency</cite> was None,
+<cite>animation</cite> is None.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tuple of (ndarray, ndarray, matplotlib.animation.Animation or None)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-leakagelib.funcs">
+<span id="leakagelib-funcs-module"></span><h2>leakagelib.funcs module<a class="headerlink" href="#module-leakagelib.funcs" title="Link to this heading">#</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="leakagelib.funcs.integrate_zoom">
+<span class="sig-prename descclassname"><span class="pre">leakagelib.funcs.</span></span><span class="sig-name descname"><span class="pre">integrate_zoom</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frac</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">force_odd</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#leakagelib.funcs.integrate_zoom" title="Link to this definition">#</a></dt>
+<dd><p>Zoom by integrating over the original pixels. Most suitable for zooming out.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>frac</strong> (<em>float</em>) – Zoom fraction.</p></li>
+<li><p><strong>force_odd</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, round the image dimensions to an odd number of pixels.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="leakagelib.funcs.integrate_zoom_unvectorized">
+<span class="sig-prename descclassname"><span class="pre">leakagelib.funcs.</span></span><span class="sig-name descname"><span class="pre">integrate_zoom_unvectorized</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frac</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">force_odd</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#leakagelib.funcs.integrate_zoom_unvectorized" title="Link to this definition">#</a></dt>
+<dd><p>Zoom by integrating over the original pixels. Not vectorized and very slow.
+Use <cite>integrate_zoom</cite> instead for efficiency.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>frac</strong> (<em>float</em>) – Zoom fraction.</p></li>
+<li><p><strong>force_odd</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, round the image dimensions to an odd number of pixels.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="leakagelib.funcs.interpolate_zoom">
+<span class="sig-prename descclassname"><span class="pre">leakagelib.funcs.</span></span><span class="sig-name descname"><span class="pre">interpolate_zoom</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frac</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">force_odd</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#leakagelib.funcs.interpolate_zoom" title="Link to this definition">#</a></dt>
+<dd><p>Zoom by linearly interpolating between known pixels to compute new pixels.
+Most suitable for zooming in.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>frac</strong> (<em>float</em>) – Zoom fraction.</p></li>
+<li><p><strong>force_odd</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, round the image dimensions to an odd number of pixels.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="leakagelib.funcs.override_matplotlib_defaults">
+<span class="sig-prename descclassname"><span class="pre">leakagelib.funcs.</span></span><span class="sig-name descname"><span class="pre">override_matplotlib_defaults</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#leakagelib.funcs.override_matplotlib_defaults" title="Link to this definition">#</a></dt>
+<dd><p>Load Jack’s default matplotlib parameters to make prettier images</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="leakagelib.funcs.super_zoom">
+<span class="sig-prename descclassname"><span class="pre">leakagelib.funcs.</span></span><span class="sig-name descname"><span class="pre">super_zoom</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frac</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">force_odd</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#leakagelib.funcs.super_zoom" title="Link to this definition">#</a></dt>
+<dd><p>Interpolate zoom when zooming in, integrate zoom when zooming out.
+Zooming is centered and recommended for general use.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>frac</strong> (<em>float</em>) – Zoom fraction.</p></li>
+<li><p><strong>force_odd</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, round the image dimensions to an odd number of pixels.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="faq.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">FAQ</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="leakagelib.ps_fit.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">leakagelib.ps_fit package</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.EnergyDependence"><code class="docutils literal notranslate"><span class="pre">EnergyDependence</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.EnergyDependence.constant"><code class="docutils literal notranslate"><span class="pre">EnergyDependence.constant()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.EnergyDependence.default"><code class="docutils literal notranslate"><span class="pre">EnergyDependence.default()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.EnergyDependence.evaluate"><code class="docutils literal notranslate"><span class="pre">EnergyDependence.evaluate()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.EnergyDependence.get_params"><code class="docutils literal notranslate"><span class="pre">EnergyDependence.get_params()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.EnergyDependence.lawrence_mom"><code class="docutils literal notranslate"><span class="pre">EnergyDependence.lawrence_mom()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.EnergyDependence.lawrence_nn"><code class="docutils literal notranslate"><span class="pre">EnergyDependence.lawrence_nn()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.FitSettings"><code class="docutils literal notranslate"><span class="pre">FitSettings</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.FitSettings.add_background"><code class="docutils literal notranslate"><span class="pre">FitSettings.add_background()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.FitSettings.add_param"><code class="docutils literal notranslate"><span class="pre">FitSettings.add_param()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.FitSettings.add_particle_background"><code class="docutils literal notranslate"><span class="pre">FitSettings.add_particle_background()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.FitSettings.add_particle_source"><code class="docutils literal notranslate"><span class="pre">FitSettings.add_particle_source()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.FitSettings.add_point_source"><code class="docutils literal notranslate"><span class="pre">FitSettings.add_point_source()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.FitSettings.add_source"><code class="docutils literal notranslate"><span class="pre">FitSettings.add_source()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.FitSettings.apply_circular_roi"><code class="docutils literal notranslate"><span class="pre">FitSettings.apply_circular_roi()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.FitSettings.apply_roi"><code class="docutils literal notranslate"><span class="pre">FitSettings.apply_roi()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.FitSettings.fit_psf_sigma"><code class="docutils literal notranslate"><span class="pre">FitSettings.fit_psf_sigma()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.FitSettings.fix_flux"><code class="docutils literal notranslate"><span class="pre">FitSettings.fix_flux()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.FitSettings.fix_psf_sigma"><code class="docutils literal notranslate"><span class="pre">FitSettings.fix_psf_sigma()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.FitSettings.fix_qu"><code class="docutils literal notranslate"><span class="pre">FitSettings.fix_qu()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.FitSettings.get_n_sources"><code class="docutils literal notranslate"><span class="pre">FitSettings.get_n_sources()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.FitSettings.set_initial_flux"><code class="docutils literal notranslate"><span class="pre">FitSettings.set_initial_flux()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.FitSettings.set_initial_qu"><code class="docutils literal notranslate"><span class="pre">FitSettings.set_initial_qu()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.FitSettings.set_lightcurve"><code class="docutils literal notranslate"><span class="pre">FitSettings.set_lightcurve()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.FitSettings.set_model_fn"><code class="docutils literal notranslate"><span class="pre">FitSettings.set_model_fn()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.FitSettings.set_spectrum"><code class="docutils literal notranslate"><span class="pre">FitSettings.set_spectrum()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.FitSettings.set_sweep"><code class="docutils literal notranslate"><span class="pre">FitSettings.set_sweep()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.Fitter"><code class="docutils literal notranslate"><span class="pre">Fitter</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.Fitter.display_sources"><code class="docutils literal notranslate"><span class="pre">Fitter.display_sources()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.Fitter.fit"><code class="docutils literal notranslate"><span class="pre">Fitter.fit()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.Fitter.fit_mcmc"><code class="docutils literal notranslate"><span class="pre">Fitter.fit_mcmc()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.Fitter.log_prob"><code class="docutils literal notranslate"><span class="pre">Fitter.log_prob()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.IXPEData"><code class="docutils literal notranslate"><span class="pre">IXPEData</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.IXPEData.det"><code class="docutils literal notranslate"><span class="pre">IXPEData.det</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.IXPEData.filename"><code class="docutils literal notranslate"><span class="pre">IXPEData.filename</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.IXPEData.obs_id"><code class="docutils literal notranslate"><span class="pre">IXPEData.obs_id</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.IXPEData.antirotate_events"><code class="docutils literal notranslate"><span class="pre">IXPEData.antirotate_events()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.IXPEData.centroid_center"><code class="docutils literal notranslate"><span class="pre">IXPEData.centroid_center()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.IXPEData.explicit_center"><code class="docutils literal notranslate"><span class="pre">IXPEData.explicit_center()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.IXPEData.get_antirotation_matrix"><code class="docutils literal notranslate"><span class="pre">IXPEData.get_antirotation_matrix()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.IXPEData.get_detector_polarization"><code class="docutils literal notranslate"><span class="pre">IXPEData.get_detector_polarization()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.IXPEData.get_net_polarization"><code class="docutils literal notranslate"><span class="pre">IXPEData.get_net_polarization()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.IXPEData.get_stokes_antirotation_matrix"><code class="docutils literal notranslate"><span class="pre">IXPEData.get_stokes_antirotation_matrix()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.IXPEData.iterative_centroid_center"><code class="docutils literal notranslate"><span class="pre">IXPEData.iterative_centroid_center()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.IXPEData.load_all_detectors"><code class="docutils literal notranslate"><span class="pre">IXPEData.load_all_detectors()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.IXPEData.load_all_detectors_with_path"><code class="docutils literal notranslate"><span class="pre">IXPEData.load_all_detectors_with_path()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.IXPEData.load_expmap"><code class="docutils literal notranslate"><span class="pre">IXPEData.load_expmap()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.IXPEData.retain"><code class="docutils literal notranslate"><span class="pre">IXPEData.retain()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.IXPEData.retain_region"><code class="docutils literal notranslate"><span class="pre">IXPEData.retain_region()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.IXPEData.weight_nn"><code class="docutils literal notranslate"><span class="pre">IXPEData.weight_nn()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.PSF"><code class="docutils literal notranslate"><span class="pre">PSF</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.PSF.blur"><code class="docutils literal notranslate"><span class="pre">PSF.blur()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.PSF.blur_custom_kernel"><code class="docutils literal notranslate"><span class="pre">PSF.blur_custom_kernel()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.PSF.clip"><code class="docutils literal notranslate"><span class="pre">PSF.clip()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.PSF.ground_cal"><code class="docutils literal notranslate"><span class="pre">PSF.ground_cal()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.PSF.obssim"><code class="docutils literal notranslate"><span class="pre">PSF.obssim()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.PSF.save"><code class="docutils literal notranslate"><span class="pre">PSF.save()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.PSF.sky_cal"><code class="docutils literal notranslate"><span class="pre">PSF.sky_cal()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.Region"><code class="docutils literal notranslate"><span class="pre">Region</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.Region.check_inside_absolute"><code class="docutils literal notranslate"><span class="pre">Region.check_inside_absolute()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.Region.load"><code class="docutils literal notranslate"><span class="pre">Region.load()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.Source"><code class="docutils literal notranslate"><span class="pre">Source</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.Source.compute_leakage"><code class="docutils literal notranslate"><span class="pre">Source.compute_leakage()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.Source.convolve_psf"><code class="docutils literal notranslate"><span class="pre">Source.convolve_psf()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.Source.delta"><code class="docutils literal notranslate"><span class="pre">Source.delta()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.Source.divide_by_mu"><code class="docutils literal notranslate"><span class="pre">Source.divide_by_mu()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.Source.gaussian"><code class="docutils literal notranslate"><span class="pre">Source.gaussian()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.Source.get_event_p_r_given_phi"><code class="docutils literal notranslate"><span class="pre">Source.get_event_p_r_given_phi()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.Source.invalidate_event_data"><code class="docutils literal notranslate"><span class="pre">Source.invalidate_event_data()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.Source.invalidate_psf"><code class="docutils literal notranslate"><span class="pre">Source.invalidate_psf()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.Source.invalidate_source_polarization"><code class="docutils literal notranslate"><span class="pre">Source.invalidate_source_polarization()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.Source.load_file"><code class="docutils literal notranslate"><span class="pre">Source.load_file()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.Source.no_image"><code class="docutils literal notranslate"><span class="pre">Source.no_image()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.Source.polarize_array"><code class="docutils literal notranslate"><span class="pre">Source.polarize_array()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.Source.polarize_file"><code class="docutils literal notranslate"><span class="pre">Source.polarize_file()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.Source.polarize_net"><code class="docutils literal notranslate"><span class="pre">Source.polarize_net()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.Source.uniform"><code class="docutils literal notranslate"><span class="pre">Source.uniform()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.Spectrum"><code class="docutils literal notranslate"><span class="pre">Spectrum</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.Spectrum.from_power_law_index"><code class="docutils literal notranslate"><span class="pre">Spectrum.from_power_law_index()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.Spectrum.get_avg_mu"><code class="docutils literal notranslate"><span class="pre">Spectrum.get_avg_mu()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.Spectrum.get_avg_one_over_mu"><code class="docutils literal notranslate"><span class="pre">Spectrum.get_avg_one_over_mu()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.Spectrum.load"><code class="docutils literal notranslate"><span class="pre">Spectrum.load()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.Spectrum.save"><code class="docutils literal notranslate"><span class="pre">Spectrum.save()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.Spectrum.weighted_average"><code class="docutils literal notranslate"><span class="pre">Spectrum.weighted_average()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.get_mom_modf"><code class="docutils literal notranslate"><span class="pre">get_mom_modf()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.get_nn_modf"><code class="docutils literal notranslate"><span class="pre">get_nn_modf()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ps-fit-subpackage">ps_fit subpackage</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-leakagelib.extended">leakagelib.extended module</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.extended.fit_extended"><code class="docutils literal notranslate"><span class="pre">fit_extended()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-leakagelib.funcs">leakagelib.funcs module</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.funcs.integrate_zoom"><code class="docutils literal notranslate"><span class="pre">integrate_zoom()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.funcs.integrate_zoom_unvectorized"><code class="docutils literal notranslate"><span class="pre">integrate_zoom_unvectorized()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.funcs.interpolate_zoom"><code class="docutils literal notranslate"><span class="pre">interpolate_zoom()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.funcs.override_matplotlib_defaults"><code class="docutils literal notranslate"><span class="pre">override_matplotlib_defaults()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.funcs.super_zoom"><code class="docutils literal notranslate"><span class="pre">super_zoom()</span></code></a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Jack T. Dinsmore
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026, Jack T. Dinsmore.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

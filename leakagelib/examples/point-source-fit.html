@@ -1,0 +1,650 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Fitting for a point source polarization with LeakageLib &#8212; LeakageLib 2.0.1 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/nbsphinx-code-cells.css?v=2aa19091" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=75c5c689"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'examples/point-source-fit';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Fitting for an extended source polarization with LeakageLib" href="extended-source-fit.html" />
+    <link rel="prev" title="Polarization fitting" href="../fitting.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">LeakageLib 2.0.1 documentation</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installing LeakageLib</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../fitting.html">Polarization fitting</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Fitting for a point source polarization with <code class="docutils literal notranslate"><span class="pre">LeakageLib</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="extended-source-fit.html">Fitting for an extended source polarization with <code class="docutils literal notranslate"><span class="pre">LeakageLib</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="time-varying-fit.html">Variable sources</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../background_estimation.html">Background particle weighting</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../leakage_prediction.html">Leakage Prediction</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="leakage-predict.html">Leakage pattern prediction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="leakage-severity.html">Estimate leakage severity as a function of radius</a></li>
+<li class="toctree-l2"><a class="reference internal" href="leakage-extract.html">Leakage pattern deconvolution</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../leakagelib.html"><cite>leakagelib</cite> API documentation</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../leakagelib.ps_fit.html">leakagelib.ps_fit package</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../leakagelib_bkg.html"><cite>leakagelib_bkg</cite> API documentation</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/examples/point-source-fit.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Fitting for a point source polarization with LeakageLib</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="Fitting-for-a-point-source-polarization-with-LeakageLib">
+<h1>Fitting for a point source polarization with <code class="docutils literal notranslate"><span class="pre">LeakageLib</span></code><a class="headerlink" href="#Fitting-for-a-point-source-polarization-with-LeakageLib" title="Link to this heading">#</a></h1>
+<p>This jupyter notebook fits for the polarization of a single point source, with a photon and particle background. Spatial, particle, and spectral weights are used.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">leakagelib</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">ixpeobssim.irf</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_arf</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+<span class="ansi-yellow-intense-fg">&gt;&gt;&gt; PyXSPEC is not installed, you will no be able to use it.</span>
+</pre></div></div>
+</div>
+<p>First, we need to load the data. <code class="docutils literal notranslate"><span class="pre">LeakageLib</span></code> needs both the level 2 event file and the housekeeping (hk) attitude file in order to run. (The attitude file contains the spacecraft orientation which is necessary to get the PSF model right). I made mock IXPE data for this example, which we’ll use.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">source</span> <span class="o">=</span> <span class="n">leakagelib</span><span class="o">.</span><span class="n">source</span><span class="o">.</span><span class="n">Source</span><span class="o">.</span><span class="n">no_image</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span> <span class="c1"># Tells LeakageLib that the data was NOT NN reconstructed.</span>
+<span class="n">datas</span> <span class="o">=</span> <span class="p">[</span><span class="n">leakagelib</span><span class="o">.</span><span class="n">IXPEData</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="p">(</span>
+    <span class="s2">&quot;data/ps/event_l2/ixpeps_det1_evt2_v00.fits&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;data/ps/hk/ixpeps_det1_att_v00.fits&quot;</span><span class="p">,</span>
+<span class="p">),</span> <span class="n">energy_cut</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">8</span><span class="p">))]</span>
+</pre></div>
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title"><strong>Alternatives to</strong> <code class="docutils literal notranslate"><span class="pre">leakagelib.IXPEData</span></code></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">leakagelib.IXPEData.load_all_detectors</span></code>. Searches all directories listed in the DATA_DIRECTORIES variable defined in settings.py for the given obs id, and load all detectors.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">leakagelib.IXPEData.load_all_detectors_with_path</span></code>. Provide a path to the observation and the function will load all detectors. This will not use the DATA_DIRECTORIES variable.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">leakagelib.IXPEData</span></code> (this method). You must pass specific file names.</p></li>
+</ul>
+</div>
+<p>Next we will center the data and cut to data within 280 arcsec of the center.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">datas</span><span class="p">:</span>
+    <span class="n">data</span><span class="o">.</span><span class="n">iterative_centroid_center</span><span class="p">()</span>
+    <span class="n">data</span><span class="o">.</span><span class="n">retain</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">evt_xs</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">data</span><span class="o">.</span><span class="n">evt_ys</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">280</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title"><strong>Alternatives to</strong> <code class="docutils literal notranslate"><span class="pre">leakagelib.IXPEData.iterative_centroid_center</span></code></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">leakagelib.IXPEData.explicit_center</span></code>: Center on a specific point, in pixels.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">leakagelib.IXPEData.iterative_centroid_center</span></code>: Center by iteratively zooming in on the average event. This finds central PSs rather well.</p></li>
+</ul>
+</div>
+<div class="admonition note">
+<p class="admonition-title"><strong>Alternatives to</strong> <code class="docutils literal notranslate"><span class="pre">leakagelib.IXPEData.retain</span></code></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">leakagelib.IXPEData.retain_region</span></code>: Pass in a region file to cut only events in the region. Note: the region must be <code class="docutils literal notranslate"><span class="pre">ciao</span></code> formatted in physical coordinates</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">leakagelib.IXPEData.retain</span></code>: Simply a list of bools, one per event, where True indicates the event should be cut.</p></li>
+</ul>
+</div>
+<p>Now we have to tell the fitter what the image looks like. There are two components: a point source and a photon background. To create the point source,</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">settings</span> <span class="o">=</span> <span class="n">leakagelib</span><span class="o">.</span><span class="n">ps_fit</span><span class="o">.</span><span class="n">FitSettings</span><span class="p">(</span><span class="n">datas</span><span class="p">)</span>
+
+<span class="n">settings</span><span class="o">.</span><span class="n">add_point_source</span><span class="p">()</span> <span class="c1"># Named &quot;src&quot; by default</span>
+<span class="n">settings</span><span class="o">.</span><span class="n">fix_flux</span><span class="p">(</span><span class="s2">&quot;src&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">settings</span><span class="o">.</span><span class="n">set_initial_qu</span><span class="p">(</span><span class="s2">&quot;src&quot;</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<p>Without loss of generality, we have defined the flux to be in units of the source flux.</p>
+<div class="admonition note">
+<p>You can use <code class="docutils literal notranslate"><span class="pre">leakagelib.FitSettings.set_initial_qu</span></code> to set the start point of the fitter. It’s important to set the start point as close to the true value as possible to avoid falling into the wrong maximum of the likelihood.</p>
+</div>
+<p>Now we create the background models:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">settings</span><span class="o">.</span><span class="n">add_background</span><span class="p">()</span> <span class="c1"># Named &quot;bkg&quot; by default</span>
+<span class="n">settings</span><span class="o">.</span><span class="n">fix_qu</span><span class="p">(</span><span class="s2">&quot;bkg&quot;</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span> <span class="c1"># Assume an unpolarized background</span>
+<span class="n">settings</span><span class="o">.</span><span class="n">add_particle_background</span><span class="p">()</span> <span class="c1"># Named &quot;pbkg&quot; by default</span>
+<span class="n">settings</span><span class="o">.</span><span class="n">fix_qu</span><span class="p">(</span><span class="s2">&quot;pbkg&quot;</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span> <span class="c1"># Assume the particles have no direction dependence</span>
+</pre></div>
+</div>
+</div>
+<p>These background sources are assumed to be spatially uniform and already have spatial weights applied. To use energy weights, we must assign a spectrum. To do this, we create functions which take in the energy in keV and return the photon spectrum (dN/dE). Normalization doesn’t matter, but remember to include the ARF.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">arf</span> <span class="o">=</span> <span class="n">load_arf</span><span class="p">()</span>
+<span class="n">settings</span><span class="o">.</span><span class="n">set_spectrum</span><span class="p">(</span><span class="s2">&quot;bkg&quot;</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">e</span><span class="p">:</span> <span class="n">arf</span><span class="p">(</span><span class="n">e</span><span class="p">)</span> <span class="o">*</span> <span class="n">e</span><span class="o">**-</span><span class="mf">2.5</span><span class="p">)</span> <span class="c1"># Gamma=2.5, unabsorbed powerlaw</span>
+<span class="n">settings</span><span class="o">.</span><span class="n">set_spectrum</span><span class="p">(</span><span class="s2">&quot;src&quot;</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">e</span><span class="p">:</span> <span class="n">arf</span><span class="p">(</span><span class="n">e</span><span class="p">)</span> <span class="o">*</span> <span class="n">e</span><span class="o">**-</span><span class="mf">1.5</span><span class="p">)</span> <span class="c1"># Gamma=1.5, unabsorbed powerlaw</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+&gt;&gt;&gt; Reading (in memory) /opt/homebrew/anaconda3/lib/python3.12/site-packages/ixpeobssim/caldb/ixpe/gpd/cpf/arf/ixpe_d1_obssim20240101_v013.arf...
+</pre></div></div>
+</div>
+<p>We have assigned all the weights. We now have to tell the fitter which events we cut, so that it knows how to normalize the spatial weights. Since the ROI is circular, this is easy</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">settings</span><span class="o">.</span><span class="n">apply_circular_roi</span><span class="p">(</span><span class="mi">280</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title"><strong>Alternatives to</strong> <code class="docutils literal notranslate"><span class="pre">leakagelib.FitSettings.apply_circular_roi</span></code></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">leakagelib.IXPEData.apply_circular_roi</span></code>: Assumes a circular ROI centered on the origin</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">leakagelib.IXPEData.apply_roi</span></code>: Apply an arbitrary ROI, which you pass in as an image. The image must have the same pixel size and dimensions as the fit sources. To get these properties, check out <code class="docutils literal notranslate"><span class="pre">settings.sources[0]</span></code> (example below).</p></li>
+</ul>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">settings</span><span class="o">.</span><span class="n">sources</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">settings</span><span class="o">.</span><span class="n">sources</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">pixel_size</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">settings</span><span class="o">.</span><span class="n">sources</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">source</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;class &#39;leakagelib.source.Source&#39;&gt;
+2.9729
+(195, 195)
+</pre></div></div>
+</div>
+<p>Now we are ready to run the fit.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fitter</span> <span class="o">=</span> <span class="n">leakagelib</span><span class="o">.</span><span class="n">ps_fit</span><span class="o">.</span><span class="n">Fitter</span><span class="p">(</span><span class="n">datas</span><span class="p">,</span> <span class="n">settings</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fitter</span><span class="p">)</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">fitter</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+
+<span class="n">result</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+FITTED PARAMETERS:
+Source  Param
+src:    q
+src:    u
+bkg:    f
+pbkg:   f
+
+FIXED PARAMETERS:
+Source  Param   Value
+src:    f       1
+bkg:    q       0
+bkg:    u       0
+pbkg:   q       0
+pbkg:   u       0
+
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+FitResult:
+        q (src) = 0.3363 +/- 0.0719
+        u (src) = -0.0214 +/- 0.0726
+        f (bkg) = 1.4488 +/- 0.0312
+        f (pbkg) = 0.7045 +/- 0.0180
+
+Polarization:
+        PD (src): 0.3370 +/- 0.0719 (4.7 sig)
+        PA (src): -1.8244 deg +/- 6.1682
+Likelihood 23168.382129529396, dof 15735
+Optimization terminated successfully.
+</pre></div></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title"><strong>Alternatives to</strong> <code class="docutils literal notranslate"><span class="pre">leakagelib.Fitter.fit</span></code></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">leakagelib.Fitter.fit</span></code>: Fit by numerically maximizing the likelihood and get Gaussian uncertainties by taking the Hessian and using Laplace’s approximation.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">leakagelib.IXPEData.fit_mcmc</span></code>: Do a full MCMC fit. This code is less tested and you may need to edit it yourself.</p></li>
+</ul>
+</div>
+<p>You can access <code class="docutils literal notranslate"><span class="pre">result.params</span></code> and <code class="docutils literal notranslate"><span class="pre">result.sigmas</span></code> to get the best-fit values and uncertainties. Also <code class="docutils literal notranslate"><span class="pre">result.cov</span></code> to get the full covariance matrix.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Parameters&quot;</span><span class="p">,</span> <span class="n">result</span><span class="o">.</span><span class="n">params</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Uncertainties&quot;</span><span class="p">,</span> <span class="n">result</span><span class="o">.</span><span class="n">sigmas</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Covariance&quot;</span><span class="p">,</span> <span class="n">result</span><span class="o">.</span><span class="n">cov</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Parameters {(&#39;q&#39;, &#39;src&#39;): 0.33629609651171555, (&#39;u&#39;, &#39;src&#39;): -0.021445733605313176, (&#39;f&#39;, &#39;bkg&#39;): 1.4487766852664463, (&#39;f&#39;, &#39;pbkg&#39;): 0.7045449117000632}
+Uncertainties {(&#39;q&#39;, &#39;src&#39;): 0.07188141512403051, (&#39;u&#39;, &#39;src&#39;): 0.07255788283252212, (&#39;f&#39;, &#39;bkg&#39;): 0.031228943997413966, (&#39;f&#39;, &#39;pbkg&#39;): 0.017994536976980127}
+Covariance [[ 5.16693784e-03 -2.06304524e-05  0.00000000e+00  0.00000000e+00]
+ [-2.06304524e-05  5.26464636e-03  0.00000000e+00  0.00000000e+00]
+ [ 0.00000000e+00  0.00000000e+00  9.75246943e-04  2.00522611e-04]
+ [ 0.00000000e+00  0.00000000e+00  2.00522611e-04  3.23803361e-04]]
+</pre></div></div>
+</div>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../fitting.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Polarization fitting</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="extended-source-fit.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Fitting for an extended source polarization with <code class="docutils literal notranslate"><span class="pre">LeakageLib</span></code></p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Jack T. Dinsmore
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026, Jack T. Dinsmore.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
