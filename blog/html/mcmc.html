@@ -1,7 +1,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" type = "text/css" href = "https://jack-dinsmore.github.io/blog/html/css/text.css">
+    <link rel="stylesheet" type = "text/css" href = "file:///Users/jtd/Documents/personal/code/html/jack-dinsmore.github.io/blog/html/css/text.css">
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async
             src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
@@ -25,14 +25,14 @@ window.MathJax = {
 }
     </script>
     <title>statistics</title>
-</head><body><div id="content"><h2><a href="https://jack-dinsmore.github.io/blog/html/index.html">Home</a></h2><h1>General Bayesian Fitting: Markov Chain Monte Carlo methods</h1>
+</head><body><div id="content"><h2><a href="file:///Users/jtd/Documents/personal/code/html/jack-dinsmore.github.io/blog/html/index.html">Home</a></h2><h1>General Bayesian Fitting: Markov Chain Monte Carlo methods</h1>
 
-<p>We have gone through several blog posts about fitting now, from <a href=https://jack-dinsmore.github.io/blog/html/parameter%2dfitting.html>general theory</a> to <a href=https://jack-dinsmore.github.io/blog/html/line.html>an example for linear functions</a> to <a href=https://jack-dinsmore.github.io/blog/html/line2.html>establishing uncertainties on the best fit</a> and <a href=https://jack-dinsmore.github.io/blog/html/gaussian.html>a generalization to Gaussian likelihoods</a>. All of these posts invoked assumptions to keep the calculations tractable, but these assumptions can be (and often are) removed with the help of new algorithms, such as the <i>Markov Chain Monte Carlo</i> (MCMC) methods we’ll introduce here.
+<p>We have gone through several blog posts about fitting now, from <a href=file:///Users/jtd/Documents/personal/code/html/jack-dinsmore.github.io/blog/html/parameter%2dfitting.html>general theory</a> to <a href=file:///Users/jtd/Documents/personal/code/html/jack-dinsmore.github.io/blog/html/line.html>an example for linear functions</a> to <a href=file:///Users/jtd/Documents/personal/code/html/jack-dinsmore.github.io/blog/html/line2.html>establishing uncertainties on the best fit</a> and <a href=file:///Users/jtd/Documents/personal/code/html/jack-dinsmore.github.io/blog/html/gaussian.html>a generalization to Gaussian likelihoods</a>. All of these posts invoked assumptions to keep the calculations tractable, but these assumptions can be (and often are) removed with the help of new algorithms, such as the <i>Markov Chain Monte Carlo</i> (MCMC) methods we’ll introduce here.
 </p>
 <center><canvas id="mh_demo"></canvas>
         <div class="caption"><b>Applet:</b> A Metropolis-Hastings algorithm performs a fit to data with a bi-modal likelihood. See the last section for a description of the scenario. The fit is accurate where the previous, simpler method assuming a Gaussian posterior would have failed.</div></center>
 <script type="module">
-    import init, {MhDemo} from "https://jack-dinsmore.github.io/blog/bin/mh_demo.js";
+    import init, {MhDemo} from "file:///Users/jtd/Documents/personal/code/html/jack-dinsmore.github.io/blog/bin/mh_demo.js";
     await init();
 
     const mh_demo = MhDemo.new("mh_demo");
@@ -88,7 +88,7 @@ Incidentally, this equation is sometimes called <i>detailed balance</i>.
 <p>This conclusion proves that, when the Metropolis-Hastings algorithm has converged, its Markov chain contains correct samples. However, we haven’t proved that the algorithm converges at a reasonable rate. Much of the technology of complicated fitters goes into hastening the process of convergence, mostly by choosing clever trial values \(\bm \phi\). We’ll discuss some of these in the next section.
 </p>
 </div> <button class="collapsible"><h2>Choosing the trial point \(\bm \phi\)</h2></button><div class="section">
-<p>We are about to look at two different methods for choosing a trial point \(\bm \phi\) that is likely to be accepted. But first, it’s important to point out that we are allowed to do this. Messing with the trial point selection method is OK because it does not affect the steady state condition <a href=https://jack-dinsmore.github.io/blog/html/mcmc.html#eq1>Eq. 1</a>, which is what gives the Metropolis-Hastings algorithm its validity. The only problem would occur if we make it impossible to pick \(\bm \phi\) from certain points. Then we’re guaranteeing that \(N(\bm \phi) = 0\) there, which is a serious error if \(P(\bm \phi)\) is big. The trick in general is to try to choose most \(\bm \phi\) from points where \(P(\bm \phi)\) is big, with only a few trial points taken from low values of \(P(\bm \phi)\).
+<p>We are about to look at two different methods for choosing a trial point \(\bm \phi\) that is likely to be accepted. But first, it’s important to point out that we are allowed to do this. Messing with the trial point selection method is OK because it does not affect the steady state condition <a href=file:///Users/jtd/Documents/personal/code/html/jack-dinsmore.github.io/blog/html/mcmc.html#eq1>Eq. 1</a>, which is what gives the Metropolis-Hastings algorithm its validity. The only problem would occur if we make it impossible to pick \(\bm \phi\) from certain points. Then we’re guaranteeing that \(N(\bm \phi) = 0\) there, which is a serious error if \(P(\bm \phi)\) is big. The trick in general is to try to choose most \(\bm \phi\) from points where \(P(\bm \phi)\) is big, with only a few trial points taken from low values of \(P(\bm \phi)\).
 </p>
 <h3>Method 1: Ensemble Samplers</h3>
 <p>The first method we’ll discuss is called an <a href=https://msp.org/camcos/2010/5-1/p04.xhtml>Affine Invariant Ensemble Sampler</a>. It uses the current positions of the “ensemble” of all the Markov chains you’re running to inform the choice of \(\bm \phi\) by picking points near to or inside the ensemble. The “affine invariance” refers to the particular method of choosing \(\bm \phi\) from the locations of all the chains \(\bm \theta_i\), which works even in cases where \(P(\bm \theta)\) is highly correlated or much thinner in one axis than another. For most Gaussian-like posteriors, this MCMC method converges quickly. However, for multi-modal or otherwise non-Gaussian posteriors the “affine-invariant” selection method is not flexible enough to be efficient, and convergence is slower.
@@ -100,9 +100,9 @@ Incidentally, this equation is sometimes called <i>detailed balance</i>.
 
 </div> <button class="collapsible"><h2>Conclusion</h2></button><div class="section">
 
-<p>MCMC methods provide a robust way of fitting models to data with as few assumptions on the posterior as possible. But it is important to note that they are also the least efficient. <a href=https://jack-dinsmore.github.io/blog/html/line.html>Analytically solving</a> for the posterior is much faster if possible. When not, assuming <a href=https://jack-dinsmore.github.io/blog/html/gaussian.html>the posterior is Gaussian</a> reduces the problem simply to finding the maximum of the posterior, which can be done quickly by one of several numerical methods. Generating samples to solve for the whole posterior, as an MCMC does, is still useful in many cases. But if you have to perform many fits, or a fit over many parameters, you should seriously consider other methods before committing to a days-long computation that will take several attempts to get right.
+<p>MCMC methods provide a robust way of fitting models to data with as few assumptions on the posterior as possible. But it is important to note that they are also the least efficient. <a href=file:///Users/jtd/Documents/personal/code/html/jack-dinsmore.github.io/blog/html/line.html>Analytically solving</a> for the posterior is much faster if possible. When not, assuming <a href=file:///Users/jtd/Documents/personal/code/html/jack-dinsmore.github.io/blog/html/gaussian.html>the posterior is Gaussian</a> reduces the problem simply to finding the maximum of the posterior, which can be done quickly by one of several numerical methods. Generating samples to solve for the whole posterior, as an MCMC does, is still useful in many cases. But if you have to perform many fits, or a fit over many parameters, you should seriously consider other methods before committing to a days-long computation that will take several attempts to get right.
 </div></div><div id="footer">
-Copyright &copy; 2024 Jack Dinsmore. &emsp;Updated September 23. &emsp;Version 0.1</div></body>
+Copyright &copy; 2025 Jack Dinsmore. &emsp;Updated December 24. &emsp;Version 0.1</div></body>
 <script>
 var coll = document.getElementsByClassName("collapsible");
 var i;

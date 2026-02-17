@@ -2,7 +2,7 @@
 
 @font-face {
     font-family: "font1";
-    src: url("https://jack-dinsmore.github.io/blog/../fonts/cmunrm.ttf");
+    src: url("file:///Users/jtd/Documents/personal/code/html/jack-dinsmore.github.io/blog/../fonts/cmunrm.ttf");
 }
 body {
     font-size: 18px;

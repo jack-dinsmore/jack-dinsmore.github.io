@@ -1,7 +1,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" type = "text/css" href = "https://jack-dinsmore.github.io/blog/html/css/text.css">
+    <link rel="stylesheet" type = "text/css" href = "file:///Users/jtd/Documents/personal/code/html/jack-dinsmore.github.io/blog/html/css/text.css">
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async
             src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
@@ -25,9 +25,9 @@ window.MathJax = {
 }
     </script>
     <title>statistics</title>
-</head><body><div id="content"><h2><a href="https://jack-dinsmore.github.io/blog/html/index.html">Home</a></h2><h1>Expected Value, Variance, and Covariance</h1>
+</head><body><div id="content"><h2><a href="file:///Users/jtd/Documents/personal/code/html/jack-dinsmore.github.io/blog/html/index.html">Home</a></h2><h1>Expected Value, Variance, and Covariance</h1>
 
-<p>In the <a href=https://jack-dinsmore.github.io/blog/html/probability.html>previous section</a>, we defined random variables and their basic properties such as their Probability Density Functions (PDFs) and Probability Mass Functions (PMFs). These functions completely describe the random variable in question, and we often want to measure them in science. This is quite difficult to do accurately because a PDF is a function with a separate value for each point in the domain, all of which have to be measured. In such cases, it is often more useful to measure simplifying properties of the PDF instead. These are called the “moments” of the distribution. The \(n^\mathrm{th}\) moment of the PDF \(P(x)\) is defined as
+<p>In the <a href=file:///Users/jtd/Documents/personal/code/html/jack-dinsmore.github.io/blog/html/probability.html>previous section</a>, we defined random variables and their basic properties such as their Probability Density Functions (PDFs) and Probability Mass Functions (PMFs). These functions completely describe the random variable in question, and we often want to measure them in science. This is quite difficult to do accurately because a PDF is a function with a separate value for each point in the domain, all of which have to be measured. In such cases, it is often more useful to measure simplifying properties of the PDF instead. These are called the “moments” of the distribution. The \(n^\mathrm{th}\) moment of the PDF \(P(x)\) is defined as
 <div class="eq"><div class="eqtext">\[\int dx\, x^n P(x).\]</div><div class="eqnum" id="eq1">(1)</div></div>
 for some integer \(n\).
 </p>
@@ -69,7 +69,7 @@ This is a second-order moment of \(X\). Its value is positive, so we can also de
 <div class="eq"><div class="eqtext">\[= \frac{1}{n^2} \sum_{i=1}^n \sum_{j\neq i} \langle X \rangle^2 + \frac{1}{n^2} \sum_{i=1}^n \langle X^2 \rangle\]</div><div class="eqnum" id="eq12">(12)</div></div>
 <div class="eq"><div class="eqtext">\[= \frac{n-1}{n}\langle X \rangle^2 + \frac{1}{n} \langle X^2 \rangle\]</div><div class="eqnum" id="eq13">(13)</div></div>
 <div class="eq"><div class="eqtext">\[= \langle X \rangle^2 + \frac{1}{n} \mathrm{Var}\ X\]</div><div class="eqnum" id="eq14">(14)</div></div>
-where the second line expanded the square, the third line separated the components where \(i\neq j\) and \(i= j\), the fourth counted the number of terms in the sum, and the fifth substituted in <a href=https://jack-dinsmore.github.io/blog/html/variance.html#eq9>Eq. 9</a>.
+where the second line expanded the square, the third line separated the components where \(i\neq j\) and \(i= j\), the fourth counted the number of terms in the sum, and the fifth substituted in <a href=file:///Users/jtd/Documents/personal/code/html/jack-dinsmore.github.io/blog/html/variance.html#eq9>Eq. 9</a>.
 </p>
 <p>Finally, the variance of \(M\) must be
 <div class="eq"><div class="eqtext">\[\mathrm{Var}\ M = \frac{1}{n} \mathrm{Var}\ X\]</div><div class="eqnum" id="eq15">(15)</div></div>
@@ -117,7 +117,7 @@ The applications of the CLT are practically boundless. If you don’t know the P
 
 <div class="eq"><div class="eqtext">\[P_S(s) = \int dx_1\cdots dx_n\, P_X(x_1)\cdots P_X(x_n) \delta\parens{s - \sum_{i=1}^n x_1}.\]</div><div class="eqnum" id="eq21">(21)</div></div>
 </p>
-<p>This is the convolution of \(P_X\) with itself \(n\) times. The “convolution theorem” dictates that the Fourier transform of the real-space product of functions \(f(x)g(x)\) is equal to the convolution of their Fourier transforms, \(\widetilde f(k)\) and \(\widetilde g(k)\). The inverse of this statement demonstrates that the convolution in <a href=https://jack-dinsmore.github.io/blog/html/variance.html#eq21>Eq. 21</a> satisfies
+<p>This is the convolution of \(P_X\) with itself \(n\) times. The “convolution theorem” dictates that the Fourier transform of the real-space product of functions \(f(x)g(x)\) is equal to the convolution of their Fourier transforms, \(\widetilde f(k)\) and \(\widetilde g(k)\). The inverse of this statement demonstrates that the convolution in <a href=file:///Users/jtd/Documents/personal/code/html/jack-dinsmore.github.io/blog/html/variance.html#eq21>Eq. 21</a> satisfies
 
 <div class="eq"><div class="eqtext">\[\widetilde P_S(k) = \widetilde P_X(k)^n\]</div><div class="eqnum" id="eq22">(22)</div></div>
 or
@@ -128,7 +128,7 @@ where \(a_1\) and \(a_2>0\) are Taylor series coefficients. Removing the logarit
 <div class="eq"><div class="eqtext">\[\widetilde P_S(k) \propto \exp \parens{-a_2\frac{n(k-k_0)^2}{2}}\]</div><div class="eqnum" id="eq25">(25)</div></div>
 and the Fourier transform of a Gaussian is also a Gaussian
 <div class="eq"><div class="eqtext">\[P_S(x) \propto \exp \parens{-\frac{(x-\mu)^2}{2\sigma’^2}} \implies P_M(x) \propto \exp \parens{-\frac{(x-\mu)^2}{2\sigma^2}}\]</div><div class="eqnum" id="eq26">(26)</div></div>
-for some parameters \(\sigma\) and \(\mu\). We showed in the sections on expected value and variance that \(P_S(x)\) has expected value \(\mu = \langle X \rangle\) and standard deviation \(\sigma = \sigma_X/\sqrt{n}\). Asserting these findings reproduces the central limit theorem <a href=https://jack-dinsmore.github.io/blog/html/variance.html#eq20>Eq. 20</a>.
+for some parameters \(\sigma\) and \(\mu\). We showed in the sections on expected value and variance that \(P_S(x)\) has expected value \(\mu = \langle X \rangle\) and standard deviation \(\sigma = \sigma_X/\sqrt{n}\). Asserting these findings reproduces the central limit theorem <a href=file:///Users/jtd/Documents/personal/code/html/jack-dinsmore.github.io/blog/html/variance.html#eq20>Eq. 20</a>.
 </p>
 
 </div> <button class="collapsible"><h2>Propagation of uncertainty</h2></button><div class="section">
@@ -140,9 +140,9 @@ for some parameters \(\sigma\) and \(\mu\). We showed in the sections on expecte
 The definition of variance now simply states
 <div class="eq"><div class="eqtext">\[\sigma_Y = |f’(\langle X \rangle)|\sigma_X.\]</div><div class="eqnum" id="eq28">(28)</div></div>
 </p>
-<p>The <a href=https://jack-dinsmore.github.io/blog/html/bayesian.html>next section</a> represents our first application of probability theory to statistics; we will use the tools we’ve learned to create a theory fitting models to data.
+<p>The <a href=file:///Users/jtd/Documents/personal/code/html/jack-dinsmore.github.io/blog/html/bayesian.html>next section</a> represents our first application of probability theory to statistics; we will use the tools we’ve learned to create a theory fitting models to data.
 </div></div><div id="footer">
-Copyright &copy; 2024 Jack Dinsmore. &emsp;Updated September 23. &emsp;Version 0.1</div></body>
+Copyright &copy; 2025 Jack Dinsmore. &emsp;Updated December 24. &emsp;Version 0.1</div></body>
 <script>
 var coll = document.getElementsByClassName("collapsible");
 var i;

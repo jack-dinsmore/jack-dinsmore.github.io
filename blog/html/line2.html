@@ -1,7 +1,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" type = "text/css" href = "https://jack-dinsmore.github.io/blog/html/css/text.css">
+    <link rel="stylesheet" type = "text/css" href = "file:///Users/jtd/Documents/personal/code/html/jack-dinsmore.github.io/blog/html/css/text.css">
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async
             src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
@@ -25,16 +25,16 @@ window.MathJax = {
 }
     </script>
     <title>statistics</title>
-</head><body><div id="content"><h2><a href="https://jack-dinsmore.github.io/blog/html/index.html">Home</a></h2><h1>Finishing Parameter Fitting: Uncertainty on the Prediction</h1>
+</head><body><div id="content"><h2><a href="file:///Users/jtd/Documents/personal/code/html/jack-dinsmore.github.io/blog/html/index.html">Home</a></h2><h1>Finishing Parameter Fitting: Uncertainty on the Prediction</h1>
 
-<p>We concluded the <a href=https://jack-dinsmore.github.io/blog/html/line.html>previous post</a> by stating that \(\sigma_a\) and \(\sigma_b\) don’t fully express the uncertainty of the fit, because of the nonzero covariance. But this merely raises the new question of how does one fully express uncertainty? Listing an entire covariance matrix is certainly an option, but it’s clunky if the number of parameters is large, and it’s not very intuitive.
+<p>We concluded the <a href=file:///Users/jtd/Documents/personal/code/html/jack-dinsmore.github.io/blog/html/line.html>previous post</a> by stating that \(\sigma_a\) and \(\sigma_b\) don’t fully express the uncertainty of the fit, because of the nonzero covariance. But this merely raises the new question of how does one fully express uncertainty? Listing an entire covariance matrix is certainly an option, but it’s clunky if the number of parameters is large, and it’s not very intuitive.
 </p>
 <p>A graphical option is to translate the uncertainty on fit parameters into uncertainty on the best fit line. These can be represented as “error bands” on a plot, which enclose all the lines which could have been drawn consistent with the posterior distribution. An example is shown in the interactive applet below.
 </p>
 <center><canvas id="linear_fit_demo"></canvas>
         <div class="caption"><b>Applet:</b> A linear fit \(y=ax+b\) to simulated data with constant uncertainty \(\sigma\). Use the sliders to adjust the true values of \(a\), \(b\), \(\sigma\), and the number of data points \(N\). The dashed line represents the true model, while the solid line is the best-fit model extracted using the methods of the previous post. The yellow band shows the uncertainty on the fit derived in this post; It should contain the true model 68% of the time. In the bottom left is a tracker containing the percentage of times that the yellow band has enclosed the true line. The Y or N in parentheses indicates the status of the current band. If you keep clicking randomize, this number should approach 68. The text in the upper left shows the best fit parameters and uncertainty derived in the previous section. </div></center>
 <script type="module">
-    import init, {LinearFitDemo} from "https://jack-dinsmore.github.io/blog/bin/linear_fit_demo.js";
+    import init, {LinearFitDemo} from "file:///Users/jtd/Documents/personal/code/html/jack-dinsmore.github.io/blog/bin/linear_fit_demo.js";
     await init();
 
     const linear_fit_demo = LinearFitDemo.new("linear_fit_demo");
@@ -73,7 +73,7 @@ This equation seems unintiuitive, so we will discuss it a little further. Let \(
 <div class="eq"><div class="eqtext">\[(\bm \theta - \hat {\bm \theta})^T \Sigma^{-1} (\bm \theta - \hat {\bm \theta}) \leq 2.3.\]</div><div class="eqnum" id="eq3">(3)</div></div>
 Note that this is actually in the exponent of the Gaussian expression for the posterior distribution:
 <div class="eq"><div class="eqtext">\[P(\bm \theta) \propto \exp\parens{-\frac{1}{2}(\bm \theta - \hat {\bm \theta})^T \Sigma^{-1} (\bm \theta - \hat {\bm \theta})}.\]</div><div class="eqnum" id="eq4">(4)</div></div>
-Thus, the set of parameters where equality is satisfied in <a href=https://jack-dinsmore.github.io/blog/html/line2.html#eq2>Eq. 2</a> is a “level curve” of the posterior&mdash;it gives constant \(P(\bm \theta)\). That constant value is \(e^{-2.3/2}\) of the maximum. Further calculation shows that this area encloses 68% of the posterior. Remember that in <a href=https://jack-dinsmore.github.io/blog/html/parameter%2dfitting.html>the post on parameter fitting</a>, we mentioned that our parameter uncertainties enclose 68% of the posterior? <a href=https://jack-dinsmore.github.io/blog/html/line2.html#eq2>Eq. 2</a> is simply inheriting that same definition to the case of finding uncertainties on the best fit line.<sup><a href="#footnote1">1</a></sup> 
+Thus, the set of parameters where equality is satisfied in <a href=file:///Users/jtd/Documents/personal/code/html/jack-dinsmore.github.io/blog/html/line2.html#eq2>Eq. 2</a> is a “level curve” of the posterior&mdash;it gives constant \(P(\bm \theta)\). That constant value is \(e^{-2.3/2}\) of the maximum. Further calculation shows that this area encloses 68% of the posterior. Remember that in <a href=file:///Users/jtd/Documents/personal/code/html/jack-dinsmore.github.io/blog/html/parameter%2dfitting.html>the post on parameter fitting</a>, we mentioned that our parameter uncertainties enclose 68% of the posterior? <a href=file:///Users/jtd/Documents/personal/code/html/jack-dinsmore.github.io/blog/html/line2.html#eq2>Eq. 2</a> is simply inheriting that same definition to the case of finding uncertainties on the best fit line.<sup><a href="#footnote1">1</a></sup> 
 </p>
 <p>The next task is to convert this region of consistent best fit parameters to a band of consistent lines by finding what are the maximum and minimum values of \(y\) that can be achieved by these parameters. This can be done with the method of Lagrange multipliers. That is, we set 
 <div class="eq"><div class="eqtext">\[\lambda = (\bm \theta - \hat {\bm \theta})^T \Sigma^{-1} (\bm \theta - \hat {\bm \theta}),\]</div><div class="eqnum" id="eq5">(5)</div></div>
@@ -91,9 +91,9 @@ where \(\hat y = \hat a x + \hat b\).
 </p>
 </div> <button class="collapsible"><h2>Caveats</h2></button><div class="section">
 
-<p>In these posts on linear fitting, we assumed a Gaussian likelihood with a linear model and equal uncertainty \(\sigma\) across the data. If any of these assumptions are violated, our results do not hold and an analytical solution may not even be possible. In particular, most scientific models are nonlinear, and even those that are likely have uneven error bars.  But even in cases where these assumptions are violated, the fundamental Bayesian principles still hold. In <a href=https://jack-dinsmore.github.io/blog/html/gaussian.html>the next post</a>, we discuss the general case of a Gaussian likelihood and make no assumptions on the model or the uncertainties.
+<p>In these posts on linear fitting, we assumed a Gaussian likelihood with a linear model and equal uncertainty \(\sigma\) across the data. If any of these assumptions are violated, our results do not hold and an analytical solution may not even be possible. In particular, most scientific models are nonlinear, and even those that are likely have uneven error bars.  But even in cases where these assumptions are violated, the fundamental Bayesian principles still hold. In <a href=file:///Users/jtd/Documents/personal/code/html/jack-dinsmore.github.io/blog/html/gaussian.html>the next post</a>, we discuss the general case of a Gaussian likelihood and make no assumptions on the model or the uncertainties.
 </div><div id="footnote1" class="footnote"><sup>1</sup> The number 2.3 comes from numerically solving for the value such that the ellipse contains 68% of the posterior. Let this value be \(\lambda\). The fraction enclosed by \(\lambda\) works out to be \(\frac{\Gamma(d/2) - \Gamma(d/2,\lambda/2)}{\Gamma(d/2) \lambda^{d/2}}\) where \(d\) is the dimensionality of \(\bm \theta\) and \(\Gamma(x,y)\) is the upper incomplete Gamma function. Setting \(\lambda=1\) for \(d=1\) gives 68%. For \(d=2\), the value of \(\lambda\) that also gives 68% is 2.30 (the number we use here), and for increasing \(n\) we get 3.53, 4.72, 5.89, etc.</div><div id="footnote2" class="footnote"><sup>2</sup> If the factor of \(\sqrt{2.3}\) difference between the trend of \(y\) and the uncertainty on \(a\) is confusing, consider this. The uncertainty on \(a\) was defined to enclose 68% of \(P(a|D)\). The uncertainty on \(y\) was defined to enclose 68% of \(P(a,b|D)\). Since a Gaussian in the two-dimensional space of \(a\) and \(b\) has more tail than in the one-dimensional space of \(a\), the interval enclosed for \(y\) was bigger. We chose to keep the uncertainties enclosing 68% of the PDF, allowing \(y\) to vary more than one standard deviation from \(\hat y\). If we had chosen the other route (which is sometimes done), we would reproduce the same uncertainties on \(a\) that the previous post gave, but our line would enclose only 39% of the posterior.</div></div><div id="footer">
-Copyright &copy; 2024 Jack Dinsmore. &emsp;Updated September 23. &emsp;Version 0.1</div></body>
+Copyright &copy; 2025 Jack Dinsmore. &emsp;Updated December 24. &emsp;Version 0.1</div></body>
 <script>
 var coll = document.getElementsByClassName("collapsible");
 var i;

@@ -1,0 +1,61 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type = "text/css" href = "file:///Users/jtd/Documents/personal/code/html/jack-dinsmore.github.io/blog/html/css/text.css">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async
+            src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+    </script>
+    <script>
+window.MathJax = {
+    tex: {
+        macros: {
+            bm: ["\\mathbf {#1}",1],
+            parens: ["\\left( #1 \\right)", 1],
+            braces: ["\\left\{ #1 \\right\}", 1],
+            brackets: ["\\left[ #1 \\right]", 1],
+            eval: ["\\left. #1 \\right|", 1],
+            fraci: ["{#1} / {#2}", 2],
+            expp: ["\\exp\\left( #1 \right)", 1],
+            bra: ["\\left\\langle #1 \\right|", 1],
+            ket: ["\\left| #1 \\right\\rangle", 1],
+            braket: ["\\langle {#1} | {#2} \\rangle", 2],
+        }
+    }
+}
+    </script>
+    <title>statistics</title>
+</head><body><div id="content"><h2><a href="file:///Users/jtd/Documents/personal/code/html/jack-dinsmore.github.io/blog/html/index.html">Home</a></h2><h1>Bayesian Model Selection</h1>
+
+<p>Model selection is the practice of choosing the model that best fits the data. That task may sound deceptively simple&mdash;surely, the best model is the one with the highest likelihood, right? This idea makes sense because it is the natural extension of the <a href=file:///Users/jtd/Documents/personal/code/html/jack-dinsmore.github.io/blog/html/frequentist.html>frequentist maximum likelihood estimator (MLE)</a>, which states that the best-fit parameters are the ones that maximize the likelihood. We showed in <a href=file:///Users/jtd/Documents/personal/code/html/jack-dinsmore.github.io/blog/html/freq%2dbayesian.html>a later post</a> that the MLE is equivalent to a Bayesian analysis with uniform priors, so this idea finds roots in both frequentist and Bayesian analyses.
+</p>
+<p>While the basic idea of this approach is correct, one cannot just assert that the model with the larger likelihood is the correct one if they have different numbers of parameters. The more parameters a model has, the better it can match the data simply by tweaking those parameters to maximize the likelihood. Thus, a high-parameter, incorrect model can have a higher likelihood than a correct, low-parameter model. We therefore need some kind of <i>degree of freedom penalty</i>, or a penalty for models with more parameters.
+</p>
+<p>A Bayesian solves this problem by using not the maximum likelihood, but the probability of observing the given data \(P(D)\). \(P(D)\) is also called the <i>evidence</i>. Recalling that the likelihood is defined as the probability of the data given the parameters \(L(\theta) = P(D|\theta)\), by one of the basic theorems of <a href=file:///Users/jtd/Documents/personal/code/html/jack-dinsmore.github.io/blog/html/probability.html>conditional probability</a>,
+<div class="eq"><div class="eqtext">\[P(D) = \int d\theta\, \pi(\theta) L(\theta).\]</div><div class="eqnum" id="eq1">(1)</div></div>
+So this evidence is not the maximum of \(L(\theta)\), but instead the <i>prior-weighted average</i> of \(L(\theta)\). The Bayesian then defines the Bayes factor as the ratio of the evidence for the two models: \(B = P_{M_1}(D) / P_{M_0}(D)\), where \(M_1\) and \(M_0\) are the two models we wish to compare. When the Bayes factor is large, that means \(M_1\) matches the data better than \(M_0\).
+</p>
+<p>The rest of this post will prove that using the evidence builds in the degree of freedom penalty we needed. In the <a href=file:///Users/jtd/Documents/personal/code/html/jack-dinsmore.github.io/blog/html/model%2dselection%2dp.html>next post</a>, we’ll address the other important question of how to interpret a Bayes’ factor&mdash;how high should we expect a Bayes factor to be before we say \(M_1\) is proven correct accepted.
+</p>
+<button class="collapsible"><h2>The Bayes factor in the large-data, Gaussian limit</h2></button><div class="section">
+
+
+</div> <button class="collapsible"><h2>The Bayesian Information Criterion</h2></button><div class="section">
+</div></div><div id="footer">
+Copyright &copy; 2025 Jack Dinsmore. &emsp;Updated December 24. &emsp;Version 0.1</div></body>
+<script>
+var coll = document.getElementsByClassName("collapsible");
+var i;
+
+for (i = 0; i < coll.length; i++) {{
+    coll[i].addEventListener("click", function() {{
+        this.classList.toggle("active");
+        var content = this.nextElementSibling;
+        if (content.style.maxHeight === "0px"){{
+            content.style.maxHeight = content.scrollHeight+"px";
+        }} else {{
+            content.style.maxHeight = "0px";
+        }}
+    }});
+}}
+</script></html>

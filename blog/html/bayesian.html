@@ -1,7 +1,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" type = "text/css" href = "https://jack-dinsmore.github.io/blog/html/css/text.css">
+    <link rel="stylesheet" type = "text/css" href = "file:///Users/jtd/Documents/personal/code/html/jack-dinsmore.github.io/blog/html/css/text.css">
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async
             src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
@@ -25,9 +25,9 @@ window.MathJax = {
 }
     </script>
     <title>statistics</title>
-</head><body><div id="content"><h2><a href="https://jack-dinsmore.github.io/blog/html/index.html">Home</a></h2><h1>Bayesian Statistics</h1>
+</head><body><div id="content"><h2><a href="file:///Users/jtd/Documents/personal/code/html/jack-dinsmore.github.io/blog/html/index.html">Home</a></h2><h1>Bayesian Statistics</h1>
 
-<p>This post makes heavy use of <i>Bayes’ theorem</i>, which was proved in <a href=https://jack-dinsmore.github.io/blog/html/probability.html>the first post</a>.
+<p>This post makes heavy use of <i>Bayes’ theorem</i>, which was proved in <a href=file:///Users/jtd/Documents/personal/code/html/jack-dinsmore.github.io/blog/html/probability.html>the first post</a>.
 </p>
 <p>When I say <i>statistics</i>, I mean the task of quantitatively turning data into constraints on the physical parameters. To do this, one needs a model with <i>parameters</i> denoted by the vector \(\bm \theta\). The idea is that the model should predict the data \(D\) given \(\bm \theta\)&mdash;or more specifically, it should predict the probability of observing \(D\)
 <div class="eq"><div class="eqtext">\[\mathcal{L} = P(D | \bm \theta).\]</div><div class="eqnum" id="eq1">(1)</div></div>
@@ -64,12 +64,12 @@ This probability distribution is called the <i>likelihood</i>, and it is one of 
 </p>
 </div> <button class="collapsible"><h2>Conclusion</h2></button><div class="section">
 
-<p><a href=https://jack-dinsmore.github.io/blog/html/bayesian.html#eq3>Eq. 3</a> is probably the most important equation in Bayesian statistics so I will repeat it again, this time in log space.
+<p><a href=file:///Users/jtd/Documents/personal/code/html/jack-dinsmore.github.io/blog/html/bayesian.html#eq3>Eq. 3</a> is probably the most important equation in Bayesian statistics so I will repeat it again, this time in log space.
 <div class="eq"><div class="eqtext">\[\ln P(\bm \theta | D) = \ln \mathcal{L} + \ln P(\bm \theta) + C\]</div><div class="eqnum" id="eq4">(4)</div></div>
 where \(C\) is a constant that can be worked out by normalizing \(P(\bm \theta | D)\).
-Intuitively, the posterior (the function we want) is proportional to the likelihood (the function we have) times the prior (a wide distribution used to put in parameter constraints). The multiplication is usually very easy; the hard part due to the fact that \(\mathcal{L}\) is often expensive to compute. Calculating what \(\ln P(\bm \theta | D)\) is for every value of \(\bm \theta\) can be slow, especially if \(\bm \theta\) is high-dimensional. Some advice on how to proceed is given in <a href=https://jack-dinsmore.github.io/blog/html/parameter%2dfitting.html>the next post</a>.
+Intuitively, the posterior (the function we want) is proportional to the likelihood (the function we have) times the prior (a wide distribution used to put in parameter constraints). The multiplication is usually very easy; the hard part due to the fact that \(\mathcal{L}\) is often expensive to compute. Calculating what \(\ln P(\bm \theta | D)\) is for every value of \(\bm \theta\) can be slow, especially if \(\bm \theta\) is high-dimensional. Some advice on how to proceed is given in <a href=file:///Users/jtd/Documents/personal/code/html/jack-dinsmore.github.io/blog/html/parameter%2dfitting.html>the next post</a>.
 </div></div><div id="footer">
-Copyright &copy; 2024 Jack Dinsmore. &emsp;Updated September 23. &emsp;Version 0.1</div></body>
+Copyright &copy; 2025 Jack Dinsmore. &emsp;Updated December 24. &emsp;Version 0.1</div></body>
 <script>
 var coll = document.getElementsByClassName("collapsible");
 var i;
