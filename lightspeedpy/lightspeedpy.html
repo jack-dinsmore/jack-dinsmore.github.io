@@ -151,11 +151,11 @@ Pixel properties of the data set</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="lightspeedpy.DataSet.set_bias">
-<span class="sig-name descname"><span class="pre">set_bias</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bias_data_set</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lightspeedpy.DataSet.set_bias" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">set_bias</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bias</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lightspeedpy.DataSet.set_bias" title="Link to this definition">¶</a></dt>
 <dd><p>Set the bias</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>bias_data_set</strong> (<a class="reference internal" href="#lightspeedpy.DataSet" title="lightspeedpy.DataSet"><em>DataSet</em></a>) – A <a class="reference internal" href="#lightspeedpy.DataSet" title="lightspeedpy.DataSet"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataSet</span></code></a> containing the bias observation</p>
+<dd class="field-odd"><p><strong>bias</strong> (<a class="reference internal" href="#lightspeedpy.DataSet" title="lightspeedpy.DataSet"><em>DataSet</em></a><em> or </em><a class="reference internal" href="#lightspeedpy.PixelProperties" title="lightspeedpy.PixelProperties"><em>PixelProperties</em></a>) – A <a class="reference internal" href="#lightspeedpy.DataSet" title="lightspeedpy.DataSet"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataSet</span></code></a> containing the bias observation, or the <a class="reference internal" href="#lightspeedpy.PixelProperties" title="lightspeedpy.PixelProperties"><code class="xref py py-class docutils literal notranslate"><span class="pre">PixelProperties</span></code></a> of the observation</p>
 </dd>
 </dl>
 </dd></dl>
@@ -224,7 +224,7 @@ Pixel properties of the data set</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="lightspeedpy.Frame">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">lightspeedpy.</span></span><span class="sig-name descname"><span class="pre">Frame</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">raw_image</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">duration</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lightspeedpy.Frame" title="Link to this definition">¶</a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">lightspeedpy.</span></span><span class="sig-name descname"><span class="pre">Frame</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">duration</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lightspeedpy.Frame" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="lightspeedpy.Frame.image">
@@ -306,6 +306,22 @@ Pixel properties of the data set</p>
 <dd><p>Get the pixel properties of a faint, rapid readout data set</p>
 </dd></dl>
 
+<dl class="py method">
+<dt class="sig sig-object py" id="lightspeedpy.PixelProperties.load">
+<span class="sig-name descname"><span class="pre">load</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lightspeedpy.PixelProperties.load" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lightspeedpy.PixelProperties.save">
+<span class="sig-name descname"><span class="pre">save</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clobber</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lightspeedpy.PixelProperties.save" title="Link to this definition">¶</a></dt>
+<dd><p>Save the pixel properties to a file</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>filename</strong> (<em>str</em>) – Name of the output file</p>
+</dd>
+</dl>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
@@ -346,7 +362,7 @@ Pixel properties of the data set</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="lightspeedpy.add_dataset_args">
 <span class="sig-prename descclassname"><span class="pre">lightspeedpy.</span></span><span class="sig-name descname"><span class="pre">add_dataset_args</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parser</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lightspeedpy.add_dataset_args" title="Link to this definition">¶</a></dt>
-<dd><p>Add the standard lightspeedpy arguments to an <cite>argparse</cite> parser. These include input, output, bias, self-bias, dark, flat, frames, timing-offset, and clobber.</p>
+<dd><p>Add the standard lightspeedpy arguments to an <cite>argparse</cite> parser. These include input, output, bias, self-bias, flat, flat, frames, timing-offset, and clobber.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>parser</strong> (<em>argparse parser</em>) – Parser to which to add arguments</p>
