@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>leakagelib_bkg API documentation &#8212; LeakageLib 2.0.1 documentation</title>
+    <title>Generating a Chandra image &#8212; LeakageLib 2.0.1 documentation</title>
   
   
   
@@ -41,12 +41,12 @@
     <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'leakagelib_bkg';</script>
-    <link rel="canonical" href="https://jack-dinsmore.github.io/leakagelib/leakagelib_bkg.html" />
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chandra_image';</script>
+    <link rel="canonical" href="https://jack-dinsmore.github.io/leakagelib/chandra_image.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="leakagelib_cxo API documentation" href="leakagelib_cxo.html" />
-    <link rel="prev" title="leakagelib.ps_fit package" href="leakagelib.ps_fit.html" />
+    <link rel="next" title="Leakage Prediction" href="leakage_prediction.html" />
+    <link rel="prev" title="Background particle weighting" href="background_estimation.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -160,6 +160,7 @@
 </ul>
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="background_estimation.html">Background particle weighting</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Generating a Chandra image</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="leakage_prediction.html">Leakage Prediction</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="examples/leakage-predict.html">Leakage pattern prediction</a></li>
 <li class="toctree-l2"><a class="reference internal" href="examples/leakage-severity.html">Estimate leakage severity as a function of radius</a></li>
@@ -171,7 +172,7 @@
 <li class="toctree-l2"><a class="reference internal" href="leakagelib.ps_fit.html">leakagelib.ps_fit package</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#"><cite>leakagelib_bkg</cite> API documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="leakagelib_bkg.html"><cite>leakagelib_bkg</cite> API documentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="leakagelib_cxo.html"><cite>leakagelib_cxo</cite> API documentation</a></li>
 </ul>
 
@@ -227,7 +228,7 @@
       
       
       
-      <li><a href="_sources/leakagelib_bkg.rst" target="_blank"
+      <li><a href="_sources/chandra_image.rst" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -311,7 +312,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>leakagelib_bkg API documentation</h1>
+    <h1>Generating a Chandra image</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -321,23 +322,7 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-leakagelib_bkg.io">leakagelib_bkg.io module</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib_bkg.io.get_times"><code class="docutils literal notranslate"><span class="pre">get_times()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib_bkg.io.write_probs"><code class="docutils literal notranslate"><span class="pre">write_probs()</span></code></a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-leakagelib_bkg.load_tracks">leakagelib_bkg.load_tracks module</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib_bkg.load_tracks.associate_events"><code class="docutils literal notranslate"><span class="pre">associate_events()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib_bkg.load_tracks.load_tracks"><code class="docutils literal notranslate"><span class="pre">load_tracks()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib_bkg.load_tracks.process_track"><code class="docutils literal notranslate"><span class="pre">process_track()</span></code></a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-leakagelib_bkg.nn">leakagelib_bkg.nn module</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib_bkg.nn.Model"><code class="docutils literal notranslate"><span class="pre">Model</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib_bkg.nn.account_for_prior"><code class="docutils literal notranslate"><span class="pre">account_for_prior()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib_bkg.nn.load_tensorflow_model"><code class="docutils literal notranslate"><span class="pre">load_tensorflow_model()</span></code></a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a></li>
 </ul>
             </nav>
         </div>
@@ -349,70 +334,32 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="leakagelib-bkg-api-documentation">
-<h1><cite>leakagelib_bkg</cite> API documentation<a class="headerlink" href="#leakagelib-bkg-api-documentation" title="Link to this heading">#</a></h1>
-<p>This code flags IXPE tracks as background particle or photon, assigning each a “particle character”. The particle character is related to the probability of the particle representing a particle or photon. Please see <a class="reference internal" href="background_estimation.html"><span class="doc">Background particle weighting</span></a> for instructions on the command line interface for this code. This documentation describes the python API.</p>
-<section id="module-leakagelib_bkg.io">
-<span id="leakagelib-bkg-io-module"></span><h2>leakagelib_bkg.io module<a class="headerlink" href="#module-leakagelib_bkg.io" title="Link to this heading">#</a></h2>
-<dl class="py function">
-<dt class="sig sig-object py" id="leakagelib_bkg.io.get_times">
-<span class="sig-prename descclassname"><span class="pre">leakagelib_bkg.io.</span></span><span class="sig-name descname"><span class="pre">get_times</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">f</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#leakagelib_bkg.io.get_times" title="Link to this definition">#</a></dt>
-<dd><p>Load the times in the file f as an array</p>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="leakagelib_bkg.io.write_probs">
-<span class="sig-prename descclassname"><span class="pre">leakagelib_bkg.io.</span></span><span class="sig-name descname"><span class="pre">write_probs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">infile</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">outfile</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bg_probs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#leakagelib_bkg.io.write_probs" title="Link to this definition">#</a></dt>
-<dd><p>Write probabilities to an output file.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>infile</strong> (<em>str</em>) – Input file name which will be masked.</p></li>
-<li><p><strong>outfile</strong> (<em>str</em>) – File to write the probabilities to. If the file already exists, it will be overwritten.</p></li>
-<li><p><strong>mask</strong> (<em>array-like</em><em> of </em><em>bool</em>) – Boolean array created by <cite>get_mask</cite> to apply to the input file.</p></li>
+  <section id="generating-a-chandra-image">
+<h1>Generating a Chandra image<a class="headerlink" href="#generating-a-chandra-image" title="Link to this heading">#</a></h1>
+<p><cite>LeakageLib</cite> provides a command line utility to create a model image of an object observed by Chandra from the Chandra events. The events are rescaled to IXPE’s effective area, and the exposure map is taken into account. These are the steps you should follow.</p>
+<ol class="arabic simple">
+<li><p>Download the relevant Chandra data and making ARFs for each data set (preferably with mkwarf). Currently, the code requires ACIS observations.</p></li>
+<li><p>(Optional) If you want to exposure weight the image, you will also have to merge the observations with merge_obs.</p></li>
+<li><p>Draw background and source regions for your object</p></li>
+<li><p>Save these regions in IXPE coordinates. The fastest way to do these is to copy the regions from the Chandra events file to the IXPE events file using DS9 and then save the IXPE region in ciao format with physical coordiates (WARNING: IXPE physical coordinates must be used, not Chandra.)</p></li>
+<li><p>Run the leakagelib_cxo script (see below)</p></li>
+<li><p>Import the image into your LeakageLib fit using the <a class="reference internal" href="leakagelib_cxo.html#leakagelib_cxo.cxo_source" title="leakagelib_cxo.cxo_source"><code class="xref py py-func docutils literal notranslate"><span class="pre">leakagelib_cxo.cxo_source()</span></code></a> function.</p></li>
+</ol>
+<section id="example">
+<h2>Example<a class="headerlink" href="#example" title="Link to this heading">#</a></h2>
+<p><cite>LeakageLib</cite>’s Chandra image generation tool is a command line utility. Read the help menu with</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-m<span class="w"> </span>leakagelib_cxo<span class="w"> </span>-h
+</pre></div>
+</div>
+<p>It will give instructions on how to use the tool. Here are some additional notes:</p>
+<ul class="simple">
+<li><p>You must provide an ARF for each event file with the cxo-arf, cxo-evt flags respectively</p></li>
+<li><p>The exposure map flag is optional. If not used, the Chandra observation will not be exposure corrected</p></li>
+<li><p>The width flag is optional. If not used, the width will be the full Chandra field.</p></li>
+<li><p>The reg-src field is optional. If not used, all Chandra events will be rescaled to the IXPE band</p></li>
+<li><p>The reg-bkg field is optional. If not used, the background will not be subtracted.</p></li>
 </ul>
-</dd>
-</dl>
-</dd></dl>
-
-</section>
-<section id="module-leakagelib_bkg.load_tracks">
-<span id="leakagelib-bkg-load-tracks-module"></span><h2>leakagelib_bkg.load_tracks module<a class="headerlink" href="#module-leakagelib_bkg.load_tracks" title="Link to this heading">#</a></h2>
-<dl class="py function">
-<dt class="sig sig-object py" id="leakagelib_bkg.load_tracks.associate_events">
-<span class="sig-prename descclassname"><span class="pre">leakagelib_bkg.load_tracks.</span></span><span class="sig-name descname"><span class="pre">associate_events</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">l1_times</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">l2_times</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#leakagelib_bkg.load_tracks.associate_events" title="Link to this definition">#</a></dt>
-<dd></dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="leakagelib_bkg.load_tracks.load_tracks">
-<span class="sig-prename descclassname"><span class="pre">leakagelib_bkg.load_tracks.</span></span><span class="sig-name descname"><span class="pre">load_tracks</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">hdul</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">indices</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#leakagelib_bkg.load_tracks.load_tracks" title="Link to this definition">#</a></dt>
-<dd></dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="leakagelib_bkg.load_tracks.process_track">
-<span class="sig-prename descclassname"><span class="pre">leakagelib_bkg.load_tracks.</span></span><span class="sig-name descname"><span class="pre">process_track</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">track</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#leakagelib_bkg.load_tracks.process_track" title="Link to this definition">#</a></dt>
-<dd></dd></dl>
-
-</section>
-<section id="module-leakagelib_bkg.nn">
-<span id="leakagelib-bkg-nn-module"></span><h2>leakagelib_bkg.nn module<a class="headerlink" href="#module-leakagelib_bkg.nn" title="Link to this heading">#</a></h2>
-<dl class="py class">
-<dt class="sig sig-object py" id="leakagelib_bkg.nn.Model">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">leakagelib_bkg.nn.</span></span><span class="sig-name descname"><span class="pre">Model</span></span><a class="headerlink" href="#leakagelib_bkg.nn.Model" title="Link to this definition">#</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="leakagelib_bkg.nn.account_for_prior">
-<span class="sig-prename descclassname"><span class="pre">leakagelib_bkg.nn.</span></span><span class="sig-name descname"><span class="pre">account_for_prior</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bg_probs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#leakagelib_bkg.nn.account_for_prior" title="Link to this definition">#</a></dt>
-<dd></dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="leakagelib_bkg.nn.load_tensorflow_model">
-<span class="sig-prename descclassname"><span class="pre">leakagelib_bkg.nn.</span></span><span class="sig-name descname"><span class="pre">load_tensorflow_model</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#leakagelib_bkg.nn.load_tensorflow_model" title="Link to this definition">#</a></dt>
-<dd><p>Get the tensorflow model. This code will fail if your tensorflow is not up to date. The NN was trained with tensorflow version 2.18.0. It should be compatible with many other versions.</p>
-</dd></dl>
-
+<p>However, a full analysis should provide all these flags for best results.</p>
 </section>
 </section>
 
@@ -428,20 +375,20 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="leakagelib.ps_fit.html"
+       href="background_estimation.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">leakagelib.ps_fit package</p>
+        <p class="prev-next-title">Background particle weighting</p>
       </div>
     </a>
     <a class="right-next"
-       href="leakagelib_cxo.html"
+       href="leakage_prediction.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><cite>leakagelib_cxo</cite> API documentation</p>
+        <p class="prev-next-title">Leakage Prediction</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -461,23 +408,7 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-leakagelib_bkg.io">leakagelib_bkg.io module</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib_bkg.io.get_times"><code class="docutils literal notranslate"><span class="pre">get_times()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib_bkg.io.write_probs"><code class="docutils literal notranslate"><span class="pre">write_probs()</span></code></a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-leakagelib_bkg.load_tracks">leakagelib_bkg.load_tracks module</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib_bkg.load_tracks.associate_events"><code class="docutils literal notranslate"><span class="pre">associate_events()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib_bkg.load_tracks.load_tracks"><code class="docutils literal notranslate"><span class="pre">load_tracks()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib_bkg.load_tracks.process_track"><code class="docutils literal notranslate"><span class="pre">process_track()</span></code></a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-leakagelib_bkg.nn">leakagelib_bkg.nn module</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib_bkg.nn.Model"><code class="docutils literal notranslate"><span class="pre">Model</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib_bkg.nn.account_for_prior"><code class="docutils literal notranslate"><span class="pre">account_for_prior()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib_bkg.nn.load_tensorflow_model"><code class="docutils literal notranslate"><span class="pre">load_tensorflow_model()</span></code></a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a></li>
 </ul>
   </nav></div>
 

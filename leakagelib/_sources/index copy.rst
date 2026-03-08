@@ -21,7 +21,6 @@ For details and examples, please see the "Polarization fitting," "Background par
    installation
    fitting
    background_estimation
-   chandra_image
    leakage_prediction
    faq
    leakagelib

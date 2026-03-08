@@ -172,6 +172,7 @@
 </ul>
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="leakagelib_bkg.html"><cite>leakagelib_bkg</cite> API documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="leakagelib_cxo.html"><cite>leakagelib_bkg</cite> API documentation</a></li>
 </ul>
 
     </div>
@@ -356,6 +357,7 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.Fitter.fit"><code class="docutils literal notranslate"><span class="pre">Fitter.fit()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.Fitter.fit_mcmc"><code class="docutils literal notranslate"><span class="pre">Fitter.fit_mcmc()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.Fitter.log_prob"><code class="docutils literal notranslate"><span class="pre">Fitter.log_prob()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.Fitter.plot"><code class="docutils literal notranslate"><span class="pre">Fitter.plot()</span></code></a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.IXPEData"><code class="docutils literal notranslate"><span class="pre">IXPEData</span></code></a><ul class="nav section-nav flex-column">
@@ -389,6 +391,7 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.Region"><code class="docutils literal notranslate"><span class="pre">Region</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.Region.area"><code class="docutils literal notranslate"><span class="pre">Region.area()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.Region.check_inside_absolute"><code class="docutils literal notranslate"><span class="pre">Region.check_inside_absolute()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.Region.load"><code class="docutils literal notranslate"><span class="pre">Region.load()</span></code></a></li>
 </ul>
@@ -431,7 +434,6 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.funcs.integrate_zoom"><code class="docutils literal notranslate"><span class="pre">integrate_zoom()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.funcs.integrate_zoom_unvectorized"><code class="docutils literal notranslate"><span class="pre">integrate_zoom_unvectorized()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.funcs.interpolate_zoom"><code class="docutils literal notranslate"><span class="pre">interpolate_zoom()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.funcs.override_matplotlib_defaults"><code class="docutils literal notranslate"><span class="pre">override_matplotlib_defaults()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.funcs.super_zoom"><code class="docutils literal notranslate"><span class="pre">super_zoom()</span></code></a></li>
 </ul>
 </li>
@@ -899,6 +901,21 @@ Default is None. WARNING: emcee appends to the file if it exists; delete first i
 </dl>
 </dd></dl>
 
+<dl class="py method">
+<dt class="sig sig-object py" id="leakagelib.Fitter.plot">
+<span class="sig-name descname"><span class="pre">plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">params</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_bins</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">101</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#leakagelib.Fitter.plot" title="Link to this definition">#</a></dt>
+<dd><p>Plot the image predicted by the fitter vs the data</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filename</strong> (<em>string</em>) – Name of the file to save the image to</p></li>
+<li><p><strong>params</strong> (<em>array-like</em><em>, </em><em>optional</em>) – Parameter array to plot. Default: the starting values</p></li>
+<li><p><strong>n_bins</strong> (<em>int</em><em>, </em><em>optional</em>) – Number of spatial bins to use</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
@@ -1261,6 +1278,12 @@ will do nothing.</p>
 <li><p>All regions are assumed to be stored in <cite>ciao</cite> format.</p></li>
 <li><p>All coordinates must be physical</p></li>
 </ul>
+<dl class="py method">
+<dt class="sig sig-object py" id="leakagelib.Region.area">
+<span class="sig-name descname"><span class="pre">area</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#leakagelib.Region.area" title="Link to this definition">#</a></dt>
+<dd><p>Get the area of the region. Area is only defined for circular, elliptical, and box regions</p>
+</dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="leakagelib.Region.check_inside_absolute">
 <span class="sig-name descname"><span class="pre">check_inside_absolute</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#leakagelib.Region.check_inside_absolute" title="Link to this definition">#</a></dt>
@@ -1680,12 +1703,6 @@ Most suitable for zooming in.</p>
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="leakagelib.funcs.override_matplotlib_defaults">
-<span class="sig-prename descclassname"><span class="pre">leakagelib.funcs.</span></span><span class="sig-name descname"><span class="pre">override_matplotlib_defaults</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#leakagelib.funcs.override_matplotlib_defaults" title="Link to this definition">#</a></dt>
-<dd><p>Load Jack’s default matplotlib parameters to make prettier images</p>
-</dd></dl>
-
-<dl class="py function">
 <dt class="sig sig-object py" id="leakagelib.funcs.super_zoom">
 <span class="sig-prename descclassname"><span class="pre">leakagelib.funcs.</span></span><span class="sig-name descname"><span class="pre">super_zoom</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frac</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">force_odd</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#leakagelib.funcs.super_zoom" title="Link to this definition">#</a></dt>
 <dd><p>Interpolate zoom when zooming in, integrate zoom when zooming out.
@@ -1784,6 +1801,7 @@ Zooming is centered and recommended for general use.</p>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.Fitter.fit"><code class="docutils literal notranslate"><span class="pre">Fitter.fit()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.Fitter.fit_mcmc"><code class="docutils literal notranslate"><span class="pre">Fitter.fit_mcmc()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.Fitter.log_prob"><code class="docutils literal notranslate"><span class="pre">Fitter.log_prob()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.Fitter.plot"><code class="docutils literal notranslate"><span class="pre">Fitter.plot()</span></code></a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.IXPEData"><code class="docutils literal notranslate"><span class="pre">IXPEData</span></code></a><ul class="nav section-nav flex-column">
@@ -1817,6 +1835,7 @@ Zooming is centered and recommended for general use.</p>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.Region"><code class="docutils literal notranslate"><span class="pre">Region</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.Region.area"><code class="docutils literal notranslate"><span class="pre">Region.area()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.Region.check_inside_absolute"><code class="docutils literal notranslate"><span class="pre">Region.check_inside_absolute()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.Region.load"><code class="docutils literal notranslate"><span class="pre">Region.load()</span></code></a></li>
 </ul>
@@ -1859,7 +1878,6 @@ Zooming is centered and recommended for general use.</p>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.funcs.integrate_zoom"><code class="docutils literal notranslate"><span class="pre">integrate_zoom()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.funcs.integrate_zoom_unvectorized"><code class="docutils literal notranslate"><span class="pre">integrate_zoom_unvectorized()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.funcs.interpolate_zoom"><code class="docutils literal notranslate"><span class="pre">interpolate_zoom()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.funcs.override_matplotlib_defaults"><code class="docutils literal notranslate"><span class="pre">override_matplotlib_defaults()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.funcs.super_zoom"><code class="docutils literal notranslate"><span class="pre">super_zoom()</span></code></a></li>
 </ul>
 </li>

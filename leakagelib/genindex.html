@@ -159,6 +159,7 @@
 </ul>
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="background_estimation.html">Background particle weighting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chandra_image.html">Generating a Chandra image</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="leakage_prediction.html">Leakage Prediction</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="examples/leakage-predict.html">Leakage pattern prediction</a></li>
 <li class="toctree-l2"><a class="reference internal" href="examples/leakage-severity.html">Estimate leakage severity as a function of radius</a></li>
@@ -171,6 +172,7 @@
 </ul>
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="leakagelib_bkg.html"><cite>leakagelib_bkg</cite> API documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="leakagelib_cxo.html"><cite>leakagelib_cxo</cite> API documentation</a></li>
 </ul>
 
     </div>
@@ -309,10 +311,10 @@ document.write(`
 </li>
       <li><a href="leakagelib.html#leakagelib.FitSettings.add_particle_source">add_particle_source() (leakagelib.FitSettings method)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="leakagelib.html#leakagelib.FitSettings.add_point_source">add_point_source() (leakagelib.FitSettings method)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="leakagelib.html#leakagelib.FitSettings.add_source">add_source() (leakagelib.FitSettings method)</a>
 </li>
       <li><a href="leakagelib.html#leakagelib.IXPEData.antirotate_events">antirotate_events() (leakagelib.IXPEData method)</a>
@@ -320,6 +322,8 @@ document.write(`
       <li><a href="leakagelib.html#leakagelib.FitSettings.apply_circular_roi">apply_circular_roi() (leakagelib.FitSettings method)</a>
 </li>
       <li><a href="leakagelib.html#leakagelib.FitSettings.apply_roi">apply_roi() (leakagelib.FitSettings method)</a>
+</li>
+      <li><a href="leakagelib.html#leakagelib.Region.area">area() (leakagelib.Region method)</a>
 </li>
       <li><a href="leakagelib_bkg.html#leakagelib_bkg.load_tracks.associate_events">associate_events() (in module leakagelib_bkg.load_tracks)</a>
 </li>
@@ -358,6 +362,8 @@ document.write(`
       <li><a href="leakagelib.ps_fit.html#leakagelib.ps_fit.spectral_weights.RMF.convolve_spectrum">convolve_spectrum() (leakagelib.ps_fit.spectral_weights.RMF method)</a>
 </li>
       <li><a href="leakagelib.ps_fit.html#leakagelib.ps_fit.spectral_weights.RMF.convolve_spectrum_mu">convolve_spectrum_mu() (leakagelib.ps_fit.spectral_weights.RMF method)</a>
+</li>
+      <li><a href="leakagelib_cxo.html#leakagelib_cxo.cxo_source">cxo_source() (in module leakagelib_cxo)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -541,8 +547,6 @@ document.write(`
         <li><a href="leakagelib.ps_fit.html#module-leakagelib.ps_fit.spectral_weights">module</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     leakagelib_bkg.io
 
@@ -550,6 +554,8 @@ document.write(`
         <li><a href="leakagelib_bkg.html#module-leakagelib_bkg.io">module</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     leakagelib_bkg.load_tracks
 
@@ -562,6 +568,13 @@ document.write(`
 
       <ul>
         <li><a href="leakagelib_bkg.html#module-leakagelib_bkg.nn">module</a>
+</li>
+      </ul></li>
+      <li>
+    leakagelib_cxo
+
+      <ul>
+        <li><a href="leakagelib_cxo.html#module-leakagelib_cxo">module</a>
 </li>
       </ul></li>
       <li><a href="leakagelib.html#leakagelib.Region.load">load() (leakagelib.Region method)</a>
@@ -614,6 +627,8 @@ document.write(`
 </li>
         <li><a href="leakagelib_bkg.html#module-leakagelib_bkg.nn">leakagelib_bkg.nn</a>
 </li>
+        <li><a href="leakagelib_cxo.html#module-leakagelib_cxo">leakagelib_cxo</a>
+</li>
       </ul></li>
   </ul></td>
 </tr></table>
@@ -635,14 +650,14 @@ document.write(`
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="leakagelib.html#leakagelib.PSF.obssim">obssim() (leakagelib.PSF method)</a>
 </li>
-      <li><a href="leakagelib.html#leakagelib.funcs.override_matplotlib_defaults">override_matplotlib_defaults() (in module leakagelib.funcs)</a>
-</li>
   </ul></td>
 </tr></table>
 
 <h2 id="P">P</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="leakagelib.html#leakagelib.Fitter.plot">plot() (leakagelib.Fitter method)</a>
+</li>
       <li><a href="leakagelib.html#leakagelib.Source.polarize_array">polarize_array() (leakagelib.Source method)</a>
 </li>
       <li><a href="leakagelib.html#leakagelib.Source.polarize_file">polarize_file() (leakagelib.Source method)</a>

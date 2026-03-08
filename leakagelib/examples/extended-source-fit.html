@@ -175,6 +175,7 @@
 </ul>
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="../leakagelib_bkg.html"><cite>leakagelib_bkg</cite> API documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../leakagelib_cxo.html"><cite>leakagelib_bkg</cite> API documentation</a></li>
 </ul>
 
     </div>
@@ -429,9 +430,25 @@ document.write(`
 <img alt="../_images/examples_extended-source-fit_11_0.png" src="../_images/examples_extended-source-fit_11_0.png" />
 </div>
 </div>
-<p>It appears that the blurred source does indeed match the data well. Finally, we perform the fit</p>
+<p>It appears that the blurred source does indeed match the data well. We can also view what the fitter thinks the data should look like, based on the starting parameters</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fitter</span><span class="o">.</span><span class="n">plot</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/examples_extended-source-fit_13_0.png" src="../_images/examples_extended-source-fit_13_0.png" />
+</div>
+</div>
+<p>Finally, we perform the fit</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">fitter</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
@@ -440,7 +457,7 @@ document.write(`
 </div>
 </div>
 <div class="nboutput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
