@@ -1,5 +1,5 @@
 Lightspeedpy API
-==============================
+================
 
 .. automodule:: lightspeedpy
     :members:

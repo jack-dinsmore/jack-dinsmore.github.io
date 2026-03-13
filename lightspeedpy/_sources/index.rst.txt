@@ -4,11 +4,12 @@
    contain the root `toctree` directive.
 
 lightspeedpy documentation
-========================
+==========================
 
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
 
    installation
+   contribute
    lightspeedpy

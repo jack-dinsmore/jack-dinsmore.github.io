@@ -16,7 +16,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="lc API" href="lightspeedpy.lc.html" />
-    <link rel="prev" title="Installing Lightspeedpy" href="installation.html" />
+    <link rel="prev" title="How to contribute to Lightspeedpy" href="contribute.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -144,12 +144,6 @@ Pixel properties of the data set</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="lightspeedpy.DataSet.self_bias">
-<span class="sig-name descname"><span class="pre">self_bias</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lightspeedpy.DataSet.self_bias" title="Link to this definition">¶</a></dt>
-<dd><p>Estimate an observation from these data. This can only be done accurately for very fast readout of a faint source, where most of the pixels detect zero photons.</p>
-</dd></dl>
-
-<dl class="py method">
 <dt class="sig sig-object py" id="lightspeedpy.DataSet.set_bias">
 <span class="sig-name descname"><span class="pre">set_bias</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bias</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lightspeedpy.DataSet.set_bias" title="Link to this definition">¶</a></dt>
 <dd><p>Set the bias</p>
@@ -180,6 +174,12 @@ Pixel properties of the data set</p>
 <dd class="field-odd"><p><strong>flat_data_set</strong> (<a class="reference internal" href="#lightspeedpy.DataSet" title="lightspeedpy.DataSet"><em>DataSet</em></a>) – A <a class="reference internal" href="#lightspeedpy.DataSet" title="lightspeedpy.DataSet"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataSet</span></code></a> containing the flat observation</p>
 </dd>
 </dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lightspeedpy.DataSet.set_self_bias">
+<span class="sig-name descname"><span class="pre">set_self_bias</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lightspeedpy.DataSet.set_self_bias" title="Link to this definition">¶</a></dt>
+<dd><p>Estimate an observation from these data. This can only be done accurately for very fast readout of a faint source, where most of the pixels detect zero photons.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -263,7 +263,7 @@ Pixel properties of the data set</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="lightspeedpy.PixelProperties">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">lightspeedpy.</span></span><span class="sig-name descname"><span class="pre">PixelProperties</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bias</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">widths</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">source_data_set</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dest_data_set</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lightspeedpy.PixelProperties" title="Link to this definition">¶</a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">lightspeedpy.</span></span><span class="sig-name descname"><span class="pre">PixelProperties</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bias</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">widths</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">skew</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">source_data_set</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dest_data_set</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lightspeedpy.PixelProperties" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Biases and noise of each pixel in the data set. Use <a class="reference internal" href="#lightspeedpy.PixelProperties.from_data" title="lightspeedpy.PixelProperties.from_data"><code class="xref py py-meth docutils literal notranslate"><span class="pre">PixelProperties.from_data()</span></code></a> or <a class="reference internal" href="#lightspeedpy.PixelProperties.from_bias" title="lightspeedpy.PixelProperties.from_bias"><code class="xref py py-meth docutils literal notranslate"><span class="pre">PixelProperties.from_bias()</span></code></a> to create it.</p>
 <dl class="py attribute">
@@ -430,6 +430,7 @@ Pixel properties of the data set</p>
 <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installing Lightspeedpy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contribute.html">How to contribute to Lightspeedpy</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Lightspeedpy API</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#lightspeedpy.DataSet"><code class="docutils literal notranslate"><span class="pre">DataSet</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#lightspeedpy.Ephemeris"><code class="docutils literal notranslate"><span class="pre">Ephemeris</span></code></a></li>
@@ -448,7 +449,7 @@ Pixel properties of the data set</p>
 <h3>Related Topics</h3>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
-      <li>Previous: <a href="installation.html" title="previous chapter">Installing Lightspeedpy</a></li>
+      <li>Previous: <a href="contribute.html" title="previous chapter">How to contribute to Lightspeedpy</a></li>
       <li>Next: <a href="lightspeedpy.lc.html" title="next chapter">lc API</a></li>
   </ul></li>
 </ul>

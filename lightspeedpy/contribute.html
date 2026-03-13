@@ -3,26 +3,26 @@
 <html lang="en" data-content_root="./">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Python Module Index &#8212; lightspeedpy  documentation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>How to contribute to Lightspeedpy &#8212; lightspeedpy  documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=5ecbeea2" />
     <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=12dfc556" />
     <script src="_static/documentation_options.js?v=5929fcd5"></script>
     <script src="_static/doctools.js?v=fd6eb6e6"></script>
     <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <link rel="canonical" href="https://jack-dinsmore.github.io/lightspeedpy/py-modindex.html" />
+    <link rel="canonical" href="https://jack-dinsmore.github.io/lightspeedpy/contribute.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-
+    <link rel="next" title="Lightspeedpy API" href="lightspeedpy.html" />
+    <link rel="prev" title="Installing Lightspeedpy" href="installation.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
 
   
   
-
-
 
   </head><body>
   
@@ -34,34 +34,17 @@
 
           <div class="body" role="main">
             
-
-   <h1>Python Module Index</h1>
-
-   <div class="modindex-jumpbox">
-   <a href="#cap-l"><strong>l</strong></a>
-   </div>
-
-   <table class="indextable modindextable">
-     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
-     <tr class="cap" id="cap-l"><td></td><td>
-       <strong>l</strong></td><td></td></tr>
-     <tr>
-       <td><img src="_static/minus.png" class="toggler"
-              id="toggle-1" style="display: none" alt="-" /></td>
-       <td>
-       <a href="lightspeedpy.html#module-lightspeedpy"><code class="xref">lightspeedpy</code></a></td><td>
-       <em></em></td></tr>
-     <tr class="cg-1">
-       <td></td>
-       <td>&#160;&#160;&#160;
-       <a href="lightspeedpy.image.html#module-lightspeedpy.image"><code class="xref">lightspeedpy.image</code></a></td><td>
-       <em></em></td></tr>
-     <tr class="cg-1">
-       <td></td>
-       <td>&#160;&#160;&#160;
-       <a href="lightspeedpy.lc.html#module-lightspeedpy.lc"><code class="xref">lightspeedpy.lc</code></a></td><td>
-       <em></em></td></tr>
-   </table>
+  <section id="how-to-contribute-to-lightspeedpy">
+<h1>How to contribute to Lightspeedpy<a class="headerlink" href="#how-to-contribute-to-lightspeedpy" title="Link to this heading">¶</a></h1>
+<p>Lightspeedpy consists of a core set of code and many plugins. The core code (stored in the main lightspeedpy directory) does common tasks like loading data sets and subtracting / dividing biases, darks and flats. Plugins (stored in subdirectories) perform more specialized tasks like stacking frames to form an image, or extracting a light curve.</p>
+<p>Each plugin can be imported like a python library, and it can also be run like a command line tool for those that don’t use python.</p>
+<p>We’re separating plugins and core code to avoid merge conflicts. The idea is each person edits their own plugin, and the core code should be stable enough that nobody needs to edit it. If you’d like to make your own plugin, do the following:</p>
+<ol class="arabic simple">
+<li><p>Copy the <cite>template</cite> directory and rename it to be the name of your plugin (don’t use hyphens or periods in the name – use underscores.)</p></li>
+<li><p>Edit <cite>__main__.py</cite> to define the plugin’s command line interface. See the file for additional instructions. The command is called by <cite>python -m lightspeedpy.PLUGIN_NAME</cite>.</p></li>
+<li><p>Edit <cite>__init__.py</cite> to define the plugin’s python API. See the file for additional instructions. The API is imported using <cite>from lightspeedpy import PLUGIN_NAME</cite>.</p></li>
+</ol>
+</section>
 
 
           </div>
@@ -81,9 +64,9 @@
 
 <h3>Navigation</h3>
 <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installing Lightspeedpy</a></li>
-<li class="toctree-l1"><a class="reference internal" href="contribute.html">How to contribute to Lightspeedpy</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">How to contribute to Lightspeedpy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="lightspeedpy.html">Lightspeedpy API</a></li>
 </ul>
 
@@ -91,6 +74,8 @@
 <h3>Related Topics</h3>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="installation.html" title="previous chapter">Installing Lightspeedpy</a></li>
+      <li>Next: <a href="lightspeedpy.html" title="next chapter">Lightspeedpy API</a></li>
   </ul></li>
 </ul>
 </div>
@@ -123,6 +108,9 @@
       Powered by <a href="https://www.sphinx-doc.org/">Sphinx 9.1.0</a>
       &amp; <a href="https://alabaster.readthedocs.io">Alabaster 0.7.16</a>
       
+      |
+      <a href="_sources/contribute.rst.txt"
+          rel="nofollow">Page source</a>
     </div>
 
     
