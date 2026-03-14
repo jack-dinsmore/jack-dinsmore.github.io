@@ -307,6 +307,25 @@ Pixel properties of the data set</p>
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="lightspeedpy.PixelProperties.get_prob">
+<span class="sig-name descname"><span class="pre">get_prob</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">true_n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mask</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lightspeedpy.PixelProperties.get_prob" title="Link to this definition">¶</a></dt>
+<dd><p>Get the probability for the observed counts to have been produced given a true source count.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>image</strong> (<em>array-like</em>) – Detected image (e.g. from frame.image)</p></li>
+<li><p><strong>true_n</strong> (<em>int</em>) – True number of counts</p></li>
+<li><p><strong>mask</strong> (<em>array</em><em> of </em><em>bool</em><em>, </em><em>optional</em>) – If you only wish to get probabilities for a subset of the full image, provide that subset as the iamge argument and supply the pixel mask here.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>array-like</p>
+</dd>
+</dl>
+<p>The probability for each pixel to have originated from the given true source count.</p>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="lightspeedpy.PixelProperties.load">
 <span class="sig-name descname"><span class="pre">load</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lightspeedpy.PixelProperties.load" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>

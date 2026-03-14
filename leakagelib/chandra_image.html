@@ -341,7 +341,7 @@ document.write(`
 <li><p>Download the relevant Chandra data and making ARFs for each data set (preferably with mkwarf). Currently, the code requires ACIS observations.</p></li>
 <li><p>(Optional) If you want to exposure weight the image, you will also have to merge the observations with merge_obs.</p></li>
 <li><p>Draw background and source regions for your object</p></li>
-<li><p>Save these regions in IXPE coordinates. The fastest way to do these is to copy the regions from the Chandra events file to the IXPE events file using DS9 and then save the IXPE region in ciao format with physical coordiates (WARNING: IXPE physical coordinates must be used, not Chandra.)</p></li>
+<li><p>Save these regions in IXPE coordinates. The fastest way to do this is to copy the regions from the Chandra events file to the IXPE events file using DS9 and then save the IXPE region in ciao format with physical coordiates (WARNING: IXPE physical coordinates must be used, not Chandra.)</p></li>
 <li><p>Run the leakagelib_cxo script (see below)</p></li>
 <li><p>Import the image into your LeakageLib fit using the <a class="reference internal" href="leakagelib_cxo.html#leakagelib_cxo.cxo_source" title="leakagelib_cxo.cxo_source"><code class="xref py py-func docutils literal notranslate"><span class="pre">leakagelib_cxo.cxo_source()</span></code></a> function.</p></li>
 </ol>
