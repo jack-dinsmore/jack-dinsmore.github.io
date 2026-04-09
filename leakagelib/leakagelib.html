@@ -331,6 +331,21 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.EnergyDependence.lawrence_nn"><code class="docutils literal notranslate"><span class="pre">EnergyDependence.lawrence_nn()</span></code></a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.FitData"><code class="docutils literal notranslate"><span class="pre">FitData</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.FitData.index_to_param"><code class="docutils literal notranslate"><span class="pre">FitData.index_to_param()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.FitData.length"><code class="docutils literal notranslate"><span class="pre">FitData.length()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.FitData.param_to_index"><code class="docutils literal notranslate"><span class="pre">FitData.param_to_index()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.FitData.param_to_value"><code class="docutils literal notranslate"><span class="pre">FitData.param_to_value()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.FitResult"><code class="docutils literal notranslate"><span class="pre">FitResult</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.FitResult.get_constrained_samples"><code class="docutils literal notranslate"><span class="pre">FitResult.get_constrained_samples()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.FitResult.get_pd_pa"><code class="docutils literal notranslate"><span class="pre">FitResult.get_pd_pa()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.FitResult.get_pdfs"><code class="docutils literal notranslate"><span class="pre">FitResult.get_pdfs()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.FitResult.get_statistics"><code class="docutils literal notranslate"><span class="pre">FitResult.get_statistics()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.FitResult.sample"><code class="docutils literal notranslate"><span class="pre">FitResult.sample()</span></code></a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.FitSettings"><code class="docutils literal notranslate"><span class="pre">FitSettings</span></code></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.FitSettings.add_background"><code class="docutils literal notranslate"><span class="pre">FitSettings.add_background()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.FitSettings.add_param"><code class="docutils literal notranslate"><span class="pre">FitSettings.add_param()</span></code></a></li>
@@ -537,6 +552,172 @@ the <cite>spectrum</cite> attribute of an IXPEData object.</p>
 <dd class="field-odd"><p><strong>use_mu</strong> (<em>bool</em><em>, </em><em>optional</em>) – Set to False to ignore the modulation factor. Only use this if you plan to handle the modulation factor event-by-event.</p>
 </dd>
 </dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="leakagelib.FitData">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">leakagelib.</span></span><span class="sig-name descname"><span class="pre">FitData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fit_settings</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#leakagelib.FitData" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>A class that handles converting between parameter values and an array that can be fed into a minimizer.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="leakagelib.FitData.index_to_param">
+<span class="sig-name descname"><span class="pre">index_to_param</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">index</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#leakagelib.FitData.index_to_param" title="Link to this definition">#</a></dt>
+<dd><p>Returns the parameter name and the index of the data set it belongs to. If the parameter is
+global, the index will be None</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>index</strong> (<em>int</em>) – The index of the parameter</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A tuple where the first element is the parameter type and the second is the source name. <cite>None</cite> if the parameter is not associated with a source.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tuple of (str, str)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="leakagelib.FitData.length">
+<span class="sig-name descname"><span class="pre">length</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#leakagelib.FitData.length" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="leakagelib.FitData.param_to_index">
+<span class="sig-name descname"><span class="pre">param_to_index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">param</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">source_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#leakagelib.FitData.param_to_index" title="Link to this definition">#</a></dt>
+<dd><p>Return the array index of a parameter.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>param</strong> (<em>{'q'</em><em>, </em><em>'u'</em><em>, </em><em>'f'</em><em>, </em><em>'sigma'}</em>) – The parameter whose index will be returned.</p></li>
+<li><p><strong>source_name</strong> (<em>str</em>) – Name of the source for which the parameter index is requested. This is required for some parameters.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The index of the parameter in the array if it exists; otherwise, <cite>None</cite>.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int or None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="leakagelib.FitData.param_to_value">
+<span class="sig-name descname"><span class="pre">param_to_value</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">params</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">param</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">source_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#leakagelib.FitData.param_to_value" title="Link to this definition">#</a></dt>
+<dd><p>Return the value of a parameter.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>params</strong> (<em>list</em>) – List of parameter values.</p></li>
+<li><p><strong>param</strong> (<em>{'q'</em><em>, </em><em>'u'</em><em>, </em><em>'f'</em><em>, </em><em>'sigma'}</em>) – The parameter whose value will be returned.</p></li>
+<li><p><strong>source_name</strong> (<em>str</em>) – Name of the source for which the parameter value is requested.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The value of the requested parameter.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="leakagelib.FitResult">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">leakagelib.</span></span><span class="sig-name descname"><span class="pre">FitResult</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">best_params</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">best_like</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">message</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cov</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fit_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fit_settings</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#leakagelib.FitResult" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="leakagelib.FitResult.get_constrained_samples">
+<span class="sig-name descname"><span class="pre">get_constrained_samples</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">constraint</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_samples</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_iterations</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#leakagelib.FitResult.get_constrained_samples" title="Link to this definition">#</a></dt>
+<dd><p>Gets samples that satisfy some constraint</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>constraint</strong> (<em>callable</em>) – A function which is zero-valued along the constraint. It should receive a FitData object and array of parameters as arguments, and output a value which is zero-valued along the constraint surface. To enforce multiple constraints, have the function output an array. The function must be numpy compatible; i.e. if an array of shape (P, N) is passed, representing N parameters of dimension P, then f must return an array of size N for 1 constraint, or (C, N) where C is the number of constraints. A uniform prior is automatically enforced.</p></li>
+<li><p><strong>n_samples</strong> (<em>int</em>) – Number of samples to use</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>array</p>
+</dd>
+</dl>
+<p>The constrained samples</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="leakagelib.FitResult.get_pd_pa">
+<span class="sig-name descname"><span class="pre">get_pd_pa</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tag</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'src'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#leakagelib.FitResult.get_pd_pa" title="Link to this definition">#</a></dt>
+<dd><p>Get the polarization degree and polarization angle for a source</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>tag</strong> (<em>str</em><em>, </em><em>optional</em>) – Name of the source</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The PD, EVPA, PD uncertainty, and EVPA uncertainty. Angles are in radians.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>tuple (float, float, float, float)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="leakagelib.FitResult.get_pdfs">
+<span class="sig-name descname"><span class="pre">get_pdfs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">params</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">constraint</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bins</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">50</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frac_err</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.01</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#leakagelib.FitResult.get_pdfs" title="Link to this definition">#</a></dt>
+<dd><p>Gets the PDFs of some parameters given constraints.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>params</strong> (<em>callable</em><em> or </em><em>list</em><em> of </em><em>callable</em>) – A function which takes in the Stokes coefficients and returns the parameter for which a PDF is desired. If a list is provided, multiple PDFs will be returned. Each function should receive a FitData object and array of parameters as arguments, and output a scalar.</p></li>
+<li><p><strong>constraint</strong> (<em>callable</em><em> or </em><em>list</em><em> of </em><em>callable</em>) – A function which is zero-valued along the constraint. It should receive a FitData object and array of parameters as arguments, and output a value which is zero-valued along the constraint surface. To enforce multiple constraints, have the function output an array. The function must be numpy compatible; i.e. if an array of shape (P, N) is passed, representing N parameters of dimension P, then f must return an array of size N for 1 constraint, or (C, N) where C is the number of constraints. A uniform prior is automatically enforced.</p></li>
+<li><p><strong>bins</strong> (<em>int</em><em>, </em><em>list</em><em> of </em><em>int</em><em>, </em><em>array</em><em>, or </em><em>list</em><em> of </em><em>array.</em>) – If an integer, number of bins to use in the parameter PDF. If an array, edges of the bins for each PDF. Provide a list to set the bins for each variable.</p></li>
+<li><p><strong>frac_err</strong> (<em>int</em>) – Anticipated fractional error in the average bin. (To be specific, the algorithm will use 1/frac_err**2 samples per bin on average)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>(array, array) or (list of array, list of array)</p>
+</dd>
+</dl>
+<p>Returns the bin edges and PDF values of each parameter.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="leakagelib.FitResult.get_statistics">
+<span class="sig-name descname"><span class="pre">get_statistics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">params</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">constraint</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frac_err</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.005</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#leakagelib.FitResult.get_statistics" title="Link to this definition">#</a></dt>
+<dd><p>Gets the PDFs of some parameters given constraints.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>params</strong> (<em>callable</em><em> or </em><em>list</em><em> of </em><em>callable</em>) – A function which takes in the Stokes coefficients and returns the parameter for which a PDF is desired. If a list is provided, multiple PDFs will be returned. Each function should receive a FitData object and array of parameters as arguments, and output a scalar.</p></li>
+<li><p><strong>constraint</strong> (<em>callable</em><em> or </em><em>list</em><em> of </em><em>callable</em>) – A function which is zero-valued along the constraint. It should receive a FitData object and array of parameters as arguments, and output a value which is zero-valued along the constraint surface. To enforce multiple constraints, have the function output an array. The function must be numpy compatible; i.e. if an array of shape (P, N) is passed, representing N parameters of dimension P, then f must return an array of size N for 1 constraint, or (C, N) where C is the number of constraints. A uniform prior is automatically enforced.</p></li>
+<li><p><strong>frac_err</strong> (<em>int</em>) – Anticipated fractional error of the results (To be specific, the algorithm will use 1/frac_err**2 samples)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>array, matrix</p>
+</dd>
+</dl>
+<p>The parameter means and covariance matrix subject to the constraint</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="leakagelib.FitResult.sample">
+<span class="sig-name descname"><span class="pre">sample</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_samples</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#leakagelib.FitResult.sample" title="Link to this definition">#</a></dt>
+<dd><p>Generate samples from this fit</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>n_samples</strong> (<em>int</em>) – Number of samples to generate</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>array</p>
+</dd>
+</dl>
+<p>Array of shape (P, n_samples) where P is the dimensionality of the fit. The samples are stored in the same order as the fit_result.parameter_names array.</p>
 </dd></dl>
 
 </dd></dl>
@@ -878,7 +1059,7 @@ Default is None. WARNING: emcee appends to the file if it exists; delete first i
 <dd class="field-even"><p>Object containing the results of the fit. The covariance matrix in FitData is set to the covariance of the parameters.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>FitData</p>
+<dd class="field-odd"><p><a class="reference internal" href="#leakagelib.FitData" title="leakagelib.FitData">FitData</a></p>
 </dd>
 </dl>
 <p class="rubric">Notes</p>
@@ -894,7 +1075,7 @@ Default is None. WARNING: emcee appends to the file if it exists; delete first i
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>params</strong> (<em>array_like</em>) – List of parameters. If you are calling this function manually, you should order the parameters in the same order as the <code class="xref py py-attr docutils literal notranslate"><span class="pre">FitResults.parameter_names</span></code> attribute of the fit result.</p></li>
+<li><p><strong>params</strong> (<em>array_like</em>) – List of parameters. If you are calling this function manually, you should order the parameters in the same order as the <code class="xref py py-attr docutils literal notranslate"><span class="pre">FitResult.parameter_names</span></code> attribute of the fit result.</p></li>
 <li><p><strong>prior</strong> (<em>bool</em>) – set to True to include the priors, which are all finite uniform.</p></li>
 <li><p><strong>return_array</strong> (<em>bool</em>) – set to True to return the log posteriors of each event as an array, instead of the summed log posterior.</p></li>
 </ul>
@@ -1078,10 +1259,10 @@ for Moments data, or <cite>event_nn</cite> for NN results, based on <cite>source
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>A list of <cite>IXPEData</cite> objects for all three detectors.</p>
+<dd class="field-even"><p>Returns a tuple with two items: a list of <cite>IXPEData</cite> objects for all three detectors, and a string. If there was a problem loading the files, then the first entry is None and the string contains the error message. Otherwise the string is empty.</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>List[<a class="reference internal" href="#leakagelib.IXPEData" title="leakagelib.IXPEData">IXPEData</a>]</p>
+<dd class="field-odd"><p>(List[<a class="reference internal" href="#leakagelib.IXPEData" title="leakagelib.IXPEData">IXPEData</a>], string)</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1773,6 +1954,21 @@ Zooming is centered and recommended for general use.</p>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.EnergyDependence.get_params"><code class="docutils literal notranslate"><span class="pre">EnergyDependence.get_params()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.EnergyDependence.lawrence_mom"><code class="docutils literal notranslate"><span class="pre">EnergyDependence.lawrence_mom()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.EnergyDependence.lawrence_nn"><code class="docutils literal notranslate"><span class="pre">EnergyDependence.lawrence_nn()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.FitData"><code class="docutils literal notranslate"><span class="pre">FitData</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.FitData.index_to_param"><code class="docutils literal notranslate"><span class="pre">FitData.index_to_param()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.FitData.length"><code class="docutils literal notranslate"><span class="pre">FitData.length()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.FitData.param_to_index"><code class="docutils literal notranslate"><span class="pre">FitData.param_to_index()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.FitData.param_to_value"><code class="docutils literal notranslate"><span class="pre">FitData.param_to_value()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.FitResult"><code class="docutils literal notranslate"><span class="pre">FitResult</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.FitResult.get_constrained_samples"><code class="docutils literal notranslate"><span class="pre">FitResult.get_constrained_samples()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.FitResult.get_pd_pa"><code class="docutils literal notranslate"><span class="pre">FitResult.get_pd_pa()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.FitResult.get_pdfs"><code class="docutils literal notranslate"><span class="pre">FitResult.get_pdfs()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.FitResult.get_statistics"><code class="docutils literal notranslate"><span class="pre">FitResult.get_statistics()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.FitResult.sample"><code class="docutils literal notranslate"><span class="pre">FitResult.sample()</span></code></a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#leakagelib.FitSettings"><code class="docutils literal notranslate"><span class="pre">FitSettings</span></code></a><ul class="nav section-nav flex-column">
