@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en" data-accent-color="violet" data-content_root="../">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Preparing an extended source for LeakageLib fitting - LeakageLib 2.0.1 documentation</title><link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="Fitting to a real extended source" href="fit-extended-real.html" /><link rel="prev" title="Fitting for an extended source polarization with LeakageLib" href="fit-extended.html" />
+      <link rel="canonical" href="https://jack-dinsmore.github.io/leakagelib/examples/fit-prepare-extended.html" /><script>
+    function setColorMode(t){let e=document.documentElement;e.setAttribute("data-color-mode",t);let a=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches,s=t;"auto"===t&&(s=a?"dark":"light"),"light"===s?(e.classList.remove("dark"),e.classList.add("light")):(e.classList.remove("light"),e.classList.add("dark"))}
+    setColorMode(localStorage._theme||"auto");
+  </script><link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=e1a1ceaf" />
+    <link rel="stylesheet" type="text/css" href="../_static/shibuya.css?v=44020203" />
+    <link media="print" rel="stylesheet" type="text/css" href="../_static/print.css?v=20ff2c19" />
+    <link rel="stylesheet" type="text/css" href="../_static/nbsphinx-code-cells.css?v=2aa19091" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --sy-f-text: "Inter", var(--sy-f-sys), var(--sy-f-cjk), sans-serif;
+  --sy-f-heading: "Inter", var(--sy-f-sys), var(--sy-f-cjk), sans-serif;
+}
+</style>
+    <meta property="og:type" content="website"/>
+  <meta property="og:url" content="https://jack-dinsmore.github.io/leakagelib/examples/fit-prepare-extended.html"/>
+  <meta property="og:title" content="Preparing an extended source for LeakageLib fitting"/>
+    <meta name="twitter:card" content="summary"/>
+  </head>
+<body><div class="sy-head">
+  <div class="sy-head-blur"></div>
+  <div class="sy-head-inner sy-container mx-auto">
+    <a class="sy-head-brand" href="../index.html">
+      
+      
+      <strong>LeakageLib</strong>
+    </a>
+    <div class="sy-head-nav" id="head-nav">
+      <nav class="sy-head-links"></nav>
+      <div class="sy-head-extra flex items-center print:hidden"><form class="searchbox flex items-center" action="../search.html" method="get">
+  <input type="text" name="q" placeholder="Search" />
+  <kbd>/</kbd>
+</form><div class="sy-head-socials"></div></div>
+    </div>
+    <div class="sy-head-actions flex items-center shrink-0 print:hidden"><button class="js-theme theme-switch flex items-center"
+data-aria-auto="Switch to light color mode"
+data-aria-light="Switch to dark color mode"
+data-aria-dark="Switch to auto color mode">
+<i class="i-lucide theme-icon"></i>
+</button><button class="md:hidden flex items-center js-menu" aria-label="Menu" type="button" aria-controls="head-nav" aria-expanded="false">
+        <div class="hamburger">
+          <span class="hamburger_1"></span>
+          <span class="hamburger_2"></span>
+          <span class="hamburger_3"></span>
+        </div>
+      </button>
+    </div>
+  </div>
+</div>
+<div class="sy-page sy-container flex mx-auto">
+  <aside id="lside" class="sy-lside md:w-72 md:shrink-0 print:hidden">
+    <div class="sy-lside-inner md:sticky">
+      <div class="sy-scrollbar p-6">
+        <div class="globaltoc" data-expand-depth="0"><p class="caption" role="heading" aria-level="3"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installing LeakageLib</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../fitting.html">Polarization fitting</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="fit-point-source.html">Fitting for a point source polarization with <code class="docutils literal notranslate"><span class="pre">LeakageLib</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="fit-prepare-point-source.html">Preparing real IXPE data for fitting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fit-point-source-real.html">Fitting a real point source</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fit-point-source-real-particle-weights.html">Fitting a real point source with particle weights</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fit-nn.html">Fitting with polarimetric weights</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fit-time-varying.html">Fitting for variable sources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fit-time-varying.html#Fitting-a-custom-polarization-model">Fitting a custom polarization model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fit-mcmc.html">Running polarimetric fits with an MCMC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fit-extended.html">Fitting for an extended source polarization with <code class="docutils literal notranslate"><span class="pre">LeakageLib</span></code></a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Preparing an extended source for LeakageLib fitting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fit-extended-real.html">Fitting to a real extended source</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../leakage_prediction.html">Leakage Prediction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="leakage-predict.html">Leakage pattern prediction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="leakage-compare.html">Leakage comparison to data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="leakage-severity.html">Estimate leakage severity as a function of radius</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../leakagelib.html"><cite>leakagelib</cite> API documentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../leakagelib.ps_fit.html">leakagelib.ps_fit package</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../leakagelib_bkg.html"><cite>leakagelib_bkg</cite> API documentation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="lside-overlay js-menu" role="button" aria-label="Close left sidebar" aria-controls="lside" aria-expanded="false"></div>
+  <aside id="rside" class="sy-rside pb-3 w-64 shrink-0 order-last">
+    <button class="rside-close js-menu xl:hidden" aria-label="Close Table of Contents" type="button" aria-controls="rside" aria-expanded="false">
+      <i class="i-lucide close"></i>
+    </button>
+    <div class="sy-scrollbar sy-rside-inner px-6 xl:top-16 xl:sticky xl:pl-0 pt-6 pb-4"><div id="ethical-ad-placement" data-ea-publisher="readthedocs"></div></div>
+  </aside>
+  <div class="rside-overlay js-menu" role="button" aria-label="Close Table of Contents" aria-controls="rside" aria-expanded="false"></div>
+  <main class="sy-main w-full max-sm:max-w-full print:pt-6">
+<div class="sy-breadcrumbs" role="navigation">
+  <div class="sy-breadcrumbs-inner flex items-center">
+    <div class="md:hidden mr-3">
+      <button class="js-menu" aria-label="Menu" type="button" aria-controls="lside" aria-expanded="false">
+        <i class="i-lucide menu"></i>
+      </button>
+    </div>
+    <ol class="flex-1" itemscope itemtype="https://schema.org/BreadcrumbList"><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a itemprop="item" href="../index.html"><span itemprop="name">LeakageLib</span></a>
+        <span>/</span>
+        <meta itemprop="position" content="1" />
+      </li><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a itemprop="item" href="../fitting.html"><span itemprop="name">Polarization fitting</span></a>
+        <span>/</span>
+        <meta itemprop="position" content="2" />
+      </li><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <strong itemprop="name">Preparing an extended source for LeakageLib fitting</strong>
+        <meta itemprop="position" content="3" />
+      </li></ol>
+    <div class="xl:hidden ml-1">
+      <button class="js-menu" aria-label="Show table of contents" type="button" aria-controls="rside"
+        aria-expanded="false">
+        <i class="i-lucide outdent"></i>
+      </button>
+    </div>
+  </div>
+</div><div class="flex flex-col break-words justify-between">
+      <div class="relative min-w-0 max-w-6xl px-6 pb-6 pt-8 xl:px-12">
+  <div class="copy-page-wrapper relative pb-4 lg:absolute lg:top-8 lg:right-6 xl:right-12">
+  <div id="copy-page-trigger">
+    <button
+      type="button"
+      class="js-copy px-3 py-1 inline-flex items-center gap-1"
+      data-url="https://jack-dinsmore.github.io/leakagelib/_sources/examples/fit-prepare-extended.ipynb.txt"
+    >
+      <i class="i-lucide" data-icon="copy"></i>
+      <span>Copy page</span>
+    </button>
+    <button class="js-menu px-2 py-1" type="button" aria-label="More actions"
+      aria-haspopup="menu" aria-expanded="false" aria-controls="copy-page-content">
+      <i class="i-lucide chevron-down"></i>
+    </button>
+  </div>
+  <div id="copy-page-content" role="menu" aria-orientation="vertical" aria-hidden="true">
+    <div role="presentation">
+      <div class="flex flex-col" role="group">
+        <button class="js-copy" type="button" role="menuitem"
+          data-url="https://jack-dinsmore.github.io/leakagelib/_sources/examples/fit-prepare-extended.ipynb.txt">
+          <span class="iconify-icon">
+            <i class="i-lucide" data-icon="copy"></i>
+          </span>
+          <span>Copy page</span>
+        </button>
+        <a role="menuitem" href="https://jack-dinsmore.github.io/leakagelib/_sources/examples/fit-prepare-extended.ipynb.txt" target="_blank" rel="nofollow"><iconify-icon icon="bi:code-slash"></iconify-icon>
+            <span>View Source</span></a><a role="menuitem" href="https://chatgpt.com/?hints=search&q=Read%20https%3A//jack-dinsmore.github.io/leakagelib/_sources/examples/fit-prepare-extended.ipynb.txt%20so%20I%20can%20ask%20questions%20about%20it." target="_blank" rel="nofollow">
+          <iconify-icon icon="bi:openai"></iconify-icon>
+          <span>Open in ChatGPT</span>
+        </a><a role="menuitem" href="https://claude.ai/new?q=Read%20https%3A//jack-dinsmore.github.io/leakagelib/_sources/examples/fit-prepare-extended.ipynb.txt%20so%20I%20can%20ask%20questions%20about%20it." target="_blank" rel="nofollow">
+          <iconify-icon icon="bi:claude"></iconify-icon>
+          <span>Open in Claude</span>
+        </a></div>
+    </div>
+  </div>
+</div><article class="yue" role="main">
+          <section id="Preparing-an-extended-source-for-LeakageLib-fitting">
+<h1>Preparing an extended source for LeakageLib fitting<a class="headerlink" href="#Preparing-an-extended-source-for-LeakageLib-fitting" title="Link to this heading">¶</a></h1>
+<p>The steps to process extended source data before fitting are the same as for point sources, with the extra step of extracting spatial weights. This should be done with the <code class="docutils literal notranslate"><span class="pre">leakagelib_cxo</span></code> script, which generates spatial weights from a Chandra image. Note that <code class="docutils literal notranslate"><span class="pre">leakagelib_cxo</span></code> is NOT a replica of IXPEobssim; IXPEobssim incorporates IXPE’s PSF and generates a simulated event file. <code class="docutils literal notranslate"><span class="pre">leakagelib_cxo</span></code> does not (and should not).</p>
+<p>This extended source section analyzes Crab OBS ID 02006001. Please download the data from Heasarc. (We will skip particle weights, so you do not need to download the level 1 data). After unzipping the files, the next step is to run <code class="docutils literal notranslate"><span class="pre">leakagelib_cxo</span></code>. Run the help script to see what the script requires.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span><span data-line="1">[1]:
+</span></pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="o">!</span>python<span class="w"> </span>-m<span class="w"> </span>leakagelib_cxo<span class="w"> </span>-h
+</span></pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+<span class="ansi-yellow-intense-fg">&gt;&gt;&gt; PyXSPEC is not installed, you will no be able to use it.</span>
+usage: clean [-h] --cxo-evt CXO_EVT [CXO_EVT ...] --cxo-arf CXO_ARF
+             [CXO_ARF ...] --ixpe-evt IXPE_EVT --ixpe-arf IXPE_ARF
+             [--expmap EXPMAP] --output OUTPUT [--width WIDTH] [--elow ELOW]
+             [--ehigh EHIGH] [--centerx CENTERX] [--centery CENTERY]
+             [--reg-src REG_SRC] [--reg-bkg REG_BKG]
+             [--clobber | --no-clobber]
+
+Creates a CXO image, adjusted to the IXPE band. Before running this command,
+you should use the ciao tools merge_obs and mkwarf to create a merged image
+(including an exposure map) and an arf for each observaton. These are required
+as inputs for this script.
+
+options:
+  -h, --help            show this help message and exit
+  --cxo-evt CXO_EVT [CXO_EVT ...]
+                        List of Chandra event files to use
+  --cxo-arf CXO_ARF [CXO_ARF ...]
+                        List of Chandra ARFs to use
+  --ixpe-evt IXPE_EVT   IXPE event file (only one is necessary. Try DU1)
+  --ixpe-arf IXPE_ARF   IXPE ARF (only one is necessary, for simplicity. Try
+                        DU1)
+  --expmap EXPMAP       Chandra merged observation ARF (Optional)
+  --output OUTPUT       Name of the output file
+  --width WIDTH         Width of the image, in arcseconds. Default: as big as
+                        the CXO image (Optional)
+  --elow ELOW           Low end of the energy range (keV). (Default: 2)
+  --ehigh EHIGH         High end of the energy range (keV). (Default: 8)
+  --centerx CENTERX     IXPE pixel on which the fit will be centered in the x
+                        direction. (Default: 300)
+  --centery CENTERY     IXPE pixel on which the fit will be centered in the y
+                        direction. (Default: 300)
+  --reg-src REG_SRC     Source region. Should be saved in CIAO format in fk5
+                        coordinates (Optional)
+  --reg-bkg REG_BKG     Background region. Should be saved in CIAO format in
+                        fk5 coordinates (Optional)
+  --clobber, --no-clobber
+                        Overwrite files
+</pre></div></div>
+</div>
+<p>As you see, it requires</p>
+<ul class="simple">
+<li><p>CXO event file(s) to create the Source object from</p></li>
+<li><p>IXPE ARF and CXO ARF(s) to find the expected fluxes, taking the different effective areas into account. Provide multiple ARFs if providing multiple CXO event files</p></li>
+<li><p>IXPE event file to orient the CXO image relative to the IXPE pointing.</p></li>
+<li><p>IXPE energy range used for fitting (2-8 keV by default)</p></li>
+<li><p>IXPE pixel used for centering (300,300 by default)</p></li>
+</ul>
+<p>and optionally</p>
+<ul class="simple">
+<li><p>The width of the output spatial weight image</p></li>
+<li><p>A CXO source region to extract an image for</p></li>
+<li><p>A CXO background region to estimate background flux</p></li>
+<li><p>CXO Exposure map to exposure correct the event file</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">ciao</span></code> provides tutorials on how to extract ARFs and exposure maps for Chandra data, so we do not cover that here. If you are using more than one event file, I suggest using the full exposure map generated by the ciao tool merge_obs.</p>
+<p>To make this example, I downloaded a short Crab observation from the Chandra archive (obsid 13146) and placed inside a <code class="docutils literal notranslate"><span class="pre">src.reg</span></code> region file containing</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span><span data-line="1">circle(5:34:31.8424,+22:00:52.502,0.5&#39;)
+</span></pre></div>
+</div>
+<p>(This region was made in DS9 and saved with the ciao format with fk5 coordinates)</p>
+<p>I then ran the following script</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span><span data-line="1">chandra_repro . repro
+</span><span data-line="2">asphist &quot;repro/pcadf13146_000N001_asol1.fits&quot; asp.hist evtfile=&quot;repro/acisf13146_repro_evt2.fits[sky=region(src.reg)]&quot; clobber=yes
+</span><span data-line="3">sky2tdet &quot;repro/acisf13146_repro_evt2.fits[sky=region(src.reg)]&quot; asp.hist tdet[wmap] clobber=yes
+</span><span data-line="4">mkwarf tdet arf.arf weightfile=none feffile=none spectrum=none egrid=0.3:10:0.1 pbkfile=none clobber=yes
+</span></pre></div>
+</div>
+<p>I also downloaded the IXPE data for the Crab from OBSID 02006001 and ran this script to generate an IXPE ARF:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span><span data-line="1">ixpecalcarf evtfile=&quot;event_l2/ixpe02006001_det1_evt2_v01.fits&quot; attfile=&quot;hk/ixpe02006001_det1_att_v01.fits&quot; arfout=&quot;arf.arf&quot; specfile=None clobber=yes
+</span></pre></div>
+</div>
+<p>Then the following code will create a source image. To keep things simple I did not apply background subtraction or exposure correction.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span><span data-line="1">[2]:
+</span></pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="o">!</span>python<span class="w"> </span>-m<span class="w"> </span>leakagelib_cxo<span class="err">\</span>
+</span><span data-line="2">    <span class="o">--</span><span class="n">output</span> <span class="s2">&quot;data/13146/crab.fits&quot;</span>\
+</span><span data-line="3">    <span class="o">--</span><span class="n">cxo</span><span class="o">-</span><span class="n">evt</span> <span class="s2">&quot;data/13146/repro/acisf13146_repro_evt2.fits&quot;</span>\
+</span><span data-line="4">    <span class="o">--</span><span class="n">cxo</span><span class="o">-</span><span class="n">arf</span> <span class="s2">&quot;data/13146/arf.arf&quot;</span>\
+</span><span data-line="5">    <span class="o">--</span><span class="n">ixpe</span><span class="o">-</span><span class="n">evt</span> <span class="s2">&quot;data/02006001/event_l2/ixpe02006001_det1_evt2_v01.fits&quot;</span>\
+</span><span data-line="6">    <span class="o">--</span><span class="n">ixpe</span><span class="o">-</span><span class="n">arf</span> <span class="s2">&quot;data/02006001/arf.arf&quot;</span>\
+</span><span data-line="7">    <span class="o">--</span><span class="n">reg</span><span class="o">-</span><span class="n">src</span> <span class="s2">&quot;data/13146/src.reg&quot;</span>\
+</span><span data-line="8">    <span class="o">--</span><span class="n">width</span> <span class="mi">150</span>\
+</span><span data-line="9">    <span class="o">--</span><span class="n">clobber</span>
+</span></pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+<span class="ansi-yellow-intense-fg">&gt;&gt;&gt; PyXSPEC is not installed, you will no be able to use it.</span>
+Exposure map corrections will not be made because you did not pass an exposure map
+You did not provide a background region. The Chandra image will not be background subtracted
+Image saved to data/13146/crab.fits. To use it, load the source with LeakageLib using the following code:
+
+import leakagelib
+source = leakagelib.Source.load_file(&#34;data/13146/crab.fits&#34;)
+
+This gives a leakagelib.Source object, which you can use as a source in your LeakageLib fit.
+</pre></div></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title"><strong>Usage Notes</strong></p>
+<ul class="simple">
+<li><p>This example doesn’t subtract background because Crab is so bright, but most analyses should use the reg-bkg argument. Otherwise LeakageLib will include the CXO background as part of the source flux and try to fit for its polarization, which is incorrect.</p></li>
+<li><p>Since all LeakageLib fit sources need to be the same size, your “width” argument should be large enough to contain the entire data set, not just this one component.</p></li>
+<li><p>In order to make sure all sizes have the same width and center, make sure the width, centerx, and centery arguments are the same for all sources.</p></li>
+<li><p>If you later find that the spatial weight image is misaligned with the data, change centerx and centery to shift the weight image.</p></li>
+</ul>
+</div>
+<p>A source object for LeakageLib is then loaded simply using</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span><span data-line="1">[3]:
+</span></pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="kn">import</span><span class="w"> </span><span class="nn">leakagelib</span>
+</span><span data-line="2"><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+</span><span data-line="3"><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+</span><span data-line="4">
+</span><span data-line="5"><span class="n">source</span> <span class="o">=</span> <span class="n">leakagelib</span><span class="o">.</span><span class="n">Source</span><span class="o">.</span><span class="n">load_file</span><span class="p">(</span><span class="s2">&quot;data/13146/crab.fits&quot;</span><span class="p">)</span>
+</span></pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+<span class="ansi-yellow-intense-fg">&gt;&gt;&gt; PyXSPEC is not installed, you will no be able to use it.</span>
+</pre></div></div>
+</div>
+<p>Displaying it,</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span><span data-line="1">[4]:
+</span></pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+</span><span data-line="2"><span class="n">ax</span><span class="o">.</span><span class="n">pcolormesh</span><span class="p">(</span><span class="n">source</span><span class="o">.</span><span class="n">pixel_centers</span><span class="p">,</span> <span class="n">source</span><span class="o">.</span><span class="n">pixel_centers</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">flip</span><span class="p">(</span><span class="n">source</span><span class="o">.</span><span class="n">source</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+</span><span data-line="3"><span class="n">ax</span><span class="o">.</span><span class="n">set_aspect</span><span class="p">(</span><span class="s2">&quot;equal&quot;</span><span class="p">)</span>
+</span><span data-line="4"><span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">source</span><span class="o">.</span><span class="n">pixel_centers</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">source</span><span class="o">.</span><span class="n">pixel_centers</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</span><span data-line="5"><span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="n">source</span><span class="o">.</span><span class="n">pixel_centers</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">source</span><span class="o">.</span><span class="n">pixel_centers</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]);</span>
+</span></pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/examples_fit-prepare-extended_8_0.png" src="../_images/examples_fit-prepare-extended_8_0.png" />
+</div>
+</div>
+<p>This image is sharper than the normal IXPE data because this is a model for where the source photons arrive from, not where IXPE detects them. LeakageLib can uses this model to separate sources which overlap.</p>
+<p>The map doesn’t include the pulsar because of pileup, so it is a nebula-only spatial weight map (which is what we want to measure the nebula polarization). The pulsar’s readout streak is barely visible and should be removed in a more careful analysis.</p>
+</section>
+
+        </article><button class="back-to-top" type="button">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+  </svg>
+  <span>Back to top</span>
+</button><div class="navigation flex print:hidden"><div class="navigation-prev">
+    <a href="fit-extended.html">
+      <i class="i-lucide chevron-left"></i>
+      <div class="page-info">
+        <span>Previous</span><div class="title">Fitting for an extended source polarization with <code class="docutils literal notranslate"><span class="pre">LeakageLib</span></code></div></div>
+    </a>
+  </div><div class="navigation-next">
+    <a href="fit-extended-real.html">
+      <div class="page-info">
+        <span>Next</span>
+        <div class="title">Fitting to a real extended source</div>
+      </div>
+      <i class="i-lucide chevron-right"></i>
+    </a>
+  </div></div></div>
+    </div>
+  </main>
+</div>
+<footer class="sy-foot">
+  <div class="sy-foot-inner sy-container mx-auto">
+    <div class="sy-foot-reserved md:flex justify-between items-center">
+      <div class="sy-foot-copyright"><p>2026, Jack T. Dinsmore</p>
+  
+  <p>
+    Made with
+    
+    <a href="https://www.sphinx-doc.org/">Sphinx</a> and
+    
+    <a href="https://shibuya.lepture.com">Shibuya theme</a>.
+  </p>
+</div>
+      <div class="sy-foot-socials"></div>
+    </div>
+  </div>
+</footer>
+      <script src="../_static/documentation_options.js?v=f5cff4aa"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+      <script src="../_static/shibuya.js?v=cac61aee"></script>
+      <script>window.MathJax = {"tex": {"inlineMath": [["\\(", "\\)"]], "processEscapes": true, "displayMath": [["\\[", "\\]"]]}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script></body>
+</html>

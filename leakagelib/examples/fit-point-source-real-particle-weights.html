@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en" data-accent-color="violet" data-content_root="../">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Fitting a real point source with particle weights - LeakageLib 2.0.1 documentation</title><link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="Fitting with polarimetric weights" href="fit-nn.html" /><link rel="prev" title="Fitting a real point source" href="fit-point-source-real.html" />
+      <link rel="canonical" href="https://jack-dinsmore.github.io/leakagelib/examples/fit-point-source-real-particle-weights.html" /><script>
+    function setColorMode(t){let e=document.documentElement;e.setAttribute("data-color-mode",t);let a=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches,s=t;"auto"===t&&(s=a?"dark":"light"),"light"===s?(e.classList.remove("dark"),e.classList.add("light")):(e.classList.remove("light"),e.classList.add("dark"))}
+    setColorMode(localStorage._theme||"auto");
+  </script><link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=e1a1ceaf" />
+    <link rel="stylesheet" type="text/css" href="../_static/shibuya.css?v=44020203" />
+    <link media="print" rel="stylesheet" type="text/css" href="../_static/print.css?v=20ff2c19" />
+    <link rel="stylesheet" type="text/css" href="../_static/nbsphinx-code-cells.css?v=2aa19091" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --sy-f-text: "Inter", var(--sy-f-sys), var(--sy-f-cjk), sans-serif;
+  --sy-f-heading: "Inter", var(--sy-f-sys), var(--sy-f-cjk), sans-serif;
+}
+</style>
+    <meta property="og:type" content="website"/>
+  <meta property="og:url" content="https://jack-dinsmore.github.io/leakagelib/examples/fit-point-source-real-particle-weights.html"/>
+  <meta property="og:title" content="Fitting a real point source with particle weights"/>
+    <meta name="twitter:card" content="summary"/>
+  </head>
+<body><div class="sy-head">
+  <div class="sy-head-blur"></div>
+  <div class="sy-head-inner sy-container mx-auto">
+    <a class="sy-head-brand" href="../index.html">
+      
+      
+      <strong>LeakageLib</strong>
+    </a>
+    <div class="sy-head-nav" id="head-nav">
+      <nav class="sy-head-links"></nav>
+      <div class="sy-head-extra flex items-center print:hidden"><form class="searchbox flex items-center" action="../search.html" method="get">
+  <input type="text" name="q" placeholder="Search" />
+  <kbd>/</kbd>
+</form><div class="sy-head-socials"></div></div>
+    </div>
+    <div class="sy-head-actions flex items-center shrink-0 print:hidden"><button class="js-theme theme-switch flex items-center"
+data-aria-auto="Switch to light color mode"
+data-aria-light="Switch to dark color mode"
+data-aria-dark="Switch to auto color mode">
+<i class="i-lucide theme-icon"></i>
+</button><button class="md:hidden flex items-center js-menu" aria-label="Menu" type="button" aria-controls="head-nav" aria-expanded="false">
+        <div class="hamburger">
+          <span class="hamburger_1"></span>
+          <span class="hamburger_2"></span>
+          <span class="hamburger_3"></span>
+        </div>
+      </button>
+    </div>
+  </div>
+</div>
+<div class="sy-page sy-container flex mx-auto">
+  <aside id="lside" class="sy-lside md:w-72 md:shrink-0 print:hidden">
+    <div class="sy-lside-inner md:sticky">
+      <div class="sy-scrollbar p-6">
+        <div class="globaltoc" data-expand-depth="0"><p class="caption" role="heading" aria-level="3"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installing LeakageLib</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../fitting.html">Polarization fitting</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="fit-point-source.html">Fitting for a point source polarization with <code class="docutils literal notranslate"><span class="pre">LeakageLib</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="fit-prepare-point-source.html">Preparing real IXPE data for fitting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fit-point-source-real.html">Fitting a real point source</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Fitting a real point source with particle weights</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fit-nn.html">Fitting with polarimetric weights</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fit-time-varying.html">Fitting for variable sources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fit-time-varying.html#Fitting-a-custom-polarization-model">Fitting a custom polarization model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fit-mcmc.html">Running polarimetric fits with an MCMC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fit-extended.html">Fitting for an extended source polarization with <code class="docutils literal notranslate"><span class="pre">LeakageLib</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="fit-prepare-extended.html">Preparing an extended source for LeakageLib fitting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fit-extended-real.html">Fitting to a real extended source</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../leakage_prediction.html">Leakage Prediction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="leakage-predict.html">Leakage pattern prediction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="leakage-compare.html">Leakage comparison to data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="leakage-severity.html">Estimate leakage severity as a function of radius</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../leakagelib.html"><cite>leakagelib</cite> API documentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../leakagelib.ps_fit.html">leakagelib.ps_fit package</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../leakagelib_bkg.html"><cite>leakagelib_bkg</cite> API documentation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="lside-overlay js-menu" role="button" aria-label="Close left sidebar" aria-controls="lside" aria-expanded="false"></div>
+  <aside id="rside" class="sy-rside pb-3 w-64 shrink-0 order-last">
+    <button class="rside-close js-menu xl:hidden" aria-label="Close Table of Contents" type="button" aria-controls="rside" aria-expanded="false">
+      <i class="i-lucide close"></i>
+    </button>
+    <div class="sy-scrollbar sy-rside-inner px-6 xl:top-16 xl:sticky xl:pl-0 pt-6 pb-4"><div id="ethical-ad-placement" data-ea-publisher="readthedocs"></div></div>
+  </aside>
+  <div class="rside-overlay js-menu" role="button" aria-label="Close Table of Contents" aria-controls="rside" aria-expanded="false"></div>
+  <main class="sy-main w-full max-sm:max-w-full print:pt-6">
+<div class="sy-breadcrumbs" role="navigation">
+  <div class="sy-breadcrumbs-inner flex items-center">
+    <div class="md:hidden mr-3">
+      <button class="js-menu" aria-label="Menu" type="button" aria-controls="lside" aria-expanded="false">
+        <i class="i-lucide menu"></i>
+      </button>
+    </div>
+    <ol class="flex-1" itemscope itemtype="https://schema.org/BreadcrumbList"><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a itemprop="item" href="../index.html"><span itemprop="name">LeakageLib</span></a>
+        <span>/</span>
+        <meta itemprop="position" content="1" />
+      </li><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a itemprop="item" href="../fitting.html"><span itemprop="name">Polarization fitting</span></a>
+        <span>/</span>
+        <meta itemprop="position" content="2" />
+      </li><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <strong itemprop="name">Fitting a real point source with particle weights</strong>
+        <meta itemprop="position" content="3" />
+      </li></ol>
+    <div class="xl:hidden ml-1">
+      <button class="js-menu" aria-label="Show table of contents" type="button" aria-controls="rside"
+        aria-expanded="false">
+        <i class="i-lucide outdent"></i>
+      </button>
+    </div>
+  </div>
+</div><div class="flex flex-col break-words justify-between">
+      <div class="relative min-w-0 max-w-6xl px-6 pb-6 pt-8 xl:px-12">
+  <div class="copy-page-wrapper relative pb-4 lg:absolute lg:top-8 lg:right-6 xl:right-12">
+  <div id="copy-page-trigger">
+    <button
+      type="button"
+      class="js-copy px-3 py-1 inline-flex items-center gap-1"
+      data-url="https://jack-dinsmore.github.io/leakagelib/_sources/examples/fit-point-source-real-particle-weights.ipynb.txt"
+    >
+      <i class="i-lucide" data-icon="copy"></i>
+      <span>Copy page</span>
+    </button>
+    <button class="js-menu px-2 py-1" type="button" aria-label="More actions"
+      aria-haspopup="menu" aria-expanded="false" aria-controls="copy-page-content">
+      <i class="i-lucide chevron-down"></i>
+    </button>
+  </div>
+  <div id="copy-page-content" role="menu" aria-orientation="vertical" aria-hidden="true">
+    <div role="presentation">
+      <div class="flex flex-col" role="group">
+        <button class="js-copy" type="button" role="menuitem"
+          data-url="https://jack-dinsmore.github.io/leakagelib/_sources/examples/fit-point-source-real-particle-weights.ipynb.txt">
+          <span class="iconify-icon">
+            <i class="i-lucide" data-icon="copy"></i>
+          </span>
+          <span>Copy page</span>
+        </button>
+        <a role="menuitem" href="https://jack-dinsmore.github.io/leakagelib/_sources/examples/fit-point-source-real-particle-weights.ipynb.txt" target="_blank" rel="nofollow"><iconify-icon icon="bi:code-slash"></iconify-icon>
+            <span>View Source</span></a><a role="menuitem" href="https://chatgpt.com/?hints=search&q=Read%20https%3A//jack-dinsmore.github.io/leakagelib/_sources/examples/fit-point-source-real-particle-weights.ipynb.txt%20so%20I%20can%20ask%20questions%20about%20it." target="_blank" rel="nofollow">
+          <iconify-icon icon="bi:openai"></iconify-icon>
+          <span>Open in ChatGPT</span>
+        </a><a role="menuitem" href="https://claude.ai/new?q=Read%20https%3A//jack-dinsmore.github.io/leakagelib/_sources/examples/fit-point-source-real-particle-weights.ipynb.txt%20so%20I%20can%20ask%20questions%20about%20it." target="_blank" rel="nofollow">
+          <iconify-icon icon="bi:claude"></iconify-icon>
+          <span>Open in Claude</span>
+        </a></div>
+    </div>
+  </div>
+</div><article class="yue" role="main">
+          <section id="Fitting-a-real-point-source-with-particle-weights">
+<h1>Fitting a real point source with particle weights<a class="headerlink" href="#Fitting-a-real-point-source-with-particle-weights" title="Link to this heading">¶</a></h1>
+<p><em>Weights used:</em></p>
+<ul class="simple">
+<li><p>Spatial</p></li>
+<li><p>Particle</p></li>
+<li><p>Spectral</p></li>
+</ul>
+<p>This jupyter notebook fits for the phase-averaged polarization of the point source GX 301-2, observed with observation ID 01002601, with particle weights. The previous notebook described the fit without particle weights. Particle weights were created two notebooks ago with the <code class="docutils literal notranslate"><span class="pre">leakagelib_bkg</span></code> script.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span><span data-line="1">[1]:
+</span></pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="kn">import</span><span class="w"> </span><span class="nn">leakagelib</span>
+</span></pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+<span class="ansi-yellow-intense-fg">&gt;&gt;&gt; PyXSPEC is not installed, you will no be able to use it.</span>
+</pre></div></div>
+</div>
+<p>We start the fit in the same manner as the last notebook:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span><span data-line="1">[2]:
+</span></pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">datas</span> <span class="o">=</span> <span class="n">leakagelib</span><span class="o">.</span><span class="n">IXPEData</span><span class="o">.</span><span class="n">load_all_detectors_with_path</span><span class="p">(</span><span class="s2">&quot;data&quot;</span><span class="p">,</span> <span class="s2">&quot;01002601&quot;</span><span class="p">,</span> <span class="n">event_dir</span><span class="o">=</span><span class="s2">&quot;event_l2_weight&quot;</span><span class="p">)</span>
+</span><span data-line="2">
+</span><span data-line="3"><span class="k">for</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">datas</span><span class="p">:</span>
+</span><span data-line="4">    <span class="n">data</span><span class="o">.</span><span class="n">iterative_centroid_center</span><span class="p">()</span>
+</span><span data-line="5">    <span class="n">data</span><span class="o">.</span><span class="n">retain</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">evt_energies</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">)</span>
+</span><span data-line="6">    <span class="n">data</span><span class="o">.</span><span class="n">retain</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">evt_energies</span> <span class="o">&lt;</span> <span class="mi">8</span><span class="p">)</span>
+</span><span data-line="7">
+</span><span data-line="8"><span class="n">settings</span> <span class="o">=</span> <span class="n">leakagelib</span><span class="o">.</span><span class="n">FitSettings</span><span class="p">(</span><span class="n">datas</span><span class="p">)</span>
+</span><span data-line="9"><span class="n">settings</span><span class="o">.</span><span class="n">apply_circular_roi</span><span class="p">(</span><span class="mi">280</span><span class="p">)</span>
+</span><span data-line="10">
+</span><span data-line="11"><span class="n">settings</span><span class="o">.</span><span class="n">add_point_source</span><span class="p">()</span> <span class="c1"># Named &quot;src&quot; by default</span>
+</span><span data-line="12"><span class="n">settings</span><span class="o">.</span><span class="n">fix_flux</span><span class="p">(</span><span class="s2">&quot;src&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</span><span data-line="13"><span class="n">settings</span><span class="o">.</span><span class="n">set_initial_qu</span><span class="p">(</span><span class="s2">&quot;src&quot;</span><span class="p">,</span> <span class="p">(</span><span class="mf">0.5</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span>
+</span><span data-line="14">
+</span><span data-line="15"><span class="n">settings</span><span class="o">.</span><span class="n">add_background</span><span class="p">()</span> <span class="c1"># Named &quot;bkg&quot; by default</span>
+</span><span data-line="16"><span class="n">settings</span><span class="o">.</span><span class="n">set_initial_qu</span><span class="p">(</span><span class="s2">&quot;bkg&quot;</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span> <span class="c1"># Assume an unpolarized background</span>
+</span><span data-line="17"><span class="n">settings</span><span class="o">.</span><span class="n">set_initial_flux</span><span class="p">(</span><span class="s2">&quot;bkg&quot;</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)</span>
+</span></pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+&gt;&gt;&gt; Reading (in memory) /opt/homebrew/anaconda3/lib/python3.12/site-packages/ixpeobssim/caldb/ixpe/xrt/bcf/vign/ixpe_d2_obssim20240101_vign_v013.fits...
+WARNING: FITSFixedWarning: RADECSYS= &#39;ICRS &#39; / Celestial coordinate system
+the RADECSYS keyword is deprecated, use RADESYSa. [astropy.wcs.wcs]
+WARNING: FITSFixedWarning: &#39;datfix&#39; made the change &#39;Set DATEREF to &#39;2017-01-01T00:01:09.184&#39; from MJDREF.
+Set MJD-OBS to 59789.109204 from DATE-OBS.
+Set MJD-END to 59794.248844 from DATE-END&#39;. [astropy.wcs.wcs]
+&gt;&gt;&gt; Reading (in memory) /opt/homebrew/anaconda3/lib/python3.12/site-packages/ixpeobssim/caldb/ixpe/xrt/bcf/vign/ixpe_d1_obssim20240101_vign_v013.fits...
+&gt;&gt;&gt; Reading (in memory) /opt/homebrew/anaconda3/lib/python3.12/site-packages/ixpeobssim/caldb/ixpe/xrt/bcf/vign/ixpe_d3_obssim20240101_vign_v013.fits...
+59535 events were cut for being outside the region of interest.
+</pre></div></div>
+</div>
+<p>Adding particle weights is done simply by including a particle source.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span><span data-line="1">[3]:
+</span></pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">settings</span><span class="o">.</span><span class="n">add_particle_background</span><span class="p">()</span> <span class="c1"># Named &quot;pbkg&quot; by default</span>
+</span><span data-line="2"><span class="n">settings</span><span class="o">.</span><span class="n">set_initial_flux</span><span class="p">(</span><span class="s2">&quot;pbkg&quot;</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)</span>
+</span><span data-line="3"><span class="n">settings</span><span class="o">.</span><span class="n">set_initial_qu</span><span class="p">(</span><span class="s2">&quot;pbkg&quot;</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+</span></pre></div>
+</div>
+</div>
+<p>This notebook doesn’t use spectral weights, but if we had, LeakageLib would automatically use a power-law spectrum with Gamma=1.6 for particles, unmodified by the ARF or RMF. If you wish to overwrite this change, you can set the particle spectrum of the <code class="docutils literal notranslate"><span class="pre">pbkg</span></code> source yourself.</p>
+<p>Rerunning the fit removes the warning stating that the particle weights are not being used.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span><span data-line="1">[4]:
+</span></pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">fitter</span> <span class="o">=</span> <span class="n">leakagelib</span><span class="o">.</span><span class="n">Fitter</span><span class="p">(</span><span class="n">settings</span><span class="p">)</span>
+</span><span data-line="2"><span class="n">result</span> <span class="o">=</span> <span class="n">fitter</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+</span><span data-line="3"><span class="n">result</span>
+</span></pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span><span data-line="1">[4]:
+</span></pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+FitResult:
+        q (src) = 0.0021 +/- 0.0056
+        u (src) = -0.0043 +/- 0.0056
+        q (bkg) = -0.0037 +/- 0.0336
+        u (bkg) = 0.0048 +/- 0.0336
+        q (pbkg) = 0.0192 +/- 0.0087
+        u (pbkg) = 0.0094 +/- 0.0086
+        f (bkg) = 0.0650 +/- 0.0006
+        f (pbkg) = 0.0773 +/- 0.0005
+
+Polarization:
+        PD (src): 0.0048 +/- 0.0056
+        PA (src): -31.9532 deg +/- 33.5076
+        PD (bkg): 0.0060 +/- 0.0336
+        PA (bkg): 63.8590 deg +/- 159.9714
+        PD (pbkg): 0.0214 +/- 0.0086
+        PA (pbkg): 13.0802 deg +/- 11.5500
+Likelihood 1434098.7507091842, dof 447933
+Optimization terminated successfully.
+</pre></div></div>
+</div>
+<p>Based on the best-fit flux of the photon and particle backgrounds, it appears slightly more than half of background events were particles, which demonstrates the importance of particle treatment.</p>
+<p>You might notice that the particles were marginally “polarized”, with a PD of 1.6 +/- 0.9%. This isn’t a physical polarization; the results simply indicate that the tracks have slight angular dependence.</p>
+<p>In reality, IXPE’s photon and particle backgrounds differ between detectors both in flux and polarization. It would be best to fit independent background sources to each detector. This is done in leakagelib by supplying the <code class="docutils literal notranslate"><span class="pre">det</span></code> argument in <code class="docutils literal notranslate"><span class="pre">add_background</span></code> or <code class="docutils literal notranslate"><span class="pre">add_particle_background</span></code>. E.g.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span><span data-line="1">settings.add_background(&quot;bkg1&quot;, det=(1,))
+</span><span data-line="2">settings.add_background(&quot;bkg2&quot;, det=(2,))
+</span><span data-line="3">settings.add_background(&quot;bkg3&quot;, det=(3,))
+</span><span data-line="4">
+</span><span data-line="5">settings.add_particle_background(&quot;pbkg1&quot;, det=(1,))
+</span><span data-line="6">settings.add_particle_background(&quot;pbkg2&quot;, det=(2,))
+</span><span data-line="7">settings.add_particle_background(&quot;pbkg3&quot;, det=(3,))
+</span></pre></div>
+</div>
+</section>
+
+        </article><button class="back-to-top" type="button">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+  </svg>
+  <span>Back to top</span>
+</button><div class="navigation flex print:hidden"><div class="navigation-prev">
+    <a href="fit-point-source-real.html">
+      <i class="i-lucide chevron-left"></i>
+      <div class="page-info">
+        <span>Previous</span><div class="title">Fitting a real point source</div></div>
+    </a>
+  </div><div class="navigation-next">
+    <a href="fit-nn.html">
+      <div class="page-info">
+        <span>Next</span>
+        <div class="title">Fitting with polarimetric weights</div>
+      </div>
+      <i class="i-lucide chevron-right"></i>
+    </a>
+  </div></div></div>
+    </div>
+  </main>
+</div>
+<footer class="sy-foot">
+  <div class="sy-foot-inner sy-container mx-auto">
+    <div class="sy-foot-reserved md:flex justify-between items-center">
+      <div class="sy-foot-copyright"><p>2026, Jack T. Dinsmore</p>
+  
+  <p>
+    Made with
+    
+    <a href="https://www.sphinx-doc.org/">Sphinx</a> and
+    
+    <a href="https://shibuya.lepture.com">Shibuya theme</a>.
+  </p>
+</div>
+      <div class="sy-foot-socials"></div>
+    </div>
+  </div>
+</footer>
+      <script src="../_static/documentation_options.js?v=f5cff4aa"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+      <script src="../_static/shibuya.js?v=cac61aee"></script>
+      <script>window.MathJax = {"tex": {"inlineMath": [["\\(", "\\)"]], "processEscapes": true, "displayMath": [["\\[", "\\]"]]}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script></body>
+</html>

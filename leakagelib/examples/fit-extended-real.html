@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en" data-accent-color="violet" data-content_root="../">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Fitting to a real extended source - LeakageLib 2.0.1 documentation</title><link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="Leakage Prediction" href="../leakage_prediction.html" /><link rel="prev" title="Preparing an extended source for LeakageLib fitting" href="fit-prepare-extended.html" />
+      <link rel="canonical" href="https://jack-dinsmore.github.io/leakagelib/examples/fit-extended-real.html" /><script>
+    function setColorMode(t){let e=document.documentElement;e.setAttribute("data-color-mode",t);let a=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches,s=t;"auto"===t&&(s=a?"dark":"light"),"light"===s?(e.classList.remove("dark"),e.classList.add("light")):(e.classList.remove("light"),e.classList.add("dark"))}
+    setColorMode(localStorage._theme||"auto");
+  </script><link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=e1a1ceaf" />
+    <link rel="stylesheet" type="text/css" href="../_static/shibuya.css?v=44020203" />
+    <link media="print" rel="stylesheet" type="text/css" href="../_static/print.css?v=20ff2c19" />
+    <link rel="stylesheet" type="text/css" href="../_static/nbsphinx-code-cells.css?v=2aa19091" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --sy-f-text: "Inter", var(--sy-f-sys), var(--sy-f-cjk), sans-serif;
+  --sy-f-heading: "Inter", var(--sy-f-sys), var(--sy-f-cjk), sans-serif;
+}
+</style>
+    <meta property="og:type" content="website"/>
+  <meta property="og:url" content="https://jack-dinsmore.github.io/leakagelib/examples/fit-extended-real.html"/>
+  <meta property="og:title" content="Fitting to a real extended source"/>
+    <meta name="twitter:card" content="summary"/>
+  </head>
+<body><div class="sy-head">
+  <div class="sy-head-blur"></div>
+  <div class="sy-head-inner sy-container mx-auto">
+    <a class="sy-head-brand" href="../index.html">
+      
+      
+      <strong>LeakageLib</strong>
+    </a>
+    <div class="sy-head-nav" id="head-nav">
+      <nav class="sy-head-links"></nav>
+      <div class="sy-head-extra flex items-center print:hidden"><form class="searchbox flex items-center" action="../search.html" method="get">
+  <input type="text" name="q" placeholder="Search" />
+  <kbd>/</kbd>
+</form><div class="sy-head-socials"></div></div>
+    </div>
+    <div class="sy-head-actions flex items-center shrink-0 print:hidden"><button class="js-theme theme-switch flex items-center"
+data-aria-auto="Switch to light color mode"
+data-aria-light="Switch to dark color mode"
+data-aria-dark="Switch to auto color mode">
+<i class="i-lucide theme-icon"></i>
+</button><button class="md:hidden flex items-center js-menu" aria-label="Menu" type="button" aria-controls="head-nav" aria-expanded="false">
+        <div class="hamburger">
+          <span class="hamburger_1"></span>
+          <span class="hamburger_2"></span>
+          <span class="hamburger_3"></span>
+        </div>
+      </button>
+    </div>
+  </div>
+</div>
+<div class="sy-page sy-container flex mx-auto">
+  <aside id="lside" class="sy-lside md:w-72 md:shrink-0 print:hidden">
+    <div class="sy-lside-inner md:sticky">
+      <div class="sy-scrollbar p-6">
+        <div class="globaltoc" data-expand-depth="0"><p class="caption" role="heading" aria-level="3"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installing LeakageLib</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../fitting.html">Polarization fitting</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="fit-point-source.html">Fitting for a point source polarization with <code class="docutils literal notranslate"><span class="pre">LeakageLib</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="fit-prepare-point-source.html">Preparing real IXPE data for fitting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fit-point-source-real.html">Fitting a real point source</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fit-point-source-real-particle-weights.html">Fitting a real point source with particle weights</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fit-nn.html">Fitting with polarimetric weights</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fit-time-varying.html">Fitting for variable sources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fit-time-varying.html#Fitting-a-custom-polarization-model">Fitting a custom polarization model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fit-mcmc.html">Running polarimetric fits with an MCMC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fit-extended.html">Fitting for an extended source polarization with <code class="docutils literal notranslate"><span class="pre">LeakageLib</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="fit-prepare-extended.html">Preparing an extended source for LeakageLib fitting</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Fitting to a real extended source</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../leakage_prediction.html">Leakage Prediction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="leakage-predict.html">Leakage pattern prediction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="leakage-compare.html">Leakage comparison to data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="leakage-severity.html">Estimate leakage severity as a function of radius</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../leakagelib.html"><cite>leakagelib</cite> API documentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../leakagelib.ps_fit.html">leakagelib.ps_fit package</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../leakagelib_bkg.html"><cite>leakagelib_bkg</cite> API documentation</a></li>
+</ul>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="lside-overlay js-menu" role="button" aria-label="Close left sidebar" aria-controls="lside" aria-expanded="false"></div>
+  <aside id="rside" class="sy-rside pb-3 w-64 shrink-0 order-last">
+    <button class="rside-close js-menu xl:hidden" aria-label="Close Table of Contents" type="button" aria-controls="rside" aria-expanded="false">
+      <i class="i-lucide close"></i>
+    </button>
+    <div class="sy-scrollbar sy-rside-inner px-6 xl:top-16 xl:sticky xl:pl-0 pt-6 pb-4"><div id="ethical-ad-placement" data-ea-publisher="readthedocs"></div></div>
+  </aside>
+  <div class="rside-overlay js-menu" role="button" aria-label="Close Table of Contents" aria-controls="rside" aria-expanded="false"></div>
+  <main class="sy-main w-full max-sm:max-w-full print:pt-6">
+<div class="sy-breadcrumbs" role="navigation">
+  <div class="sy-breadcrumbs-inner flex items-center">
+    <div class="md:hidden mr-3">
+      <button class="js-menu" aria-label="Menu" type="button" aria-controls="lside" aria-expanded="false">
+        <i class="i-lucide menu"></i>
+      </button>
+    </div>
+    <ol class="flex-1" itemscope itemtype="https://schema.org/BreadcrumbList"><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a itemprop="item" href="../index.html"><span itemprop="name">LeakageLib</span></a>
+        <span>/</span>
+        <meta itemprop="position" content="1" />
+      </li><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a itemprop="item" href="../fitting.html"><span itemprop="name">Polarization fitting</span></a>
+        <span>/</span>
+        <meta itemprop="position" content="2" />
+      </li><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <strong itemprop="name">Fitting to a real extended source</strong>
+        <meta itemprop="position" content="3" />
+      </li></ol>
+    <div class="xl:hidden ml-1">
+      <button class="js-menu" aria-label="Show table of contents" type="button" aria-controls="rside"
+        aria-expanded="false">
+        <i class="i-lucide outdent"></i>
+      </button>
+    </div>
+  </div>
+</div><div class="flex flex-col break-words justify-between">
+      <div class="relative min-w-0 max-w-6xl px-6 pb-6 pt-8 xl:px-12">
+  <div class="copy-page-wrapper relative pb-4 lg:absolute lg:top-8 lg:right-6 xl:right-12">
+  <div id="copy-page-trigger">
+    <button
+      type="button"
+      class="js-copy px-3 py-1 inline-flex items-center gap-1"
+      data-url="https://jack-dinsmore.github.io/leakagelib/_sources/examples/fit-extended-real.ipynb.txt"
+    >
+      <i class="i-lucide" data-icon="copy"></i>
+      <span>Copy page</span>
+    </button>
+    <button class="js-menu px-2 py-1" type="button" aria-label="More actions"
+      aria-haspopup="menu" aria-expanded="false" aria-controls="copy-page-content">
+      <i class="i-lucide chevron-down"></i>
+    </button>
+  </div>
+  <div id="copy-page-content" role="menu" aria-orientation="vertical" aria-hidden="true">
+    <div role="presentation">
+      <div class="flex flex-col" role="group">
+        <button class="js-copy" type="button" role="menuitem"
+          data-url="https://jack-dinsmore.github.io/leakagelib/_sources/examples/fit-extended-real.ipynb.txt">
+          <span class="iconify-icon">
+            <i class="i-lucide" data-icon="copy"></i>
+          </span>
+          <span>Copy page</span>
+        </button>
+        <a role="menuitem" href="https://jack-dinsmore.github.io/leakagelib/_sources/examples/fit-extended-real.ipynb.txt" target="_blank" rel="nofollow"><iconify-icon icon="bi:code-slash"></iconify-icon>
+            <span>View Source</span></a><a role="menuitem" href="https://chatgpt.com/?hints=search&q=Read%20https%3A//jack-dinsmore.github.io/leakagelib/_sources/examples/fit-extended-real.ipynb.txt%20so%20I%20can%20ask%20questions%20about%20it." target="_blank" rel="nofollow">
+          <iconify-icon icon="bi:openai"></iconify-icon>
+          <span>Open in ChatGPT</span>
+        </a><a role="menuitem" href="https://claude.ai/new?q=Read%20https%3A//jack-dinsmore.github.io/leakagelib/_sources/examples/fit-extended-real.ipynb.txt%20so%20I%20can%20ask%20questions%20about%20it." target="_blank" rel="nofollow">
+          <iconify-icon icon="bi:claude"></iconify-icon>
+          <span>Open in Claude</span>
+        </a></div>
+    </div>
+  </div>
+</div><article class="yue" role="main">
+          <section id="Fitting-to-a-real-extended-source">
+<h1>Fitting to a real extended source<a class="headerlink" href="#Fitting-to-a-real-extended-source" title="Link to this heading">¶</a></h1>
+<p><em>Weights used:</em></p>
+<ul class="simple">
+<li><p>Spatial</p></li>
+</ul>
+<p>This jupyter notebook fits for the polarization of a real extended source. The source (Crab) was prepared in the previous notebook. This notebook extracts the the pulsar’s phase-averaged and nebula spatially-averaged polarization separately.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span><span data-line="1">[1]:
+</span></pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="kn">import</span><span class="w"> </span><span class="nn">leakagelib</span>
+</span></pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+<span class="ansi-yellow-intense-fg">&gt;&gt;&gt; PyXSPEC is not installed, you will no be able to use it.</span>
+</pre></div></div>
+</div>
+<p>First we load the 2-8 keV data. Since the spatial weights image created last notebook was centered at IXPE pixel (300, 300) by default, we center the IXPE data on (300, 300)</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span><span data-line="1">[2]:
+</span></pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="c1"># Load the extended source data</span>
+</span><span data-line="2"><span class="n">datas</span> <span class="o">=</span> <span class="n">leakagelib</span><span class="o">.</span><span class="n">IXPEData</span><span class="o">.</span><span class="n">load_all_detectors_with_path</span><span class="p">(</span><span class="s2">&quot;data&quot;</span><span class="p">,</span> <span class="s2">&quot;02006001&quot;</span><span class="p">)</span>
+</span><span data-line="3">
+</span><span data-line="4"><span class="k">for</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">datas</span><span class="p">:</span>
+</span><span data-line="5">    <span class="n">data</span><span class="o">.</span><span class="n">explicit_center</span><span class="p">(</span><span class="mi">300</span><span class="p">,</span><span class="mi">300</span><span class="p">)</span>
+</span><span data-line="6">    <span class="n">data</span><span class="o">.</span><span class="n">retain</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">evt_energies</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">)</span>
+</span><span data-line="7">    <span class="n">data</span><span class="o">.</span><span class="n">retain</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">evt_energies</span> <span class="o">&lt;</span> <span class="mi">8</span><span class="p">)</span>
+</span></pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+&gt;&gt;&gt; Reading (in memory) /opt/homebrew/anaconda3/lib/python3.12/site-packages/ixpeobssim/caldb/ixpe/xrt/bcf/vign/ixpe_d1_obssim20240101_vign_v013.fits...
+</pre></div></div>
+</div>
+<p>The spatial weights image we created in the last notebook should be loaded using <code class="docutils literal notranslate"><span class="pre">Source.load_file</span></code>:</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span><span data-line="1">[3]:
+</span></pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">settings</span> <span class="o">=</span> <span class="n">leakagelib</span><span class="o">.</span><span class="n">FitSettings</span><span class="p">(</span><span class="n">datas</span><span class="p">)</span>
+</span><span data-line="2"><span class="n">source</span> <span class="o">=</span> <span class="n">leakagelib</span><span class="o">.</span><span class="n">Source</span><span class="o">.</span><span class="n">load_file</span><span class="p">(</span><span class="s2">&quot;data/13146/crab.fits&quot;</span><span class="p">)</span>
+</span><span data-line="3"><span class="n">settings</span><span class="o">.</span><span class="n">add_source</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="s2">&quot;neb&quot;</span><span class="p">)</span>
+</span><span data-line="4"><span class="n">settings</span><span class="o">.</span><span class="n">fix_flux</span><span class="p">(</span><span class="s2">&quot;neb&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</span><span data-line="5"><span class="n">settings</span><span class="o">.</span><span class="n">set_initial_qu</span><span class="p">(</span><span class="s2">&quot;neb&quot;</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+</span></pre></div>
+</div>
+</div>
+<p>We’ll set an ROI of 60 arcseconds, to avoid the more complicated structures farther than the pulsar.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span><span data-line="1">[4]:
+</span></pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">settings</span><span class="o">.</span><span class="n">apply_circular_roi</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+</span></pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+636247 events were cut for being outside the region of interest.
+</pre></div></div>
+</div>
+<p>Now we create a fitter object so we can compare the data to the fitter’s prediction…</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span><span data-line="1">[5]:
+</span></pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">fitter</span> <span class="o">=</span> <span class="n">leakagelib</span><span class="o">.</span><span class="n">Fitter</span><span class="p">(</span><span class="n">settings</span><span class="p">)</span>
+</span><span data-line="2"><span class="n">fitter</span><span class="o">.</span><span class="n">plot</span><span class="p">();</span>
+</span></pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+Data set 02006001 DU 1 had no exposure map loaded. Please load an exposure map if you are fitting to events in the vignetted portion.
+/Users/jtd/Documents/research/ixpepl/code/leakagelib/src/leakagelib/ps_fit/fitter.py:188: RuntimeWarning: invalid value encountered in divide
+  pred /= counts
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/examples_fit-extended-real_9_1.png" src="../_images/examples_fit-extended-real_9_1.png" />
+</div>
+</div>
+<p>…but clearly, these images are not aligned. This is because the IXPE WCS is not aligned with the Chandra WCS. In a real analysis, I suggest editing the IXPE events file header (and the exposure map header, if using) to make it match the Chandra WCS. But for this demo we can fix the problem by just shifting the IXPE data set. I found using DS9 that CXO and IXPE are offset by 10.4 pixels in the horizontal direction and 1.3 pixels in the vertical. So we recenter at that position:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span><span data-line="1">[6]:
+</span></pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">datas</span> <span class="o">=</span> <span class="n">leakagelib</span><span class="o">.</span><span class="n">IXPEData</span><span class="o">.</span><span class="n">load_all_detectors_with_path</span><span class="p">(</span><span class="s2">&quot;data&quot;</span><span class="p">,</span> <span class="s2">&quot;02006001&quot;</span><span class="p">)</span>
+</span><span data-line="2">
+</span><span data-line="3"><span class="k">for</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">datas</span><span class="p">:</span>
+</span><span data-line="4">    <span class="n">data</span><span class="o">.</span><span class="n">explicit_center</span><span class="p">(</span><span class="mi">300</span> <span class="o">-</span> <span class="mf">10.4</span><span class="p">,</span> <span class="mi">300</span> <span class="o">-</span> <span class="mf">1.3</span><span class="p">)</span>
+</span><span data-line="5">    <span class="n">data</span><span class="o">.</span><span class="n">retain</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">evt_energies</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">)</span>
+</span><span data-line="6">    <span class="n">data</span><span class="o">.</span><span class="n">retain</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">evt_energies</span> <span class="o">&lt;</span> <span class="mi">8</span><span class="p">)</span>
+</span><span data-line="7">
+</span><span data-line="8"><span class="n">settings</span> <span class="o">=</span> <span class="n">leakagelib</span><span class="o">.</span><span class="n">FitSettings</span><span class="p">(</span><span class="n">datas</span><span class="p">)</span>
+</span><span data-line="9"><span class="n">settings</span><span class="o">.</span><span class="n">add_source</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="s2">&quot;neb&quot;</span><span class="p">)</span>
+</span><span data-line="10"><span class="n">settings</span><span class="o">.</span><span class="n">fix_flux</span><span class="p">(</span><span class="s2">&quot;neb&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</span><span data-line="11"><span class="n">settings</span><span class="o">.</span><span class="n">set_initial_qu</span><span class="p">(</span><span class="s2">&quot;neb&quot;</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+</span><span data-line="12"><span class="n">settings</span><span class="o">.</span><span class="n">apply_circular_roi</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
+</span><span data-line="13">
+</span><span data-line="14"><span class="n">fitter</span> <span class="o">=</span> <span class="n">leakagelib</span><span class="o">.</span><span class="n">Fitter</span><span class="p">(</span><span class="n">settings</span><span class="p">)</span>
+</span><span data-line="15"><span class="n">fitter</span><span class="o">.</span><span class="n">plot</span><span class="p">();</span>
+</span></pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+&gt;&gt;&gt; Using cached xVignetting object at /opt/homebrew/anaconda3/lib/python3.12/site-packages/ixpeobssim/caldb/ixpe/xrt/bcf/vign/ixpe_d1_obssim20240101_vign_v013.fits...
+509977 events were cut for being outside the region of interest.
+Data set 02006001 DU 1 had no exposure map loaded. Please load an exposure map if you are fitting to events in the vignetted portion.
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/examples_fit-extended-real_11_1.png" src="../_images/examples_fit-extended-real_11_1.png" />
+</div>
+</div>
+<p>That matches well. Now we need to add a source to represent the pulsar. Since the pulsar is at the origin, we can use the <code class="docutils literal notranslate"><span class="pre">Source.add_point_source</span></code> method.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span><span data-line="1">[7]:
+</span></pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">settings</span><span class="o">.</span><span class="n">add_point_source</span><span class="p">(</span><span class="s2">&quot;psr&quot;</span><span class="p">)</span>
+</span><span data-line="2"><span class="n">settings</span><span class="o">.</span><span class="n">set_initial_flux</span><span class="p">(</span><span class="s2">&quot;psr&quot;</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">)</span>
+</span><span data-line="3"><span class="n">settings</span><span class="o">.</span><span class="n">set_initial_qu</span><span class="p">(</span><span class="s2">&quot;psr&quot;</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+</span><span data-line="4">
+</span><span data-line="5"><span class="n">fitter</span> <span class="o">=</span> <span class="n">leakagelib</span><span class="o">.</span><span class="n">Fitter</span><span class="p">(</span><span class="n">settings</span><span class="p">)</span>
+</span><span data-line="6"><span class="n">fitter</span><span class="o">.</span><span class="n">plot</span><span class="p">();</span>
+</span></pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+Data set 02006001 DU 1 had no exposure map loaded. Please load an exposure map if you are fitting to events in the vignetted portion.
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../_images/examples_fit-extended-real_13_1.png" src="../_images/examples_fit-extended-real_13_1.png" />
+</div>
+</div>
+<p>Finally, we perform the fit</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span><span data-line="1">[8]:
+</span></pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="n">result</span> <span class="o">=</span> <span class="n">fitter</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+</span><span data-line="2"><span class="n">result</span>
+</span></pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span><span data-line="1">[8]:
+</span></pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+FitResult:
+        q (neb) = 0.0805 +/- 0.0044
+        u (neb) = -0.1945 +/- 0.0044
+        q (psr) = -0.2596 +/- 0.0271
+        u (psr) = 0.0173 +/- 0.0272
+        f (psr) = 0.0973 +/- 0.0006
+
+Polarization:
+        PD (neb): 0.2105 +/- 0.0044
+        PA (neb): -33.7610 deg +/- 0.5994
+        PD (psr): 0.2601 +/- 0.0271
+        PA (psr): 88.0959 deg +/- 2.9948
+Likelihood 580849.3410922358, dof 2080089
+Optimization terminated successfully.
+</pre></div></div>
+</div>
+<p>The pulsar’s phase-averaged polarization is insignificant, which has been found in other analyses. The nebula’s very significant polarization is consistent with a magnetic field running diagonally from the upper left to lower right. More careful analyses have mapped this EVPA and found EVPA tangent to the torus, which is consistent with this result.</p>
+</section>
+
+        </article><button class="back-to-top" type="button">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+  </svg>
+  <span>Back to top</span>
+</button><div class="navigation flex print:hidden"><div class="navigation-prev">
+    <a href="fit-prepare-extended.html">
+      <i class="i-lucide chevron-left"></i>
+      <div class="page-info">
+        <span>Previous</span><div class="title">Preparing an extended source for LeakageLib fitting</div></div>
+    </a>
+  </div><div class="navigation-next">
+    <a href="../leakage_prediction.html">
+      <div class="page-info">
+        <span>Next</span>
+        <div class="title">Leakage Prediction</div>
+      </div>
+      <i class="i-lucide chevron-right"></i>
+    </a>
+  </div></div></div>
+    </div>
+  </main>
+</div>
+<footer class="sy-foot">
+  <div class="sy-foot-inner sy-container mx-auto">
+    <div class="sy-foot-reserved md:flex justify-between items-center">
+      <div class="sy-foot-copyright"><p>2026, Jack T. Dinsmore</p>
+  
+  <p>
+    Made with
+    
+    <a href="https://www.sphinx-doc.org/">Sphinx</a> and
+    
+    <a href="https://shibuya.lepture.com">Shibuya theme</a>.
+  </p>
+</div>
+      <div class="sy-foot-socials"></div>
+    </div>
+  </div>
+</footer>
+      <script src="../_static/documentation_options.js?v=f5cff4aa"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+      <script src="../_static/shibuya.js?v=cac61aee"></script>
+      <script>window.MathJax = {"tex": {"inlineMath": [["\\(", "\\)"]], "processEscapes": true, "displayMath": [["\\[", "\\]"]]}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script></body>
+</html>
