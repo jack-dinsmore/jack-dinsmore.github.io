@@ -98,6 +98,17 @@ data-aria-dark="Switch to auto color mode">
       <i class="i-lucide close"></i>
     </button>
     <div class="sy-scrollbar sy-rside-inner px-6 xl:top-16 xl:sticky xl:pl-0 pt-6 pb-4"><div class="localtoc"><h3>On this page</h3><ul>
+<li><a class="reference internal" href="#leakagelib.DataSpectrum"><code class="docutils literal notranslate"><span class="pre">DataSpectrum</span></code></a><ul>
+<li><a class="reference internal" href="#leakagelib.DataSpectrum.from_data"><code class="docutils literal notranslate">from_data()</span></code></a></li>
+<li><a class="reference internal" href="#leakagelib.DataSpectrum.from_power_law_index"><code class="docutils literal notranslate">from_power_law_index()</span></code></a></li>
+<li><a class="reference internal" href="#leakagelib.DataSpectrum.get_avg_mu"><code class="docutils literal notranslate">get_avg_mu()</span></code></a></li>
+<li><a class="reference internal" href="#leakagelib.DataSpectrum.get_avg_one_over_mu"><code class="docutils literal notranslate">get_avg_one_over_mu()</span></code></a></li>
+<li><a class="reference internal" href="#leakagelib.DataSpectrum.get_avg_one_over_mu_squared"><code class="docutils literal notranslate">get_avg_one_over_mu_squared()</span></code></a></li>
+<li><a class="reference internal" href="#leakagelib.DataSpectrum.load"><code class="docutils literal notranslate">load()</span></code></a></li>
+<li><a class="reference internal" href="#leakagelib.DataSpectrum.save"><code class="docutils literal notranslate">save()</span></code></a></li>
+<li><a class="reference internal" href="#leakagelib.DataSpectrum.weighted_average"><code class="docutils literal notranslate">weighted_average()</span></code></a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#leakagelib.EnergyDependence"><code class="docutils literal notranslate"><span class="pre">EnergyDependence</span></code></a><ul>
 <li><a class="reference internal" href="#leakagelib.EnergyDependence.constant"><code class="docutils literal notranslate">constant()</span></code></a></li>
 <li><a class="reference internal" href="#leakagelib.EnergyDependence.default"><code class="docutils literal notranslate">default()</span></code></a></li>
@@ -286,6 +297,59 @@ data-aria-dark="Switch to auto color mode">
           <section id="module-leakagelib">
 <span id="leakagelib-api-documentation"></span><h1><cite>leakagelib</cite> API documentation<a class="headerlink" href="#module-leakagelib" title="Link to this heading">¶</a></h1>
 <dl class="py class">
+<dt class="sig sig-object py" id="leakagelib.DataSpectrum">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">leakagelib.</span></span><span class="sig-name descname"><span class="pre">DataSpectrum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bin_centers</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">counts</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weights</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#leakagelib.DataSpectrum" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="leakagelib.DataSpectrum.from_data">
+<span class="sig-name descname"><span class="pre">from_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">binning</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#leakagelib.DataSpectrum.from_data" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="leakagelib.DataSpectrum.from_power_law_index">
+<span class="sig-name descname"><span class="pre">from_power_law_index</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#leakagelib.DataSpectrum.from_power_law_index" title="Link to this definition">¶</a></dt>
+<dd><p>Load the spectrum assuming power law-distributed 2-8 keV counts. Unweighted. Useful for demonstration purposes only. In practice, use a more accurate simulation for an IXPE observation.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="leakagelib.DataSpectrum.get_avg_mu">
+<span class="sig-name descname"><span class="pre">get_avg_mu</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">use_nn</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#leakagelib.DataSpectrum.get_avg_mu" title="Link to this definition">¶</a></dt>
+<dd><p>Get the average of 1 over the modulation factor.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="leakagelib.DataSpectrum.get_avg_one_over_mu">
+<span class="sig-name descname"><span class="pre">get_avg_one_over_mu</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">use_nn</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#leakagelib.DataSpectrum.get_avg_one_over_mu" title="Link to this definition">¶</a></dt>
+<dd><p>Get the average of 1 over the modulation factor.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="leakagelib.DataSpectrum.get_avg_one_over_mu_squared">
+<span class="sig-name descname"><span class="pre">get_avg_one_over_mu_squared</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">use_nn</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#leakagelib.DataSpectrum.get_avg_one_over_mu_squared" title="Link to this definition">¶</a></dt>
+<dd><p>Get the average of 1 over the modulation factor squared.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="leakagelib.DataSpectrum.load">
+<span class="sig-name descname"><span class="pre">load</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#leakagelib.DataSpectrum.load" title="Link to this definition">¶</a></dt>
+<dd><p>Load from a file</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="leakagelib.DataSpectrum.save">
+<span class="sig-name descname"><span class="pre">save</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">f</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#leakagelib.DataSpectrum.save" title="Link to this definition">¶</a></dt>
+<dd><p>Save to a file</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="leakagelib.DataSpectrum.weighted_average">
+<span class="sig-name descname"><span class="pre">weighted_average</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">array</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#leakagelib.DataSpectrum.weighted_average" title="Link to this definition">¶</a></dt>
+<dd><p>Get the event fractions in each energy bin</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
 <dt class="sig sig-object py" id="leakagelib.EnergyDependence">
 <span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">leakagelib.</span></span><span class="sig-name descname"><span class="pre">EnergyDependence</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">energies</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma_parallel2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma_perp2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kurtosis4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mu</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#leakagelib.EnergyDependence" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
@@ -338,7 +402,7 @@ data-aria-dark="Switch to auto color mode">
 <dd><p>In some cases, one really wants spectrum-weighted quantities, such as a spectrum-weighted mu, sigma_parallel, mu*sigma_parallel, etc. This function returns these quantities.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>spectrum</strong> (<em>DataSpectrum</em>) – DataSpectrum object for the data in question. Either create one directly or use
+<dd class="field-odd"><p><strong>spectrum</strong> (<a class="reference internal" href="#leakagelib.DataSpectrum" title="leakagelib.DataSpectrum"><em>DataSpectrum</em></a>) – DataSpectrum object for the data in question. Either create one directly or use
 the <cite>spectrum</cite> attribute of an IXPEData object.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
@@ -1251,7 +1315,7 @@ inaccurate off-axis.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>spectrum</strong> (<em>DataSpectrum</em>) – Spectrum of the data. You can create this from an IXPEData object with DataSpectrum.from_data.</p></li>
+<li><p><strong>spectrum</strong> (<a class="reference internal" href="#leakagelib.DataSpectrum" title="leakagelib.DataSpectrum"><em>DataSpectrum</em></a>) – Spectrum of the data. You can create this from an IXPEData object with DataSpectrum.from_data.</p></li>
 <li><p><strong>normalize</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, return normalized Stokes q and u maps. Default is False.</p></li>
 </ul>
 </dd>

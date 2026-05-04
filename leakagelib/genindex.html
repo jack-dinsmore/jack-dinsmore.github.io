@@ -147,6 +147,8 @@ data-aria-dark="Switch to auto color mode">
 <h2 id="D">D</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="leakagelib.html#leakagelib.DataSpectrum">DataSpectrum (class in leakagelib)</a>
+</li>
       <li><a href="leakagelib.html#leakagelib.EnergyDependence.default">default() (leakagelib.EnergyDependence method)</a>
 </li>
       <li><a href="leakagelib.ps_fit.html#leakagelib.ps_fit.spectral_weights.RMF.delta">delta() (leakagelib.ps_fit.spectral_weights.RMF method)</a>
@@ -197,10 +199,10 @@ data-aria-dark="Switch to auto color mode">
 </li>
       <li><a href="leakagelib.html#leakagelib.FitResult">FitResult (class in leakagelib)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="leakagelib.html#leakagelib.FitSettings">FitSettings (class in leakagelib)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="leakagelib.html#leakagelib.Fitter">Fitter (class in leakagelib)</a>
 </li>
       <li><a href="leakagelib.html#leakagelib.FitSettings.fix_flux">fix_flux() (leakagelib.FitSettings method)</a>
@@ -208,6 +210,10 @@ data-aria-dark="Switch to auto color mode">
       <li><a href="leakagelib.html#leakagelib.FitSettings.fix_psf_sigma">fix_psf_sigma() (leakagelib.FitSettings method)</a>
 </li>
       <li><a href="leakagelib.html#leakagelib.FitSettings.fix_qu">fix_qu() (leakagelib.FitSettings method)</a>
+</li>
+      <li><a href="leakagelib.html#leakagelib.DataSpectrum.from_data">from_data() (leakagelib.DataSpectrum method)</a>
+</li>
+      <li><a href="leakagelib.html#leakagelib.DataSpectrum.from_power_law_index">from_power_law_index() (leakagelib.DataSpectrum method)</a>
 </li>
       <li><a href="leakagelib.html#leakagelib.FitResult.from_samples">from_samples() (leakagelib.FitResult method)</a>
 </li>
@@ -221,6 +227,12 @@ data-aria-dark="Switch to auto color mode">
 </li>
       <li><a href="leakagelib.html#leakagelib.IXPEData.get_antirotation_matrix">get_antirotation_matrix() (leakagelib.IXPEData method)</a>
 </li>
+      <li><a href="leakagelib.html#leakagelib.DataSpectrum.get_avg_mu">get_avg_mu() (leakagelib.DataSpectrum method)</a>
+</li>
+      <li><a href="leakagelib.html#leakagelib.DataSpectrum.get_avg_one_over_mu">get_avg_one_over_mu() (leakagelib.DataSpectrum method)</a>
+</li>
+      <li><a href="leakagelib.html#leakagelib.DataSpectrum.get_avg_one_over_mu_squared">get_avg_one_over_mu_squared() (leakagelib.DataSpectrum method)</a>
+</li>
       <li><a href="leakagelib.html#leakagelib.FitResult.get_constrained_samples">get_constrained_samples() (leakagelib.FitResult method)</a>
 </li>
       <li><a href="leakagelib.html#leakagelib.PSFSourceCombo.get_log_prob">get_log_prob() (leakagelib.PSFSourceCombo method)</a>
@@ -231,10 +243,10 @@ data-aria-dark="Switch to auto color mode">
 </li>
       <li><a href="leakagelib.html#leakagelib.get_nn_modf">get_nn_modf() (in module leakagelib)</a>
 </li>
-      <li><a href="leakagelib.html#leakagelib.EnergyDependence.get_params">get_params() (leakagelib.EnergyDependence method)</a>
-</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="leakagelib.html#leakagelib.EnergyDependence.get_params">get_params() (leakagelib.EnergyDependence method)</a>
+</li>
       <li><a href="leakagelib.html#leakagelib.IXPEData.get_particle_flux_estimate">get_particle_flux_estimate() (leakagelib.IXPEData method)</a>
 </li>
       <li><a href="leakagelib.ps_fit.html#leakagelib.ps_fit.pcube.get_pcube">get_pcube() (in module leakagelib.ps_fit.pcube)</a>
@@ -350,6 +362,8 @@ data-aria-dark="Switch to auto color mode">
       </ul></li>
       <li><a href="leakagelib.html#leakagelib.FitData.length">length() (leakagelib.FitData method)</a>
 </li>
+      <li><a href="leakagelib.html#leakagelib.DataSpectrum.load">load() (leakagelib.DataSpectrum method)</a>
+</li>
       <li><a href="leakagelib.html#leakagelib.IXPEData.load_all_detectors">load_all_detectors() (leakagelib.IXPEData method)</a>
 </li>
       <li><a href="leakagelib.html#leakagelib.IXPEData.load_all_detectors_with_path">load_all_detectors_with_path() (leakagelib.IXPEData method)</a>
@@ -457,8 +471,12 @@ data-aria-dark="Switch to auto color mode">
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="leakagelib.html#leakagelib.FitResult.sample">sample() (leakagelib.FitResult method)</a>
 </li>
-      <li><a href="leakagelib.html#leakagelib.PSF.save">save() (leakagelib.PSF method)</a>
+      <li><a href="leakagelib.html#leakagelib.DataSpectrum.save">save() (leakagelib.DataSpectrum method)</a>
+
+      <ul>
+        <li><a href="leakagelib.html#leakagelib.PSF.save">(leakagelib.PSF method)</a>
 </li>
+      </ul></li>
       <li><a href="leakagelib.html#leakagelib.FitSettings.set_initial_flux">set_initial_flux() (leakagelib.FitSettings method)</a>
 </li>
       <li><a href="leakagelib.html#leakagelib.FitSettings.set_initial_qu">set_initial_qu() (leakagelib.FitSettings method)</a>
@@ -492,6 +510,10 @@ data-aria-dark="Switch to auto color mode">
 
 <h2 id="W">W</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="leakagelib.html#leakagelib.DataSpectrum.weighted_average">weighted_average() (leakagelib.DataSpectrum method)</a>
+</li>
+  </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="leakagelib_bkg.html#leakagelib_bkg.io.write_probs">write_probs() (in module leakagelib_bkg.io)</a>
 </li>

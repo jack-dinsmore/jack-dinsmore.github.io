@@ -255,7 +255,8 @@ data-aria-dark="Switch to auto color mode">
 <div class="admonition note">
 <p class="admonition-title"><strong>Alternatives to</strong> <code class="docutils literal notranslate"><span class="pre">FitSettings.apply_circular_roi</span></code></p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">IXPEData.apply_circular_roi</span></code>: Assumes a circular ROI centered on the origin</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">IXPEData.apply_circular_roi</span></code>: Creates a circular ROI centered on the origin</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">IXPEData.apply_roi_cut</span></code>: Adds a region file to the ROI (Or excludes it if you set <code class="docutils literal notranslate"><span class="pre">exclude=True</span></code>)</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">IXPEData.apply_roi</span></code>: Apply an arbitrary ROI, which you pass in as an image. The image must have the same pixel size and dimensions as the fit sources.</p></li>
 </ul>
 </div>
