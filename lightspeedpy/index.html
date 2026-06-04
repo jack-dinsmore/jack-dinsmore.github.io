@@ -35,11 +35,30 @@
             
   <section id="lightspeedpy-documentation">
 <h1>lightspeedpy documentation<a class="headerlink" href="#lightspeedpy-documentation" title="Link to this heading">¶</a></h1>
+<p>Lightspeedpy is a data reduction library for the proto-Lightspeed instrument. It is capable of processing bias, darks, and flats, manipulating data files, and performing more complex tasks such as generating light curves.</p>
+<p>Once installed, lightspeedpy can be imported as a Python library and its tools can be used programmatically. Alternatively, lightspeedpy can be used as a command line tool.</p>
 <div class="toctree-wrapper compound">
-<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<p class="caption" role="heading"><span class="caption-text">Please review the below pages for how to install or contribute to lightspeedpy</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installing Lightspeedpy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="contribute.html">How to contribute to Lightspeedpy</a></li>
+</ul>
+</div>
+<section id="how-do-i-use-the-command-line-interface-cli">
+<h2>How do I use the command line interface (CLI)<a class="headerlink" href="#how-do-i-use-the-command-line-interface-cli" title="Link to this heading">¶</a></h2>
+<p>A CLI call to lightspeedpy takes the form</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="o">-</span><span class="n">m</span> <span class="n">lightspeedpy</span><span class="o">.</span><span class="n">TOOL_NAME</span> <span class="n">ARGUMENTS</span>
+</pre></div>
+</div>
+<p>The list of available tools is accessible through lightspeedpy’s help menu. To see it, run <code class="code docutils literal notranslate"><span class="pre">python</span> <span class="pre">-m</span> <span class="pre">lightspeedpy</span> <span class="pre">-h</span></code>.</p>
+<p>To access the documentation of a specific tool, run <code class="code docutils literal notranslate"><span class="pre">python</span> <span class="pre">-m</span> <span class="pre">lightspeedpy.TOOL_NAME</span> <span class="pre">-h</span></code>. This will tell you what the tool does and how to provide arguments to the tool.</p>
+</section>
+<section id="how-do-i-use-the-application-programming-interface-api">
+<h2>How do I use the application programming interface (API)<a class="headerlink" href="#how-do-i-use-the-application-programming-interface-api" title="Link to this heading">¶</a></h2>
+<p>The lightspeedpy API can be accessed by importing lightspeedpy as a Python module. All the command line tools of lightspeedpy are available there as python functions. This API is particularly useful if you wish to test adding your own tools to lightspeedpy, or perform complex tasks.</p>
+<p>The API is documented here:</p>
+<div class="toctree-wrapper compound">
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="lightspeedpy.html">Lightspeedpy API</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="lightspeedpy.html#lightspeedpy.DataSet"><code class="docutils literal notranslate"><span class="pre">DataSet</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="lightspeedpy.html#lightspeedpy.Ephemeris"><code class="docutils literal notranslate"><span class="pre">Ephemeris</span></code></a></li>
@@ -48,12 +67,14 @@
 <li class="toctree-l2"><a class="reference internal" href="lightspeedpy.html#lightspeedpy.Region"><code class="docutils literal notranslate"><span class="pre">Region</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="lightspeedpy.html#lightspeedpy.add_dataset_args"><code class="docutils literal notranslate"><span class="pre">add_dataset_args()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="lightspeedpy.html#lightspeedpy.get_dataset"><code class="docutils literal notranslate"><span class="pre">get_dataset()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="lightspeedpy.html#lc-subpackage">lc subpackage</a></li>
 <li class="toctree-l2"><a class="reference internal" href="lightspeedpy.html#image-subpackage">image subpackage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lightspeedpy.html#cube-subpackage">cube subpackage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lightspeedpy.html#lc-subpackage">lc subpackage</a></li>
 </ul>
 </li>
 </ul>
 </div>
+</section>
 </section>
 
 
@@ -73,10 +94,12 @@
 
 
 <h3>Navigation</h3>
-<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<p class="caption" role="heading"><span class="caption-text">Please review the below pages for how to install or contribute to lightspeedpy</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installing Lightspeedpy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="contribute.html">How to contribute to Lightspeedpy</a></li>
+</ul>
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="lightspeedpy.html">Lightspeedpy API</a></li>
 </ul>
 

@@ -15,7 +15,7 @@
     <link rel="canonical" href="https://jack-dinsmore.github.io/lightspeedpy/lightspeedpy.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="lc API" href="lightspeedpy.lc.html" />
+    <link rel="next" title="image API" href="lightspeedpy.image.html" />
     <link rel="prev" title="How to contribute to Lightspeedpy" href="contribute.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
@@ -47,11 +47,15 @@
 <li><p>Use <a class="reference internal" href="#lightspeedpy.DataSet.from_dir" title="lightspeedpy.DataSet.from_dir"><code class="xref py py-meth docutils literal notranslate"><span class="pre">DataSet.from_dir()</span></code></a> to create a data set out of all the files in a directory</p></li>
 <li><p>Use the constructor and pass all the files you want to be in the data set as a parameter.</p></li>
 </ol>
+<p>The default keyword arguments are the ones you passed when you created the <a class="reference internal" href="#lightspeedpy.DataSet" title="lightspeedpy.DataSet"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataSet</span></code></a>. You can override the defaults by passing new arguments here. You can also pass the following</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>filenames</strong> (<em>list</em><em> of </em><em>str</em>) – List of files to include</p></li>
-<li><p><strong>cut_cr</strong> (<em>bool</em><em>, </em><em>optional</em>) – Set to False to no longer cut CRs.</p></li>
+<li><p><strong>max_frames</strong> (<em>int</em><em>, </em><em>optional</em>) – Maximum number of frames to iterate through. Default: all the frames</p></li>
+<li><p><strong>use_bar</strong> (<em>bool</em><em>, </em><em>optional</em>) – Show a progress bar. Default: True.</p></li>
+<li><p><strong>cut_cr</strong> (<em>bool</em><em>, </em><em>optional</em>) – Cut cosmic rays. Default: True</p></li>
+<li><p><strong>cr_thresh</strong> (<em>int</em><em>, </em><em>optional</em>) – Cosmic ray cutting threshold. Default: 20</p></li>
 </ul>
 </dd>
 </dl>
@@ -68,7 +72,7 @@
 
 <dl class="py method">
 <dt class="sig sig-object py" id="lightspeedpy.DataSet.bootstrap">
-<span class="sig-name descname"><span class="pre">bootstrap</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lightspeedpy.DataSet.bootstrap" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">bootstrap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seed</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lightspeedpy.DataSet.bootstrap" title="Link to this definition">¶</a></dt>
 <dd><p>Resamples the file names for use in bootstrapping. If you want to estimate uncertainties, redo your analysis with many <a class="reference internal" href="#lightspeedpy.DataSet.bootstrap" title="lightspeedpy.DataSet.bootstrap"><code class="xref py py-meth docutils literal notranslate"><span class="pre">DataSet.bootstrap()</span></code></a>’ed data sets and calculate the standard deviation of your results.</p>
 <p class="rubric">Notes</p>
 <p>You should never bootstrap a data set twice. Instead, you should always create a copy of the original data set with copy.deepcopy and then bootstrap the copy.</p>
@@ -83,41 +87,51 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="lightspeedpy.DataSet.from_dir">
 <span class="sig-name descname"><span class="pre">from_dir</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lightspeedpy.DataSet.from_dir" title="Link to this definition">¶</a></dt>
-<dd><p>Create a <a class="reference internal" href="#lightspeedpy.DataSet" title="lightspeedpy.DataSet"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataSet</span></code></a> for all files in a directory</p>
+<dd><p>Create a <a class="reference internal" href="#lightspeedpy.DataSet" title="lightspeedpy.DataSet"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataSet</span></code></a> for all files in a directory. The default keyword arguments are the ones you passed when you created the <a class="reference internal" href="#lightspeedpy.DataSet" title="lightspeedpy.DataSet"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataSet</span></code></a>. You can override the defaults by passing new arguments here. You can also pass the following</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>directory</strong> (<em>str</em>) – name of the directory</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>directory</strong> (<em>str</em>) – name of the directory</p></li>
+<li><p><strong>max_frames</strong> (<em>int</em><em>, </em><em>optional</em>) – Maximum number of frames to iterate through. Default: all the frames</p></li>
+<li><p><strong>use_bar</strong> (<em>bool</em><em>, </em><em>optional</em>) – Show a progress bar. Default: True.</p></li>
+<li><p><strong>cut_cr</strong> (<em>bool</em><em>, </em><em>optional</em>) – Cut cosmic rays. Default: True</p></li>
+<li><p><strong>cr_thresh</strong> (<em>int</em><em>, </em><em>optional</em>) – Cosmic ray cutting threshold. Default: 20</p></li>
+</ul>
 </dd>
 </dl>
-<p>:keyword See <a class="reference internal" href="#lightspeedpy.DataSet" title="lightspeedpy.DataSet"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataSet</span></code></a>:</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="lightspeedpy.DataSet.from_first">
 <span class="sig-name descname"><span class="pre">from_first</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">min_index</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_index</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lightspeedpy.DataSet.from_first" title="Link to this definition">¶</a></dt>
-<dd><p>Create a <a class="reference internal" href="#lightspeedpy.DataSet" title="lightspeedpy.DataSet"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataSet</span></code></a> for all files in a capture</p>
+<dd><p>Create a <a class="reference internal" href="#lightspeedpy.DataSet" title="lightspeedpy.DataSet"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataSet</span></code></a> for all files in a capture. The default keyword arguments are the ones you passed when you created the <a class="reference internal" href="#lightspeedpy.DataSet" title="lightspeedpy.DataSet"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataSet</span></code></a>. You can override the defaults by passing new arguments here. You can also pass the following</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>filename</strong> (<em>str</em>) – name of a file in the capture</p></li>
-<li><p><strong>min_index</strong> (<em>int</em><em>, </em><em>optional</em>) – Minimum cube index to use. Default: the lowest that was downloaded</p></li>
-<li><p><strong>max_index</strong> (<em>int</em><em>, </em><em>optional</em>) – Maximum cube index to use. Default: the highest that was downloaded</p></li>
+<li><p><strong>filenames</strong> (<em>list</em><em> of </em><em>str</em>) – List of files to include</p></li>
+<li><p><strong>max_frames</strong> (<em>int</em><em>, </em><em>optional</em>) – Maximum number of frames to iterate through. Default: all the frames</p></li>
+<li><p><strong>use_bar</strong> (<em>bool</em><em>, </em><em>optional</em>) – Show a progress bar. Default: True.</p></li>
+<li><p><strong>cut_cr</strong> (<em>bool</em><em>, </em><em>optional</em>) – Cut cosmic rays. Default: True</p></li>
+<li><p><strong>cr_thresh</strong> (<em>int</em><em>, </em><em>optional</em>) – Cosmic ray cutting threshold. Default: 20</p></li>
 </ul>
 </dd>
 </dl>
-<p>:param See <a class="reference internal" href="#lightspeedpy.DataSet" title="lightspeedpy.DataSet"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataSet</span></code></a>:</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="lightspeedpy.DataSet.iterator">
 <span class="sig-name descname"><span class="pre">iterator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lightspeedpy.DataSet.iterator" title="Link to this definition">¶</a></dt>
 <dd><p>Create an iterator for iterating through all frames in a <a class="reference internal" href="#lightspeedpy.DataSet" title="lightspeedpy.DataSet"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataSet</span></code></a>.</p>
-<p>:keyword The default keyword arguments are the ones you passed when you created the <a class="reference internal" href="#lightspeedpy.DataSet" title="lightspeedpy.DataSet"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataSet</span></code></a>.:
-:keyword You can override the defaults by passing new arguments here. You can also pass the following:
-:keyword max_frames: Maximum number of frames to iterate through. Default: all the frames
-:kwtype max_frames: int, optional
-:keyword use_bar: Show a progress bar. Default: True.
-:kwtype use_bar: bool, optional</p>
+<p>:param The default keyword arguments are the ones you passed when you created the <a class="reference internal" href="#lightspeedpy.DataSet" title="lightspeedpy.DataSet"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataSet</span></code></a>.:
+:param You can override the defaults by passing new arguments here. You can also pass the following:
+:param max_frames: Maximum number of frames to iterate through. Default: all the frames
+:type max_frames: int, optional
+:param use_bar: Show a progress bar. Default: True.
+:type use_bar: bool, optional
+:param cut_cr: Cut cosmic rays. Default: True
+:type cut_cr: bool, optional
+:param cr_thresh: Cosmic ray cutting threshold. Default: 20
+:type cr_thresh: int, optional</p>
 <p class="rubric">Notes</p>
 <p><code class="docutils literal notranslate"><span class="pre">for</span> <span class="pre">frame</span> <span class="pre">in</span> <span class="pre">data_set.iterator()</span></code> is equivalent to <code class="docutils literal notranslate"><span class="pre">for</span> <span class="pre">frame</span> <span class="pre">in</span> <span class="pre">data_set</span></code>.</p>
 </dd></dl>
@@ -224,12 +238,12 @@ Pixel properties of the data set</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="lightspeedpy.Frame">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">lightspeedpy.</span></span><span class="sig-name descname"><span class="pre">Frame</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">duration</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lightspeedpy.Frame" title="Link to this definition">¶</a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">lightspeedpy.</span></span><span class="sig-name descname"><span class="pre">Frame</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">image</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timestamp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">duration</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_saturated</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lightspeedpy.Frame" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="lightspeedpy.Frame.image">
 <span class="sig-name descname"><span class="pre">image</span></span><a class="headerlink" href="#lightspeedpy.Frame.image" title="Link to this definition">¶</a></dt>
-<dd><p>Contains the frame image in units of electrons. If darks and biases were set, they are already subtracted. The flat was not included, nor the QE</p>
+<dd><p>Contains the frame image in units of electrons. If darks and biases were set, they are already subtracted. If a dark was not set, it is assumed to be zero. If the bias is not set, it is assumed to be 199.5 ADU. The flat is not included, nor the QE.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>array-like</p>
@@ -263,7 +277,7 @@ Pixel properties of the data set</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="lightspeedpy.PixelProperties">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">lightspeedpy.</span></span><span class="sig-name descname"><span class="pre">PixelProperties</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bias</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">widths</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">skew</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">source_data_set</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dest_data_set</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lightspeedpy.PixelProperties" title="Link to this definition">¶</a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">lightspeedpy.</span></span><span class="sig-name descname"><span class="pre">PixelProperties</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bias</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">widths</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">params</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">source_data_set</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dest_data_set</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lightspeedpy.PixelProperties" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Biases and noise of each pixel in the data set. Use <a class="reference internal" href="#lightspeedpy.PixelProperties.from_data" title="lightspeedpy.PixelProperties.from_data"><code class="xref py py-meth docutils literal notranslate"><span class="pre">PixelProperties.from_data()</span></code></a> or <a class="reference internal" href="#lightspeedpy.PixelProperties.from_bias" title="lightspeedpy.PixelProperties.from_bias"><code class="xref py py-meth docutils literal notranslate"><span class="pre">PixelProperties.from_bias()</span></code></a> to create it.</p>
 <dl class="py attribute">
@@ -296,7 +310,7 @@ Pixel properties of the data set</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="lightspeedpy.PixelProperties.from_bias">
-<span class="sig-name descname"><span class="pre">from_bias</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dest_data_set</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lightspeedpy.PixelProperties.from_bias" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">from_bias</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dest_data_set</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_frames</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_pool</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lightspeedpy.PixelProperties.from_bias" title="Link to this definition">¶</a></dt>
 <dd><p>Get the pixel properties of a bias data set</p>
 </dd></dl>
 
@@ -400,6 +414,32 @@ Pixel properties of the data set</p>
 </dl>
 </dd></dl>
 
+<section id="image-subpackage">
+<h2>image subpackage<a class="headerlink" href="#image-subpackage" title="Link to this heading">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="lightspeedpy.image.html">image API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="lightspeedpy.image.html#lightspeedpy.image.get_clipped_image"><code class="docutils literal notranslate"><span class="pre">get_clipped_image()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="lightspeedpy.image.html#lightspeedpy.image.get_summed_image"><code class="docutils literal notranslate"><span class="pre">get_summed_image()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="lightspeedpy.image.html#lightspeedpy.image.get_weighted_image_linearized"><code class="docutils literal notranslate"><span class="pre">get_weighted_image_linearized()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+<section id="cube-subpackage">
+<h2>cube subpackage<a class="headerlink" href="#cube-subpackage" title="Link to this heading">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="lightspeedpy.cube.html">cube API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="lightspeedpy.cube.html#lightspeedpy.cube.cube"><code class="docutils literal notranslate"><span class="pre">cube()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="lightspeedpy.cube.html#lightspeedpy.cube.split"><code class="docutils literal notranslate"><span class="pre">split()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="lightspeedpy.cube.html#lightspeedpy.cube.stack_bias"><code class="docutils literal notranslate"><span class="pre">stack_bias()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
 <section id="lc-subpackage">
 <h2>lc subpackage<a class="headerlink" href="#lc-subpackage" title="Link to this heading">¶</a></h2>
 <div class="toctree-wrapper compound">
@@ -409,19 +449,6 @@ Pixel properties of the data set</p>
 <li class="toctree-l2"><a class="reference internal" href="lightspeedpy.lc.html#lightspeedpy.lc.get_clipped_lc"><code class="docutils literal notranslate"><span class="pre">get_clipped_lc()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="lightspeedpy.lc.html#lightspeedpy.lc.get_summed_lc"><code class="docutils literal notranslate"><span class="pre">get_summed_lc()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="lightspeedpy.lc.html#lightspeedpy.lc.get_weighted_lc_linearized"><code class="docutils literal notranslate"><span class="pre">get_weighted_lc_linearized()</span></code></a></li>
-</ul>
-</li>
-</ul>
-</div>
-</section>
-<section id="image-subpackage">
-<h2>image subpackage<a class="headerlink" href="#image-subpackage" title="Link to this heading">¶</a></h2>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="lightspeedpy.image.html">image API</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="lightspeedpy.image.html#lightspeedpy.image.get_clipped_image"><code class="docutils literal notranslate"><span class="pre">get_clipped_image()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="lightspeedpy.image.html#lightspeedpy.image.get_summed_image"><code class="docutils literal notranslate"><span class="pre">get_summed_image()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="lightspeedpy.image.html#lightspeedpy.image.get_weighted_image_linearized"><code class="docutils literal notranslate"><span class="pre">get_weighted_image_linearized()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -446,10 +473,12 @@ Pixel properties of the data set</p>
 
 
 <h3>Navigation</h3>
-<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
-<ul class="current">
+<p class="caption" role="heading"><span class="caption-text">Please review the below pages for how to install or contribute to lightspeedpy</span></p>
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installing Lightspeedpy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="contribute.html">How to contribute to Lightspeedpy</a></li>
+</ul>
+<ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Lightspeedpy API</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#lightspeedpy.DataSet"><code class="docutils literal notranslate"><span class="pre">DataSet</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#lightspeedpy.Ephemeris"><code class="docutils literal notranslate"><span class="pre">Ephemeris</span></code></a></li>
@@ -458,8 +487,9 @@ Pixel properties of the data set</p>
 <li class="toctree-l2"><a class="reference internal" href="#lightspeedpy.Region"><code class="docutils literal notranslate"><span class="pre">Region</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#lightspeedpy.add_dataset_args"><code class="docutils literal notranslate"><span class="pre">add_dataset_args()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="#lightspeedpy.get_dataset"><code class="docutils literal notranslate"><span class="pre">get_dataset()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="#lc-subpackage">lc subpackage</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#image-subpackage">image subpackage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#cube-subpackage">cube subpackage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#lc-subpackage">lc subpackage</a></li>
 </ul>
 </li>
 </ul>
@@ -469,7 +499,7 @@ Pixel properties of the data set</p>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
       <li>Previous: <a href="contribute.html" title="previous chapter">How to contribute to Lightspeedpy</a></li>
-      <li>Next: <a href="lightspeedpy.lc.html" title="next chapter">lc API</a></li>
+      <li>Next: <a href="lightspeedpy.image.html" title="next chapter">image API</a></li>
   </ul></li>
 </ul>
 </div>

@@ -39,12 +39,17 @@
 <p>The <cite>lc</cite> subpackage gives tools to create light curves from proto-Lightspeed data.</p>
 <dl class="py class" id="module-lightspeedpy.lc">
 <dt class="sig sig-object py" id="lightspeedpy.lc.Lightcurve">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">lightspeedpy.lc.</span></span><span class="sig-name descname"><span class="pre">Lightcurve</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">edges</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flux</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exposures</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eph</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_set</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lightspeedpy.lc.Lightcurve" title="Link to this definition">¶</a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">lightspeedpy.lc.</span></span><span class="sig-name descname"><span class="pre">Lightcurve</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">edges</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flux</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exposures</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nu</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">header0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">header1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">duration</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">errors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lightspeedpy.lc.Lightcurve" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Class to store light curves and save them</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="lightspeedpy.lc.Lightcurve.from_data_set">
+<span class="sig-name descname"><span class="pre">from_data_set</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">edges</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flux</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exposures</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eph</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lightspeedpy.lc.Lightcurve.from_data_set" title="Link to this definition">¶</a></dt>
+<dd><p>Create a light curve object from a data set</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
+<li><p><strong>data_set</strong> (<a class="reference internal" href="lightspeedpy.html#lightspeedpy.DataSet" title="lightspeedpy.DataSet"><em>DataSet</em></a>) – Data set object</p></li>
 <li><p><strong>edges</strong> (<em>array-like</em>) – Edges of the phase bins of the light curve</p></li>
 <li><p><strong>fluxes</strong> (<em>array-like</em>) – Flux in each light curve bin. If edges has length N+1, fluxes should have length N</p></li>
 <li><p><strong>exposures</strong> (<em>array-like</em>) – Time in seconds spent in each bin</p></li>
@@ -53,6 +58,13 @@
 </ul>
 </dd>
 </dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lightspeedpy.lc.Lightcurve.load">
+<span class="sig-name descname"><span class="pre">load</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lightspeedpy.lc.Lightcurve.load" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="lightspeedpy.lc.Lightcurve.save">
 <span class="sig-name descname"><span class="pre">save</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clobber</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_kwargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lightspeedpy.lc.Lightcurve.save" title="Link to this definition">¶</a></dt>

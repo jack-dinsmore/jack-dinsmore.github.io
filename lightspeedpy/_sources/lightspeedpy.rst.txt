@@ -6,14 +6,6 @@ Lightspeedpy API
     :undoc-members:
     :show-inheritance:
 
-lc subpackage
---------------------------
-
-.. toctree::
-   :maxdepth: 2
-
-   lightspeedpy.lc
-
 image subpackage
 --------------------------
 
@@ -21,3 +13,19 @@ image subpackage
    :maxdepth: 2
 
    lightspeedpy.image
+
+cube subpackage
+--------------------------
+
+.. toctree::
+   :maxdepth: 2
+
+   lightspeedpy.cube
+
+lc subpackage
+--------------------------
+
+.. toctree::
+   :maxdepth: 2
+
+   lightspeedpy.lc
