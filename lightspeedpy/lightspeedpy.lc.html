@@ -15,8 +15,7 @@
     <link rel="canonical" href="https://jack-dinsmore.github.io/lightspeedpy/lightspeedpy.lc.html" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="image API" href="lightspeedpy.image.html" />
-    <link rel="prev" title="Lightspeedpy API" href="lightspeedpy.html" />
+    <link rel="prev" title="cube API" href="lightspeedpy.cube.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -126,29 +125,6 @@
 </dl>
 </dd></dl>
 
-<dl class="py function">
-<dt class="sig sig-object py" id="lightspeedpy.lc.get_weighted_lc_linearized">
-<span class="sig-prename descclassname"><span class="pre">lightspeedpy.lc.</span></span><span class="sig-name descname"><span class="pre">get_weighted_lc_linearized</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_set</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_bins</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reg_file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ephemeris</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lightspeedpy.lc.get_weighted_lc_linearized" title="Link to this definition">¶</a></dt>
-<dd><p>Get the light curve of a source by summing all the detected photons per frame after weighting by the probability of each being real. This function assumes that the true number of photons expected per pixel is &lt;&lt; 1. This function can also do PSF-weighted photometry.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>data_set</strong> (<a class="reference internal" href="lightspeedpy.html#lightspeedpy.DataSet" title="lightspeedpy.DataSet"><em>DataSet</em></a>) – The data set of the observation</p></li>
-<li><p><strong>image</strong> (<em>array-like</em><em> or </em><em>None</em>) – image of PSF weights to use. Set to None to not use PSF weights.</p></li>
-<li><p><strong>n_bins</strong> (<em>int</em>) – Number of light curve bins to use</p></li>
-<li><p><strong>reg_file</strong> (<em>str</em>) – The ciao-format, physical coordinate region file containing the source</p></li>
-<li><p><strong>ephemeris</strong> (<a class="reference internal" href="lightspeedpy.html#lightspeedpy.Ephemeris" title="lightspeedpy.Ephemeris"><em>Ephemeris</em></a>) – The source ephemeris</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>The light curve object, corrected for quantum efficiency TODO</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference internal" href="#lightspeedpy.lc.Lightcurve" title="lightspeedpy.lc.Lightcurve">Lightcurve</a></p>
-</dd>
-</dl>
-</dd></dl>
-
 </section>
 
 
@@ -168,10 +144,12 @@
 
 
 <h3>Navigation</h3>
-<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
-<ul class="current">
+<p class="caption" role="heading"><span class="caption-text">Please review the below pages for how to install or contribute to lightspeedpy</span></p>
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installing Lightspeedpy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="contribute.html">How to contribute to Lightspeedpy</a></li>
+</ul>
+<ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="lightspeedpy.html">Lightspeedpy API</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="lightspeedpy.html#lightspeedpy.DataSet"><code class="docutils literal notranslate"><span class="pre">DataSet</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="lightspeedpy.html#lightspeedpy.Ephemeris"><code class="docutils literal notranslate"><span class="pre">Ephemeris</span></code></a></li>
@@ -180,8 +158,9 @@
 <li class="toctree-l2"><a class="reference internal" href="lightspeedpy.html#lightspeedpy.Region"><code class="docutils literal notranslate"><span class="pre">Region</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="lightspeedpy.html#lightspeedpy.add_dataset_args"><code class="docutils literal notranslate"><span class="pre">add_dataset_args()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="lightspeedpy.html#lightspeedpy.get_dataset"><code class="docutils literal notranslate"><span class="pre">get_dataset()</span></code></a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="lightspeedpy.html#lc-subpackage">lc subpackage</a></li>
 <li class="toctree-l2"><a class="reference internal" href="lightspeedpy.html#image-subpackage">image subpackage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lightspeedpy.html#cube-subpackage">cube subpackage</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="lightspeedpy.html#lc-subpackage">lc subpackage</a></li>
 </ul>
 </li>
 </ul>
@@ -191,8 +170,7 @@
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
   <li><a href="lightspeedpy.html">Lightspeedpy API</a><ul>
-      <li>Previous: <a href="lightspeedpy.html" title="previous chapter">Lightspeedpy API</a></li>
-      <li>Next: <a href="lightspeedpy.image.html" title="next chapter">image API</a></li>
+      <li>Previous: <a href="lightspeedpy.cube.html" title="previous chapter">cube API</a></li>
   </ul></li>
   </ul></li>
 </ul>

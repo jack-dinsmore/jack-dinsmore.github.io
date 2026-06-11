@@ -279,7 +279,7 @@ Pixel properties of the data set</p>
 <dt class="sig sig-object py" id="lightspeedpy.PixelProperties">
 <span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">lightspeedpy.</span></span><span class="sig-name descname"><span class="pre">PixelProperties</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bias</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">widths</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">params</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">source_data_set</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dest_data_set</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lightspeedpy.PixelProperties" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>Biases and noise of each pixel in the data set. Use <a class="reference internal" href="#lightspeedpy.PixelProperties.from_data" title="lightspeedpy.PixelProperties.from_data"><code class="xref py py-meth docutils literal notranslate"><span class="pre">PixelProperties.from_data()</span></code></a> or <a class="reference internal" href="#lightspeedpy.PixelProperties.from_bias" title="lightspeedpy.PixelProperties.from_bias"><code class="xref py py-meth docutils literal notranslate"><span class="pre">PixelProperties.from_bias()</span></code></a> to create it.</p>
+<p>Biases and noise of each pixel in the data set. Use <code class="xref py py-meth docutils literal notranslate"><span class="pre">PixelProperties.from_data()</span></code> or <a class="reference internal" href="#lightspeedpy.PixelProperties.from_bias" title="lightspeedpy.PixelProperties.from_bias"><code class="xref py py-meth docutils literal notranslate"><span class="pre">PixelProperties.from_bias()</span></code></a> to create it.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="lightspeedpy.PixelProperties.bias">
 <span class="sig-name descname"><span class="pre">bias</span></span><a class="headerlink" href="#lightspeedpy.PixelProperties.bias" title="Link to this definition">¶</a></dt>
@@ -312,12 +312,6 @@ Pixel properties of the data set</p>
 <dt class="sig sig-object py" id="lightspeedpy.PixelProperties.from_bias">
 <span class="sig-name descname"><span class="pre">from_bias</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dest_data_set</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_frames</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_pool</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lightspeedpy.PixelProperties.from_bias" title="Link to this definition">¶</a></dt>
 <dd><p>Get the pixel properties of a bias data set</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="lightspeedpy.PixelProperties.from_data">
-<span class="sig-name descname"><span class="pre">from_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dest_data_set</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lightspeedpy.PixelProperties.from_data" title="Link to this definition">¶</a></dt>
-<dd><p>Get the pixel properties of a faint, rapid readout data set</p>
 </dd></dl>
 
 <dl class="py method">
@@ -448,7 +442,6 @@ Pixel properties of the data set</p>
 <li class="toctree-l2"><a class="reference internal" href="lightspeedpy.lc.html#lightspeedpy.lc.Lightcurve"><code class="docutils literal notranslate"><span class="pre">Lightcurve</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="lightspeedpy.lc.html#lightspeedpy.lc.get_clipped_lc"><code class="docutils literal notranslate"><span class="pre">get_clipped_lc()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="lightspeedpy.lc.html#lightspeedpy.lc.get_summed_lc"><code class="docutils literal notranslate"><span class="pre">get_summed_lc()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="lightspeedpy.lc.html#lightspeedpy.lc.get_weighted_lc_linearized"><code class="docutils literal notranslate"><span class="pre">get_weighted_lc_linearized()</span></code></a></li>
 </ul>
 </li>
 </ul>
