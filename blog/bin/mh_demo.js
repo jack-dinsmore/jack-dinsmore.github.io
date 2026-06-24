@@ -235,9 +235,6 @@ Vertical:1,"1":"Vertical",
 */
 Colocated:2,"2":"Colocated", });
 /**
-*/
-export const Tune = Object.freeze({ Psnr:0,"0":"Psnr",Psychovisual:1,"1":"Psychovisual", });
-/**
 * Chroma subsampling format
 */
 export const ChromaSampling = Object.freeze({
@@ -257,6 +254,9 @@ Cs444:2,"2":"Cs444",
 * Monochrome.
 */
 Cs400:3,"3":"Cs400", });
+/**
+*/
+export const Tune = Object.freeze({ Psnr:0,"0":"Psnr",Psychovisual:1,"1":"Psychovisual", });
 
 const MhDemoFinalization = (typeof FinalizationRegistry === 'undefined')
     ? { register: () => {}, unregister: () => {} }
