@@ -53,7 +53,7 @@
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>filenames</strong> (<em>list</em><em> of </em><em>str</em>) – List of files to include</p></li>
 <li><p><strong>max_frames</strong> (<em>int</em><em>, </em><em>optional</em>) – Maximum number of frames to iterate through. Default: all the frames</p></li>
-<li><p><strong>use_bar</strong> (<em>bool</em><em>, </em><em>optional</em>) – Show a progress bar. Default: True.</p></li>
+<li><p><strong>cbar_color</strong> (<em>str</em><em> or </em><em>None</em>) – Color of the progress bar. If None, no color bar will be shown.</p></li>
 <li><p><strong>cut_cr</strong> (<em>bool</em><em>, </em><em>optional</em>) – Cut cosmic rays. Default: True</p></li>
 <li><p><strong>cr_thresh</strong> (<em>int</em><em>, </em><em>optional</em>) – Cosmic ray cutting threshold. Default: 20</p></li>
 </ul>
@@ -110,9 +110,28 @@
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>filenames</strong> (<em>list</em><em> of </em><em>str</em>) – List of files to include</p></li>
 <li><p><strong>max_frames</strong> (<em>int</em><em>, </em><em>optional</em>) – Maximum number of frames to iterate through. Default: all the frames</p></li>
-<li><p><strong>use_bar</strong> (<em>bool</em><em>, </em><em>optional</em>) – Show a progress bar. Default: True.</p></li>
+<li><p><strong>bar_color</strong> (<em>bool</em><em>, </em><em>optional</em>) – Show a progress bar. Default: True.</p></li>
 <li><p><strong>cut_cr</strong> (<em>bool</em><em>, </em><em>optional</em>) – Cut cosmic rays. Default: True</p></li>
 <li><p><strong>cr_thresh</strong> (<em>int</em><em>, </em><em>optional</em>) – Cosmic ray cutting threshold. Default: 20</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lightspeedpy.DataSet.get_duration">
+<span class="sig-name descname"><span class="pre">get_duration</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lightspeedpy.DataSet.get_duration" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lightspeedpy.DataSet.get_pixel_properties">
+<span class="sig-name descname"><span class="pre">get_pixel_properties</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">noise_distro</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lightspeedpy.DataSet.get_pixel_properties" title="Link to this definition">¶</a></dt>
+<dd><p>Get the pixel properties of the detector</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>noise_distro</strong> (<em>bool</em>) – Set to True if the pixel properties should map the noise distribution of each pixel. This will take more time.</p></li>
+<li><p><strong>PixelProperties</strong> – Pixel properties of the data set</p></li>
 </ul>
 </dd>
 </dl>
@@ -150,13 +169,6 @@
 </dl>
 </dd></dl>
 
-<dl class="py property">
-<dt class="sig sig-object py" id="lightspeedpy.DataSet.pixel_properties">
-<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">pixel_properties</span></span><a class="headerlink" href="#lightspeedpy.DataSet.pixel_properties" title="Link to this definition">¶</a></dt>
-<dd><p>PixelProperties
-Pixel properties of the data set</p>
-</dd></dl>
-
 <dl class="py method">
 <dt class="sig sig-object py" id="lightspeedpy.DataSet.set_bias">
 <span class="sig-name descname"><span class="pre">set_bias</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bias</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lightspeedpy.DataSet.set_bias" title="Link to this definition">¶</a></dt>
@@ -188,12 +200,6 @@ Pixel properties of the data set</p>
 <dd class="field-odd"><p><strong>flat_data_set</strong> (<a class="reference internal" href="#lightspeedpy.DataSet" title="lightspeedpy.DataSet"><em>DataSet</em></a>) – A <a class="reference internal" href="#lightspeedpy.DataSet" title="lightspeedpy.DataSet"><code class="xref py py-class docutils literal notranslate"><span class="pre">DataSet</span></code></a> containing the flat observation</p>
 </dd>
 </dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="lightspeedpy.DataSet.set_self_bias">
-<span class="sig-name descname"><span class="pre">set_self_bias</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lightspeedpy.DataSet.set_self_bias" title="Link to this definition">¶</a></dt>
-<dd><p>Estimate an observation from these data. This can only be done accurately for very fast readout of a faint source, where most of the pixels detect zero photons.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -279,7 +285,7 @@ Pixel properties of the data set</p>
 <dt class="sig sig-object py" id="lightspeedpy.PixelProperties">
 <span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">lightspeedpy.</span></span><span class="sig-name descname"><span class="pre">PixelProperties</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bias</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">widths</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">params</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">source_data_set</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dest_data_set</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lightspeedpy.PixelProperties" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>Biases and noise of each pixel in the data set. Use <code class="xref py py-meth docutils literal notranslate"><span class="pre">PixelProperties.from_data()</span></code> or <a class="reference internal" href="#lightspeedpy.PixelProperties.from_bias" title="lightspeedpy.PixelProperties.from_bias"><code class="xref py py-meth docutils literal notranslate"><span class="pre">PixelProperties.from_bias()</span></code></a> to create it.</p>
+<p>Biases and noise of each pixel in the data set. Use <a class="reference internal" href="#lightspeedpy.PixelProperties.default" title="lightspeedpy.PixelProperties.default"><code class="xref py py-meth docutils literal notranslate"><span class="pre">PixelProperties.default()</span></code></a> or <a class="reference internal" href="#lightspeedpy.PixelProperties.from_bias" title="lightspeedpy.PixelProperties.from_bias"><code class="xref py py-meth docutils literal notranslate"><span class="pre">PixelProperties.from_bias()</span></code></a> to create it.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="lightspeedpy.PixelProperties.bias">
 <span class="sig-name descname"><span class="pre">bias</span></span><a class="headerlink" href="#lightspeedpy.PixelProperties.bias" title="Link to this definition">¶</a></dt>
@@ -305,12 +311,12 @@ Pixel properties of the data set</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="lightspeedpy.PixelProperties.default">
 <span class="sig-name descname"><span class="pre">default</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lightspeedpy.PixelProperties.default" title="Link to this definition">¶</a></dt>
-<dd><p>Get the default pixel properties for a data set with no bias and not self-biased.</p>
+<dd><p>Get the default pixel properties for a data set with no bias.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="lightspeedpy.PixelProperties.from_bias">
-<span class="sig-name descname"><span class="pre">from_bias</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dest_data_set</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_frames</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_pool</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lightspeedpy.PixelProperties.from_bias" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">from_bias</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dest_data_set</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">map_noise</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_frames</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10000</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lightspeedpy.PixelProperties.from_bias" title="Link to this definition">¶</a></dt>
 <dd><p>Get the pixel properties of a bias data set</p>
 </dd></dl>
 
@@ -332,6 +338,11 @@ Pixel properties of the data set</p>
 </dl>
 <p>The probability for each pixel to have originated from the given true source count.</p>
 </dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lightspeedpy.PixelProperties.has_noise_distro">
+<span class="sig-name descname"><span class="pre">has_noise_distro</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#lightspeedpy.PixelProperties.has_noise_distro" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="lightspeedpy.PixelProperties.load">
@@ -412,12 +423,7 @@ Pixel properties of the data set</p>
 <h2>image subpackage<a class="headerlink" href="#image-subpackage" title="Link to this heading">¶</a></h2>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="lightspeedpy.image.html">image API</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="lightspeedpy.image.html#lightspeedpy.image.get_clipped_image"><code class="docutils literal notranslate"><span class="pre">get_clipped_image()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="lightspeedpy.image.html#lightspeedpy.image.get_summed_image"><code class="docutils literal notranslate"><span class="pre">get_summed_image()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="lightspeedpy.image.html#lightspeedpy.image.get_weighted_image_linearized"><code class="docutils literal notranslate"><span class="pre">get_weighted_image_linearized()</span></code></a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="lightspeedpy.image.html">image API</a></li>
 </ul>
 </div>
 </section>
@@ -425,10 +431,9 @@ Pixel properties of the data set</p>
 <h2>cube subpackage<a class="headerlink" href="#cube-subpackage" title="Link to this heading">¶</a></h2>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="lightspeedpy.cube.html">cube API</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="lightspeedpy.cube.html#lightspeedpy.cube.cube"><code class="docutils literal notranslate"><span class="pre">cube()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="lightspeedpy.cube.html#lightspeedpy.cube.split"><code class="docutils literal notranslate"><span class="pre">split()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="lightspeedpy.cube.html#lightspeedpy.cube.stack_bias"><code class="docutils literal notranslate"><span class="pre">stack_bias()</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="lightspeedpy.cube.html"><cite>cube</cite> Package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="lightspeedpy.cube.html#cli">CLI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lightspeedpy.cube.html#module-lightspeedpy.cube">API</a></li>
 </ul>
 </li>
 </ul>
@@ -440,8 +445,6 @@ Pixel properties of the data set</p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="lightspeedpy.lc.html">lc API</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="lightspeedpy.lc.html#lightspeedpy.lc.Lightcurve"><code class="docutils literal notranslate"><span class="pre">Lightcurve</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="lightspeedpy.lc.html#lightspeedpy.lc.get_clipped_lc"><code class="docutils literal notranslate"><span class="pre">get_clipped_lc()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="lightspeedpy.lc.html#lightspeedpy.lc.get_summed_lc"><code class="docutils literal notranslate"><span class="pre">get_summed_lc()</span></code></a></li>
 </ul>
 </li>
 </ul>

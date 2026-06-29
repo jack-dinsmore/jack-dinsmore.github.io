@@ -52,6 +52,15 @@
 </div>
 <p>The list of available tools is accessible through lightspeedpy’s help menu. To see it, run <code class="code docutils literal notranslate"><span class="pre">python</span> <span class="pre">-m</span> <span class="pre">lightspeedpy</span> <span class="pre">-h</span></code>.</p>
 <p>To access the documentation of a specific tool, run <code class="code docutils literal notranslate"><span class="pre">python</span> <span class="pre">-m</span> <span class="pre">lightspeedpy.TOOL_NAME</span> <span class="pre">-h</span></code>. This will tell you what the tool does and how to provide arguments to the tool.</p>
+<section id="general-notes">
+<h3>General notes<a class="headerlink" href="#general-notes" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>File names</strong> If you pass in the name of a data cube <cite>XXX_YYY_ZZZ_cubeNNN.fits</cite>, <cite>lightspeedpy</cite> will automatically load in all other cubes from the same observation. That is, files with the same XXX, YYY, and ZZZ. If you only wish to load some of these cubes, you can use the max-index and min-index arguments. Then lightspeedpy will only load cubes with NNN between min-index and max-index, inclusive.</p></li>
+<li><p><strong>mode</strong> <cite>lightspeedpy</cite> supports three modes of operation: <cite>sum</cite>, <cite>clip</cite>, and <cite>weight</cite>. Sub treats the QE-adjusted ADU received in each pixel as directly proportional to the number of electrons received. This is obviously wrong for any given pixel since the number of actual electrons must be an integer, but on average it is correct. <cite>clip</cite> rounds to the nearest whole number of electrons, which can reduce noise in some cases. <cite>weight</cite> attempts to perform a more complicated extraction which uses the distribution of read noise to infer the true number of electrons detected from the distribution of ADU received.</p></li>
+<li><p><strong>clobber</strong> <cite>lightspeedpy</cite> will not overwrite output files by default. Set <cite>clobber</cite> if you do wish to overwrite these files</p></li>
+<li><p><strong>allow-cr</strong> Use this argument to allow cosmic rays to enter your data (i.e., this argument turns off CR clipping). This will increase the analysis speed substantially.</p></li>
+</ul>
+</section>
 </section>
 <section id="how-do-i-use-the-application-programming-interface-api">
 <h2>How do I use the application programming interface (API)<a class="headerlink" href="#how-do-i-use-the-application-programming-interface-api" title="Link to this heading">¶</a></h2>
