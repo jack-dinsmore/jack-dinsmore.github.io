@@ -171,7 +171,7 @@ data-aria-dark="Switch to auto color mode">
 <p>The steps to process extended source data before fitting are the same as for point sources, with the extra step of extracting spatial weights. This should be done with the <code class="docutils literal notranslate"><span class="pre">leakagelib_cxo</span></code> script, which generates spatial weights from a Chandra image. Note that <code class="docutils literal notranslate"><span class="pre">leakagelib_cxo</span></code> is NOT a replica of IXPEobssim; IXPEobssim incorporates IXPE’s PSF and generates a simulated event file. <code class="docutils literal notranslate"><span class="pre">leakagelib_cxo</span></code> does not (and should not).</p>
 <p>This extended source section analyzes Crab OBS ID 02006001. Please download the data from Heasarc. (We will skip particle weights, so you do not need to download the level 1 data). After unzipping the files, the next step is to run <code class="docutils literal notranslate"><span class="pre">leakagelib_cxo</span></code>. Run the help script to see what the script requires.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span><span data-line="1">[1]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span><span data-line="1">[5]:
 </span></pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="o">!</span>python<span class="w"> </span>-m<span class="w"> </span>leakagelib_cxo<span class="w"> </span>-h
@@ -186,9 +186,9 @@ data-aria-dark="Switch to auto color mode">
 <span class="ansi-yellow-intense-fg">&gt;&gt;&gt; PyXSPEC is not installed, you will no be able to use it.</span>
 usage: clean [-h] --cxo-evt CXO_EVT [CXO_EVT ...] --cxo-arf CXO_ARF
              [CXO_ARF ...] --ixpe-evt IXPE_EVT --ixpe-arf IXPE_ARF
-             [--expmap EXPMAP] --output OUTPUT [--width WIDTH] [--elow ELOW]
-             [--ehigh EHIGH] [--centerx CENTERX] [--centery CENTERY]
-             [--reg-src REG_SRC] [--reg-bkg REG_BKG]
+             [--expmap EXPMAP] --output OUTPUT [--width WIDTH] [--blur BLUR]
+             [--elow ELOW] [--ehigh EHIGH] [--centerx CENTERX]
+             [--centery CENTERY] [--reg-src REG_SRC] [--reg-bkg REG_BKG]
              [--clobber | --no-clobber]
 
 Creates a CXO image, adjusted to the IXPE band. Before running this command,
@@ -209,6 +209,8 @@ options:
   --output OUTPUT       Name of the output file
   --width WIDTH         Width of the image, in arcseconds. Default: as big as
                         the CXO image (Optional)
+  --blur BLUR           Standard deviation of a blur to be applied, in
+                        arcseconds. Default: 4
   --elow ELOW           Low end of the energy range (keV). (Default: 2)
   --ehigh EHIGH         High end of the energy range (keV). (Default: 8)
   --centerx CENTERX     IXPE pixel on which the fit will be centered in the x
@@ -257,7 +259,7 @@ options:
 </div>
 <p>Then the following code will create a source image. To keep things simple I did not apply background subtraction or exposure correction.</p>
 <div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span><span data-line="1">[2]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span><span data-line="1">[6]:
 </span></pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="o">!</span>python<span class="w"> </span>-m<span class="w"> </span>leakagelib_cxo<span class="err">\</span>

@@ -737,27 +737,44 @@ global, the index will be None</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="leakagelib.FitSettings.apply_circular_roi">
-<span class="sig-name descname"><span class="pre">apply_circular_roi</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">radius</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#leakagelib.FitSettings.apply_circular_roi" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">apply_circular_roi</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">radius</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">obs_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">det</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#leakagelib.FitSettings.apply_circular_roi" title="Link to this definition">¶</a></dt>
 <dd><p>Provide a circular ROI centered on the origin (radius in arcseconds).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>obs_id</strong> (<em>str</em><em> (</em><em>optional</em><em>)</em>) – Observation ids to apply the ROI to. If not provided, the ROI will be applied to all observation IDs.</p></li>
+<li><p><strong>det</strong> (<em>int</em><em> (</em><em>optional</em><em>)</em>) – Detector to apply the ROI to. If not provided, the ROI will be applied to all detectors.</p></li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="leakagelib.FitSettings.apply_roi">
-<span class="sig-name descname"><span class="pre">apply_roi</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">roi_image</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#leakagelib.FitSettings.apply_roi" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">apply_roi</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">roi_image</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">obs_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">det</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#leakagelib.FitSettings.apply_roi" title="Link to this definition">¶</a></dt>
 <dd><p>Provide the region of interest (ROI) to the fitter after data has been cut.</p>
-<p class="rubric">Notes</p>
-<p>The roi_image must have the same dimensions as source objects. If a source with a different size is already added to the fit, an error will be thrown. If those pre-loaded sources are point sources or background, solve this problem by simply applying the ROI first. If they are sources you created, then you need to make sure your sources and background have the same shape and pixel sizes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>roi_image</strong> (<em>array-like</em>) – The roi_image must have the same dimensions as source objects. If a source with a different size is already added to the fit, an error will be thrown. If those pre-loaded sources are point sources or background, solve this problem by simply applying the ROI first. If they are sources you created, then you need to make sure your sources and background have the same shape and pixel sizes.</p></li>
+<li><p><strong>obs_id</strong> (<em>str</em><em> (</em><em>optional</em><em>)</em>) – Observation ids to apply the ROI to. If not provided, the ROI will be applied to all observation IDs.</p></li>
+<li><p><strong>det</strong> (<em>int</em><em> (</em><em>optional</em><em>)</em>) – Detector to apply the ROI to. If not provided, the ROI will be applied to all detectors.</p></li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="leakagelib.FitSettings.apply_roi_cut">
-<span class="sig-name descname"><span class="pre">apply_roi_cut</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">region</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exclude</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#leakagelib.FitSettings.apply_roi_cut" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">apply_roi_cut</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">region</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exclude</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">obs_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">det</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#leakagelib.FitSettings.apply_roi_cut" title="Link to this definition">¶</a></dt>
 <dd><p>Apply a region to the ROI. If the ROI is already created, this region will be and-ed with the existing ROI (that is, the final ROI will be the pixels which were already inside the previous ROI AND satisfy this region constraint).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>region</strong> (<em>str</em>) – Path to the region file</p></li>
 <li><p><strong>exclude</strong> (<em>bool</em><em>, </em><em>optional</em>) – Set to False to limit the ROI to this region. Set to True to exclude this region from the ROI. Default: false.</p></li>
+<li><p><strong>obs_id</strong> (<em>str</em><em> (</em><em>optional</em><em>)</em>) – Observation ids to apply the ROI to. If not provided, the ROI will be applied to all observation IDs.</p></li>
+<li><p><strong>det</strong> (<em>int</em><em> (</em><em>optional</em><em>)</em>) – Detector to apply the ROI to. If not provided, the ROI will be applied to all detectors.</p></li>
 </ul>
 </dd>
 </dl>
@@ -937,13 +954,15 @@ Default is None, which uses the Dinsmore &amp; Romani 2023 PSFs.</p></li>
 </ul>
 <dl class="py method">
 <dt class="sig sig-object py" id="leakagelib.Fitter.display_sources">
-<span class="sig-name descname"><span class="pre">display_sources</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_pixel_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#leakagelib.Fitter.display_sources" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">display_sources</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_pixel_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">obs_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">det</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#leakagelib.Fitter.display_sources" title="Link to this definition">¶</a></dt>
 <dd><p>Display the sources for debugging purposes</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>fig_name</strong> (<em>str</em><em>, </em><em>optional</em>) – Filename of the figure to be saved. Leave blank to return the figure object instead.</p></li>
 <li><p><strong>data_pixel_size</strong> (<em>float</em><em>, </em><em>optional</em>) – Size of the spatial bins in arcseconds to use when displaying the data. Leave blank to use the native PSF pixel size.</p></li>
+<li><p><strong>obs_id</strong> (<em>str</em><em>, </em><em>optional</em>) – Observation ID to display. Default: whichever is first in the data list.</p></li>
+<li><p><strong>det</strong> (<em>int</em><em>, </em><em>optional</em>) – Detector to display. Default: whichever is first in the data list.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
