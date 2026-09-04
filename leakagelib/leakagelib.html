@@ -145,8 +145,8 @@ data-aria-dark="Switch to auto color mode">
 <li><a class="reference internal" href="#leakagelib.FitSettings.add_point_source"><code class="docutils literal notranslate">add_point_source()</span></code></a></li>
 <li><a class="reference internal" href="#leakagelib.FitSettings.add_source"><code class="docutils literal notranslate">add_source()</span></code></a></li>
 <li><a class="reference internal" href="#leakagelib.FitSettings.apply_circular_roi"><code class="docutils literal notranslate">apply_circular_roi()</span></code></a></li>
+<li><a class="reference internal" href="#leakagelib.FitSettings.apply_region_roi"><code class="docutils literal notranslate">apply_region_roi()</span></code></a></li>
 <li><a class="reference internal" href="#leakagelib.FitSettings.apply_roi"><code class="docutils literal notranslate">apply_roi()</span></code></a></li>
-<li><a class="reference internal" href="#leakagelib.FitSettings.apply_roi_cut"><code class="docutils literal notranslate">apply_roi_cut()</span></code></a></li>
 <li><a class="reference internal" href="#leakagelib.FitSettings.fit_psf_sigma"><code class="docutils literal notranslate">fit_psf_sigma()</span></code></a></li>
 <li><a class="reference internal" href="#leakagelib.FitSettings.fix_flux"><code class="docutils literal notranslate">fix_flux()</span></code></a></li>
 <li><a class="reference internal" href="#leakagelib.FitSettings.fix_psf_sigma"><code class="docutils literal notranslate">fix_psf_sigma()</span></code></a></li>
@@ -195,7 +195,7 @@ data-aria-dark="Switch to auto color mode">
 <li><a class="reference internal" href="#leakagelib.PSFSourceCombo"><code class="docutils literal notranslate"><span class="pre">PSFSourceCombo</span></code></a><ul>
 <li><a class="reference internal" href="#leakagelib.PSFSourceCombo.blur_psf"><code class="docutils literal notranslate">blur_psf()</span></code></a></li>
 <li><a class="reference internal" href="#leakagelib.PSFSourceCombo.compute_leakage"><code class="docutils literal notranslate">compute_leakage()</span></code></a></li>
-<li><a class="reference internal" href="#leakagelib.PSFSourceCombo.get_log_prob"><code class="docutils literal notranslate">get_log_prob()</span></code></a></li>
+<li><a class="reference internal" href="#leakagelib.PSFSourceCombo.get_prob"><code class="docutils literal notranslate">get_prob()</span></code></a></li>
 <li><a class="reference internal" href="#leakagelib.PSFSourceCombo.polarize_net"><code class="docutils literal notranslate">polarize_net()</span></code></a></li>
 </ul>
 </li>
@@ -738,10 +738,11 @@ global, the index will be None</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="leakagelib.FitSettings.apply_circular_roi">
 <span class="sig-name descname"><span class="pre">apply_circular_roi</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">radius</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">obs_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">det</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#leakagelib.FitSettings.apply_circular_roi" title="Link to this definition">¶</a></dt>
-<dd><p>Provide a circular ROI centered on the origin (radius in arcseconds).</p>
+<dd><p>Apply a circular region of interest (ROI) centered on the origin to the fitter. If an ROI is already created, this region will be and-ed with the existing ROI (that is, the final ROI will be the pixels which were already inside the previous ROI AND satisfy this region constraint).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
+<li><p><strong>radius</strong> (<em>float</em>) – Radius in arcseconds</p></li>
 <li><p><strong>obs_id</strong> (<em>str</em><em> (</em><em>optional</em><em>)</em>) – Observation ids to apply the ROI to. If not provided, the ROI will be applied to all observation IDs.</p></li>
 <li><p><strong>det</strong> (<em>int</em><em> (</em><em>optional</em><em>)</em>) – Detector to apply the ROI to. If not provided, the ROI will be applied to all detectors.</p></li>
 </ul>
@@ -750,24 +751,9 @@ global, the index will be None</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="leakagelib.FitSettings.apply_roi">
-<span class="sig-name descname"><span class="pre">apply_roi</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">roi_image</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">obs_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">det</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#leakagelib.FitSettings.apply_roi" title="Link to this definition">¶</a></dt>
-<dd><p>Provide the region of interest (ROI) to the fitter after data has been cut.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>roi_image</strong> (<em>array-like</em>) – The roi_image must have the same dimensions as source objects. If a source with a different size is already added to the fit, an error will be thrown. If those pre-loaded sources are point sources or background, solve this problem by simply applying the ROI first. If they are sources you created, then you need to make sure your sources and background have the same shape and pixel sizes.</p></li>
-<li><p><strong>obs_id</strong> (<em>str</em><em> (</em><em>optional</em><em>)</em>) – Observation ids to apply the ROI to. If not provided, the ROI will be applied to all observation IDs.</p></li>
-<li><p><strong>det</strong> (<em>int</em><em> (</em><em>optional</em><em>)</em>) – Detector to apply the ROI to. If not provided, the ROI will be applied to all detectors.</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="leakagelib.FitSettings.apply_roi_cut">
-<span class="sig-name descname"><span class="pre">apply_roi_cut</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">region</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exclude</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">obs_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">det</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#leakagelib.FitSettings.apply_roi_cut" title="Link to this definition">¶</a></dt>
-<dd><p>Apply a region to the ROI. If the ROI is already created, this region will be and-ed with the existing ROI (that is, the final ROI will be the pixels which were already inside the previous ROI AND satisfy this region constraint).</p>
+<dt class="sig sig-object py" id="leakagelib.FitSettings.apply_region_roi">
+<span class="sig-name descname"><span class="pre">apply_region_roi</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">region</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exclude</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">obs_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">det</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#leakagelib.FitSettings.apply_region_roi" title="Link to this definition">¶</a></dt>
+<dd><p>Apply a region region of interest (ROI) to the fitter. If an ROI is already created, this region will be and-ed with the existing ROI (that is, the final ROI will be the pixels which were already inside the previous ROI AND satisfy this region constraint).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -781,9 +767,24 @@ global, the index will be None</p>
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="leakagelib.FitSettings.apply_roi">
+<span class="sig-name descname"><span class="pre">apply_roi</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">roi_image</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">obs_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">det</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#leakagelib.FitSettings.apply_roi" title="Link to this definition">¶</a></dt>
+<dd><p>Apply a region of interest (ROI) image to the fitter</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>roi_image</strong> (<em>array-like</em>) – The roi_image must have the same dimensions as source objects. If a source with a different size is already added to the fit, an error will be thrown. If those pre-loaded sources are point sources or background, solve this problem by simply applying the ROI first. If they are sources you created, then you need to make sure your sources and background have the same shape and pixel sizes.</p></li>
+<li><p><strong>obs_id</strong> (<em>str</em><em> (</em><em>optional</em><em>)</em>) – Observation ids to apply the ROI to. If not provided, the ROI will be applied to all observation IDs.</p></li>
+<li><p><strong>det</strong> (<em>int</em><em> (</em><em>optional</em><em>)</em>) – Detector to apply the ROI to. If not provided, the ROI will be applied to all detectors.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="leakagelib.FitSettings.fit_psf_sigma">
 <span class="sig-name descname"><span class="pre">fit_psf_sigma</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#leakagelib.FitSettings.fit_psf_sigma" title="Link to this definition">¶</a></dt>
-<dd><p>Fit a blur parameter, which is a Gaussian with sigma equal to blur convolved with the PSF to better match the image.</p>
+<dd><p>Fit a blur parameter, which is a Gaussian with sigma equal to blur convolved with the PSF to better match the image. If an ROI is already created, this region will be and-ed with the existing ROI (that is, the final ROI will be the pixels which were already inside the previous ROI AND satisfy this region constraint).</p>
 </dd></dl>
 
 <dl class="py method">
@@ -1053,7 +1054,7 @@ Default is None. WARNING: emcee appends to the file if it exists; delete first i
 <section id="event-fields">
 <h2>Event fields<a class="headerlink" href="#event-fields" title="Link to this heading">¶</a></h2>
 <dl class="simple">
-<dt>evt_xs, evt_ys, evt_qs, evt_us, evt_energies, evt_pis, evt_times, evt_ws, evt_mus, evt_bg_chars, evt_exposures<span class="classifier">array-like</span></dt><dd><p>Properties of the individual events. <strong>Positions are measured in arcseconds</strong>. q and u are the IXPE-standard 2cos(psi) and 2sin(psi). Energies are measured in keV. Times are measured in seconds since MJDREF. To retain events, use the <a href="#id9"><span class="problematic" id="id10">:meth:`leakagelib.IXPEData.retain`</span></a> or <a href="#id11"><span class="problematic" id="id12">:meth:`leakagelib.IXPEData.retain_region`</span></a> methods.</p>
+<dt>evt_xs, evt_ys, evt_qs, evt_us, evt_energies, evt_pis, evt_times, evt_ws, evt_mus, evt_bg_chars, evt_exposures, evt_vigns<span class="classifier">array-like</span></dt><dd><p>Properties of the individual events. <strong>Positions are measured in arcseconds</strong>. q and u are the IXPE-standard 2cos(psi) and 2sin(psi). Energies are measured in keV. Times are measured in seconds since MJDREF. To retain events, use the <a href="#id9"><span class="problematic" id="id10">:meth:`leakagelib.IXPEData.retain`</span></a> or <a href="#id11"><span class="problematic" id="id12">:meth:`leakagelib.IXPEData.retain_region`</span></a> methods.</p>
 </dd>
 <dt>offsets<span class="classifier">tuple of float</span></dt><dd><p>Location of the current origin in physical coordinates. Defaults to (0, 0).</p>
 </dd>
@@ -1348,8 +1349,8 @@ inaccurate off-axis.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="leakagelib.PSFSourceCombo.get_log_prob">
-<span class="sig-name descname"><span class="pre">get_log_prob</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">q</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">u</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#leakagelib.PSFSourceCombo.get_log_prob" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="leakagelib.PSFSourceCombo.get_prob">
+<span class="sig-name descname"><span class="pre">get_prob</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">q</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">u</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#leakagelib.PSFSourceCombo.get_prob" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
