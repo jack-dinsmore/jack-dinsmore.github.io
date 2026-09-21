@@ -62,17 +62,12 @@ data-aria-dark="Switch to auto color mode">
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installing Lightspeedpy</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">How do I use the command line interface (CLI)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">How do I use the application programming interface (API)</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="lightspeedpy.html">Lightspeedpy API</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="lightspeedpy.image.html">image API</a></li>
-<li class="toctree-l3"><a class="reference internal" href="lightspeedpy.cube.html"><cite>cube</cite> Package</a></li>
-<li class="toctree-l3"><a class="reference internal" href="lightspeedpy.lc.html">lc API</a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="lightspeedpy.html">Lightspeedpy API</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="contribute.html">How to contribute to Lightspeedpy</a></li>
 </ul>
-<p class="caption" role="heading" aria-level="3"><span class="caption-text">Plugin examples</span></p>
+<p class="caption" role="heading" aria-level="3"><span class="caption-text">Plugin documentation</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="corecode/bias/docs/index.html">Bias plugin</a></li>
 <li class="toctree-l1"><a class="reference internal" href="corecode/cube/docs/index.html">Cube plugin</a></li>
@@ -173,14 +168,14 @@ data-aria-dark="Switch to auto color mode">
 <h2>General notes<a class="headerlink" href="#general-notes" title="Link to this heading">¶</a></h2>
 <p>There are some command line flags which nearly all lightspeedpy plugins use. They are described in detail below.</p>
 <ul class="simple">
-<li><p><code class="code docutils literal notranslate"><span class="pre">--input`</span></code>: Pass the name of a data cube <cite>XXX_YYY_ZZZ_cubeNNN.fits</cite>. By default, lightspeedpy will automatically load in all other cubes from the same observation. That is, files with the same XXX, YYY, and ZZZ. If you only wish to load some of these cubes, you can use the <code class="code docutils literal notranslate"><span class="pre">--max-index</span></code> and <code class="code docutils literal notranslate"><span class="pre">--min-index</span></code> command line arguments. Then lightspeedpy will only load cubes with NNN between min-index and max-index, inclusive.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">--input</span></code>: Pass the name of a data cube <cite>XXX_YYY_ZZZ_cubeNNN.fits</cite>. By default, lightspeedpy will automatically load in all other cubes from the same observation. That is, files with the same XXX, YYY, and ZZZ. If you only wish to load some of these cubes, you can use the <code class="code docutils literal notranslate"><span class="pre">--max-index</span></code> and <code class="code docutils literal notranslate"><span class="pre">--min-index</span></code> command line arguments. Then lightspeedpy will only load cubes with NNN between min-index and max-index, inclusive.</p></li>
 </ul>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>The above <code class="code docutils literal notranslate"><span class="pre">--input</span></code> convention is potentially confusing. Every lightspeedpy plugin prints out the names of the files being read. Please check to make sure they are the files you expected. Ellipses denote consecutive cubes.</p>
 </div>
 <ul class="simple">
-<li><p><code class="code docutils literal notranslate"><span class="pre">--mode</span></code> lightspeedpy supports three modes of operation — <cite>sum</cite>, <cite>clip</cite>, and <cite>weight</cite> — which basically establish the way lightspeedpy infers the true source flux from the raw pixel output. <cite>Sum</cite> just adds the detected pixel output to estimate the source flux. <cite>clip</cite> first rounds to the nearest whole number of electrons, which can reduce noise in some cases. <cite>weight</cite> fits the source flux to the distribution of detected counts, and this is the most accurate method.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">--mode</span></code> lightspeedpy supports three modes of operation — <cite>sum</cite>, <cite>clip</cite>, and <cite>weight</cite> — which establish the way lightspeedpy infers the true source flux from the raw pixel output. <cite>Sum</cite> just adds the detected pixel output to estimate the source flux. <cite>clip</cite> first rounds to the nearest whole number of electrons, which can reduce noise in some cases. <cite>weight</cite> fits the source flux to the distribution of detected counts, and this is the most precise method.</p></li>
 <li><p><code class="code docutils literal notranslate"><span class="pre">--clobber</span></code> lightspeedpy will not overwrite output files by default. Set <cite>clobber</cite> if you do wish to overwrite these files</p></li>
 <li><p><code class="code docutils literal notranslate"><span class="pre">--allow-cr</span></code> Use this argument to allow cosmic rays to enter your data (i.e., this argument turns off CR clipping). This will increase the analysis speed substantially.</p></li>
 </ul>
@@ -189,7 +184,7 @@ data-aria-dark="Switch to auto color mode">
 <h2>Other notes<a class="headerlink" href="#other-notes" title="Link to this heading">¶</a></h2>
 <ul class="simple">
 <li><p><strong>regions</strong>: Lightspeedpy only supports single regions at the moment. You cannot add and subtract them. The regions should be in physical coordinates and ciao-formatted. The supported shapes are: circle, ellipse, box, polygon, annulus, and elliptical annulus.</p></li>
-<li><p><strong>progress bar colors</strong>: Bias stacking has green and yellow progress bars in lightspeedpy. (Normal bias stacking is green, noise fitting is yellow.) The other plugins’ operations are white. If you are running multiple analyses that use the same bias data, and the green and yellow bars take a long time to complete, consider using the <cite>bias</cite> plugin to make a processed bias file, and load that file instead.</p></li>
+<li><p><strong>progress bar colors</strong>: Bias stacking has green and yellow progress bars in lightspeedpy. (Normal bias stacking is green, noise fitting is yellow.) The other plugins’ operations are white. If you are running multiple analyses that use the same bias data, and the green and yellow bars take a long time to complete, consider using the <cite>bias</cite> plugin to make a processed bias file once. Provide that bias file in the <code class="code docutils literal notranslate"><span class="pre">--bias</span></code> argument to avoid the green and yellow progress bars during later steps.</p></li>
 </ul>
 </section>
 </section>

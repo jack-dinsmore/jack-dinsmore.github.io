@@ -2,7 +2,7 @@
 <html lang="en" data-accent-color="violet" data-content_root="./">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"><title>How to contribute to Lightspeedpy - lightspeedpy documentation</title><link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Bias plugin" href="corecode/bias/docs/index.html" /><link rel="prev" title="lc API" href="lightspeedpy.lc.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"><title>How to contribute to Lightspeedpy - lightspeedpy documentation</title><link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="Bias plugin" href="corecode/bias/docs/index.html" /><link rel="prev" title="Lightspeedpy API" href="lightspeedpy.html" />
       <link rel="canonical" href="https://jack-dinsmore.github.io/lightspeedpy/contribute.html" /><script>
     function setColorMode(t){let e=document.documentElement;e.setAttribute("data-color-mode",t);let a=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches,s=t;"auto"===t&&(s=a?"dark":"light"),"light"===s?(e.classList.remove("dark"),e.classList.add("light")):(e.classList.remove("light"),e.classList.add("dark"))}
     setColorMode(localStorage._theme||"auto");
@@ -62,17 +62,12 @@ data-aria-dark="Switch to auto color mode">
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installing Lightspeedpy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cli.html">How do I use the command line interface (CLI)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">How do I use the application programming interface (API)</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="lightspeedpy.html">Lightspeedpy API</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="lightspeedpy.image.html">image API</a></li>
-<li class="toctree-l3"><a class="reference internal" href="lightspeedpy.cube.html"><cite>cube</cite> Package</a></li>
-<li class="toctree-l3"><a class="reference internal" href="lightspeedpy.lc.html">lc API</a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="lightspeedpy.html">Lightspeedpy API</a></li>
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">How to contribute to Lightspeedpy</a></li>
 </ul>
-<p class="caption" role="heading" aria-level="3"><span class="caption-text">Plugin examples</span></p>
+<p class="caption" role="heading" aria-level="3"><span class="caption-text">Plugin documentation</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="corecode/bias/docs/index.html">Bias plugin</a></li>
 <li class="toctree-l1"><a class="reference internal" href="corecode/cube/docs/index.html">Cube plugin</a></li>
@@ -167,11 +162,11 @@ data-aria-dark="Switch to auto color mode">
 <li><p>(<em>optional</em>): Make a fork of the lightspeedpy git repository and install it (see <a class="reference internal" href="installation.html"><span class="doc">Installing Lightspeedpy</span></a>). This step is recommended only if you’d eventually like to request that your plugin become an official part of lightspeedpy.</p></li>
 <li><p>Copy the <cite>template</cite> directory and rename it to be the name of your plugin (don’t use hyphens or periods.)</p></li>
 <li><p>(<em>Make the command line utility</em>) Edit <cite>__main__.py</cite> to define the plugin’s command line interface. See the file for additional instructions.</p></li>
-<li><p>(<em>Make the programming interface</em>) Edit <cite>__init__.py</cite> to define the plugin’s python API. See the file for additional instructions. The API is imported using <cite>from lightspeedpy import PLUGIN_NAME</cite>.</p></li>
+<li><p>(<em>Make the programming interface</em>) Edit <cite>__init__.py</cite> to define the plugin’s python API. See the file for additional instructions. The API is imported using <code class="code docutils literal notranslate"><span class="pre">from</span> <span class="pre">lightspeedpy</span> <span class="pre">import</span> <span class="pre">PLUGIN_NAME</span></code>.</p></li>
 <li><p>(<em>Add documentation, optional</em>) Add any example code or documentation to the <cite>docs</cite> directory.</p></li>
 </ol>
 <p>If you have installed lightspeedpy with the <cite>-e</cite> argument as this documentation suggests, then you should now be able to use your plugin as though it were any other lightspeedpy plugin.</p>
-<p>Specifically, the command line instructions  <cite>python -m lightspeedpy.PLUGIN_NAME</cite> will run the code you wrote in step 2, and <cite>from lightspeedpy import PLUGIN_NAME</cite> will import the API you defined in step 3. If you complete step 4 and run <cite>make html</cite> from lightspeedpy’s main <cite>docs</cite> directory, then your packages documentation will also be made locally. The HTML page is stored at <cite>docs/_build/index.html</cite>.</p>
+<p>Specifically, the command line instructions  <code class="code docutils literal notranslate"><span class="pre">python</span> <span class="pre">-m</span> <span class="pre">lightspeedpy.PLUGIN_NAME</span></code> will run the code you wrote in step 2, and <code class="code docutils literal notranslate"><span class="pre">from</span> <span class="pre">lightspeedpy</span> <span class="pre">import</span> <span class="pre">PLUGIN_NAME</span></code> will import the API you defined in step 3. If you complete step 4 and run <code class="code docutils literal notranslate"><span class="pre">make</span> <span class="pre">html</span></code> from lightspeedpy’s main <cite>docs</cite> directory, then your packages documentation will also be made locally. The HTML page is stored at <cite>docs/_build/index.html</cite>.</p>
 <section id="making-your-plugin-publicly-available">
 <h2>Making your plugin publicly available<a class="headerlink" href="#making-your-plugin-publicly-available" title="Link to this heading">¶</a></h2>
 <p>This is where the fork you created in step 0 becomes important. Use <cite>git</cite> tools to commit the local changes to your lightspeedpy fork. Then use Github to create a pull request. Github has good documentation about how to do this.</p>
@@ -185,10 +180,10 @@ data-aria-dark="Switch to auto color mode">
   </svg>
   <span>Back to top</span>
 </button><div class="navigation flex print:hidden"><div class="navigation-prev">
-    <a href="lightspeedpy.lc.html">
+    <a href="lightspeedpy.html">
       <i class="i-lucide chevron-left"></i>
       <div class="page-info">
-        <span>Previous</span><div class="title">lc API</div></div>
+        <span>Previous</span><div class="title">Lightspeedpy API</div></div>
     </a>
   </div><div class="navigation-next">
     <a href="corecode/bias/docs/index.html">

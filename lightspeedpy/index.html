@@ -62,17 +62,12 @@ data-aria-dark="Switch to auto color mode">
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installing Lightspeedpy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cli.html">How do I use the command line interface (CLI)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">How do I use the application programming interface (API)</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="lightspeedpy.html">Lightspeedpy API</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="lightspeedpy.image.html">image API</a></li>
-<li class="toctree-l3"><a class="reference internal" href="lightspeedpy.cube.html"><cite>cube</cite> Package</a></li>
-<li class="toctree-l3"><a class="reference internal" href="lightspeedpy.lc.html">lc API</a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="lightspeedpy.html">Lightspeedpy API</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="contribute.html">How to contribute to Lightspeedpy</a></li>
 </ul>
-<p class="caption" role="heading" aria-level="3"><span class="caption-text">Plugin examples</span></p>
+<p class="caption" role="heading" aria-level="3"><span class="caption-text">Plugin documentation</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="corecode/bias/docs/index.html">Bias plugin</a></li>
 <li class="toctree-l1"><a class="reference internal" href="corecode/cube/docs/index.html">Cube plugin</a></li>
@@ -161,7 +156,7 @@ data-aria-dark="Switch to auto color mode">
 <h1>lightspeedpy documentation<a class="headerlink" href="#lightspeedpy-documentation" title="Link to this heading">¶</a></h1>
 <p>Lightspeedpy is a data reduction library for the proto-Lightspeed instrument. It is capable of processing bias, darks, and flats, manipulating data files, and performing more complex tasks such as generating light curves.</p>
 <p>Lightspeedpy operates on a plugin system. The core code (stored in the main lightspeedpy directory) does common tasks like loading data sets and handling biases, darks and flats. Plugins (stored in subdirectories) perform more specialized tasks like stacking frames to form an image, or extracting a light curve. This design was chosen to make it easy to update and add functionality to lightspeedpy as its user base expands.</p>
-<p>Once installed, lightspeedpy can be imported as a Python library and its tools can be used programmatically (each plugin will appear as a subpackage of lightspeedpy). Alternatively, lightspeedpy can be used as a command line tool(each plugin appears as a subcommand). For more details,including installation instructions, examples, and instructions on how to contribute to lightspeedpy, please see below.</p>
+<p>Once installed, lightspeedpy can be imported as a Python library and its tools can be used programmatically (each plugin will appear as a subpackage of lightspeedpy). Alternatively, lightspeedpy can be used as a command line tool(each plugin appears as a subcommand). For more details, including installation instructions, examples, and instructions on how to contribute to lightspeedpy, please see below.</p>
 <div class="toctree-wrapper compound">
 <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
 <ul>
@@ -176,7 +171,7 @@ data-aria-dark="Switch to auto color mode">
 </div>
 <p>For instructions on each of lightspeedpy’s plugins, please see</p>
 <div class="toctree-wrapper compound">
-<p class="caption" role="heading"><span class="caption-text">Plugin examples</span></p>
+<p class="caption" role="heading"><span class="caption-text">Plugin documentation</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="corecode/bias/docs/index.html">Bias plugin</a></li>
 <li class="toctree-l1"><a class="reference internal" href="corecode/cube/docs/index.html">Cube plugin</a></li>
