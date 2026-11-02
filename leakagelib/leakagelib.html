@@ -86,6 +86,7 @@ data-aria-dark="Switch to auto color mode">
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="leakagelib_bkg.html"><cite>leakagelib_bkg</cite> API documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="leakagelib_cxo.html"><cite>leakagelib_cxo</cite> API documentation</a></li>
 </ul>
 
         </div>
@@ -572,11 +573,14 @@ global, the index will be None</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="leakagelib.FitResult.get_pd_pa">
-<span class="sig-name descname"><span class="pre">get_pd_pa</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tag</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'src'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#leakagelib.FitResult.get_pd_pa" title="Link to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">get_pd_pa</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tag</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'src'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'simple'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#leakagelib.FitResult.get_pd_pa" title="Link to this definition">¶</a></dt>
 <dd><p>Get the polarization degree and polarization angle for a source</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>tag</strong> (<em>str</em><em>, </em><em>optional</em>) – Name of the source</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>tag</strong> (<em>str</em><em>, </em><em>optional</em>) – Name of the source</p></li>
+<li><p><strong>method</strong> (<em>str</em><em>, </em><em>optional</em>) – Either “str” (Default): estimates PD by PD = Sqrt(Q^2 + U^2); or “bayes”: estimates PD using the mean of the Bayesian posterior.</p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The PD, EVPA, PD uncertainty, and EVPA uncertainty. Angles are in radians.</p>

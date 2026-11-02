@@ -86,6 +86,7 @@ data-aria-dark="Switch to auto color mode">
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="leakagelib_bkg.html"><cite>leakagelib_bkg</cite> API documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="leakagelib_cxo.html"><cite>leakagelib_cxo</cite> API documentation</a></li>
 </ul>
 
         </div>
@@ -102,6 +103,8 @@ data-aria-dark="Switch to auto color mode">
 <li><a class="reference internal" href="#examples-extended-source-fitting">Examples: Extended source fitting</a></li>
 <li><a class="reference internal" href="#how-leakagelib-fitting-works">How LeakageLib fitting works</a></li>
 <li><a class="reference internal" href="#derivation-of-the-leakagelib-likelihood">Derivation of the LeakageLib likelihood</a></li>
+<li><a class="reference internal" href="#derivation-of-the-leakagelib-particle-weights">Derivation of the LeakageLib particle weights</a></li>
+<li><a class="reference internal" href="#derivation-of-the-leakagelib-particle-flux-estimator">Derivation of the LeakageLib particle flux estimator</a></li>
 <li><a class="reference internal" href="#caveats">Caveats</a></li>
 </ul>
 </div><div id="ethical-ad-placement" data-ea-publisher="readthedocs"></div></div>
@@ -225,12 +228,12 @@ data-aria-dark="Switch to auto color mode">
 <p>The likelihood is defined as the probability of detecting the observed data given the fit parameters. Here, the “data” consist of the EVPA <span class="math notranslate nohighlight">\(\psi_i\)</span>, position <span class="math notranslate nohighlight">\(\mathbf r_i\)</span>, energy <span class="math notranslate nohighlight">\(E_i\)</span>, and time <span class="math notranslate nohighlight">\(t_i\)</span> of each event. <span class="math notranslate nohighlight">\(i\)</span> refers to the index of the event. The fit parameters are the sources’ PD and EVPA <span class="math notranslate nohighlight">\(\Pi_s\)</span> and <span class="math notranslate nohighlight">\(\Psi_s\)</span>. <span class="math notranslate nohighlight">\(s\)</span> refers to the source index. The flux of each source <span class="math notranslate nohighlight">\(f_s\)</span> is also a fit parameter. It is convenient to units where the total flux is 1. I.e. <span class="math notranslate nohighlight">\(f_s\)</span> is the fraction of the data that came from source <span class="math notranslate nohighlight">\(s\)</span>. We can therefore write the likelihood mathematically as</p>
 <div class="math-wrapper docutils container">
 <div class="math notranslate nohighlight">
-\[L = P(\{\psi_i, \mathbf r_i, E_i, t_i\} | \{\Pi_s, \Psi_s, f_s\}).\]</div>
+\[L = P(\{\psi_i, \mathbf r_i, E_i, t_i\}_i | \{\Pi_s, \Psi_s, f_s\}_s).\]</div>
 </div>
-<p>Since each event is independent, we can use the identity <span class="math notranslate nohighlight">\(P(X,Y) = P(X)P(Y)\)</span> for independent random variables <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span>, writing</p>
+<p>Braces indicate a set; for example, <span class="math notranslate nohighlight">\(\{\psi_i\}_i\)</span> means the set of all EVPAs. Since each event is independent, we can use the identity <span class="math notranslate nohighlight">\(P(X,Y) = P(X)P(Y)\)</span> for independent random variables <span class="math notranslate nohighlight">\(X\)</span> and <span class="math notranslate nohighlight">\(Y\)</span>, writing</p>
 <div class="math-wrapper docutils container">
 <div class="math notranslate nohighlight">
-\[L = \prod_i P(\psi_i, \mathbf r_i, E_i, t_i | \{\Pi_s, \Psi_s, f_s\}).\]</div>
+\[L = \prod_i P(\psi_i, \mathbf r_i, E_i, t_i | \{\Pi_s, \Psi_s, f_s\}_s).\]</div>
 </div>
 <p>Here we can use another identity: <span class="math notranslate nohighlight">\(P(X) = \sum_Y P(X|Y) P(Y)\)</span>, where the sum is over all possible values of <span class="math notranslate nohighlight">\(Y\)</span>. We apply this where <span class="math notranslate nohighlight">\(Y\)</span> represents the originating source <span class="math notranslate nohighlight">\(s\)</span> of the photon. Then <span class="math notranslate nohighlight">\(P(s)\)</span> is <span class="math notranslate nohighlight">\(f_s\)</span> and we write <span class="math notranslate nohighlight">\(P(X | s)\)</span> as <span class="math notranslate nohighlight">\(P_s(X)\)</span> for convenience.</p>
 <div class="math-wrapper docutils container">
@@ -255,17 +258,57 @@ data-aria-dark="Switch to auto color mode">
 </div>
 <p>is the (simplified) LeakageLib likelihood. These terms represent respectively the source flux, spatial weights, polarimetric weights, energy weights, and time/phase weights. The source flux can be converted to particle weights with further considerations given in Dinsmore &amp; Romani 2025. I say “simplified” because LeakageLib is also capable of treating sources with time-varying polarization, which involves slight modifications to this likelihood.</p>
 </section>
+<section id="derivation-of-the-leakagelib-particle-weights">
+<h2>Derivation of the LeakageLib particle weights<a class="headerlink" href="#derivation-of-the-leakagelib-particle-weights" title="Link to this heading">¶</a></h2>
+<p>In LeakageLib, particle weights are taken into account by including a separate “source” in the likelihood with its own distributions for <span class="math notranslate nohighlight">\(\mathbf{r_i}, \psi_i, E_i\)</span> and <span class="math notranslate nohighlight">\(t_i\)</span>. If this was all the information we had, this would be the best we can do. However, Di Marco et al. (2021) showed that the raw track data can help distinguish particles from photons. To treat this, we create a new “particle character” <span class="math notranslate nohighlight">\(\pi_i\)</span> for each event, which summarizes whether the event is a particle or photon. We use a neural net (NN) to ensure this variable is an efficient classifier (described in Dinsmore and Romani, 2025).</p>
+<p>We took pains to train the NN so that <span class="math notranslate nohighlight">\(\pi_i\)</span> is independent of the other track properties. Thus, the likelihood with particle character included is</p>
+<div class="math-wrapper docutils container">
+<div class="math notranslate nohighlight">
+\[L = \prod_i \sum_s f_s P_s(\pi_i) P_s(\mathbf r_i | \psi_i) P_s(\psi_i | \Pi_s, \Psi_s) P_s(E_i) P_s(t_i).\]</div>
+</div>
+<p>Now we must determine the functional form of <span class="math notranslate nohighlight">\(P_s(\pi_i)\)</span>, which recall is shorthand for  <span class="math notranslate nohighlight">\(P(\pi_i | s)\)</span>. Applying Bayes’ theorem when <span class="math notranslate nohighlight">\(s\)</span> is a particle and a photon source and dividing the results, we get</p>
+<div class="math-wrapper docutils container">
+<div class="math notranslate nohighlight">
+\[\frac{P_\mathrm{ptcl}(\pi_i)}{P_\mathrm{phot}(\pi_i)} = \frac{P (\mathrm{ptcl} | \pi_i)}{P (\mathrm{phot} | \pi_i)} \frac{P(\mathrm{phot})}{P(\mathrm{ptcl})}.\]</div>
+</div>
+<p>We know the right hand side because of how the NN was trained. Our training data set had equal numbers of particles and photons, meaning that <span class="math notranslate nohighlight">\(\frac{P(\mathrm{phot})}{P(\mathrm{ptcl})} = 1\)</span>. Furthermore, we used the binary cross-entropy loss function, which is minimized when <span class="math notranslate nohighlight">\(\pi_i = P (\mathrm{ptcl} | \pi_i)\)</span>. (And by normalization, <span class="math notranslate nohighlight">\(P (\mathrm{phot} | \pi_i) = 1-\pi_i\)</span>.) Thus,</p>
+<div class="math-wrapper docutils container">
+<div class="math notranslate nohighlight">
+\[\frac{P_\mathrm{ptcl}(\pi_i)}{P_\mathrm{phot}(\pi_i)} = \frac{\pi_i}{1-\pi_i}.\]</div>
+</div>
+<p>Because this is one equation and two unknowns (<span class="math notranslate nohighlight">\(P_\mathrm{ptcl}(\pi_i)\)</span> and <span class="math notranslate nohighlight">\(P_\mathrm{phot}(\pi_i)\)</span>), we cannot solve it without more information. But due to a trick, this equation is enough. If one uses this equation to write <span class="math notranslate nohighlight">\(P_\mathrm{ptcl}(\pi_i)\)</span> in terms of <span class="math notranslate nohighlight">\(P_\mathrm{phot}(\pi_i)\)</span> in the likelihood, the <span class="math notranslate nohighlight">\(\prod_i P_\mathrm{phot}(\pi_i)\)</span> term can be factored out. Because this term is independent of the fit parameters, it does not affect the location of the maximum and can be neglected. After a little algebra, one can show that the weights</p>
+<div class="math-wrapper docutils container">
+<div class="math notranslate nohighlight">
+\[P_\mathrm{ptcl}(\pi_i) \propto \pi_i,\qquad P_\mathrm{phot}(\pi_i) \propto 1 - \pi_i\]</div>
+</div>
+<p>are sufficient. These manifestly satisfy the ratio constraint given in the previous equation.</p>
+</section>
+<section id="derivation-of-the-leakagelib-particle-flux-estimator">
+<h2>Derivation of the LeakageLib particle flux estimator<a class="headerlink" href="#derivation-of-the-leakagelib-particle-flux-estimator" title="Link to this heading">¶</a></h2>
+<p>The <a class="reference internal" href="leakagelib.ps_fit.html#leakagelib.ps_fit.estimate_particle_flux" title="leakagelib.ps_fit.estimate_particle_flux"><code class="xref py py-func docutils literal notranslate"><span class="pre">leakagelib.ps_fit.estimate_particle_flux()</span></code></a> function allows the user to estimate the particle flux. More specifically, the return value is the fraction of events in the data set expected to be particles, which is <span class="math notranslate nohighlight">\(f_\mathrm{ptcl}\)</span> in the above derivation. The full leakagelib fit estimates <span class="math notranslate nohighlight">\(f_\mathrm{ptcl}\)</span> as a byproduct, but a quick and dirty estimate can be achieved with a simplified fit, in which all event data except the particle characters is ignored. In this case, the log-likelihood is simply</p>
+<div class="math-wrapper docutils container">
+<div class="math notranslate nohighlight">
+\[\ln L = \sum_i \ln \left[f_\mathrm{ptcl} \pi_i + (1 - f_\mathrm{ptcl})(1-\pi_i) \right]\]</div>
+</div>
+<p>which <a class="reference internal" href="leakagelib.ps_fit.html#leakagelib.ps_fit.estimate_particle_flux" title="leakagelib.ps_fit.estimate_particle_flux"><code class="xref py py-func docutils literal notranslate"><span class="pre">leakagelib.ps_fit.estimate_particle_flux()</span></code></a> maximizes numerically, solving for the best-fit particle flux <span class="math notranslate nohighlight">\(f_\mathrm{ptcl}\)</span>. Please keep in mind however that a full polarization fit is more precise, since it can use the other weights to further refine the estimate of <span class="math notranslate nohighlight">\(f_\mathrm{ptcl}\)</span>.</p>
+</section>
 <section id="caveats">
-<h2>Caveats<a class="headerlink" href="#caveats" title="Link to this heading">¶</a></h2>
+<span id="id2"></span><h2>Caveats<a class="headerlink" href="#caveats" title="Link to this heading">¶</a></h2>
 <p>There are several pitfalls that any user of LeakageLib should check before publishing fits conducted with <cite>LeakageLib</cite>.</p>
-<ul class="simple">
+<ul>
 <li><p><strong>The initial parameter guesses need to be accurate for fits to be repeatable</strong>. When fitting with many parameters, it is easy to be trapped in a local minimum. To avoid this, the user should start using a simple fit and slowly add more parameters (e.g. background polarization, different polarizations in each detector, etc.), adjusting the initial parameter guesses to align with the simpler fit results using the <a class="reference internal" href="leakagelib.html#leakagelib.FitSettings.set_initial_qu" title="leakagelib.FitSettings.set_initial_qu"><code class="xref py py-meth docutils literal notranslate"><span class="pre">leakagelib.FitSettings.set_initial_qu()</span></code></a> and <a class="reference internal" href="leakagelib.html#leakagelib.FitSettings.set_initial_flux" title="leakagelib.FitSettings.set_initial_flux"><code class="xref py py-meth docutils literal notranslate"><span class="pre">leakagelib.FitSettings.set_initial_flux()</span></code></a> functions. If these are not used, the results may be inaccurate even if the fit succeeds.</p></li>
 <li><p><strong>All sources need to be aligned with the data</strong>. For the spatial weights to be effective, the IXPE data and sources need to be aligned with each other. This requires some manual work, e.g. centering the target if observing a point source so that the <a class="reference internal" href="leakagelib.html#leakagelib.Source.delta" title="leakagelib.Source.delta"><code class="xref py py-meth docutils literal notranslate"><span class="pre">leakagelib.Source.delta()</span></code></a> point source, which lies in the center of the image, is correct. If using spatial maps from Chandra, the Chandra and IXPE WCSs need to be aligned.</p></li>
-<li><p><strong>All flux in the region of interest must included in a fit component</strong>. If you are fitting to an observation with multiple bright sources, each source requires a component. This is true even for sources whose polarization you are not interested in. If a component is not modeled, the source will be treated as background, biasing the flux and polarization of the background fit. Alternatively, you may  exclude the source from the fit by cutting the surrounding area out of the region of interest (ROI), in which case it need not be modeled.</p></li>
+<li><p><strong>All flux in the region of interest must be included in a fit component</strong>. If you are fitting to an observation with multiple bright sources, each source requires a component. This is true even for sources whose polarization you are not interested in. If a component is not modeled, the source will be treated as background, biasing the flux and polarization of the background fit. Alternatively, you may  exclude the source from the fit by cutting the surrounding area out of the region of interest (ROI), in which case it need not be modeled.</p></li>
 <li><p><strong>Failure to use spectral weights gives small amounts of bias</strong>. This is true of any MLE method, as pointed out in section 2.4 of <a class="reference external" href="https://ui.adsabs.harvard.edu/abs/2025ApJ...993..173D/abstract">Dinsmore &amp; Romani 2025</a>. The bias is typically at the ~5% level, so it matters only for fairly well-measured sources. It is best addressed by creating accurate or approximate spatial weights for each source and background component.</p></li>
-<li><p><strong>All spatial cuts must be reflected in the ROI</strong>. If the region of interest (ROI) does not include any spatially cut regions, the normalization of the spatial probability distribution will be incorrect. This will bias the spatial weights and corrupt the fit results. If you apply spatial cuts to the data, you must create a custom ROI that is zero-valued wherever events were cut.</p></li>
-<li><p><strong>When using spectral weights, non-contiguous energy cuts need to be noted</strong>. For example, if 4-6 keV events are removed and spatial weighting is used, the user must tell LeakageLib using the <cite>duty_cycle</cite> argument of the <cite>set_spectrum</cite> function (see documentation of <a class="reference internal" href="leakagelib.html#leakagelib.FitSettings.set_spectrum" title="leakagelib.FitSettings.set_spectrum"><code class="xref py py-meth docutils literal notranslate"><span class="pre">leakagelib.FitSettings.set_spectrum()</span></code></a>). Otherwise, the normalization of the energy weights is wrong.</p></li>
-<li><p><strong>When using temporal/phase weights, non-contiguous time cuts need to be noted</strong>. For example, if only events in some range of phases for a pulsating source are used, the user must tell LeakageLib using the <cite>duty_cycle</cite> argument of the <cite>set_lightcurve</cite> function (see documentation of <a class="reference internal" href="leakagelib.html#leakagelib.FitSettings.set_lightcurve" title="leakagelib.FitSettings.set_lightcurve"><code class="xref py py-meth docutils literal notranslate"><span class="pre">leakagelib.FitSettings.set_lightcurve()</span></code></a>). Otherwise, the normalization of the phase weights is wrong.</p></li>
+<li><p><strong>All data cuts need to be recorded</strong>. If you have cut the data by position, time, or energy, LeakageLib needs to know. Otherwise the normalization of the weighting probability distribution will be incorrect, which will bias the spatial weights and corrupt the fit results. Some specific examples:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>If you apply spatial cuts, you must create a custom ROI that is zero-valued wherever events were cut.</p></li>
+<li><p>If you apply spectral cuts (other than restricting to a given range) AND if you are using spectral weights, you need to specify the cuts with the <cite>duty_cycle</cite> argument of the <cite>set_spectrum</cite> function (see documentation of <a class="reference internal" href="leakagelib.html#leakagelib.FitSettings.set_spectrum" title="leakagelib.FitSettings.set_spectrum"><code class="xref py py-meth docutils literal notranslate"><span class="pre">leakagelib.FitSettings.set_spectrum()</span></code></a>).</p></li>
+<li><p>If you apply temporal cuts (other than restricting to a given range) AND if you are using temporal weights, you need to specify the cuts with the <cite>duty_cycle</cite> argument of the <cite>set_lightcurve</cite> function (see documentation of <a class="reference internal" href="leakagelib.html#leakagelib.FitSettings.set_lightcurve" title="leakagelib.FitSettings.set_lightcurve"><code class="xref py py-meth docutils literal notranslate"><span class="pre">leakagelib.FitSettings.set_lightcurve()</span></code></a>). If you are not using temporal weights, you don’t need to do anything.</p></li>
+</ul>
+</div></blockquote>
+</li>
 </ul>
 </section>
 </section>
