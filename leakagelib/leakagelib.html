@@ -573,13 +573,13 @@ global, the index will be None</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="leakagelib.FitResult.get_pd_pa">
-<span class="sig-name descname"><span class="pre">get_pd_pa</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tag</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'src'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'simple'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#leakagelib.FitResult.get_pd_pa" title="Link to this definition">¶</a></dt>
-<dd><p>Get the polarization degree and polarization angle for a source</p>
+<span class="sig-name descname"><span class="pre">get_pd_pa</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tag</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'src'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'mle'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#leakagelib.FitResult.get_pd_pa" title="Link to this definition">¶</a></dt>
+<dd><p>Get the polarization degree and polarization angle for a source, and uncertainties</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>tag</strong> (<em>str</em><em>, </em><em>optional</em>) – Name of the source</p></li>
-<li><p><strong>method</strong> (<em>str</em><em>, </em><em>optional</em>) – Either “str” (Default): estimates PD by PD = Sqrt(Q^2 + U^2); or “bayes”: estimates PD using the mean of the Bayesian posterior.</p></li>
+<li><p><strong>method</strong> (<em>str</em><em>, </em><em>optional</em>) – Either “mle” (Default) which finds the maximum likelihood estimate PD = sqrt(Q^2 + U^2), or “bayes” which gives the mode of the Bayesian posterior with a 1/PD prior. Uncertainties are linearly propagated from the Q and U uncertainties.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
